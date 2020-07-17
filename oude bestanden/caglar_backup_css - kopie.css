@@ -1,0 +1,80 @@
+.wrapper {
+    margin: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+    height: auto;
+}
+html {
+    background-image: url(foto/markies_web_12.jpg);
+    background-size: cover; 
+}
+
+header {
+    height: 60px;
+    background-color: rgb(216, 215, 150);
+
+}
+nav {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    justify-content: center;
+    text-emphasis-color: white;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: grey;
+    height: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+header>a {
+    padding-top: 20px;
+    float: right;
+    width: 100px;
+    color: mediumorchid;
+    text-size-adjust: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+header>a:hover {
+    color: tomato;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    
+}
+ .over_ons_table {
+     width: 80%;
+ }
+
+ .over_ons_zoeken-ingredienten {
+     width: 10%;
+     background-color: cornsilk;
+     text-align: center;
+ }
+
+ .aangeraden {
+     width: 10%;
+     background-color: cornsilk;
+     text-align: center;
+   
+ }
+
+ table, th, td {
+     border:2px solid black;
+     margin: 10px;
+     background-color: cornsilk;
+     text-align: center;
+     border-collapse: collapse;
+     padding: 5px;
+     width: 10px;
+     table-layout: auto;
+     height: max-content;
+ }

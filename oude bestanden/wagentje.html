@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Bestellen</title>
+        <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
+        <title>HTML dynamic table using JavaScript</title>
+        <script type="text/javascript" src="bill.js"></script>
+    </head>
+
+    <body class="wrapper no-backgroundHarika" onload="load()">
+        <header>
+            <img src="" alt="logo_hier">
+            <a href="aanmelden">Aanmelden</a>
+            <a href="contact">Contact</a>
+            <a href="over_ons">Over ons</a>
+            <a href="producten">Producten</a>
+            <a href="home">Home</a>
+        </header>
+        <div class= "rowStartPaginaHarika">
+            
+              <table id="table-wagentjeHarika">
+                <tr>
+                  <th>Row Verwijderen</th>
+                  <th>Product Naam</th>
+                  <th>Prijs per stuk</th>
+                  <th>Aantal Stuks</th>
+                  <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td> x </td>
+                    <td> -- </td>
+                    <td> -- </td>
+                    <td> -- </td>
+                    <td> -- </td>
+
+                </tr>
+              </table>
+             
+            
+            <div>
+               <button onclick="location.href = 'Startpagina.html';" class= buttonWagentjeHarika>Doorgaan Met Winkelen</button>
+               
+            </div>
+        </div>
+        <hr>
+        <div class= "rowWagentjeHarika">
+            <form class= "formWagentjeHarika">
+                <label for="subtotal">Sub Total:</label>
+                <input type="text" id="subtotal" name="subtotal"><br><br>
+                <label for="grandtotal">Grand Total:</label>
+                <input type="text" id="grandtotal" name="grandtotal"><br><br>
+                <button onclick="location.href = 'betalen.html';" class= buttonWagentjeHarika>Ga naar de Kassa</button>
+              </form>
+        </div>
+         
+            
+        <footer>
+            <div>
+                <a href="producten.html">Producten</a>
+                <a href="overons.html">Over Ons</a>
+                <a href="contact.html">Contact</a>
+                <a href="kunnen.html">Kunnen</a>
+            </div>                         
+            <div>
+                <p>Alle rechten voorbehouden Â© 2020 c/c/c/c/c/c Broodjeszaak</p>
+            </div>
+        </footer>
+        
+
+    </body>
+
+</html>

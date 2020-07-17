@@ -1,0 +1,5 @@
+1. opmerking: klikken op de afbeeldingen of knoppen om bepaalde pagina naar te gaan.
+2. PAGINAS:
+	a.startpagina.html
+	b.contact.html;
+	c.

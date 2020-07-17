@@ -1,0 +1,110 @@
+/*main {
+    display: inline-flex ;
+    flex-wrap: wrap;    
+}*/
+
+section {
+    width: 12%;
+    
+}
+
+.broodjesLijn {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+/*.wrapper {
+    margin: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+    height: auto;
+}
+html {
+    background-image: url(foto/markies_web_12.jpg);
+    background-size: cover; 
+}
+
+header {
+    height: 60px;
+    background-color: rgb(216, 215, 150);
+
+}
+nav {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity
+    justify-content: center;
+    text-emphasis-color: white;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: grey;
+    height: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+header>a {
+    padding-top: 20px;
+    float: right;
+    width: 100px;
+    color: mediumorchid;
+    text-size-adjust: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+header>a:hover {
+    color: tomato;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    
+}
+ .over_ons_table {
+     width: 80%;
+ }
+
+ .over_ons_zoeken-ingredienten {
+     width: 10%;
+     background-color: cornsilk;
+     text-align: center;
+    
+ }
+
+ section.over_ons_table {
+     text-align: center;
+  
+ }
+
+
+ 
+ .aangeraden {
+     width: 10%;
+     background-color: cornsilk;
+     text-align: center;
+   
+ }
+.grid_container_startpagina
+{
+    display: grid;
+    
+    grid-template-columns: auto auto ;
+
+    grid-column-gap:50px;
+    grid-row-gap: 50px;
+
+}
+.grid_item_startpagina
+{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+ */

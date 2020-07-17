@@ -1,0 +1,65 @@
+/algeemene:
+	responsieve
+
+1.startpagina: HARIKA
+
+	header: links en logo
+
+		links: startpagina+producten+contact+aanmelden+winkelwagentje
+		*achtergrondkleur veranderen
+	
+	main: 4 links en afbeeldingen
+		klassieke broodjes+koude schotel+speciale broojes+draankjes 
+
+	footer: *geen link!
+
+2.producten: CAGLAR HALUK
+	
+	header: links en logo
+	main: 4 sections:(background white)
+		klassieke+koude+speciale+draankjes
+		
+		klassieke: een titel+8*2 afbeeldingen+naam+prijs+plus min knoppen
+		koude: ""
+		speciale: ""
+		draankjes: ""
+	footer:
+
+3.contact: geen aanpassing HALUK
+
+4.aanmeelden: geen aanpassing (naam+email+paaswoord) BILAL
+
+
+5. 6. 7. 8. klassieke / koude schotel/speciale/draankjes CAGLAR HALUK
+
+9. wagentje HARIKA
+
+presentatie BILAL
+
+MORGEN 09.00 : vergadering
+
+29/05/20D
+
+startpagina: klaar
+
+producten paginas(klassieke/speciale/koude schotels/draankjes): caglar+haluk
+
+contact: klaar
+
+aanmelden: bilal
+
+wagentje: harika
+
+presentatie: iedereen
+
+volgende vergadering: 11.00u
+
+
+
+
+
+
+		
+
+
+			

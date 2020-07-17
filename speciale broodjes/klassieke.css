@@ -1,0 +1,312 @@
+.wrapper {
+    margin: auto;
+   padding-left: 80px;
+    padding-right: 80px;
+}
+html {
+    
+    background-size: cover;
+    height: auto 
+}
+body {
+    background-image: url(foto/markies_web_12.jpg);
+    text-emphasis: white;
+    height: auto;
+}
+
+body.no-backgroundHarika {
+  
+  background-color: orange;
+  
+  
+}
+header {
+    height: 60px;
+    background-color: darkgreen;
+    
+
+}
+
+
+nav {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    justify-content: center;
+    color: white;
+    padding: 60px;
+    height: auto;
+}
+footer {
+    padding-top: 2px;
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    width: 100%;
+    background: darkgreen; /* background with 0.5 opacity */
+    height: 50px;
+    padding-left: 120px;
+    padding-right: 80px;
+}
+
+header>a {
+    padding-top: 20px;
+    float: right;
+    width: 100px;
+    color: white;
+    text-size-adjust: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+main {
+    display: flex;
+    flex-direction: row;
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+.over_ons_table {
+     width: 80%;
+}
+
+.over_ons_zoeken-ingredienten {
+     width: 10%;
+}
+
+.aangeraden {
+     width: 10%;
+   
+}
+
+table {
+    border:1px solid black;
+    height: auto;
+    border: 0px;
+    margin: 15px;
+}
+.row {
+    height: auto;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    color: white;
+    padding-bottom: 50px;
+}
+.informatie {
+    width: 33%;
+    padding-left: 10px;
+}
+.rowStartPaginaHarika {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .columnStartPaginaHarika {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+  }
+  .centeredimagestartpaginaHarika {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .containerimagesstartpaginaHarika {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    color: white;
+    display: block;
+    margin: 10px 10px;
+  }
+.buttonstartpaginaHarika {
+      background-color: lemonchiffon;
+  border: none;
+  color:black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+    }
+   /* .table-wagentjeHarika {
+        border-collapse:separate; 
+        border-spacing: 20px 0; 
+     
+    }
+    .thwagentjeHarika {
+        background-color: gray; 
+      color: black; 
+      }*/
+
+      #table-wagentjeHarika {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      #table-wagentjeHarika td, #table-wagentjeHarika th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      
+      /*#table-wagentjeHarika  tr:nth-child(even){background-color: #f2f2f2;}
+      
+      #table-wagentjeHarika  tr:hover {background-color: #ddd;}*/
+      
+      #table-wagentjeHarika  th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+      }
+      .buttonWagentjeHarika {
+        background-color: greenyellow;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+      }
+      hr { 
+        display: block; 
+        margin-before: 0.5em; 
+        margin-after: 0.5em; 
+        margin-start: auto; 
+        margin-end: auto; 
+        overflow: hidden; 
+        border-style: inset; 
+        border-width: 1px;
+      } 
+      .formWagentjeHarika {
+        
+        text-align: right;
+        float: right;
+        
+      }
+      .rowWagentjeHarika {
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        width: 100%;
+        align-items: flex-end;
+      }
+
+      /*caglar*/
+
+      main.productenMain{
+        background: none;
+      }
+     
+      section.productenSection {
+        width: 50%;
+      }
+
+      section.soorten {
+        width: 50%;
+      }
+
+      section.productenSection img {
+        width: 70%;
+        height: 60%;
+        border: white solid;
+        margin: 4%;
+        margin-left:15% ;
+        margin-right: 15%;
+        
+      }
+
+      section.productenSection h2 {
+        text-align: center;
+        color: white;
+        border: solid white;
+        margin-left:15% ;
+        margin-right: 15%;
+        background-color: darkgreen;
+        margin-top: 5px;
+      }
+
+      section.productenSection h3{
+        text-align: center;
+        color: white;
+        border: solid white;
+        margin-left:30% ;
+        margin-right: 30%;
+        background-color: darkgreen;
+      }
+
+      section.productenSection button {
+        margin-left: 45%;
+        width: 10%;
+        height: 10%;
+        background-color: darkgreen;
+        border: solid white;
+        color: white;
+        font-size: xx-large;
+      }
+
+      h1.productenH1 {
+        color: white;
+        margin: auto;
+        text-align: center;
+        background-color: darkgreen;
+        border: solid white;
+        width: 40%;
+        margin-top: 2%;
+      }
+
+      .productenButton {
+        display: flex;
+        margin-left: 50%;
+      }
+
+      .productenButton a{
+        margin-left: 4%;
+        width: 17%;
+        color: white;
+        text-decoration: none;
+       
+        background-color: darkgreen;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      a.leegA {
+        border: none;
+        background-color: orange;
+      }
+
+
+
+
+
+      /*caglar*/
+
+/*Haluk*/
+
+.soorten {
+  display: flex;
+}
+
+form {
+  width: 33%;
+  font-size: x-large;
+  margin-top: 4%;
+}
+
+/*Haluk*/
+      
+      

@@ -1,0 +1,10 @@
+-logo is nodig
+-verwijder de links van de footer!
+-voeg winkelwagentje in de header toe!
+-header: aanmelden pagina is nodig!
+-contact link repareren!
+-product.html is kapot!
+-wij moeten winkelwagentje aanpassen!
+-home link repareren!
+-
+
