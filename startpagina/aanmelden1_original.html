@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+ 
+<html>
+ 
+   <head>
+       <meta charset="UTF-8">
+       <title>AANMELDEN</title>
+       <link rel="stylesheet" type ="text/css" href="aanmelden.css"/>
+       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+   </head>
+ 
+   <body class="wrapper no-background">
+       <header>
+           <img src="logo.png" alt="logo_hier" width="100px" height="60px">
+           <a href="wagentje.html"><img src="shoppingcarticon.png" alt="shoppingcart" width="30px" height="30px"></img></a>
+           <a href="aanmelden.html">Aanmelden</a>
+           <a href="contact.html">Contact</a>
+           <a href="">Producten
+           <select name="prodcuten" value="producten">
+                     <option selected disabled hidden></option>
+                     <option value="klassieke.html">Klassieke Broodjes</option>
+                     <option value="koude.html">Koude Broodjes</option>
+                     <option value="speciale.html">Speciale Broodjes</option>
+                     <option value="drankje.html">Draanktjes</option>
+       </select></a>
+           <a href="startpagina.html">StartPagina</a>          
+       </header>
+       <nav>
+           <h2 class="groenTitel">AANMELDEN</h2>
+       </nav>
+ 
+       <main>
+           <form class="login" action="/action_page.php" method="post" target="_blank" autocomplete="on">
+               <h2>Log in</h2>
+               <div>
+                   <label for="email">E-mail</label>
+                   <input name="email" type="email">
+               </div>
+               <div>
+                   <label for="password">Wachtwoord</label>
+                   <input name="password" type="password">
+               </div>
+               <div>
+                   <input type="checkbox" name="herinner" value="Herinner">
+                   <label for="herinner">Herinner</label>
+               </div>
+               <button type="submit" value="Log in">Log in</button>
+               <div><a href="_blank">Wachtwoord vergeten?</a></div>
+           </form>
+           <form class="login" action="/action_page.php" method="post" target="_blank" autocomplete="on">
+               <h2>Nieuw account aanmaken</h2>
+               <div>
+                   <label for="naam">Naam</label>
+                   <input name="naam" type="text">
+               </div>
+               <div>
+                   <label for="telefoon">Telefoon nummer</label>
+                   <input name="telefoon" type="number" placeholder="0123 45 67 89">
+               </div>
+               <div>
+                   <label for="email">E-mail</label>
+                   <input name="email" type="email">
+               </div>
+               <div>
+                   <label for="password">Wachtwoord</label>
+                   <input name="password" type="password">
+               </div>
+               <div>
+                   <label for="password">Opnieuw Wachtwoord</label>
+                   <input name="password" type="password">
+               </div>
+               <button class="buttonRight" type="submit" value="Nieuw account aanmaken">Nieuw account aanmaken</button>
+           </form>
+       </main>
+ 
+       <footer>                 
+           <div>
+               <p>Alle rechten voorbehouden  © 2020 c/c/c/c/c/c Broodjeszaak</p>
+           </div>
+       </footer>
+ 
+   </body>
+ 
+</html>
