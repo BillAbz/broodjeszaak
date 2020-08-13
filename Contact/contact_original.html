@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>CONTACT</title>
+        <link rel="stylesheet" type ="text/css" href="contact.css"/>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    </head>
+
+    <body class="wrapper no-background">
+        <header>
+            <img src="logo.png" alt="logo_hier" width="100px" height="60px">
+            <a href="wagentje.html"><img src="shoppingcarticon.png" alt="shoppingcart" width="30px" height="30px"></img></a>
+            <a href="aanmelden.html">Aanmelden</a>
+            <a href="contact.html">Contact</a>
+            <a href="">Producten
+            <select name="prodcuten" value="producten">
+                      <option selected disabled hidden></option>
+                      <option value="klassieke.html">Klassieke Broodjes</option>
+                      <option value="koude.html">Koude Broodjes</option>
+                      <option value="speciale.html">Speciale Broodjes</option>
+                      <option value="drankje.html">Draanktjes</option>
+            </select></a>
+            <a href="startpagina.html">StartPagina</a>            
+        </header>
+        
+        <section class="kaarthaluk">
+            <h2 class="groenTitel">KAART</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2498.9928767747247!2d4.418372315645732!3d51.21920687958879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3f700fdbda557%3A0x39ab6c9590bba790!2sVan%20Wesenbekestraat%201%2C%202060%20Antwerpen!5e0!3m2!1snl!2sbe!4v1584011333315!5m2!1snl!2sbe" width="50%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </section>
+
+        <main>
+
+            <section class="infohaluk">
+
+                <table>
+                    <tr>
+                        <td colspan="2"><h2>Contactinformatie</h2></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-map-marker-alt"></i></td><td><strong>Adres:</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td><td>Van Wesenbekestraat 1</td>
+                    </tr> 
+                    <tr>   
+                        <td></td><td>2018 Antwerpen</td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td><i class="fas fa-mobile-alt"></i></td><td><strong>Telefoon:</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td><td><a href="tel:+32031112233">03/111 22 33</a></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td><i class="far fa-envelope"></i></td><td><strong>E-mail:</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td><td><a href="mailto:info@broodwiches.be">info@broodwiches.be</a></td>
+                    </tr>
+                </table>
+    
+                <table>
+                    <tr>
+                        <td colspan="2"><h2>Openingsuren</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Maandag</td><td>Gesloten</td>
+                    </tr>
+                    <tr>
+                        <td>Diensdag</td><td>09:00 - 17:00</td>
+                    </tr>
+                    <tr>
+                        <td>Woensdag</td><td>09:00 - 17:00</td>
+                    </tr>    
+                    <tr>
+                        <td>Donderdag</td><td>09:00 - 17:00</td>
+                    </tr>
+                    <tr>
+                        <td>Vrijdag</td><td>09:00 - 17:00</td>
+                    </tr>
+                    <tr>
+                        <td>Zaterdag</td><td>09:00 - 17:00</td>
+                    </tr>    
+                    <tr>
+                        <td>Zondag</td><td>09:00 - 17:00</td>
+                    </tr>
+                    <tr>
+                        <td>Feestdag</td><td>Gesloten</td>
+                    </tr>
+                </table>    
+                
+            </section>
+
+            <form class= "formhaluk" action="/action_page.php" method="post" target="_blank" autocomplete="on">
+                <h2>Contactformulier</h2>
+                <P>Indien u vragen hebt, contacteer ons.</P>
+                <div>
+                    <div>
+                        <label for="naam">Naam</label>
+                    </div>
+                    <input style="width: 50%" name="naam" type="text" required>
+                </div>
+                <div>
+                    <div>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <input style="width: 50%" name="email" type="email" required>
+                </div>
+                <div>
+                    <div>
+                        <label for="telefoon">Telefoon*</label>
+                    </div>
+                    <input style="width: 50%" name="telefoon" type="tel" placeholder="0123 45 67 89">
+                </div>
+                <div>
+                    <div>
+                        <label for="ordernummer">Ordernummer*</label>
+                    </div>
+                    <input style="width: 50%" name="ordernummer" type="number">
+                </div>
+                <div>
+                    <div>
+                        <label for="typevraag">Type vraag</label>
+                    </div>
+                    <div>
+                        <select id="typevraag" name="typevraag">
+                            <option value="product">Over product</option>
+                            <option value="bestelling">Over bestelling</option>
+                            <option value="naservice">Over na-service</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="vraag">Vraag</label>
+                    </div>
+                    <div>
+                        <textarea name="vraag" style="width: 50%; height: 150px;"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Verstuur vraag"/>
+                </div>
+                <em style="font-size: x-small;">(* verplicht)</em><br>
+            </form>
+
+        </main>
+
+        <footer>                                 
+            <div>
+                <p>Alle rechten voorbehouden Â© 2020 c/c/c/c/c/c Broodjeszaak</p>
+            </div>
+        </footer>
+        
+
+    </body>
+
+</html>

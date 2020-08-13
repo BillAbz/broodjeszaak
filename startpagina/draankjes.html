@@ -3,32 +3,70 @@
 <html>
 
     <head>
+        <title>Drankjes</title>
         <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-       <title>Drankjes</title>
-        <link rel="stylesheet" type ="text/css" href="draankjes.css"/>
+       <meta charset="UTF=8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+           <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"
+          integrity="sha512-M+hXwltZ3+0nFQJiVke7pqXY7VdtWW2jVG31zrml+eteTP7im25FdwtLhIBTWkaHRQyPrhO2uy8glLMHZzhFog=="
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/brands.min.js"
+          integrity="sha512-n+LJkKtr963iJwCP7oilRjd0m+j/TkcG50S5DVdDEWkduZow4yc267LccOutUUoNbf23+c+Gy6Oj2d2l9rUT0Q=="
+          crossorigin="anonymous"></script>
+       <link rel="stylesheet" type ="text/css" href="draankjes.css"/>
     </head>
 
-<body class="wrapper no-backgroundHarika" >
-
-    <header>
-        <img src="logo.png" alt="logo_hier" width="100px" height="60px">
-        <a href="wagentje.html"><img src="shoppingcarticon.png" alt="shoppingcart" width="30px" height="30px"></img></a>
-        <a href="aanmelden.html">Aanmelden</a>
-        <a href="contact.html">Contact</a>
-        <a href="">Producten
-        <select name="prodcuten" value="producten">
-                  <option selected disabled hidden></option>
-                  <option value="klassieke.html">Klassieke Broodjes</option>
-                  <option value="koude.html">Koude Broodjes</option>
-                  <option value="speciale.html">Speciale Broodjes</option>
-                  <option value="drankje.html">Dranktjes</option>
-    </select></a>
-        <a href="startpagina.html">StartPagina</a>
-        
-</header>
-
-</div>
+<body class="wrapper no-backgroundHarika">
+    <div class="wrapper">
+        <header class="container">
+           <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+               
+               <img src="logo.png" alt="logo_hier" width="100px" height="50px">
+               <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+               <!--<span class="btn btn-secondary dropdown-toggle">Menu</span>-->
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                 <ul class="navbar-nav ml-auto">  
+                    <li class="nav-item">
+                        <a class="nav-link" href="startpagina.html" style="color: white;">StartPagina</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" style="color: white;">Producten</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="klassieke.html"> Koude Schotel </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="koude.html"> Koude Schotel </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="speciale.html"> Speciale Broodjes </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="draankjes.html"> Drankjes </a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html" style="color: white;">Contact</a>
+                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="aanmelden.html" style="color: white;">Aanmelden</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="wagentje.html" style="color: white;"><i class="fa fa-shopping-cart" style="font-size:30px;color: white;"></i></a>                       
+                    </li>
+                      </ul>
+                      </div>
+                  </nav>
+                </header>
+               </div>                     
+                  
+  
 
 <h1 class="productenH1">DRANKJES</h1> </br>
 
