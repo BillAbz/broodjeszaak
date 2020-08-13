@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Bestellen</title>
+        <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
+        <title>HTML dynamic table using JavaScript</title>
+        <script type="text/javascript" src="bill.js"></script>
+    </head>
+
+    <body class="wrapper no-backgroundHarika" onload="load()">
+        
+        <header>
+            <img src="logo.png" alt="logo_hier" width="100px" height="60px">
+            <a href="wagentje.html"><img src="shoppingcarticon.png" alt="shoppingcart" width="30px" height="30px"></img></a>
+            <a href="aanmelden.html">Aanmelden</a>
+            <a href="contact.html">Contact</a>
+            <a href="">Producten
+            <select name="prodcuten" value="producten">
+                      <option selected disabled hidden></option>
+                      <option value="klassieke.html">Klassieke Broodjes</option>
+                      <option value="koude.html">Koude Broodjes</option>
+                      <option value="speciale.html">Speciale Broodjes</option>
+                      <option value="drankje.html">Draanktjes</option>
+        </select></a>
+            <a href="startpagina.html">StartPagina</a>
+            
+        </header>
+       
+        <h1 class="h1wagentje">WAGENTJE</h1>
+
+
+        <div class= "rowStartPaginaHarika">
+            
+              <table id="table-wagentjeHarika">
+                <tr>
+                  <th>Row Verwijderen</th>
+                  <th>Product Naam</th>
+                  <th>Prijs per stuk</th>
+                  <th>Aantal Stuks</th>
+                  <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td> <button value="remove">X</button></td>
+                    <td> -- </td>
+                    <td> -- </td>
+                    <td> <button value="plus">+</button><input type="number" value="0"></input><button value="minues">-</button></td>
+                    <td> -- </td>
+
+                </tr>
+              </table>
+             
+            
+            <div>
+               <button onclick="location.href = 'Startpagina.html';" class= buttonWagentjeHarika>Doorgaan Met Winkelen</button>
+               
+            </div>
+        </div>
+        <hr>
+        <div class= "rowWagentjeHarika">
+            <form class= "formWagentjeHarika">
+                <label for="subtotal">Sub Total:</label>
+                <input type="text" id="subtotal" name="subtotal"><br><br>
+                <label for="grandtotal">Grand Total:</label>
+                <input type="text" id="grandtotal" name="grandtotal"><br><br>
+                <button onclick="location.href = 'betalen.html';" class= "buttonWagentjeHarika1">Ga naar de Kassa</button>
+              </form>
+        </div>
+         
+            
+        <footer>
+                                  
+            <div>
+                <p>Alle rechten voorbehouden Â© 2020 c/c/c/c/c/c Broodjeszaak</p>
+            </div>
+        </footer>
+        
+
+    </body>
+
+</html>
