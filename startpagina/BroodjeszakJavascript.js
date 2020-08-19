@@ -31,7 +31,7 @@ function create_Radio_voor_koudeschotel_pagina()
         rb.setAttribute('value',koudeschotel_webpagina_array[i].naam);
         rb.setAttribute('name',"radiobutton"); //name for the radiobutton should always be the same for only to be checked
         rb.setAttribute('id', koudeschotel_webpagina_array[i].id );
-        rb.setAttribute("onclick",toon_gekozen_waarden);
+        rb.setAttribute("onclick", "toon_gekozen_waarden()");
         var ltag = document.createElement("label");
         ltag.appendChild(rb);
         ltag.innerHTML += "<span> " + koudeschotel_webpagina_array[i].naam + "</span><br>";
@@ -46,7 +46,7 @@ function toon_gekozen_waarden()
 {
     var rb_gekozen= document.getElementById("RadioButtonVoorKoudeSchotel");
     console.log(rb_gekozen);
-    for(i=0;i<rb_gekozen.length;i++)
+    for(i=0; i<rb_gekozen.length; i++)
     {
         if(rb_gekozen[i].checked)
         {
