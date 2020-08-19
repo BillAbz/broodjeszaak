@@ -36,8 +36,16 @@ function create_Radio_voor_koudeschotel_pagina()
         ltag.innerHTML += "<span> " + koudeschotel_webpagina_array[i].naam + "</span><br>";
         RadioButtonVoorKoudeSchotel.appendChild(ltag); // document.innerHTML("RadioButtonVoorKoudeSchotel")+= rb;
         document.getElementById("RadioButtonVoorKoudeSchotel").innerHTML+= "<br>";
-    } 
-    toon_gekozen_waarden();
+    }
+    
+    for (var j = 0; j < rb.length; j++) {
+        if (rb[j].type == 'radio' && rb[j].checked) {
+        
+            var radiobutton = document.getElementById("RadioButtonVoorKoudeSchotel").checked;
+        }
+    } console.log(radiobutton);
+
+    //toon_gekozen_waarden(value);
 
 }
 
