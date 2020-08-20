@@ -46,7 +46,7 @@ function toon_gekozen_waarden()
 {
     var rb_gekozen= document.getElementById("RadioButtonVoorKoudeSchotel");
     console.log(rb_gekozen);
-    for(i=0;i<rb_gekozen.length;i++)
+    for(i=0; i<rb_gekozen.length; i++)
     {
         if(rb_gekozen[i].checked)
         {
