@@ -46,38 +46,22 @@ function create_Radio_voor_koudeschotel_pagina()
         ltag.innerHTML += "<span> " + koudeschotel_webpagina_array[i].naam + "</span><br>";
         RadioButtonVoorKoudeSchotel.appendChild(ltag); // document.innerHTML("RadioButtonVoorKoudeSchotel")+= rb;
         document.getElementById("RadioButtonVoorKoudeSchotel").innerHTML+= "<br>";
-<<<<<<< HEAD
     } 
-=======
-    //toon_gekozen_waarden();
-
->>>>>>> e8325c98917b14f4c787a30dc98094ceee53a645
 }
 
 
-function toon_gekozen_waarden(id)
-{
-<<<<<<< HEAD
-    gekozen_waarde = get_array_element(koudeschotel_webpagina_array, id);
-  
-            document.getElementById("afbeeldingenkoudeschotel").innerHTML=gekozen_waarde.afbeelding;
-            document.getElementById("gekozenkoudeschotelnaam").innerHTML=gekozen_waarde.naam;
-            document.getElementById("gekozenkoudeschotelprijs").innerHTML=gekozen_waarde.prijs;
-     
-=======
-    var rb_gekozen= document.getElementById("RadioButtonVoorKoudeSchotel");
-    console.log(rb_gekozen);
-    for(i=0; i<rb_gekozen.length; i++)
+
+    function toon_gekozen_waarden(id)
     {
-        if(rb_gekozen[i].checked)
-        {
-            document.getElementById("afbeeldingenkoudeschotel").innerHTML=koudeschotel_webpagina_array[i].afbeelding;
-            document.getElementById("gekozenkoudeschotelnaam").innerHTML=koudeschotel_webpagina_array[i].naam;
-            document.getElementById("gekozenkoudeschotelprijs").innerHTML=koudeschotel_webpagina_array[i].prijs;
-        }
+        gekozen_waarde = get_array_element(koudeschotel_webpagina_array, id);
+      
+                document.getElementById("afbeeldingenkoudeschotel").innerHTML=gekozen_waarde.afbeelding;
+                document.getElementById("gekozenkoudeschotelnaam").innerHTML=gekozen_waarde.naam;
+                document.getElementById("gekozenkoudeschotelprijs").innerHTML=gekozen_waarde.prijs;
+         
     }
->>>>>>> e8325c98917b14f4c787a30dc98094ceee53a645
-}
+    
+
 
  //var x = document.getElementById("myRadio").checked;
  // document.getElementById("demo").innerHTML = x;
