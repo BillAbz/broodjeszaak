@@ -20,43 +20,53 @@ var koudeschotel_webpagina_array=[
     {"id": 307, "naam": "Rosbief", "prijs": 6, "afbeelding":"rosbief.jfif"}
 ];
 
+function get_array_element(array, id) {
+    for(i=0; i<array.length; i++)
+    {
+        if (array[i].id == id)
+        {
+            return array[i];
+        }
+    }
+}
 
 function create_Radio_voor_koudeschotel_pagina()
 {
     
-    for(i=0; i<koudeschotel_webpagina_array.length;i++)
+    for(i=0; i<koudeschotel_webpagina_array.length; i++)
     {
-         var rb = document.createElement("INPUT");
-        rb.setAttribute('type', "radio");
+        var rb = document.createElement("INPUT"); 
+        rb.setAttribute("type", "radio");
         rb.setAttribute('value',koudeschotel_webpagina_array[i].naam);
-        rb.setAttribute('name',"radiobutton"); //name for the radiobutton should always be the same for only to be checked
+        rb.setAttribute('name',"radiobutton");
         rb.setAttribute('id', koudeschotel_webpagina_array[i].id );
+<<<<<<< HEAD
         rb.setAttribute("onclick","toon_gekozen_waarden(${id})");
         //rb.onclick=toon_gekozen_waarden;
+=======
+        rb.setAttribute("onclick", "toon_gekozen_waarden("+koudeschotel_webpagina_array[i].id+")");
+>>>>>>> f131d1b147b0c8faa64d44197763b41802b97daf
         var ltag = document.createElement("label");
         ltag.appendChild(rb);
         ltag.innerHTML += "<span> " + koudeschotel_webpagina_array[i].naam + "</span><br>";
         RadioButtonVoorKoudeSchotel.appendChild(ltag); // document.innerHTML("RadioButtonVoorKoudeSchotel")+= rb;
         document.getElementById("RadioButtonVoorKoudeSchotel").innerHTML+= "<br>";
     } 
-    //toon_gekozen_waarden();
-
 }
 
-function toon_gekozen_waarden()
-{
-    var rb_gekozen= document.getElementById("RadioButtonVoorKoudeSchotel");
-    console.log(rb_gekozen);
-    for(i=0; i<rb_gekozen.length; i++)
+
+
+    function toon_gekozen_waarden(id)
     {
-        if(rb_gekozen[i].checked)
-        {
-            document.getElementById("afbeeldingenkoudeschotel").innerHTML=koudeschotel_webpagina_array[i].afbeelding;
-            document.getElementById("gekozenkoudeschotelnaam").innerHTML=koudeschotel_webpagina_array[i].naam;
-            document.getElementById("gekozenkoudeschotelprijs").innerHTML=koudeschotel_webpagina_array[i].prijs;
-        }
+        gekozen_waarde = get_array_element(koudeschotel_webpagina_array, id);
+      
+                document.getElementById("afbeeldingenkoudeschotel").innerHTML=gekozen_waarde.afbeelding;
+                document.getElementById("gekozenkoudeschotelnaam").innerHTML=gekozen_waarde.naam;
+                document.getElementById("gekozenkoudeschotelprijs").innerHTML=gekozen_waarde.prijs;
+         
     }
-}
+    
+
 
  //var x = document.getElementById("myRadio").checked;
  // document.getElementById("demo").innerHTML = x;
@@ -87,6 +97,22 @@ function create_Radio_voor_koudeschotel_pagina()
         RadioButtonVoorKoudeSchotel.appendChild(ltag); // document.innerHTML("RadioButtonVoorKoudeSchotel")+= rb;
         document.getElementById("RadioButtonVoorKoudeSchotel").innerHTML+= "<br>";
     } 
+}
+
+function create_Radio_voor_koudeschotel_pagina()
+{
+    
+    for(i=0; i<koudeschotel_webpagina_array.length;i++)
+    { 
+        var radioHtml = '<input type="radio" name="' + name + '"';
+        if ( checked ) {
+            radioHtml += ' checked="checked"';
+        }
+        radioHtml += '/>';
+        radioInput = document.createElement(radioHtml);
+    } 
+    //toon_gekozen_waarden();
+
 }
 
 WORKING CODE:
