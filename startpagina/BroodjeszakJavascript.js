@@ -10,7 +10,7 @@ var Startpagina_webpagina_array=[
     {"id": 90, "naam": "startpagina", "link":"startpagina.html"}
 ];
 
-var koudeschotel_webpagina_array=[
+/*var koudeschotel_webpagina_array1=[
     {"id": 301, "naam": "Natuur", "prijs": 3, "afbeelding":"natuur.jfif"},
     {"id": 302, "naam": "Hesp", "prijs": 4.50, "afbeelding":"hesp.jfif"},
     {"id": 303, "naam": "Kaas", "prijs": 3.50, "afbeelding":"kaas.jfif"},
@@ -18,6 +18,17 @@ var koudeschotel_webpagina_array=[
     {"id": 305, "naam": "Preparé", "prijs": 5, "afbeelding":"prepare.jfif"},
     {"id": 306, "naam": "Gerookte Zalm", "prijs": 5.50, "afbeelding":"gerookte_zalm.jfif"},
     {"id": 307, "naam": "Rosbief", "prijs": 6, "afbeelding":"rosbief.jfif"}
+];*/
+
+
+var koudeschotel_webpagina_array=[
+    {id: 301, naam: "Natuur", prijs: 3, afbeelding:"natuur.jfif"},
+    {id: 302, naam: "Hesp", prijs: 4.50, afbeelding:"hesp.jfif"},
+    {id: 303, naam: "Kaas", prijs: 3.50, afbeelding:"kaas.jfif"},
+    {id: 304, naam: "Kip", prijs: 4, afbeelding:"kip.jfif"},
+    {id: 305, naam: "Preparé", prijs: 5, afbeelding:"prepare.jfif"},
+    {id: 306, naam: "Gerookte Zalm", prijs: 5.50, afbeelding:"gerookte_zalm.jfif"},
+    {id: 307, naam: "Rosbief", prijs: 6, afbeelding:"rosbief.jfif"}
 ];
 
 function get_array_element(array, id) {
