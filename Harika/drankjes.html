@@ -46,7 +46,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="klassieke.html"> Klassieke Broodjes </a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="koude.html"> Koude Schotel </a>
+                          <a class="dropdown-item" href="koudeschotel.html"> Koude Schotel </a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="speciale.html"> Speciale Broodjes </a>
                           <div class="dropdown-divider"></div>
@@ -71,22 +71,25 @@
                 </header>
             </div>    
              <br><br><br>
-             <main>
-                <h1>DRANKJES</h1> </br>
-
-                <!--<button><a class="productenButton" href="">Koude Schotels</a></button>-->
+             
+                <h1 class="productenH1">DRANKJES</h1></br>
+                <!--<br><br><br>
+                <button><a class="productenButton" href="">Koude Schotels</a></button>-->
                 <div class="productenButton">
                 <a href="klassieke.html" >Klassieke Broodjes</a>
-                <a href="koude.html">Koude Schotels</a>
+                <a href="koudeschotel.html">Koude Schotels</a>
                 <a href="speciale.html" >Speciale Broodjes </a>
                 <a href="draankjes.html" class="leegA"></a>
                 </div>
                 <br><br><br>
-                <section>
+                <main class="productenMain">
+                <section class="soorten">
+                  
+                    <div>
                     <table class="table" id="drankjestable">
                         <thead>
                             <tr>
-                                <th scope="col">Drink Name</th>
+                                <th scope="col">Drankjes Naam</th>
                                 <th scope="col">Prijs</th>
                                 <th scope ="col">Promotie</th>
                                 <th scope="col">Beeld</th>
@@ -141,7 +144,7 @@
                         </tbody>
                     </table>
 
-                
+                </div>
                 </section>
 
                
@@ -151,7 +154,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalform">Product Toevoegen</h5>
+                                        <h5 class="modal-title" id="modalform">Drankjes Selectie</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -161,12 +164,13 @@
                                         <form>
                                             <div class="form-group">
                                                 
-                                                <label for="drinknaam">Drink Name</label>
-                                                <input type="text" class="form-control" id="drinknaam" placeholder="">
+                                                <label for="pnaam">Drankjes Naam</label>
+                                                <input type="text" class="form-control" id="pnaam" placeholder="">
                                             </div>
                                             <div class="input-group mb-3">
+                                                <label for="prodprijs">Prijs</label>
                                                 <span class="input-group-text">€</span>
-                                                <input type="text" class="form-control" id="prijs" aria-label="Prijs in Euro" />
+                                                <input type="text" class="form-control" id="prodprijs" aria-label="Prijs in Euro" />
             
                                             </div>
                                             <div class="form-group">
@@ -176,11 +180,11 @@
                                             </div>
                                             <div class="form-group">
                                                 
-                                                <label for="quantity">Qauntity</label>
+                                                <label for="quantity">Aantal Stukjes</label>
                                                 <input type="number" value =0 class="form-control" id="quantity" placeholder="">
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" id="confirm" onclick="">Confirm</button>
+                                                <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
                                             </div>
                                         </form>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+<html>
+ 
+    <head>
+        <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+       <title>HOME</title>
+        
+        <meta charset="UTF=8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+           <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"
+          integrity="sha512-M+hXwltZ3+0nFQJiVke7pqXY7VdtWW2jVG31zrml+eteTP7im25FdwtLhIBTWkaHRQyPrhO2uy8glLMHZzhFog=="
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/brands.min.js"
+          integrity="sha512-n+LJkKtr963iJwCP7oilRjd0m+j/TkcG50S5DVdDEWkduZow4yc267LccOutUUoNbf23+c+Gy6Oj2d2l9rUT0Q=="
+          crossorigin="anonymous"></script>
+          <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
+    </head>
+      <body class="no-backgroundHarika">
+       <!-- <div class="wrapper">
+        <header class="container">-->
+            <div>
+            <header>
+           <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+               
+               <img src="logo.png" alt="logo_hier" width="100px" height="50px">
+               <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+               <!--<span class="btn btn-secondary dropdown-toggle">Menu</span>-->
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                 <ul class="navbar-nav ml-auto">  
+                    <li class="nav-item">
+                        <a class="nav-link" href="bzstartpagina.html" style="color: white;">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" style="color: white;">Producten</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="klassieke.html"> Klassieke Broodjes </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="koude.html"> Koude Schotel </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="speciale.html"> Speciale Broodjes </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="drankjes.html"> Drankjes </a>
+                       </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="aanmelden.html" style="color: white;">Aanmelden</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contact.html" style="color: white;">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="Promoties.html" style="color: white;">Promoties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="wagentje.html" style="color: white;"><i class="fa fa-shopping-cart" style="font-size:30px;color: white;"></i></a>                       
+                    </li>
+                      </ul>
+                      </div>
+                  </nav>
+                </header>
+            </div>    
+             <br><br><br>
+             
+                <h1 class="productenH1">KOUDE SCHOTELS</h1> </br>
+                <!--<br><br><br>
+
+                <button><a class="productenButton" href="">Koude Schotels</a></button>-->
+                <div class="productenButton">
+                <a href="klassieke.html" >Klassieke Broodjes</a>
+                <a href="koudeschotel.html" class="leegA"></a>
+                <a href="speciale.html" >Speciale Broodjes </a>
+                <a href="draankjes.html">Drankjes</a>
+                </div>
+                <br><br><br>
+                <main  class="productenMain">
+                <section class="soorten">
+                    
+                    <div>
+                    <table class="table" id="klassieketable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Brood Type</th>
+                                <th scope="col"></th>
+                                <th scope ="col"></th>
+                                <th scope ="col"></th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Brood Soort</th>
+                                <th scope="col"></th>
+                                <th scope ="col"></th>
+                            </tr>
+                            <tr>
+                                <th scope="col">Vulling</th>
+                                <th scope="col">Brood Soort</th>
+                                <th scope ="col">Brood Type</th>
+                                <th scope ="col">Smos</th>
+                                <th scope="col">Prijs</th>
+                                <th scope="col">Promotie</th>
+                                <th scope="col">Keuze</th>
+
+                                <!--<th scope="col"></th>-->
+                            </tr>
+                        </thead>
+                        <tbody id="klassiekedata">
+                            <tr>
+                                <td>Kaas</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.50 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Hesp</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.75</td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Kaas en Hesp</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.00 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Preparé</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.90 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Martino</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.10 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Vlees salade</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.25 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Oude kaas</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.75 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Balletjes in tomaat</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.50</td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Italiaanse Ham</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.00 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Spek</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.80 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Spek met Ei</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.90 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Kipsla</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 3.90 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Kip-curry sla</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.00 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Garnaalsla</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.25 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Gerookte zalm</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.20 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Aardappelsla</td>
+                                <td>
+                                    <label for="bsid">Brood Soort</label>
+                                    <select class="form-control" id="bsid">
+                     
+                                        <option value="1">Picolo</option>
+                                        <option value="2">Halve Bougette</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label for="btid">Brood Type</label>
+                                    <select class="form-control" id="btid">
+                     
+                                        <option value="1">Wit</option>
+                                        <option value="2">Bruin </option>
+                                        <option value="3">Meergranen</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <label for="smos">Smos</label>
+                                    <select class="form-control" id="smos">
+                                        <option value="1">Nee </option>
+                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
+                                    </select>
+                                </td>
+                                <td> 4.00 </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+                
+                </section>
+
+               
+                        <!-- PRODUCT OVERZICHT BUTTON CREATION-->
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drankjes_details" onclick="">Product selectie</button>-->
+                        <div class="modal fade" id="klassieke_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalform">Klassieke Broodjes Selectie</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
+                                        <form>
+                                            <div class="form-group">
+                                                
+                                                <label for="pnaam">Vulling Gekozen</label>
+                                                <input type="text" class="form-control" id="pnaam" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label for="bsnaam">Brood Soort Gekozen</label>
+                                                <input type="text" class="form-control" id="bsnaam" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label for="btnaam">Brood Type Gekozen</label>
+                                                <input type="text" class="form-control" id="btnaam" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label for="smos">Brood Type Gekozen</label>
+                                                <input type="text" class="form-control" id="smos" placeholder="">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <label for="prodprijs">Prijs</label>
+                                                <span class="input-group-text">€</span>
+                                                <input type="text" class="form-control" id="prodprijs" aria-label="Prijs in Euro" />
+            
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label for="Promotieid">Promotie</label>
+                                                <input type="textbox" class="form-control" id="promotieid" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <label for="quantity">Aantal Stukjes</label>
+                                                <input type="number" value =0 class="form-control" id="quantity" placeholder="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- SAVE AND CANCEL BUTTONS CREATION -->
+            
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            
+
+             </main>
+            <footer>
+                                  
+                <div>
+                    <p>Alle rechten voorbehouden © 2020 BCHHBroodjeszaak</p>
+                </div>
+            </footer>
+            
+        </body>
+    
+    </html>         
+                                        
