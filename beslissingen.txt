@@ -8,3 +8,9 @@
 -home link repareren!
 -
 
+
+
+https://phpmyadmin.combell.com server: ID130696_vsabroodjes.db.webhosting.be database: ID130696_vsabroodjes gebruikersnaam: ID130696_vsabroodjes paswoord: vsabroodjes01 API key: fjgub4eD3ddg
+
+
+gebruikersnaam: broodjes@data-webbe paswoord: vsabroodjes01 http://vdab.data-web.be/broodjes
