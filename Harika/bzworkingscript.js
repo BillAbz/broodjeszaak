@@ -105,28 +105,7 @@ function maak_tabel() {
             var tabledata = "";
             var catid = producten[i].catid;
 
-            if(catid==3)
-            {
-
-                tabledata += "<tr>";
-           
-                tabledata += "<td>" + producten[i].pnaam + "</td>";
-                tabledata += "<td>" + + "</td>";
-                tabledata += "<td>" + + "</td>";
-                /*
-                DO NOT DELETE THIS COMMENT
-                tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
-                */
-           
-                tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#koudeschotel_details" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
-                            "</td>";
-                tabledata += "</tr>";
-
-                document.getElementById("productendata").innerHTML += tabledata;
-            
-            }
-
-            else if(catid==4)
+            if(catid==4)
             {
             
             
