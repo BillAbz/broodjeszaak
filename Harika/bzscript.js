@@ -154,7 +154,7 @@ function product_gekozen(pid)
     document.getElementById("pnaam").value = huidig_product.pnaam;
 
 
-    /*var aantalstukjes = Number(document.getElementById("quantity").value);
+    var aantalstukjes = Number(document.getElementById("quantity").value);
     var prijs = aantalstukjes * huidig_product.prodprijs;
     console.log(prijs);
     console.log(huidig_product);
@@ -168,5 +168,13 @@ function product_gekozen(pid)
     //console.log(image);*/
 
    
+}
+
+function aantal_kizen() {
+    var count = document.getElementById("quantity").value
+    huidige_prijs = count;
+    prijs = huidige_prijs;
+    product_gekozen();
+
 }
 
