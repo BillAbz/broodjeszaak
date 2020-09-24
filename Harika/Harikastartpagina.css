@@ -349,4 +349,15 @@ tr:nth-child(even) {
         font-size: 14px;
         text-align: center;
       }
-     
+      .loginclass
+      {
+        text-align: center;
+        border: 3px solid blue;
+        width: 50%;
+        margin-top: 200px;
+        margin-left: 400px;
+        padding-bottom: 100px;
+        padding-top: 50px;
+        background-color: lightblue;
+    
+      }

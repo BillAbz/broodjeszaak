@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Log In Pagina</title>
+    <meta charset="UTF=8" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Harikastartpagina.css">
+    <script src="bzscript.js"></script> 
+    
+</head>
+
+<body>
+    <div class="loginclass">
+
+        <div>
+            <h4>Enter your Login Details</h4>
+        </div>
+
+        <div>
+            <label for="admin_email">Email</label>
+            <input type="text" id="admin_email" placeholder="">
+        </div>
+        <div>
+            <label for="admin_password">Password</label>
+            <input type="password" id="admin_password" placeholder="">
+        </div>
+       <!-- <label for="register"> Nieuwe user</label>
+        <input type="checkbox" id="register" onclick="location.href = 'registeruser.php';"> 
+        <input type="checkbox" id="register" onclick="location.href = 'registeruser.php';">-->
+
+        <div>
+            <button type="button" class="btn btn-primary" id="submit" onclick="admin_login()">Submit</button>
+            <button type="button" class="btn btn-primary" id="Annuleren">Annuleren</button>
+        </div>
+
+
+    </div>
+    
+</body>
+
+</html>
