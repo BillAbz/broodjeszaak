@@ -99,13 +99,7 @@ function maak_tabel() {
     {
 
 
-        if (producten[i].pid !== null) 
-        {
-
-            var tabledata = "";
-            var catid = producten[i].catid;
-
-            if(catid==4)
+       if(catid==4)
             {
             
             
@@ -125,7 +119,7 @@ function maak_tabel() {
 
                 document.getElementById("productendata").innerHTML += tabledata;
             }
-        }
+        
     }
 
 

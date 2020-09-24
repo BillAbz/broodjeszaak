@@ -18,7 +18,7 @@
           <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
           <script src="bzscript.js"></script> 
     </head>
-      <body>
+      <body onload="start();">
        <!-- <div class="wrapper">
         <header class="container">-->
             <div>
@@ -108,49 +108,7 @@
                             </tr>
                         </thead>
                         <tbody id="productendata">
-                            <tr>
-                                <td>Martino-Ansjovis<br> (Vulling Prijs €4) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kip <br> (Vulling Prijs €3.75)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Italiaanse Preparé <br> (Vulling Prijs € 4.25)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Chillie <br> (Vulling Prijs €4) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Subliem Kip <br> (Vulling Prijs €3.50)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Italiano Kips <br> (Vulling Prijs €4)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td> Boom Patat <br> (Vulling Prijs €3.75)</td>
-                                                               
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
+                           
                                                      
                         </tbody>
                     </table>
@@ -159,7 +117,7 @@
                 </section>
 
                
-                        <!-- PRODUCT OVERZICHT BUTTON CREATION-->
+                        <!-- MODAL BUTTON CREATION-->
                         <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speciale_details" onclick="">Product selectie</button>-->
                         <div class="modal fade" id="speciale_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -171,7 +129,7 @@
                           </button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
+                                        <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                                         <form>
                                             <div class="form-group">
                                                 
@@ -214,7 +172,7 @@
                                             <div class="form-group">
                                                 
                                                 <label for="quantity">Aantal Stukjes</label>
-                                                <input type="number" value =0 class="form-control" id="quantity" placeholder="">
+                                                <input type="number" value =0 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen();">
                                             </div>
 
                                             <div class="input-group mb-3">
@@ -230,7 +188,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <!-- SAVE AND CANCEL BUTTONS CREATION -->
+                                    
             
                                 </div>
                             </div>
@@ -275,3 +233,46 @@
         </body>
     
     </html>         
+    <!-- <tr>
+                                <td>Martino-Ansjovis<br> (Vulling Prijs €4) </td>
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Kip <br> (Vulling Prijs €3.75)</td>
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Italiaanse Preparé <br> (Vulling Prijs € 4.25)</td>
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Chillie <br> (Vulling Prijs €4) </td>
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Subliem Kip <br> (Vulling Prijs €3.50)</td>
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td>Italiano Kips <br> (Vulling Prijs €4)</td>
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>
+                            <tr>
+                                <td> Boom Patat <br> (Vulling Prijs €3.75)</td>
+                                                               
+                                <td> </td>
+                                <td> </td>
+                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
+                            </tr>-->

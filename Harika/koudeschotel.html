@@ -18,7 +18,7 @@
           <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
           <script src="bzscript.js"></script> 
     </head>
-      <body>
+      <body onload="start();">
        <!-- <div class="wrapper">
         <header class="container">-->
             <div>
@@ -91,7 +91,7 @@
                                 <th scope ="col">Promotie</th>
                                 <th scope="col">Beeld</th>
                                 <th scope="col">Keuze</th>
-                                <th scope="col"></th>-->
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <!--<tbody id="koudeschotelsdata">-->
@@ -104,8 +104,8 @@
                 </section>
 
                
-                        <!-- PRODUCT OVERZICHT BUTTON CREATION-->
-                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drankjes_details" onclick="">Product selectie</button>-->
+                        <!-- MODAL BUTTON CREATION-->
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#koudeschotel_details" onclick="">Product selectie</button>-->
                         <div class="modal fade" id="koudeschotel_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -119,7 +119,7 @@
                           </button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
+                                        <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                                         <form>
                                             <div class="form-group">
                                                 
@@ -149,7 +149,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <!-- SAVE AND CANCEL BUTTONS CREATION -->
+                                    
             
                                 </div>
                             </div>

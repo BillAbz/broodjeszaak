@@ -18,7 +18,7 @@
         <script src="bzscript.js"></script> 
     </head>
 
-    <body>
+    <body onload="start();">
        
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -105,102 +105,7 @@
                             </tr>
                         </thead>
                         <tbody id="productendata">
-                            <tr>
-                                <td>Kaas <br> (Vulling Prijs €2.50) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Hesp <br> (Vulling Prijs €2.75)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kaas en Hesp <br> (Vulling Prijs € 3)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Preparé <br> (Vulling Prijs €2.90) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Martino <br> (Vulling Prijs €3.10)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Vlees salade <br> (Vulling Prijs €3.25)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td> Oude Kaas <br> (Vulling Prijs €2.75)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Balletjes in tomaat <br> (Vulling Prijs €2.50)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Italiaanse Ham <br> (Vulling Prijs €3.00)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Spek <br> (Vulling Prijs €2.80)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Spek met Ei <br> (Vulling Prijs €2.90)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kipsla <br> (Vulling Prijs €2.90)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kip-curry sla <br> (Vulling Prijs €3.00)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Garnaalsla <br> (Vulling Prijs €3.25)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Gerookte zalm <br> (Vulling Prijs €3.20) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Aardappelsla <br> (Vulling Prijs €3) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
-                            </tr>
+                            
                           
                         </tbody>
                     </table>
@@ -209,8 +114,8 @@
                 </section>
 
                
-                        <!-- PRODUCT OVERZICHT BUTTON CREATION-->
-                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drankjes_details" onclick="">Product selectie</button>-->
+                        <!-- MODAL BUTTON CREATION-->
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#klassieke_details" onclick="">Product selectie</button>-->
                         <div class="modal fade" id="klassieke_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -222,7 +127,7 @@
                           </button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
+                                        <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                                         <form>
                                             <div class="form-group">
                                                 
@@ -265,7 +170,7 @@
                                             <div class="form-group">
                                                 
                                                 <label for="quantity">Aantal Stukjes</label>
-                                                <input type="number" value =0 class="form-control" id="quantity" placeholder="">
+                                                <input type="number" value =0 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen();">
                                             </div>
 
                                             <div class="input-group mb-3">
@@ -281,7 +186,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <!-- SAVE AND CANCEL BUTTONS CREATION -->
+                                    
             
                                 </div>
                             </div>
@@ -328,3 +233,99 @@
     
 </html>         
                                         
+<!--<tr>
+    <td>Kaas <br> (Vulling Prijs €2.50) </td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Hesp <br> (Vulling Prijs €2.75)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Kaas en Hesp <br> (Vulling Prijs € 3)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Preparé <br> (Vulling Prijs €2.90) </td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Martino <br> (Vulling Prijs €3.10)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Vlees salade <br> (Vulling Prijs €3.25)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td> Oude Kaas <br> (Vulling Prijs €2.75)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Balletjes in tomaat <br> (Vulling Prijs €2.50)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Italiaanse Ham <br> (Vulling Prijs €3.00)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Spek <br> (Vulling Prijs €2.80)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Spek met Ei <br> (Vulling Prijs €2.90)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Kipsla <br> (Vulling Prijs €2.90)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Kip-curry sla <br> (Vulling Prijs €3.00)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Garnaalsla <br> (Vulling Prijs €3.25)</td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Gerookte zalm <br> (Vulling Prijs €3.20) </td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>
+<tr>
+    <td>Aardappelsla <br> (Vulling Prijs €3) </td>
+    <td> </td>
+    <td> </td>
+    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="">Kueze</button></td>
+</tr>-->
