@@ -1,41 +1,23 @@
-/*.wrapper {
-    margin: auto;
-    padding-left: 80px;
-    padding-right: 80px;
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+main{
+  background-color: wheat;
+}
 
-}*/
+nav {
+  background-color:  #0f7b47;
+}
+
+footer {
+  background-color:  #0f7b47;
+}
+
+.h3-responsive{
+  background-color: wheat;
+}
+
 html {
     
     background-size: cover;
     height: auto 
-}
-body {
-    
-    text-emphasis: white;
-    height: auto;
-}
-
-body.no-backgroundHarika {
-  
-  background-color: wheat;
-  
-  
-}
-header {
-    /*height: 60px;*/
-    background-color: darkgreen;
-    /*width: 100%;*/
-    padding-left: 120px;
-    padding-right: 80px;
-    position: fixed;
-    left: 0px;
-    width: 100%;
-    color: white;
-    
-    
 }
 
 .stylingsection
@@ -58,52 +40,6 @@ header {
   padding-bottom: 5px;
 }
 
-nav {
-    display: flex;
-      /*background: rgba(0, 0, 0, 0.5);Black background with 0.5 opacity */
-    justify-content: center;
-    color: white;
-    padding: 60px;
-    height: auto;
-}
-footer {
-    padding-top: 2px;
-    position: fixed;
-    bottom: 0;
-    left: 0px;
-    width: 100%;
-    background: darkgreen; /* background with 0.5 opacity */
-    height: 50px;
-    padding-left: 120px;
-    padding-right: 80px;
-    color: white;
-}
-
-header>a {
-    padding-top: 20px;
-    float: right;
-    width: 100px;
-    color: white;
-    text-size-adjust: 12px;
-    text-align: center;
-    text-decoration: none;
-}
-
-main.productenMain{
-  background: none;
-}
-section.soorten {
-  width: 95%;
-}
-
-
-main {
-    display: flex;
-    flex-direction: row;
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-    padding-left: 20px;
-    padding-bottom: 20px;
-}
 .over_ons_table {
      width: 80%;
 }
@@ -116,64 +52,6 @@ main {
      width: 10%;
    
 }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
-
-th, td {
-  text-align: left;
-  padding: 16px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-/*table {
-    border:1px solid black;
-    height: auto;
-    border: 0px;
-    margin: 15px;
-}
-.row {
-    height: auto;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    color: white;
-    padding-bottom: 50px;
-    
-  }
-.informatie {
-    width: 33%;
-    padding-left: 10px;
-}
-.rowStartPaginaHarika {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    margin : 0;
-    padding: 40px;
-  }
-  .rowStartPaginaHarika1 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    margin : 0;
-    padding: 10px;
-  }
-  
-  .columnStartPaginaHarika {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-  }*/
 
   .imagelinks
   {
@@ -225,15 +103,6 @@ tr:nth-child(even) {
   margin: 4px 2px;
   cursor: pointer;
     }
-   /* .table-wagentjeHarika {
-        border-collapse:separate; 
-        border-spacing: 20px 0; 
-     
-    }
-    .thwagentjeHarika {
-        background-color: gray; 
-      color: black; 
-      }*/
 
       #table-wagentjeHarika {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -246,9 +115,6 @@ tr:nth-child(even) {
         padding: 8px;
       }
       
-      /*#table-wagentjeHarika  tr:nth-child(even){background-color: #f2f2f2;}
-      
-      #table-wagentjeHarika  tr:hover {background-color: #ddd;}*/
       
       #table-wagentjeHarika  th {
         padding-top: 12px;
@@ -321,34 +187,8 @@ tr:nth-child(even) {
 
 
       }
-      a.leegA {
-        border: none;
-        background-color: orange;
-      }
-      h1.productenH1 {
-        color: white;
-        margin: auto;
-        text-align: center;
-        background-color: darkgreen;
-        border: solid white;
-        width: 40%;
-        margin-top: 2%;
-      }
-      .productenButton {
-        display: flex;
-        margin-left: 50%;
-      }
-
-      .productenButton a{
-        margin-left: 4%;
-        width: 17%;
-        color: white;
-        text-decoration: none;
-       
-        background-color: darkgreen;
-        font-size: 14px;
-        text-align: center;
-      }
+      
+     
       .loginclass
       {
         text-align: center;
