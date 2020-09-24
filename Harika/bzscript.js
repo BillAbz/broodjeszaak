@@ -1,6 +1,7 @@
 var producten=[];
 var category=[];
-
+var huidig_product;
+//var count;
 
 function admin_login()
 {
@@ -118,7 +119,7 @@ function maak_tabel() {
                 tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
                 */
            
-                tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#drankjes_details" onclick="">Kueze</button>` +
+                tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#drankjes_details" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
                             "</td>";
                 tabledata += "</tr>";
 
@@ -130,4 +131,42 @@ function maak_tabel() {
 
 }
 
+function product_gevonden(pid)
+{
+   
+    for (i = 0; i < producten.length; i++) 
+    {
+            if (pid == producten[i].pid) 
+            {
+    
+                huidig_product = producten[i];
+                console.log(huidig_product);
+
+                return;
+            }
+     }
+}
+
+function product_gekozen(pid)
+{
+    product_gevonden(pid);
+   
+    document.getElementById("pnaam").value = huidig_product.pnaam;
+
+
+    /*var aantalstukjes = Number(document.getElementById("quantity").value);
+    var prijs = aantalstukjes * huidig_product.prodprijs;
+    console.log(prijs);
+    console.log(huidig_product);
+    document.getElementById("totaalprijsdrankjes").value = prijs;
+    
+    //document.getElementById("beeld").value = huidig_product.beeld;
+    //json stringify
+
+    //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
+
+    //console.log(image);*/
+
+   
+}
 
