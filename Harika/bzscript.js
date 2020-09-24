@@ -170,7 +170,7 @@ function product_gekozen(pid)
    
 }
 
-function aantal_kizen() {
+function aantal_kiezen() {
     var count = document.getElementById("quantity").value
     huidige_prijs = count;
     prijs = huidige_prijs;
