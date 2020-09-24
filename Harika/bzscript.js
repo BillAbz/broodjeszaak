@@ -1,3 +1,7 @@
+var producten=[];
+var category=[];
+
+
 function admin_login()
 {
 
@@ -25,8 +29,7 @@ $.ajax({
         sessionStorage.setItem("token", response.status.token);
          console.log(sessionStorage);
          document.location = "bzstartpagina.html";
-        //document.getElementById("signin").value = 'none';
-        //read_items();
+       
    
        
        
@@ -40,5 +43,81 @@ $.ajax({
 
 
 
+
+}
+
+function lees_data() {
+    $.ajax({
+        method: 'GET',
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=category",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+
+    })
+        .done(function (response) {
+
+            category = response.data.items
+            console.log(producten)
+
+            $.ajax({
+                method: 'GET',
+                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
+                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+            })
+
+                .done(function (response) {
+                    console.log(response);
+                    assets_path = response.data.assets_path;
+                    producten = response.data.items
+                    sessionStorage.setItem("token", response.status.token)
+                    console.log(producten)
+                    maak_tabel()
+
+                })
+        })
+
+}
+
+
+function maak_tabel() {
+
+    document.getElementById("productendata").innerHTML = "";
+
+    for (var i = 0; i < producten.length; i++) {
+
+
+        if (producten[i].id !== null) {
+
+            var catnaam = haalcatnaam(producten[i].cid);
+            //console.log(catnaam);
+            var tabledata = "";
+            tabledata += "<tr>";
+           
+            tabledata += "<td>" + producten[i].naam + "</td>";
+            tabledata += "<td>" + producten[i].omschrijving + "</td>";
+            tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+
+            //tabledata += "<td>" + +"</td>";
+           
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#drankjes_details" onclick="">Kueze</button>` +
+            "</td>";
+            tabledata += "</tr>";
+
+            document.getElementById("drankjesdata").innerHTML += tabledata;
+        }
+    }
+
+
+}
+
+
+function haalcatnaam(catid) {
+
+    for (var i = 0; i < producten_category.length; i++) {
+        if (producten_category[i].cid == catid) {
+            return producten_category[i].cnaam;
+
+        }
+
+    }
 
 }
