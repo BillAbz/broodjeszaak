@@ -46,6 +46,12 @@ $.ajax({
 
 }
 
+function start()
+{
+    lees_data();
+}
+
+
 function lees_data() {
     $.ajax({
         method: 'GET',
@@ -56,7 +62,7 @@ function lees_data() {
         .done(function (response) {
 
             category = response.data.items
-            console.log(producten)
+            console.log(category)
 
             $.ajax({
                 method: 'GET',
@@ -73,36 +79,51 @@ function lees_data() {
                     maak_tabel()
 
                 })
-        })
+        }) .fail(function (msg) {
+        
+            console.log("read fail:");
+            console.log(msg);
+            
+        });
+    
 
 }
 
 
 function maak_tabel() {
 
-    document.getElementById("productendata").innerHTML = "";
+   document.getElementById("drankjesdata").innerHTML = "";
 
-    for (var i = 0; i < producten.length; i++) {
+    for (var i = 0; i < producten.length; i++) 
+    {
 
 
-        if (producten[i].id !== null) {
+        if (producten[i].pid !== null) 
+        {
 
-            var catnaam = haalcatnaam(producten[i].cid);
-            //console.log(catnaam);
             var tabledata = "";
-            tabledata += "<tr>";
-           
-            tabledata += "<td>" + producten[i].naam + "</td>";
-            tabledata += "<td>" + producten[i].omschrijving + "</td>";
-            tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+            var catid = producten[i].catid;
 
-            //tabledata += "<td>" + +"</td>";
+            if(catid==4)
+            {
+            
+            
+                tabledata += "<tr>";
            
-            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#drankjes_details" onclick="">Kueze</button>` +
-            "</td>";
-            tabledata += "</tr>";
+                tabledata += "<td>" + producten[i].pnaam + "</td>";
+                tabledata += "<td>" + + "</td>";
+                tabledata += "<td>" + + "</td>";
+                /*
+                DO NOT DELETE THIS COMMENT
+                tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+                */
+           
+                tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#drankjes_details" onclick="">Kueze</button>` +
+                            "</td>";
+                tabledata += "</tr>";
 
-            document.getElementById("drankjesdata").innerHTML += tabledata;
+                document.getElementById("drankjesdata").innerHTML += tabledata;
+            }
         }
     }
 
@@ -110,14 +131,3 @@ function maak_tabel() {
 }
 
 
-function haalcatnaam(catid) {
-
-    for (var i = 0; i < producten_category.length; i++) {
-        if (producten_category[i].cid == catid) {
-            return producten_category[i].cnaam;
-
-        }
-
-    }
-
-}
