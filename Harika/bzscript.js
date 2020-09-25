@@ -107,7 +107,7 @@ function lees_data() {
                                     assets_path = response.data.assets_path;
                                     sessionStorage.setItem("token", response.status.token)
                                     console.log(producten);
-                                    maak_tabel();
+                                    maak_tabel(producten);
                                     //filter_producten_category();
 
                                 })
@@ -123,7 +123,7 @@ function lees_data() {
 
 }
 
-function maak_tabel() {
+function maak_tabel(producten) {
 
    
     document.getElementById("productendata").innerHTML = "";
@@ -131,7 +131,7 @@ function maak_tabel() {
      for (var i = 0; i < producten.length; i++) 
      {
             var tabledata ="";
-            var catid= producten[i].catid;
+           // var catid= producten[i].catid;
         
              tabledata += "<tr>";
             
@@ -153,9 +153,25 @@ function maak_tabel() {
          
      }
  
+     function ga_naar_category(catid, catnaam)
+     {
+
+         document.location=""+catnaam+".html?catid=" + catid;
 
 
-function filter_producten_category()
+     }
+
+
+function toon_apart_data()
+{
+    const urlParams = new URLSearchParams(window.location.search);
+    const catid = urlParams.get("catid");
+    filter_producten_category(catid);
+}
+
+
+
+function filter_producten_category(catid)
 {
   
          
@@ -166,7 +182,7 @@ function filter_producten_category()
             type: "GET",
             data: {
 
-            "filter": [["catid", "=", "1"]],
+            "filter": ["catid", "=", catid]
 
             }
     })
@@ -182,7 +198,7 @@ function filter_producten_category()
             }
             else {
                  
-                
+                maak_tabel(prodcat1);
                 
             }
 

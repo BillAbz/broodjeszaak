@@ -19,7 +19,7 @@
     <script src="bzscript.js"></script>
     </head>
 
-    <body onload="start();">
+    <body onload="toon_apart_data();">
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -39,13 +39,13 @@
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten<span class="sr-only">(current)</span></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="klassieke.html">Klassieke Broodjes</a>
+                                <a class="dropdown-item" href="klassieke.html?catid=1">Klassieke Broodjes</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="koudeschotel.html">Koude Schotels</a>
+                                <a class="dropdown-item" href="speciale.html?catid=2">Speciale Broodjes</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="speciale.html">Speciale Broodjes</a>
+                                <a class="dropdown-item" href="koudeschotel.html?catid=3">Koude Schotels</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="drankjes.html">Drankjes</a>
+                                <a class="dropdown-item" href="drankjes.html?catid=4">Drankjes</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -67,15 +67,18 @@
         </header>
 
         <main>
-            <h1 class="productenH1">KOUDE SCHOTELS</h1> </br>
-            <!--<br><br><br>
+            <!--<h1 class="productenH1">KOUDE SCHOTELS</h1> </br>
+            <br><br><br>
 
             <button><a class="productenButton" href="">Koude Schotels</a></button>-->
-            <div class="productenButton">
-                <a href="klassieke.html" >Klassieke Broodjes</a>
-                <a href="koudeschotel.html" class="leegA"></a>
-                <a href="speciale.html" >Speciale Broodjes </a>
-                <a href="drankjes.html">Drankjes</a>
+            <div class="btn-group flex-center" role="group" aria-label="Basic example">
+                <a href="javascript:" type="button" id="klassieke" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="ga_naar_category('1','klassieke')"><i class="fas fa-car fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
+                
+                <a href="javascript:" type="button" id="speciale" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="ga_naar_category('2','speciale')"><i class="fas fa-train fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
+                
+                <a href="javascript:" type="button" id="schotel" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="ga_naar_category('3','koudeschotel')"><i class="fas fa-plane fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
+               
+                <a href="javascript:" type="button" id= "drankjes" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="ga_naar_category('4','drankjes')">DRANKJES</a>
             </div>
             <br><br><br>
             
