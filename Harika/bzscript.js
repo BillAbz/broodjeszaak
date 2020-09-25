@@ -1,5 +1,7 @@
 var producten=[];
 var category=[];
+var broodsoort=[];
+var broodtype=[];
 var prodcat1=[];
 var prodcat2=[];
 var prodcat3=[];
@@ -33,7 +35,8 @@ $.ajax({
 
         sessionStorage.setItem("token", response.status.token);
          console.log(sessionStorage);
-         document.location = "bzstartpagina.html";
+        // document.location = "homepage.html";
+         document.location ="bzstartpagina.html";
        
    
        
@@ -54,6 +57,7 @@ $.ajax({
 function start()
 {
     lees_data();
+
 }
 
 
@@ -77,15 +81,36 @@ function lees_data() {
 
                 .done(function (response) {
                     console.log(response);
-                    assets_path = response.data.assets_path;
                     producten = response.data.items
-                    sessionStorage.setItem("token", response.status.token)
-                    console.log(producten)
-                    //maak_tabel()
-                    filter_producten_category();
 
-                })
-        }) .fail(function (msg) {
+                    $.ajax({
+                        method: 'GET',
+                        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                    })
+        
+                        .done(function (response) {
+                            console.log(response);
+                            broodsoort = response.data.items
+                            $.ajax({
+                                method: 'GET',
+                                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
+                                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                            })
+                
+                                .done(function (response) {
+                                    console.log(response);
+                                    broodtype = response.data.items
+                                    assets_path = response.data.assets_path;
+                                    sessionStorage.setItem("token", response.status.token)
+                                    console.log(producten);
+                                    maak_tabel(producten);
+                                    //filter_producten_category();
+
+                                })
+        })
+    })
+}).fail(function (msg) {
         
             console.log("read fail:");
             console.log(msg);
@@ -95,183 +120,125 @@ function lees_data() {
 
 }
 
-function filter_producten_category()
+function  maak_tabel()
 {
-  
-         
-   
-            $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "GET",
-            data: {
-
-            "filter": [["catid", "=", "1"]],
-
-            }
-    })
-        .done(function (json) {
-            console.log("read done:");
-            console.log(json);
-            prodcat1 = json.data.items;
-            console.log(prodcat1);
-            if (prodcat1 == "") {
-
-                document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
-
-            }
-            else {
-                 
-                
-                var datatarget="#klassieke_details";
-                maak_tabel(prodcat1,datatarget);
-            }
-
-        })
-        .fail(function (msg) {
-            console.log("read fail:");
-            console.log(msg);
-        });
-
-        $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "GET",
-            data: {
-
-            "filter": [["catid", "=", "2"]],
-
-            }
-    })
-        .done(function (json) {
-            console.log("read done:");
-            console.log(json);
-            prodcat2 = json.data.items;
-            console.log(prodcat2);
-            if (prodcat2 == "") {
-
-                document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
-
-            }
-            else {
-                
-                var datatarget="#speciale_details";
-                maak_tabel(prodcat2,datatarget);
-            }
-
-        })
-        .fail(function (msg) {
-            console.log("read fail:");
-            console.log(msg);
-        });
-
-        $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "GET",
-            data: {
-
-            "filter": [["catid", "=", "3"]],
-
-            }
-    })
-        .done(function (json) {
-            console.log("read done:");
-            console.log(json);
-            prodcat3 = json.data.items;
-            console.log(prodcat3);
-            if (prodcat3 == "") {
-
-                document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
-
-            }
-            else {
-                
-                var datatarget="#koudeschotel_details";
-                
-                maak_tabel(prodcat3,datatarget);
-            }
-
-        })
-        .fail(function (msg) {
-            console.log("read fail:");
-            console.log(msg);
-        });
-
-        $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "GET",
-            data: {
-
-            "filter": [["catid", "=", "4"]],
-
-            }
-    })
-        .done(function (json) {
-            console.log("read done:");
-            console.log(json);
-            prodcat4 = json.data.items;
-            console.log(prodcat4);
-            if (prodcat4 == "") {
-
-                document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
-
-            }
-            else {
-             
-                var datatarget="#drankjes_details";
-                maak_tabel(prodcat4,datatarget);
-            }
-
-        })
-        .fail(function (msg) {
-            console.log("read fail:");
-            console.log(msg);
-        });
-
-}
-
-
-function maak_tabel(prodcat,datatarget)
-{
-    
-    document.getElementById("productendata").innerHTML = "";
-
-    for(i=0;i<prodcat.length;i++)
+    document.getElementById("productendata").innerHTML="";
+    for(var i=0; i<producten.length;i++)
     {
-        if (producten[i].pid !== null) 
-        {
-
-            var tabledata = "";
-     
-           tabledata += "<tr>";
+        var tabledata ="";
+                
+            tabledata += "<tr>";
            
-        tabledata += "<td>" + prodcat[i].pnaam + "</td>";
-        tabledata += "<td>" + + "</td>";
-        tabledata += "<td>" + + "</td>";
-        
-        //DO NOT DELETE THIS COMMENT
-        //tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
-        
-   
-        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target= ${datatarget} onclick="product_gekozen(${prodcat[i].pid})">Kueze</button>` +"</td>";
-        
-        tabledata += "</tr>";
+            tabledata += "<td>" + producten[i].pnaam + "</td>";
+            tabledata += "<td>" + + "</td>";
+            tabledata += "<td>" + + "</td>";
+            /*
+            DO NOT DELETE THIS COMMENT
+            tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+            */
+       
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
+                        "</td>";
+            tabledata += "</tr>";
 
-        document.getElementById("productendata").innerHTML += tabledata;
-
-
-
+            //document.getElementById("productendata_klassieke").innerHTML += tabledata;
+            document.getElementById("productendata").innerHTML += tabledata;
     }
+}
 
+function maak_tabel_klassieke()
+{
+
+    document.getElementById("productendata").innerHTML="";
+    for(var i=0;producten[i].catid==1;i++)
+    {
+        var tabledata ="";
+                
+            tabledata += "<tr>";
+           
+            tabledata += "<td>" + producten[i].pnaam + "</td>";
+            tabledata += "<td>" + + "</td>";
+            tabledata += "<td>" + + "</td>";
+            /*
+            DO NOT DELETE THIS COMMENT
+            tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+            */
+       
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
+                        "</td>";
+            tabledata += "</tr>";
+
+            //document.getElementById("productendata_klassieke").innerHTML += tabledata;
+            document.getElementById("productendata").innerHTML += tabledata;
     }
-
-
-
 }
 
 
+
+function product_gevonden(pid)
+{
+   
+    for (i = 0; i < producten.length; i++) 
+    {
+            if (pid == producten[i].pid) 
+            {
+    
+                huidig_product = producten[i];
+                console.log(huidig_product);
+
+                return;
+            }
+     }
+}
+
+function product_gekozen(pid)
+{
+    product_gevonden(pid);
+   
+    document.getElementById("pnaam").value = huidig_product.pnaam;
+
+
+    var aantalstukjes = Number(document.getElementById("quantity").value);
+    var prijs = aantalstukjes * huidig_product.prodprijs;
+    console.log(prijs);
+    console.log(huidig_product);
+    if(huidig_product.catid==1)
+    {
+        
+        document.getElementById("totaalprijsklassieke").value = prijs;
+    }
+    else if(huidig_product.catid==2)
+    {
+
+        document.getElementById("totaalprijsspeciale").value = prijs;
+    }
+    else if(huidig_product.catid==3)
+    {
+        var prijs = aantalstukjes * huidig_product.prodprijs;
+        document.getElementById("totaalprijsschotel").value = prijs;
+    }
+    else if(huidig_product.catid==4)
+    {
+        var prijs = aantalstukjes * huidig_product.prodprijs;
+        document.getElementById("totaalprijsdrankjes").value = prijs;
+    }
+    //document.getElementById("beeld").value = huidig_product.beeld;
+    //json stringify
+
+    //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
+
+    //console.log(image);*/
+
+   
+}
+
+function aantal_kiezen() {
+    var count = document.getElementById("quantity").value;
+    huidige_prijs = count;
+    prijs = huidige_prijs;
+    product_gekozen();
+
+}
 
 /*function maak_tabel() {
 
@@ -333,51 +300,3 @@ function maak_tabel(prodcat,datatarget)
 
 
 }*/
-
-function product_gevonden(pid)
-{
-   
-    for (i = 0; i < producten.length; i++) 
-    {
-            if (pid == producten[i].pid) 
-            {
-    
-                huidig_product = producten[i];
-                console.log(huidig_product);
-
-                return;
-            }
-     }
-}
-
-function product_gekozen(pid)
-{
-    product_gevonden(pid);
-   
-    document.getElementById("pnaam").value = huidig_product.pnaam;
-
-
-    var aantalstukjes = Number(document.getElementById("quantity").value);
-    var prijs = aantalstukjes * huidig_product.prodprijs;
-    console.log(prijs);
-    console.log(huidig_product);
-    document.getElementById("totaalprijsdrankjes").value = prijs;
-    
-    //document.getElementById("beeld").value = huidig_product.beeld;
-    //json stringify
-
-    //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
-
-    //console.log(image);*/
-
-   
-}
-
-function aantal_kiezen() {
-    var count = document.getElementById("quantity").value;
-    huidige_prijs = count;
-    prijs = huidige_prijs;
-    product_gekozen();
-
-}
-
