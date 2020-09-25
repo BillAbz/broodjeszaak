@@ -93,14 +93,72 @@ function lees_data() {
 
 function maak_tabel() {
 
-   document.getElementById("productendata").innerHTML = "";
+   document.getElementById("productendata_klassieke").innerHTML = "";
+   document.getElementById("productendata_speciale").innerHTML = "";
+   document.getElementById("productendata_koudeschotel").innerHTML = "";
+   document.getElementById("productendata_drankjes").innerHTML = "";
 
     for (var i = 0; i < producten.length; i++) 
     {
+       
+        if(catid==1)
+        {
+            tabledata += "<tr>";
+           
+            tabledata += "<td>" + producten[i].pnaam + "</td>";
+            tabledata += "<td>" + + "</td>";
+            tabledata += "<td>" + + "</td>";
+            /*
+            DO NOT DELETE THIS COMMENT
+            tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+            */
+       
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#klassieke_details" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
+                        "</td>";
+            tabledata += "</tr>";
 
+            document.getElementById("productendata_klassieke").innerHTML += tabledata;
+        }
+        else if(catid==2)
+        {
+            tabledata += "<tr>";
+           
+                tabledata += "<td>" + producten[i].pnaam + "</td>";
+                tabledata += "<td>" + + "</td>";
+                tabledata += "<td>" + + "</td>";
+                /*
+                DO NOT DELETE THIS COMMENT
+                tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+                */
+           
+                tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
+                            "</td>";
+                tabledata += "</tr>";
 
-       if(catid==4)
-            {
+                document.getElementById("productendata_speciale").innerHTML += tabledata;
+
+        }
+        else if(catid==3)
+        {
+            tabledata += "<tr>";
+           
+                tabledata += "<td>" + producten[i].pnaam + "</td>";
+                tabledata += "<td>" + + "</td>";
+                tabledata += "<td>" + + "</td>";
+                /*
+                DO NOT DELETE THIS COMMENT
+                tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+                */
+           
+                tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#koudeschotel_details" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
+                            "</td>";
+                tabledata += "</tr>";
+
+                document.getElementById("productendata_koudeschotel").innerHTML += tabledata;
+
+        }
+        else if(catid==4)
+        {
             
             
                 tabledata += "<tr>";
@@ -117,8 +175,8 @@ function maak_tabel() {
                             "</td>";
                 tabledata += "</tr>";
 
-                document.getElementById("productendata").innerHTML += tabledata;
-            }
+                document.getElementById("productendata_drankjes").innerHTML += tabledata;
+        }
         
     }
 
