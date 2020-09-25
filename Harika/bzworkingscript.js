@@ -93,14 +93,17 @@ function lees_data() {
 
 function maak_tabel() {
 
-   document.getElementById("productendata_klassieke").innerHTML = "";
+   /*document.getElementById("productendata_klassieke").innerHTML = "";
    document.getElementById("productendata_speciale").innerHTML = "";
    document.getElementById("productendata_koudeschotel").innerHTML = "";
-   document.getElementById("productendata_drankjes").innerHTML = "";
+   document.getElementById("productendata_drankjes").innerHTML = "";*/
+
+   document.getElementById("productendata").innerHTML = "";
 
     for (var i = 0; i < producten.length; i++) 
     {
-       
+       var tabledata ="";
+       var catid= producten[i].catid;
         if(catid==1)
         {
             tabledata += "<tr>";
@@ -117,7 +120,8 @@ function maak_tabel() {
                         "</td>";
             tabledata += "</tr>";
 
-            document.getElementById("productendata_klassieke").innerHTML += tabledata;
+            //document.getElementById("productendata_klassieke").innerHTML += tabledata;
+            document.getElementById("productendata").innerHTML += tabledata;
         }
         else if(catid==2)
         {
@@ -135,7 +139,8 @@ function maak_tabel() {
                             "</td>";
                 tabledata += "</tr>";
 
-                document.getElementById("productendata_speciale").innerHTML += tabledata;
+                //document.getElementById("productendata_speciale").innerHTML += tabledata;
+                document.getElementById("productendata").innerHTML += tabledata;
 
         }
         else if(catid==3)
@@ -154,7 +159,8 @@ function maak_tabel() {
                             "</td>";
                 tabledata += "</tr>";
 
-                document.getElementById("productendata_koudeschotel").innerHTML += tabledata;
+                //document.getElementById("productendata_koudeschotel").innerHTML += tabledata;
+                document.getElementById("productendata").innerHTML += tabledata;
 
         }
         else if(catid==4)
@@ -175,7 +181,8 @@ function maak_tabel() {
                             "</td>";
                 tabledata += "</tr>";
 
-                document.getElementById("productendata_drankjes").innerHTML += tabledata;
+                //document.getElementById("productendata_drankjes").innerHTML += tabledata;
+                document.getElementById("productendata").innerHTML += tabledata;
         }
         
     }
