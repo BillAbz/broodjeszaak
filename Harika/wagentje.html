@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>HBH Broodjeszak - Winkelwagentje</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" >
+            <a class="navbar-brand" href="bzstartpagina.html">
+                <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="bzstartpagina.html">Welkom</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="klassieke.html">Klassieke Broodjes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="koudeschotel.html">Koude Schotel</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="speciale.html">Speciale Broodjes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="drankjes.html">Drankjes</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aanmelden.html">Aanmelden</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="promoties.html">Promoties</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="wagentje.html"><i class="fa fa-shopping-cart fa-2x"></i><span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+        <div class="row justify-content-center m-0">
+            <button type="button" class="btn btn-white btn-outline-default waves-effect z-depth-5" style="background-color: white"><h4><strong>WINKELWAGENTJE</strong></h4></button>
+        </div>
+        
+        <div class="container p-5">
+
+            <section class="dark-grey-text z-depth-5">
+          
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-lg-8">
+
+                                <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestellingen</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tabCheckoutPayment" role="tab">2. Uw betaling</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content pt-4">
+          
+                                    <!--Panel 1-->
+                                    <div class="tab-pane fade in show active" id="tabCheckoutOrder" role="tabpanel">
+
+                                        <section class="dark-grey-text">
+
+                                            <div class="table-responsive">
+                                        
+                                                <table class="table product-table mb-0">
+                                        
+                                                <!-- Table head -->
+                                                <thead class="mdb-color lighten-5">
+                                                    <tr>
+                                                    
+                                                    <th class="font-weight-bold">
+                                                        <strong>Product</strong>
+                                                    </th>
+                                                    
+                                                    <th class="font-weight-bold">
+                                                        <strong>Prijs</strong>
+                                                    </th>
+
+                                                    <th class="font-weight-bold">
+                                                        <strong>Aantal Stuks</strong>
+                                                    </th>
+
+                                                    <th class="font-weight-bold">
+                                                        <strong>Bedrag</strong>
+                                                    </th>
+
+                                                    <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- /.Table head -->
+                                        
+                                                <!-- Table body -->
+                                                <tbody>
+
+                                                    <tr>
+                                                    <td>
+                                                        <h5 class="mt-3"><strong>iPhone</strong></h5>
+                                                        <p class="text-muted">Apple</p>
+                                                    </td>
+
+                                                    <td>$800</td>
+
+                                                    <td>
+                                                        <input type="number" value="2" aria-label="Search" class="form-control" style="width: 100px">
+                                                    </td>
+
+                                                    <td class="font-weight-bold">
+                                                        <strong>$800</strong>
+                                                    </td>
+
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"title="Remove item">Verwijder</button>
+                                                    </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <td colspan="2"></td>
+
+                                                    <td>
+                                                        <h4 class="mt-2">
+                                                        <strong>Totaal</strong>
+                                                        </h4>
+                                                    </td>
+
+                                                    <td class="text-right">
+                                                        <h4 class="mt-2"><strong>€800</strong></h4>
+                                                    </td>
+
+                                                    <td colspan="3" class="text-right">
+                                                        <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-primary">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+                                                    </td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <!-- /.Table body -->
+                                                </table>
+                                        
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <!--/.Panel 1-->
+                    
+                                    <!--Panel 2-->
+                                    <div class="tab-pane fade" id="tabCheckoutPayment" role="tabpanel">
+                    
+                                        <div class="d-block m-4">
+                                            <div class="mb-2">
+                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioWithGap4" checked required>
+                                                <span class="image-payment"><img class="border border-primary px-1" src="creditcard_xpay.webp"></span>
+                                                <label class="form-check-label" for="radioWithGap4">Kredietkaart</label>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioWithGap5" required>
+                                                <span class="image-payment"><img class="border border-primary px-1" src="directdebit_bancontact_xpay.webp"></span>
+                                                <label class="form-check-label" for="radioWithGap5">Bancontact</label>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioWithGap6" required>
+                                                <span class="image-payment"><img class="border border-primary px-1" src="paypal_xpay.webp"></span>
+                                                <label class="form-check-label" for="radioWithGap6">PayPal</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cc-name123">Naam op de kaart</label>
+                                                <input type="text" class="form-control" id="cc-name123" placeholder="" required>
+                                                <small class="text-muted">Volledige naam zoals weergegeven op kaart</small>
+                                                <div class="invalid-feedback">Naam op kaart is vereist</div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cc-number123">Creditcardnummer</label>
+                                                <input type="text" class="form-control" id="cc-number123" placeholder="" required>
+                                                <div class="invalid-feedback">Creditcardnummer is vereist</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="cc-expiration123">Vervaldatum</label>
+                                                <input type="text" class="form-control" id="cc-expiration123" placeholder="" required>
+                                                <div class="invalid-feedback">Vervaldatum is vereist</div>
+                                            </div>
+
+                                            <div class="col-md-3 mb-3">
+                                                <label for="cc-cvv123">CSC-code</label>
+                                                <input type="text" class="form-control" id="cc-cvv123" placeholder="" required>
+                                                <div class="invalid-feedback">Beveiligingscode is vereist</div>
+                                            </div>
+                                        </div>
+
+                                        <hr class="mb-4">
+                    
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Plaats bestelling</button>
+                    
+                                    </div>
+                                    <!--/.Panel 2-->
+          
+                                </div>
+
+                            </div>
+
+                            <!--Grid column-->
+                            <div class="col-lg-4 mb-4">
+                
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Plaats bestelling</button>
+                    
+                                <!--Card-->
+                                <div class="card z-depth-0 border border-light rounded-0">
+                    
+                                    <!--Card content-->
+                                    <div class="card-body">
+                                        <h4 class="mb-4 mt-1 h5 text-center font-weight-bold">Samenvatting</h4>
+                        
+                                        <hr>
+                        
+                                        <dl class="row">
+                                            <dd class="col-sm-8">
+                                                Besteld product
+                                            </dd>
+                                            <dd class="col-sm-4">
+                                                Prijs
+                                            </dd>
+                                        </dl>
+                        
+                                        <hr>
+                        
+                                        <dl class="row">
+                                            <dd class="col-sm-8">
+                                                Besteld product
+                                            </dd>
+                                            <dd class="col-sm-4">
+                                                Prijs
+                                            </dd>
+                                        </dl>
+                        
+                                        <hr>
+                        
+                                        <dl class="row">
+                                            <dd class="col-sm-8">
+                                                Besteld product
+                                            </dd>
+                                            <dd class="col-sm-4">
+                                                Prijs
+                                            </dd>
+                                        </dl>
+                        
+                                        <hr>
+                        
+                                        <dl class="row">
+                                            <dt class="col-sm-8">
+                                                Totaal
+                                            </dt>
+                                            <dt class="col-sm-4">
+                                                Totaal prijs
+                                            </dt>
+                                        </dl>
+                                    </div>
+                
+                                </div>
+                                <!--/.Card-->
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
+                    </div>
+                </div>
+            </section>
+            <!--Section: Content-->
+        </div>
+
+    </main>
+
+    <footer class="page-footer font-small darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 py-3">
+                    <div class="mb-5 flex-center">
+                        <a class="fb-ic">
+                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="tw-ic">
+                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="gplus-ic">
+                            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="li-ic">
+                            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="ins-ic">
+                            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="pin-ic">
+                            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright text-center py-3">Alle rechten voorbehouden © 2020:
+            <a href="https://mdbootstrap.com/"> HBH Broodjeszak</a>
+        </div>
+    </footer>
+
+<!-- jQuery 
+    <script type="text/javascript" src="js/jquery.min.js"></script>-->
+    <!-- Bootstrap tooltips 
+    <script type="text/javascript" src="js/popper.min.js"></script>-->
+    <!-- Bootstrap core JavaScript 
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+    <!-- MDB core JavaScript 
+    <script type="text/javascript" src="js/mdb.min.js"></script>-->
+    <!-- Your custom scripts (optional) 
+    <script type="text/javascript" src="producten.js"></script>-->
+</body>
+
+</html>
