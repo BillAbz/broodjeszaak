@@ -211,7 +211,53 @@ function filter_producten_category(catid)
 
     }
 
-
+    function product_gevonden(pid)
+    {
+       
+        for (i = 0; i < producten.length; i++) 
+        {
+                if (pid == producten[i].pid) 
+                {
+        
+                    huidig_product = producten[i];
+                    console.log(huidig_product);
+    
+                    return;
+                }
+         }
+    }
+    
+    function product_gekozen(pid)
+    {
+        product_gevonden(pid);
+        console.log(huidige_product);
+       
+        document.getElementById("pnaam").value = huidig_product.pnaam;
+    
+    
+        var aantalstukjes = Number(document.getElementById("quantity").value);
+        var prijs = aantalstukjes * huidig_product.prodprijs;
+        console.log(prijs);
+        console.log(huidig_product);
+        document.getElementById("totaalprijsdrankjes").value = prijs;
+        
+        //document.getElementById("beeld").value = huidig_product.beeld;
+        //json stringify
+    
+        //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
+    
+        //console.log(image);*/
+    
+       
+    }
+    
+    function aantal_kiezen() {
+        var count = document.getElementById("quantity").value
+        huidige_prijs = count;
+        prijs = huidige_prijs;
+        product_gekozen();
+    
+    }
 
 
 
