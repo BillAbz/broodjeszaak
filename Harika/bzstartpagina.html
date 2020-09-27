@@ -32,8 +32,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="bzstartpagina.html">Welkom<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="producten.html">Producten</a>
+                    </li>-->
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten<span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="producten.html">Alle Producten</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="klassieke.html?catid=1">Klassieke Broodjes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="speciale.html?catid=2">Speciale Broodjes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="koudeschotel.html?catid=3">Koude Schotels</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="drankjes.html?catid=4">Drankjes</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="aanmelden.html">Aanmelden</a>
@@ -80,53 +94,67 @@
                 <li data-target="#carousel-example-2" data-slide-to="1"></li>
                 <li data-target="#carousel-example-2" data-slide-to="2"></li>
                 <li data-target="#carousel-example-2" data-slide-to="3"></li>
+                <li data-target="#carousel-example-2" data-slide-to="4"></li>
             </ol>
 
             <div class="carousel-inner" role="listbox">
-                
+
                 <div class="carousel-item active">
-                    <a href="klassieke.html">
+                    <a href="producten.html">
                         <div class="view">
-                            <img class="d-block w-100" src="klassieke.jpg" alt="First slide">
+                            <img class="d-block w-100" src="imagesection.jpg" alt="First slide">
                             <div class="mask rgba-black-light"></div>
                         </div>
                         <div class="carousel-caption">
-                            <button class="h3-responsive">Klassieke broodjes</button>
+                            <button class="h3-responsive">Alle Producten</button>
                             <p>First text</p>
                         </div>
                     </a>
                 </div>
                 
                 <div class="carousel-item">
-                    <a href="speciale.html">
+                    <a href="klassieke.html?catid=1">
                         <div class="view">
-                            <img class="d-block w-100" src="speciale.jpg" alt="Second slide">
+                            <img class="d-block w-100 imgcarousel" src="klassieke.jpg" alt="Second slide">
                             <div class="mask rgba-black-light"></div>
                         </div>
                         <div class="carousel-caption">
-                            <button class="h3-responsive">Speciale broodjes</button>
+                            <button class="h3-responsive">Klassieke broodjes</button>
                             <p>Secondary text</p>
                         </div>
                     </a>
                 </div>
-
+                
                 <div class="carousel-item">
-                    <a href="speciale.html">
+                    <a href="speciale.html?catid=2">
                         <div class="view">
-                            <img class="d-block w-100" src="koudeschotel.jpg" alt="Third slide">
+                            <img class="d-block w-100" src="speciale.jpg" alt="Third slide">
                             <div class="mask rgba-black-light"></div>
                         </div>
                         <div class="carousel-caption">
-                            <button class="h3-responsive">Koude schotels</button>
+                            <button class="h3-responsive">Speciale broodjes</button>
                             <p>Third text</p>
                         </div>
                     </a>
                 </div>
 
                 <div class="carousel-item">
-                    <a href="drankjes.html">
+                    <a href="koudeschotel.html?catid=3">
                         <div class="view">
-                            <img class="d-block w-100" src="drankjes.jpg" alt="Fourth slide">
+                            <img class="d-block w-100" src="koudeschotel.jpg" alt="Fourth slide">
+                            <div class="mask rgba-black-light"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <button class="h3-responsive">Koude schotels</button>
+                            <p>Fourth text</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a href="drankjes.html?catid=4">
+                        <div class="view">
+                            <img class="d-block w-100" src="drankjes.jpg" alt="Fifth slide">
                             <div class="mask rgba-black-light"></div>
                         </div>
                         <div class="carousel-caption">
