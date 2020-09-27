@@ -146,6 +146,7 @@ function maak_tabel(producten) {
              tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="product_gekozen(${producten[i].pid})">Kueze</button>` +
                          "</td>";
              tabledata += "</tr>";
+             
  
              //document.getElementById("productendata_klassieke").innerHTML += tabledata;
              document.getElementById("productendata").innerHTML += tabledata;
@@ -222,7 +223,7 @@ function filter_producten_category(catid)
                     huidig_product = producten[i];
                     console.log(huidig_product);
     
-                    return;
+                    //return;
                 }
          }
     }
@@ -230,7 +231,7 @@ function filter_producten_category(catid)
     function product_gekozen(pid)
     {
         product_gevonden(pid);
-        console.log(huidige_product);
+        console.log(huidig_product);
        
         document.getElementById("pnaam").value = huidig_product.pnaam;
     
@@ -238,8 +239,8 @@ function filter_producten_category(catid)
         var aantalstukjes = Number(document.getElementById("quantity").value);
         var prijs = aantalstukjes * huidig_product.prodprijs;
         console.log(prijs);
-        console.log(huidig_product);
-        document.getElementById("totaalprijsdrankjes").value = prijs;
+        //console.log(huidig_product);
+        document.getElementById("totaalprijs").value = prijs;
         
         //document.getElementById("beeld").value = huidig_product.beeld;
         //json stringify
