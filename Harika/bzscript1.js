@@ -1,14 +1,14 @@
 //var producten=[];
 var producten;
-var category=[];
-var broodsoort=[];
-var broodtype=[];
+var category;
+var broodsoort;
+var broodtype;
 var prodcat1;
 var prodcat2;
 var prodcat3;
 var prodcat4;
 var huidig_product;
-//var count;
+var total_selected_products_amount=0;
 
 function admin_login()
 {
@@ -36,7 +36,7 @@ $.ajax({
 
         sessionStorage.setItem("token", response.status.token);
          console.log(sessionStorage);
-         document.location = "bzstartpagina.html";
+         document.location = "bzstartpagina1.html";
        
    
        
@@ -54,12 +54,12 @@ $.ajax({
 
 }
 
-function start()
+/*function start()
 {
     lees_data();
-}
+}*/
 
-/*function start()
+function start()
 {   
     const urlParams = new URLSearchParams(window.location.search);
     const catid = urlParams.get("catid");
@@ -72,7 +72,7 @@ function start()
     filter_producten_category(catid);
     //lees_data();
     
-}*/
+}
 
 
 function lees_data() {
@@ -259,7 +259,105 @@ function filter_producten_category(catid)
          }
     }
     
+    
+    
     function product_gekozen(pid)
+    {
+        product_gevonden(pid);
+        console.log(huidig_product);
+
+        
+        document.getElementById("knaam").value = huidig_product.pnaam;
+      
+      
+        document.getElementById("snaam").value = huidig_product.pnaam; 
+      
+      
+        document.getElementById("ksnaam").value = huidig_product.pnaam;
+        var aantalstukjes = Number(document.getElementById("ksquantity").value);
+        var prijs = aantalstukjes * huidig_product.prodprijs;
+        console.log(prijs);
+        //console.log(huidig_product);
+        document.getElementById("kstotaalprijs").value = prijs;
+      
+        document.getElementById("dnaam").value = huidig_product.pnaam;
+        var aantalstukjes = Number(document.getElementById("dquantity").value);
+        var prijs = aantalstukjes * huidig_product.prodprijs;
+        console.log(prijs);
+        //console.log(huidig_product);
+        document.getElementById("dtotaalprijs").value = prijs;
+    
+    
+        
+        
+        //document.getElementById("beeld").value = huidig_product.beeld;
+        //json stringify
+    
+        //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
+    
+        //console.log(image);
+    
+       
+    }
+
+
+
+
+    function aantal_kiezen(pgnum) {
+
+
+       if(pgnum==3)
+       {
+        var count = document.getElementById("ksquantity").value
+        huidige_prijs = count;
+        prijs = huidige_prijs;
+        product_gekozen();
+       }
+
+
+        else if(pgnum==4)
+        {
+
+        var count = document.getElementById("dquantity").value
+        huidige_prijs = count;
+        prijs = huidige_prijs;
+        product_gekozen();
+    
+       }
+
+
+}
+
+/*THE BELOW FUNCTION WILL INCREMENT THE ORDER NUMBER NEXT TO WINKEL WAGENTJE*/
+function toevoeg_winkel_waagentje()
+{
+    var gekozen_dnaam=document.getElementById("dnaam").value;
+    var gekozen_dquantity=document.getElementById("dquantity").value;
+    var gekozen_dtotaalprijs=document.getElementById("dtotaalprijs").value;
+    total_selected_products_amount++;
+    document.getElementById("antaal_producten").innerHTML=total_selected_products_amount; 
+} 
+
+
+/*var gekozen_product_array = [{gekozen_dnaam:"blabla",gekozen_dquantity:'3',gekozen_dtotaalprijs:'30'},]
+
+function toevoeg_winkel_waagentje()
+{
+    var gekozen_dnaam=document.getElementById("dnaam").value;
+    var gekozen_dquantity=document.getElementById("dquantity").value;
+    var gekozen_dtotaalprijs=document.getElementById("dtotaalprijs").value;
+    total_selected_products_amount++;
+    document.getElementById("antaal_producten").innerHTML=total_selected_products_amount; 
+}*/
+
+
+
+
+
+
+
+
+/*function product_gekozen(pid)
     {
         product_gevonden(pid);
         console.log(huidig_product);
@@ -290,77 +388,6 @@ function filter_producten_category(catid)
         //console.log(huidig_product);
         document.getElementById("dtotaalprijs").value = prijs;
        }
-    
-        
-        
-        //document.getElementById("beeld").value = huidig_product.beeld;
-        //json stringify
-    
-        //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
-    
-        //console.log(image);
-    
-       
-    }
-    
-    
-
-
-
-
-    function aantal_kiezen(pgnum) {
-
-
-       if(pgnum==3)
-       {
-        var count = document.getElementById("ksquantity").value
-        huidige_prijs = count;
-        prijs = huidige_prijs;
-        product_gekozen();
-       }
-
-
-        else if(pgnum==4)
-        {
-
-        var count = document.getElementById("dquantity").value
-        huidige_prijs = count;
-        prijs = huidige_prijs;
-        product_gekozen();
-    
-       }
-
-
-}
-
-
-/*
-function product_gekozen(pid)
-    {
-        product_gevonden(pid);
-        console.log(huidig_product);
-
-        
-        document.getElementById("knaam").value = huidig_product.pnaam;
-      
-      
-        document.getElementById("snaam").value = huidig_product.pnaam; 
-      
-      
-        document.getElementById("ksnaam").value = huidig_product.pnaam;
-        var aantalstukjes = Number(document.getElementById("ksquantity").value);
-        var prijs = aantalstukjes * huidig_product.prodprijs;
-        console.log(prijs);
-        //console.log(huidig_product);
-        document.getElementById("kstotaalprijs").value = prijs;
-      
-        document.getElementById("dnaam").value = huidig_product.pnaam;
-        var aantalstukjes = Number(document.getElementById("dquantity").value);
-        var prijs = aantalstukjes * huidig_product.prodprijs;
-        console.log(prijs);
-        //console.log(huidig_product);
-        document.getElementById("dtotaalprijs").value = prijs;
-    
     
         
         

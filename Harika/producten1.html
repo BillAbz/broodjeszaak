@@ -16,13 +16,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
         <!-- <script src="bzworkingscript.js"></script> -->
-    <script src="bzscript.js"></script>
+    <script src="bzscript1.js"></script>
 
     <body onload="start();">
        
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
-                <a class="navbar-brand" href="bzstartpagina.html">
+                <a class="navbar-brand" href="bzstartpagina1.html">
                     <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                 </a>
                 
@@ -33,20 +33,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="bzstartpagina.html">Welkom</a>
+                            <a class="nav-link" href="bzstartpagina1.html">Welkom</a>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten<span class="sr-only">(current)</span></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="producten.html">Alle Producten</a>
+                                <a class="dropdown-item" href="producten1.html?catid=">Alle Producten</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="klassieke.html?catid=1">Klassieke Broodjes</a>
+                                <a class="dropdown-item" href="producten1.html?catid=1">Klassieke Broodjes</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="speciale.html?catid=2">Speciale Broodjes</a>
+                                <a class="dropdown-item" href="producten1.html?catid=2">Speciale Broodjes</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="koudeschotel.html?catid=3">Koude Schotels</a>
+                                <a class="dropdown-item" href="producten1.html?catid=3">Koude Schotels</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="drankjes.html?catid=4">Drankjes</a>
+                                <a class="dropdown-item" href="producten1.html?catid=4">Drankjes</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -60,7 +60,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="wagentje.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
-                        </li>
+                        </li>    
+                       
+                        <li class="nav-item">
+                        <span id="antaal_producten" style="color: white;"></span>
+                       </li>
                     </ul>
                     
                 </div>
@@ -70,13 +74,13 @@
         <main>
              
             <div class="btn-group flex-center pb-5" role="group" aria-label="Basic example">
-                <a href="javascript:" type="button" id="klassieke" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('1','klassieke')"><i class="fas fa-bread-slice fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
+                <a href="javascript:" type="button" id="klassieke" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('1')"><i class="fas fa-bread-slice fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
                 
-                <a href="javascript:" type="button" id="speciale" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('2','speciale')"><i class="fas fa-hamburger fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
+                <a href="javascript:" type="button" id="speciale" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('2')"><i class="fas fa-hamburger fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
                 
-                <a href="javascript:" type="button" id="schotel" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('3','koudeschotel')"><i class="fas fa-utensils fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
+                <a href="javascript:" type="button" id="schotel" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('3')"><i class="fas fa-utensils fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
                
-                <a href="javascript:" type="button" id="drankjes" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('4','drankjes')"><i class="fas fa-glass-martini fa-sm pr-2"aria-hidden="true"></i>DRANKJES</a>
+                <a href="javascript:" type="button" id="drankjes" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('4')"><i class="fas fa-glass-martini fa-sm pr-2"aria-hidden="true"></i>DRANKJES</a>
             </div>
             
             <section class="soorten">
@@ -304,18 +308,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="dquantity">Aantal Stukjes</label>
+                                    <label for="dquantity">Aantal Stuks</label>
                                     <input type="number" value =1 class="form-control" id="dquantity" placeholder="" onchange="aantal_kiezen(4);">  
                                 </div>
 
                                 <label for="dtotaalprijs">Prijs</label>
-                                <div class="input-group mb-3">  dtotaalprijs  
+                                <div class="input-group mb-3">  totaalprijs  
                                     <span class="input-group-text">€</span>
                                     <input type="text" class="form-control" id="dtotaalprijs" aria-label="Prijs in Euro" disabled="true"/>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
+                                    <button type="button" class="btn btn-primary" id="confirm" onclick="toevoeg_winkel_waagentje()">Bevestig Bestelling</button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
                                 </div>
                             </form>
