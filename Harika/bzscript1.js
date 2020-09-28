@@ -75,7 +75,7 @@ function lees_data() {
     $.ajax({
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=category",
-        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
 
     })
         .done(function (response) {
@@ -86,7 +86,7 @@ function lees_data() {
             $.ajax({
                 method: 'GET',
                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             })
 
                 .done(function (response) {
@@ -100,7 +100,7 @@ function lees_data() {
                     $.ajax({
                         method: 'GET',
                         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
-                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
                     })
         
                         .done(function (response) {
@@ -109,7 +109,7 @@ function lees_data() {
                             $.ajax({
                                 method: 'GET',
                                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
-                                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
                             })
                 
                                 .done(function (response) {
@@ -193,7 +193,7 @@ function filter_producten_category(catid)
    
             $.ajax({
             url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
 

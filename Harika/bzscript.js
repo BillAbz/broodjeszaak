@@ -1,8 +1,8 @@
 //var producten=[];
 var producten;
-var category=[];
-var broodsoort=[];
-var broodtype=[];
+var category;
+var broodsoort;
+var broodtype;
 var prodcat1;
 var prodcat2;
 var prodcat3;
@@ -79,7 +79,7 @@ function lees_data() {
     $.ajax({
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=category",
-        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
 
     })
         .done(function (response) {
@@ -90,7 +90,7 @@ function lees_data() {
             $.ajax({
                 method: 'GET',
                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             })
 
                 .done(function (response) {
@@ -106,7 +106,7 @@ function lees_data() {
                     $.ajax({
                         method: 'GET',
                         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
-                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
                     })
         
                         .done(function (response) {
@@ -115,7 +115,7 @@ function lees_data() {
                             $.ajax({
                                 method: 'GET',
                                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
-                                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
                             })
                 
                                 .done(function (response) {
@@ -178,7 +178,8 @@ function maak_tabel(producten) {
      function ga_naar_category(catid, catnaam)
      {
 
-         document.location="producten1.html?catid=" + catid;
+         //document.location="producten.html?catid=" + catid;
+         document.location=""+catnaam+".html?catid=" + catid;
 
 
      }
@@ -200,7 +201,7 @@ function filter_producten_category(catid)
    
             $.ajax({
             url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
 
@@ -243,6 +244,31 @@ function filter_producten_category(catid)
 
     }
 
+
+    function haal_brood_soort(bsidval) {
+
+        for (var i = 0; i < broodsoort.length; i++) {
+            if (broodsoort[i].bsid == bsidval) {
+                return broodsoort[i].bsprijs;
+    
+            }
+    
+        }
+    
+    }
+    function haal_brood_type(btidval) {
+
+        for (var i = 0; i < broodtype.length; i++) {
+            if (broodtype[i].btid == btidval) {
+                return broodtype[i].btprijs;
+    
+            }
+    
+        }
+    
+    }
+
+
     function product_gevonden(pid)
     {
        
@@ -268,27 +294,54 @@ function filter_producten_category(catid)
        {
         document.getElementById("knaam").value = huidig_product.pnaam;
        }
+
        else if(huidig_product.catid==2)
        {
-        document.getElementById("snaam").value = huidig_product.pnaam; 
+            document.getElementById("snaam").value = huidig_product.pnaam; 
+ 
+            //$('input[name="SpecialeBroodType"]:checked').val();
+            //var sbtidval =  $('input[name="SpecialeBroodType"]:checked').val();
+            if(document.getElementById("sbtid1").checked)
+            {
+                var sbtidval = document.getElementById("sbtid1").value;
+            }
+
+            else if(document.getElementById("sbtid2").checked)
+            {
+                var sbtidval = document.getElementById("sbtid2").value;
+            }
+            else if(document.getElementById("sbtid3").checked)
+            {
+                var sbtidval = document.getElementById("sbtid3").value;
+            }
+            var sbtid_prijs= haal_brood_type(sbtidval);
+            console.log(sbtid_prijs);
+
+            var sbsidval = $('input[name="SpecialeBroodSoort"]:checked').val();
+            var sbsid_prijs= haal_brood_soort(sbsidval);
+            console.log(sbsid_prijs);
+
+
        }
+
        else if(huidig_product.catid==3)
        {
-        document.getElementById("ksnaam").value = huidig_product.pnaam;
-        var aantalstukjes = Number(document.getElementById("ksquantity").value);
-        var prijs = aantalstukjes * huidig_product.prodprijs;
-        console.log(prijs);
+            document.getElementById("ksnaam").value = huidig_product.pnaam;
+            var aantalstukjes = Number(document.getElementById("ksquantity").value);
+            var prijs = aantalstukjes * huidig_product.prodprijs;
+            console.log(prijs);
         //console.log(huidig_product);
-        document.getElementById("kstotaalprijs").value = prijs;
+            document.getElementById("kstotaalprijs").value = prijs;
        }
+
        else if(huidig_product.catid==4)
        {
-        document.getElementById("dnaam").value = huidig_product.pnaam;
-        var aantalstukjes = Number(document.getElementById("dquantity").value);
-        var prijs = aantalstukjes * huidig_product.prodprijs;
-        console.log(prijs);
+            document.getElementById("dnaam").value = huidig_product.pnaam;
+            var aantalstukjes = Number(document.getElementById("dquantity").value);
+            var prijs = aantalstukjes * huidig_product.prodprijs;
+            console.log(prijs);
         //console.log(huidig_product);
-        document.getElementById("dtotaalprijs").value = prijs;
+            document.getElementById("dtotaalprijs").value = prijs;
        }
     
         
@@ -310,8 +363,25 @@ function filter_producten_category(catid)
 
     function aantal_kiezen(pgnum) {
 
+        if(pgnum==1)
+       {
+        var count = document.getElementById("kquantity").value
+        huidige_prijs = count;
+        prijs = huidige_prijs;
+        product_gekozen();
+       }
 
-       if(pgnum==3)
+
+        else if(pgnum==2)
+        {
+         var count = document.getElementById("squantity").value
+         huidige_prijs = count;
+         prijs = huidige_prijs;
+         product_gekozen();
+        }
+
+
+       else if(pgnum==3)
        {
         var count = document.getElementById("ksquantity").value
         huidige_prijs = count;
