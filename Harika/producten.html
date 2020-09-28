@@ -99,7 +99,7 @@
             </div>
             </section>
 
-            <!-- MODAL BUTTON KLASSIEKE CREATION-->
+             <!-- MODAL BUTTON KLASSIEKE CREATION-->
             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#klassieke_details" onclick="">Product selectie</button>-->
             <div class="modal fade" id="klassieke_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -113,8 +113,8 @@
                             <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                             <form>
                                 <div class="form-group">
-                                    <label for="pnaam">Vulling Gekozen</label>
-                                    <input type="text" class="form-control" id="pnaam" placeholder="">
+                                    <label for="knaam">Vulling Gekozen</label>
+                                    <input type="text" class="form-control" id="knaam" placeholder="">
                                 </div>
 
                                 <div class="form-group">
@@ -144,19 +144,19 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="Promotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="promotieid" placeholder="">
+                                    <label for="kpromotieid">Promotie</label>
+                                    <input type="textbox" class="form-control" id="kpromotieid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="quantity">Aantal Stukjes</label>
-                                    <input type="number" value =0 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen();">
+                                    <label for="kquantity">Aantal Stukjes</label>
+                                    <input type="number" value =0 class="form-control" id="kquantity" placeholder="" onchange="aantal_kiezen(1);">
                                 </div>
 
-                                <label for="totaalprijsklassieke">Totaal Prijs</label>
+                                <label for="ktotaalprijs">Totaal Prijs</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="totaalprijsklassieke" aria-label="Prijs in Euro" />
+                                    <input type="text" class="form-control" id="ktotaalprijs" aria-label="Prijs in Euro" />
                                 </div>
 
                                 <div class="modal-footer">
@@ -168,10 +168,10 @@
                     </div>
                 </div>
             </div>
-             <!-- MODAL BUTTON SPECIALE CREATION-->
-            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#klassieke_details" onclick="">Product selectie</button>-->
-
-            <div class="modal fade" id="speciale_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+         
+             <!-- SPECIALE MODAL BUTTON CREATION-->
+            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speciale_details" onclick="">Product selectie</button>-->
+            <div class="modal fade" id="speciale_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="false">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -182,8 +182,8 @@
                             <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                             <form>
                                 <div class="form-group">
-                                    <label for="pnaam">Vulling Gekozen</label>
-                                    <input type="text" class="form-control" id="pnaam" placeholder="">
+                                    <label for="snaam">Vulling Gekozen</label>
+                                    <input type="text" class="form-control" id="snaam" placeholder="">
                                 </div>
 
                                 <div class="form-group">
@@ -212,19 +212,19 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="Promotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="promotieid" placeholder="">
+                                    <label for="spromotieid">Promotie</label>
+                                    <input type="textbox" class="form-control" id="spromotieid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="quantity">Aantal Stukjes</label>
-                                    <input type="number" value =0 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen();">
+                                    <label for="squantity">Aantal Stukjes</label>
+                                    <input type="number" value =0 class="form-control" id="squantity" placeholder="" onchange="aantal_kiezen(2);">
                                 </div>
 
-                                <label for="totaalprijs">Totaal Prijs</label>
+                                <label for="stotaalprijs">Totaal Prijs</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="totaalprijs" aria-label="Prijs in Euro" />
+                                    <input type="text" class="form-control" id="stotaalprijs" aria-label="Prijs in Euro" />
                                 </div>
 
                                 <div class="modal-footer">
@@ -237,7 +237,7 @@
                 </div>
             </div>
 
- <!-- MODAL BUTTON KOUDE SCHOTEL CREATION-->
+ <!-- KOUDE SCHOTEL MODAL BUTTON CREATION-->
             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#koudeschotel_details" onclick="">Product selectie</button>-->
             <div class="modal fade" id="koudeschotel_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -251,24 +251,24 @@
                             <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                             <form>
                                 <div class="form-group">
-                                    <label for="pnaam">Schotel Naam</label>
-                                    <input type="text" class="form-control" id="pnaam" placeholder="">
+                                    <label for="ksnaam">Schotel Naam</label>
+                                    <input type="text" class="form-control" id="ksnaam" placeholder="">
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="Promotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="promotieid" placeholder="">
+                                    <label for="kspromotieid">Promotie</label>
+                                    <input type="textbox" class="form-control" id="kspromotieid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="quantity">Aantal Stukjes</label>
-                                    <input type="number" value =1 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen();">
+                                    <label for="ksquantity">Aantal Stukjes</label>
+                                    <input type="number" value =1 class="form-control" id="ksquantity" placeholder="" onchange="aantal_kiezen(3);">
                                 </div>
 
-                                <label for="totaalprijsschotel">Prijs</label>
+                                <label for="kstotaalprijs">Prijs</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="totaalprijsschotel" aria-label="Prijs in Euro" />
+                                    <input type="text" class="form-control" id="kstotaalprijs" aria-label="Prijs in Euro" />
                                 </div>
 
                                 <div class="modal-footer">
@@ -280,7 +280,7 @@
                     </div>
                 </div>
             </div>
-<!-- MODAL BUTTON CREATION-->
+<!-- DRANKJES MODAL BUTTON CREATION-->
             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drankjes_details" onclick="">Product selectie</button>-->
             <div class="modal fade" id="drankjes_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -294,24 +294,24 @@
                             <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                             <form>
                                 <div class="form-group">
-                                    <label for="pnaam">Drankjes Naam</label>
-                                    <input type="text" class="form-control" id="pnaam" placeholder="">
+                                    <label for="dnaam">Drankjes Naam</label>
+                                    <input type="text" class="form-control" id="dnaam" placeholder="">
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="Promotieid">Promotie</label>
-                                    <input type="text" class="form-control" id="promotieid" placeholder="">
+                                    <label for="dpromotieid">Promotie</label>
+                                    <input type="text" class="form-control" id="dpromotieid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="quantity">Aantal Stukjes</label>
-                                    <input type="number" value =1 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen();">  
+                                    <label for="dquantity">Aantal Stukjes</label>
+                                    <input type="number" value =1 class="form-control" id="dquantity" placeholder="" onchange="aantal_kiezen(4);">  
                                 </div>
 
-                                <label for="totaalprijsdrankjes">Prijs</label>
-                                <div class="input-group mb-3">    
+                                <label for="dtotaalprijs">Prijs</label>
+                                <div class="input-group mb-3">  dtotaalprijs  
                                     <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="totaalprijsdrankjes" aria-label="Prijs in Euro"/>
+                                    <input type="text" class="form-control" id="dtotaalprijs" aria-label="Prijs in Euro" disabled="true"/>
                                 </div>
 
                                 <div class="modal-footer">

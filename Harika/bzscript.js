@@ -232,15 +232,39 @@ function filter_producten_category(catid)
     {
         product_gevonden(pid);
         console.log(huidig_product);
-       
-        document.getElementById("pnaam").value = huidig_product.pnaam;
-    
-    
-        var aantalstukjes = Number(document.getElementById("quantity").value);
+
+        if(huidig_product.catid==1)
+       {
+        document.getElementById("knaam").value = huidig_product.pnaam;
+       }
+       else if(huidig_product.catid==2)
+       {
+        document.getElementById("snaam").value = huidig_product.pnaam; 
+       }
+       else if(huidig_product.catid==3)
+       {
+        document.getElementById("ksnaam").value = huidig_product.pnaam;
+        var aantalstukjes = Number(document.getElementById("ksquantity").value);
         var prijs = aantalstukjes * huidig_product.prodprijs;
         console.log(prijs);
         //console.log(huidig_product);
-        document.getElementById("totaalprijs").value = prijs;
+        document.getElementById("kstotaalprijs").value = prijs;
+       }
+       else if(huidig_product.catid==4)
+       {
+        document.getElementById("dnaam").value = huidig_product.pnaam;
+        var aantalstukjes = Number(document.getElementById("dquantity").value);
+        var prijs = aantalstukjes * huidig_product.prodprijs;
+        console.log(prijs);
+        //console.log(huidig_product);
+        document.getElementById("dtotaalprijs").value = prijs;
+       }
+    
+        //var aantalstukjes = Number(document.getElementById("dquantity").value);
+        //var prijs = aantalstukjes * huidig_product.prodprijs;
+       // console.log(prijs);
+        //console.log(huidig_product);
+        //document.getElementById("dtotaalprijs").value = prijs;
         
         //document.getElementById("beeld").value = huidig_product.beeld;
         //json stringify
@@ -252,15 +276,29 @@ function filter_producten_category(catid)
        
     }
     
-    function aantal_kiezen() {
-        var count = document.getElementById("quantity").value
+    function aantal_kiezen(pgnum) {
+
+
+       if(pgnum==3)
+       {
+        var count = document.getElementById("ksquantity").value
+        huidige_prijs = count;
+        prijs = huidige_prijs;
+        product_gekozen();
+       }
+
+
+        else if(pgnum==4)
+        {
+
+        var count = document.getElementById("dquantity").value
         huidige_prijs = count;
         prijs = huidige_prijs;
         product_gekozen();
     
-    }
+       }
 
 
-
+}
 
 
