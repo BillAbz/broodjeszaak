@@ -83,11 +83,11 @@
 
                                 <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestellingen</a>
+                                        <a class="nav-link active text-dark" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestellingen</a>
                                     </li>
                                     
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#tabCheckoutPayment" role="tab">2. Uw betaling</a>
+                                        <a class="nav-link text-dark" data-toggle="tab" href="#tabCheckoutPayment" role="tab">2. Uw betaling</a>
                                     </li>
                                 </ul>
 
@@ -110,17 +110,19 @@
                                                         <strong>Product</strong>
                                                     </th>
                                                     
-                                                    <th class="font-weight-bold">
+                                                    <th class="font-weight-bold text-center">
                                                         <strong>Prijs</strong>
                                                     </th>
 
-                                                    <th class="font-weight-bold">
+                                                    <th class="font-weight-bold text-center">
                                                         <strong>Aantal Stuks</strong>
                                                     </th>
 
-                                                    <th class="font-weight-bold">
+                                                    <th class="font-weight-bold text-center">
                                                         <strong>Bedrag</strong>
                                                     </th>
+
+                                                    <th></th>
 
                                                     <th></th>
                                                     </tr>
@@ -132,22 +134,26 @@
 
                                                     <tr>
                                                     <td>
-                                                        <h5 class="mt-3"><strong>iPhone</strong></h5>
+                                                        <h5><strong>iPhone</strong></h5>
                                                         <p class="text-muted">Apple</p>
                                                     </td>
 
-                                                    <td>$800</td>
+                                                    <td class="text-center">€800</td>
 
-                                                    <td>
-                                                        <input type="number" value="2" aria-label="Search" class="form-control" style="width: 100px">
+                                                    <td class="font-weight-bold text-center">
+                                                        <strong>1</strong>
                                                     </td>
 
-                                                    <td class="font-weight-bold">
-                                                        <strong>$800</strong>
+                                                    <td class="font-weight-bold text-center">
+                                                        <strong>€800</strong>
                                                     </td>
 
                                                     <td>
-                                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"title="Remove item">Verwijder</button>
+                                                        <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item">Verwijder</button>
+                                                    </td>
+
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Bewerk item">Bewerk</button>
                                                     </td>
                                                     </tr>
 
@@ -165,7 +171,7 @@
                                                     </td>
 
                                                     <td colspan="3" class="text-right">
-                                                        <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-primary">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+                                                        <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
                                                     </td>
                                                     </tr>
 
@@ -183,21 +189,21 @@
                     
                                         <div class="d-block m-4">
                                             <div class="mb-2">
-                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioWithGap4" checked required>
-                                                <span class="image-payment"><img class="border border-primary px-1" src="creditcard_xpay.webp"></span>
-                                                <label class="form-check-label" for="radioWithGap4">Kredietkaart</label>
+                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioCredit" checked required>
+                                                <span class="image-payment"><img class="border border-cyan px-1" src="creditcard_xpay.webp"></span>
+                                                <label class="form-check-label" for="radioCredit">Kredietkaart</label>
                                             </div>
 
                                             <div class="mb-2">
-                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioWithGap5" required>
-                                                <span class="image-payment"><img class="border border-primary px-1" src="directdebit_bancontact_xpay.webp"></span>
-                                                <label class="form-check-label" for="radioWithGap5">Bancontact</label>
+                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioContact" required>
+                                                <span class="image-payment"><img class="border border-cyan px-1" src="directdebit_bancontact_xpay.webp"></span>
+                                                <label class="form-check-label" for="radioContact">Bancontact</label>
                                             </div>
 
                                             <div class="mb-2">
-                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioWithGap6" required>
-                                                <span class="image-payment"><img class="border border-primary px-1" src="paypal_xpay.webp"></span>
-                                                <label class="form-check-label" for="radioWithGap6">PayPal</label>
+                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioPaypal" required>
+                                                <span class="image-payment"><img class="border border-cyan px-1" src="paypal_xpay.webp"></span>
+                                                <label class="form-check-label" for="radioPaypal">PayPal</label>
                                             </div>
                                         </div>
 
@@ -230,9 +236,9 @@
                                             </div>
                                         </div>
 
-                                        <hr class="mb-4">
+                                        <!--<hr class="mb-4">
                     
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Plaats bestelling</button>
+                                        <button class="btn btn-cyan btn-lg btn-block" type="submit">Plaats bestelling</button>-->
                     
                                     </div>
                                     <!--/.Panel 2-->
@@ -243,58 +249,48 @@
 
                             <!--Grid column-->
                             <div class="col-lg-4 mb-4">
-                
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Plaats bestelling</button>
-                    
                                 <!--Card-->
                                 <div class="card z-depth-0 border border-light rounded-0">
-                    
                                     <!--Card content-->
                                     <div class="card-body">
                                         <h4 class="mb-4 mt-1 h5 text-center font-weight-bold">Samenvatting</h4>
                         
                                         <hr>
+                                        <dl class="row">
+                                            <dd class="col-sm-8">Klantnummer :</dd>
+                                            <dd class="col-sm-4">1</dd>
+                                        </dl>
+
+                                        <dl class="row">
+                                            <dd class="col-sm-8">Bestellingnummer :</dd>
+                                            <dd class="col-sm-4">1</dd>
+                                        </dl>
+                                        <hr>
                         
                                         <dl class="row">
-                                            <dd class="col-sm-8">
-                                                Besteld product
-                                            </dd>
-                                            <dd class="col-sm-4">
-                                                Prijs
-                                            </dd>
+                                            <dd class="col-sm-8">Besteld product</dd>
+                                            <dd class="col-sm-4">Prijs</dd>
                                         </dl>
                         
                                         <hr>
                         
                                         <dl class="row">
-                                            <dd class="col-sm-8">
-                                                Besteld product
-                                            </dd>
-                                            <dd class="col-sm-4">
-                                                Prijs
-                                            </dd>
+                                            <dd class="col-sm-8">Besteld product</dd>
+                                            <dd class="col-sm-4">Prijs</dd>
                                         </dl>
                         
                                         <hr>
                         
                                         <dl class="row">
-                                            <dd class="col-sm-8">
-                                                Besteld product
-                                            </dd>
-                                            <dd class="col-sm-4">
-                                                Prijs
-                                            </dd>
+                                            <dd class="col-sm-8">Besteld product</dd>
+                                            <dd class="col-sm-4">Prijs</dd>
                                         </dl>
                         
                                         <hr>
                         
                                         <dl class="row">
-                                            <dt class="col-sm-8">
-                                                Totaal
-                                            </dt>
-                                            <dt class="col-sm-4">
-                                                Totaal prijs
-                                            </dt>
+                                            <dt class="col-sm-8">Totaal</dt>
+                                            <dt class="col-sm-4">Totaal prijs</dt>
                                         </dl>
                                     </div>
                 
