@@ -54,10 +54,7 @@ $.ajax({
 
 }
 
-/*function start()
-{
-    lees_data();
-}*/
+
 
 function start()
 {   
@@ -70,8 +67,7 @@ function start()
     }
     
     filter_producten_category(catid);
-    //lees_data();
-    
+   
 }
 
 
@@ -97,12 +93,10 @@ function lees_data() {
                     console.log(response);
                     assets_path = response.data.assets_path;
                     producten = response.data.items
-                    //var producten = response.data.items;
+                   
                     sessionStorage.setItem("token", response.status.token)
                     console.log(producten)
-                    //maak_tabel()
-                    //filter_producten_category();
-
+                   
                     $.ajax({
                         method: 'GET',
                         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
@@ -125,7 +119,7 @@ function lees_data() {
                                     sessionStorage.setItem("token", response.status.token)
                                     console.log(producten);
                                     maak_tabel(producten);
-                                    //filter_producten_category();
+                                    
 
                                 })
         })
@@ -144,8 +138,7 @@ function maak_tabel(producten) {
 
    console.log(producten);
     document.getElementById("productendata").innerHTML = "";
-  //array prodcat1
-  //array producten
+  
      for (var i = 0; i < producten.length; i++) 
      {
             var tabledata ="";
