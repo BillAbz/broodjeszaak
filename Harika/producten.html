@@ -117,30 +117,35 @@
                                     <input type="text" class="form-control" id="knaam" placeholder="">
                                 </div>
 
-                                <label> Kies Brood Soort </label>
-                                <div class="form-group" id="kbsid" onchange="radio_waard_teruggeven(id)" action="">
-                                    
-                                    <input type="radio" id="kbsid1" name="KlassiekeBroodSoort" value="1">Piccolo => 0.25 cents extra 
-                                    <input type="radio" id="kbsid2" name="KlassiekeBroodSoort" value="2">Halve Baguette => 0.50 cents extra 
+                                
+                                <div class="form-group">
+                                    <label> Kies Brood Soort </label><br>
+                                    <img src="piccolo_image.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                    <input type="radio" id="kbsid1" name="BroodSoort" value="1" onclick="get_radio_button_value_broodsoort()">Piccolo => 0.25 cents extra <br>
+                                    <img src="halve_baget.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                    <input type="radio" id="kbsid2" name="BroodSoort" value="2" onclick="get_radio_button_value_broodsoort()">Halve Baguette => 0.50 cents extra 
                                     
                                   
                                 </div>
 
-                                <label>Kies Brood Type</label><br>
-                                <div class="form-group" id="kbtid" onchange="radio_waard_teruggeven(id)" action="">
-                                    
-                                    <input type="radio" id="kbtid1" name="KlassiekeBroodType" value="1">Wit => 0.50 cents extra 
-                                    <input type="radio" id="kbtid2" name="KlassiekeBroodType" value="2">Bruin => 0.75 cents extra 
-                                    <input type="radio" id="kbtid3" name="KlassiekeBroodType" value="3">Meergranen => 1 euro extra
+                               
+                                <div class="form-group" >
+                                    <label>Kies Brood Type</label><br>
+                                    <img src="wit_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                    <input type="radio" id="kbtid1" name="BroodType" value="1" onclick="get_radio_button_value_broodtype()">Wit => 0.50 cents extra <br>
+                                    <img src="bruin_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                    <input type="radio" id="kbtid2" name="BroodType" value="2" onclick="get_radio_button_value_broodtype()">Bruin => 0.75 cents extra <br>
+                                    <img src="meergranen_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                    <input type="radio" id="kbtid3" name="BroodType" value="3" onclick="get_radio_button_value_broodtype()">Meergranen => 1 euro extra 
 
                                    
                                 </div>
 
-                                <label>Wil Je graag Smos?</label><br>
-                                <div class="form-group" id="ksmos" onchange="radio_waard_teruggeven(id)" action="">
-                                    
-                                    <input type="radio" id="ksmos1" name="SmosSelected" value="1">Neen 
-                                    <input type="radio" id="ksmos2" name="SmosSelected" value="2">Ja => Extra 0.70 Cent betalen
+                               
+                                <div class="form-group">
+                                    <label>Wil Je graag Smos?</label><br>
+                                    <input type="radio" id="ksmos1" name="smosselected" value="1" onclick="get_radio_button_value_smos()">Neen <br>
+                                    <input type="radio" id="ksmos2" name="smosselected" value="2" onclick="get_radio_button_value_smos()">Ja => Extra 0.70 Cent betalen
                                 </div>  
 
                                  <div class="form-group">
@@ -175,7 +180,10 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Speciale Broodjes Selectie</h5>
+                            <h5 class="modal-title" id="modalform">Speciale Broodjes Selectie
+                                <br>
+                                (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
@@ -185,28 +193,33 @@
                                     <label for="snaam">Het Beleg Gekozen</label>
                                     <input type="text" class="form-control" id="snaam" placeholder="">
                                 </div>
-                                <div><label>Kies Brood Soort</label></div>
-                                <div class="form-group" id = "sbsid" onchange="radio_waard_teruggeven(id)" action="">
-                                   
-                                   <input type="radio" id="sbsid1" name="SpecialeBroodSoort" value="1">Piccolo => 0.25 cents extra
-                                   <input type="radio" id="sbsid2" name="SpecialeBroodSoort" value="2">Halve Baguette => 0.50 cents extra 
+                              
+                                <div class="form-group">
+                                    <label>Kies Brood Soort</label><br>
+                                    <img src="piccolo_image.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbsid1" name="BroodSoort" value="1" onclick="get_radio_button_value_broodsoort()">Piccolo => 0.25 cents extra<br>
+                                   <img src="halve_baget.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbsid2" name="BroodSoort" value="2" onclick="get_radio_button_value_broodsoort()">Halve Baguette => 0.50 cents extra 
                                    
                                  
                                </div>
-                               <div><label>Kies Brood Type</label></div>
-                               <div class="form-group" id="sbtid" onchange="radio_waard_teruggeven(id)" action="">
-                                   
-                                   <input type="radio" id="sbtid1" name="SpecialeBroodType" value="1">Wit => 0.50 cents extra 
-                                   <input type="radio" id="sbtid2" name="SpecialeBroodType" value="2">Bruin => 0.75 cents extra 
-                                   <input type="radio" id="sbtid3" name="SpecialeBroodType" value="3">Meergranen => 1 euro extra
+                               
+                               <div class="form-group" >
+                                   <label>Kies Brood Type</label><br>
+                                   <img src="wit_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbtid1" name="BroodType" value="1" onclick="get_radio_button_value_broodtype()">Wit => 0.50 cents extra <br>
+                                   <img src="bruin_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbtid2" name="BroodType" value="2" onclick="get_radio_button_value_broodtype()">Bruin => 0.75 cents extra <br>
+                                   <img src="meergranen_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbtid3" name="BroodType" value="3" onclick="get_radio_button_value_broodtype()">Meergranen => 1 euro extra<br>
 
                                    
                                </div>
                                <div><label>Wil Je graag Smos?</label></div>
-                               <div class="form-group" id="ssmos"onchange="radio_waard_teruggeven(id)" action="">
+                               <div class="form-group">
                                    
-                                   <input type="radio" id="ssmos1" name="Smosselected" value="1">Neen 
-                                   <input type="radio" id="ssmos2" name="Smosselected" value="2">Ja => Extra 0.70 Cent betalen
+                                   <input type="radio" id="ssmos1" name="smosselected" value="1" onclick="get_radio_button_value_smos()">Neen 
+                                   <input type="radio" id="ssmos2" name="smosselected" value="2" onclick="get_radio_button_value_smos()">Ja => Extra 0.70 Cent betalen
                                </div>
 
 
