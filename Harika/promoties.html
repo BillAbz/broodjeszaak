@@ -207,7 +207,7 @@
                     <!-- Grid column -->
                     <div class="mb-3 pics all 2 animation">
                       <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" width="240px" src="Drankjes foto/cocacola.png" alt="Card image cap">
+                        <img class="img-fluid z-depth-1 rounded" width="240px" src="promotie foto/cocacola.png" alt="Card image cap">
                       </a>
                     </div>
                     <!-- Grid column -->
@@ -215,7 +215,7 @@
                     <!-- Grid column -->
                     <div class="mb-3 pics animation all 1">
                       <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Vertical/7.jpg" alt="Card image cap">
+                        <img class="img-fluid z-depth-1 rounded" src="promotie foto/image.jpg" alt="Card image cap">
                       </a>
                     </div>
                     <!-- Grid column -->
@@ -223,7 +223,7 @@
                     <!-- Grid column -->
                     <div class="mb-3 pics animation all 1">
                       <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Vertical/4.jpg" alt="Card image cap">
+                        <img class="img-fluid z-depth-1 rounded" src="promotie foto/image.jpg" alt="Card image cap">
                       </a>
                     </div>
                     <!-- Grid column -->
@@ -231,7 +231,7 @@
                     <!-- Grid column -->
                     <div class="mb-3 pics all 2 animation">
                       <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Others/images/63.jpg" alt="Card image cap">
+                        <img class="img-fluid z-depth-1 rounded" width="240px" src="promotie foto/cocacola.png" alt="Card image cap">                 
                       </a>
                     </div>
                     <!-- Grid column -->
@@ -239,7 +239,7 @@
                     <!-- Grid column -->
                     <div class="mb-3 pics all 2 animation">
                       <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Others/images/64.jpg" alt="Card image cap">
+                        <img class="img-fluid z-depth-1 rounded" width="240px" src="promotie foto/cocacola.png" alt="Card image cap">
                       </a>
                     </div>
                     <!-- Grid column -->
@@ -247,7 +247,7 @@
                     <!-- Grid column -->
                     <div class="mb-3 pics animation all 1">
                       <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Vertical/5.jpg" alt="Card image cap">
+                        <img class="img-fluid z-depth-1 rounded" src="promotie foto/image.jpg" alt="Card image cap">
                       </a>
                     </div>
                     <!-- Grid column -->
@@ -295,4 +295,18 @@
         </footer>
 
     </body>
+    <script>
+      $(function () {
+          var selectedClass = "";
+          $(".filter").click(function () {
+            selectedClass = $(this).attr("data-rel");
+            $("#gallery").fadeTo(100, 0.1);
+            $("#gallery div").not("." + selectedClass).fadeOut().removeClass('animation');
+            setTimeout(function () {
+              $("." + selectedClass).fadeIn().addClass('animation');
+              $("#gallery").fadeTo(300, 1);
+            }, 300);
+          });
+        });
+    </script>
 </html>
