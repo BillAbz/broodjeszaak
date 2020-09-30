@@ -106,25 +106,24 @@
                                                 <thead class="mdb-color lighten-5">
                                                     <tr>
                                                     
-                                                    <th class="font-weight-bold">
-                                                        <strong>Product</strong>
-                                                    </th>
-                                                    
-                                                    <th class="font-weight-bold text-center">
-                                                        <strong>Prijs</strong>
-                                                    </th>
+                                                        <th class="font-weight-bold">
+                                                            <strong>Product</strong>
+                                                        </th>
+                                                        
+                                                        <th class="font-weight-bold text-center">
+                                                            <strong>Brood Soort</strong>
+                                                        </th>
 
-                                                    <th class="font-weight-bold text-center">
-                                                        <strong>Aantal Stuks</strong>
-                                                    </th>
+                                                        <th class="font-weight-bold text-center">
+                                                            <strong>Aantal Stuks</strong>
+                                                        </th>
 
-                                                    <th class="font-weight-bold text-center">
-                                                        <strong>Bedrag</strong>
-                                                    </th>
+                                                        <th class="font-weight-bold text-center">
+                                                            <strong>Bedrag</strong>
+                                                        </th>
 
-                                                    <th></th>
+                                                        <th></th>
 
-                                                    <th></th>
                                                     </tr>
                                                 </thead>
                                                 <!-- /.Table head -->
@@ -133,46 +132,67 @@
                                                 <tbody>
 
                                                     <tr>
-                                                    <td>
-                                                        <h5><strong>iPhone</strong></h5>
-                                                        <p class="text-muted">Apple</p>
-                                                    </td>
+                                                        <td>
+                                                            <p id="product">Kaas</p>
+                                                            <p class="text-muted">+smos</p>
+                                                        </td>
 
-                                                    <td class="text-center">€800</td>
+                                                        <td class="text-center">
+                                                            <p id="brood_type">Wit</p>
+                                                            <p id="brood_soort">Piccolo</p>
+                                                        </td>
 
-                                                    <td class="font-weight-bold text-center">
-                                                        <strong>1</strong>
-                                                    </td>
+                                                        <td class="text-center">
+                                                            <p>1</p>
+                                                        </td>
 
-                                                    <td class="font-weight-bold text-center">
-                                                        <strong>€800</strong>
-                                                    </td>
+                                                        <td class="text-center">
+                                                            <p>€ 4.95</p>
+                                                        </td>
 
-                                                    <td>
-                                                        <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item">Verwijder</button>
-                                                    </td>
-
-                                                    <td>
-                                                        <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Bewerk item">Bewerk</button>
-                                                    </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item">Verwijder</button>
+                                                        </td>
                                                     </tr>
 
                                                     <tr>
-                                                    <td colspan="2"></td>
+                                                        <td>
+                                                            <p id="vulling">Coca-Cola</p>
+                                                            <p class="text-muted"></p>
+                                                        </td>
+    
+                                                        <td class="text-center">
+                                                            <p id="brood_type"></p>
+                                                            <p id="brood_soort"></p>
+                                                        </td>
+    
+                                                        <td class="text-center">
+                                                            <p>1</p>
+                                                        </td>
+    
+                                                        <td class="text-center">
+                                                            <p>€ 1.25</p>
+                                                        </td>
+    
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item">Verwijder</button>
+                                                        </td>
+                                                    </tr>
 
-                                                    <td>
-                                                        <h4 class="mt-2">
-                                                        <strong>Totaal</strong>
-                                                        </h4>
-                                                    </td>
+                                                    <tr>
+                                                        <td colspan="2"></td>
 
-                                                    <td class="text-right">
-                                                        <h4 class="mt-2"><strong>€800</strong></h4>
-                                                    </td>
+                                                        <td>
+                                                            <h5 class="mt-2"><strong>Totaal</strong></h5>
+                                                        </td>
 
-                                                    <td colspan="3" class="text-right">
-                                                        <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
-                                                    </td>
+                                                        <td class="text-right">
+                                                            <h5 class="mt-2"><strong>€ 6.20</strong></h5>
+                                                        </td>
+
+                                                        <td class="text-right">
+                                                            <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+                                                        </td>
                                                     </tr>
 
                                                 </tbody>
@@ -258,39 +278,32 @@
                                         <hr>
                                         <dl class="row">
                                             <dd class="col-sm-8">Klantnummer :</dd>
-                                            <dd class="col-sm-4">1</dd>
+                                            <dd class="col-sm-4">12</dd>
                                         </dl>
 
                                         <dl class="row">
                                             <dd class="col-sm-8">Bestellingnummer :</dd>
-                                            <dd class="col-sm-4">1</dd>
+                                            <dd class="col-sm-4">17</dd>
                                         </dl>
                                         <hr>
                         
                                         <dl class="row">
-                                            <dd class="col-sm-8">Besteld product</dd>
-                                            <dd class="col-sm-4">Prijs</dd>
-                                        </dl>
-                        
-                                        <hr>
-                        
-                                        <dl class="row">
-                                            <dd class="col-sm-8">Besteld product</dd>
-                                            <dd class="col-sm-4">Prijs</dd>
+                                            <dd class="col-sm-8">Wit Piccolo+Kaas</dd>
+                                            <dd class="col-sm-4">€ 4.95</dd>
                                         </dl>
                         
                                         <hr>
                         
                                         <dl class="row">
-                                            <dd class="col-sm-8">Besteld product</dd>
-                                            <dd class="col-sm-4">Prijs</dd>
+                                            <dd class="col-sm-8">Coca-Cola</dd>
+                                            <dd class="col-sm-4">€ 1.25</dd>
                                         </dl>
                         
                                         <hr>
                         
                                         <dl class="row">
                                             <dt class="col-sm-8">Totaal</dt>
-                                            <dt class="col-sm-4">Totaal prijs</dt>
+                                            <dt class="col-sm-4">€ 6.20</dt>
                                         </dl>
                                     </div>
                 
