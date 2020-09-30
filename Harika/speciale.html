@@ -88,7 +88,7 @@
             <div class="table-responsive text-nowrap">
                 <table class="table" id="klassieketable">
                     <thead>
-                        <tr>
+                      <!-- <tr>
                             <th scope="col"> Brood Type en Soorten </th>
                             <th scope="col"><img src="halve-baget_wit.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                             <br>Halve Baguette Wit Broodje</th>
@@ -102,10 +102,10 @@
                             <br>Piccolo Bruin Broodje</th>
                             <th scope ="col"><img src="piccolo_meer_granen.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                             <br>Piccolo Meergranen Broodje</th>
-                        </tr>
+                        </tr> --> 
                         
                         <tr>
-                            <th scope="col">Vulling</th>
+                            <th scope="col">Naam</th>
                             <th scope="col">Promotie</th>
                             <th scope="col">Beeld</th>
                             <th scope="col">Keuze</th>
@@ -125,59 +125,50 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Speciale Broodjes Selectie</h5>
+                            <h5 class="modal-title" id="modalform">Speciale Broodjes Selectie.
+                                <br>
+                                (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                             <form>
                                 <div class="form-group">
-                                    <label for="snaam"> Het Beleg Gekozen</label>
-                                      
+                                    <label for="snaam">Het Beleg Gekozen</label>
                                     <input type="text" class="form-control" id="snaam" placeholder="">
                                 </div>
+                                
+                                <div class="form-group" >
+                                    <label>Kies Brood Soort</label><br>
+                                    <img src="piccolo_image.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbsid1" name="BroodSoort" value="1" onclick="get_radio_button_value_broodsoort(2)">Piccolo => 0.25 cents extra<br>
+                                   <img src="halve_baget.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbsid2" name="BroodSoort" value="2" onclick="get_radio_button_value_broodsoort(2)">Halve Baguette => 0.50 cents extra 
+                                   
+                                 
+                               </div>
+                              
+                               <div class="form-group">
+                                 <label>Kies Brood Type</label><br>
+                                    <img src="wit_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbtid1" name="BroodType" value="1" onclick="get_radio_button_value_broodtype(2)">Wit => 0.50 cents extra <br>
+                                   <img src="bruin_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbtid2" name="BroodType" value="2" onclick="get_radio_button_value_broodtype(2)">Bruin => 0.75 cents extra <br>
+                                   <img src="meergranen_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                   <input type="radio" id="sbtid3" name="BroodType" value="3" onclick="get_radio_button_value_broodtype(2)">Meergranen => 1 euro extra
 
-                                <div class="form-group">
-                                    <label for="sbsid"> Kies Brood Soort </label><br>
-                                    <input type="radio" id="sbsid1" name="SpecialeBroodSoort" value="1">Piccolo => 0.25 cents extra <br>
-                                    <input type="radio" id="sbsid2" name="SpecialeBroodSoort" value="2">Halve Baguette => 0.50 cents extra 
-                                    
-                                  
-                                </div>
+                                   
+                               </div>
+                               <div>
+                               
+                                   <label>Wil Je graag Smos?</label><br>
+                                   <input type="radio" id="smos1" name="smosselected" value="1" onclick="get_radio_button_value_smos(2)">Neen <br>
+                                   <input type="radio" id="smos2" name="smosselected" value="2" onclick="get_radio_button_value_smos(2)">Ja => Extra 0.70 Cent betalen
+                               </div>
 
-                                <div class="form-group">
-                                    <label for="sbtid">Kies Brood Type</label><br>
-                                    <input type="radio" id="sbtid1" name="SpecialeBroodType" value="1">Wit => 0.50 cents extra <br>
-                                    <input type="radio" id="sbtid2" name="SpecialeBroodType" value="2">Bruin => 0.75 cents extra <br>
-                                    <input type="radio" id="sbtid3" name="SpecialeBroodType" value="3">Meergranen => 1 euro extra
 
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label for="smos">Wil Je graag Smos?</label><br>
-                                    <input type="radio" id="smos1" name="Smosselected" value="1">Neen <br>
-                                    <input type="radio" id="smos2" name="Smosselected" value="2">Ja => Extra 0.70 Cent betalen
-                                </div>  
-
-                                <!--<div class="form-group">
-                                    <select class="form-control" id="sbsid">
-                                            <option value="1">Piccolo => 0.25 cents extra</option>
-                                            <option value="2">Halve Baguette => 0.50 cents extra </option>
-                                    </select>
-                                    </div>
-                                    <div class="form-group"><select class="form-control" id="sbtid">
-                                        <option value="1">Wit => 0.50 cents extra </option>
-                                        <option value="2">Bruin => 0.75 cents extra </option>
-                                        <option value="3">Meergranen => 1 euro extra </option>
-                                    </select>
-                                    </div>
-                                  <div class="form-group">
-                                    <label for="smos">Wil Je graag Smos?</label>
-                                    <select class="form-control" id="smos">
-                                        <option value="1">Nee </option>
-                                        <option value="2">Ja => Extra 0.70 Cent betalen</option>
-                                    </select>
-                                </div>-->
+                               
                                 
                                 <div class="form-group">
                                     <label for="spromotieid">Promotie</label>
@@ -185,8 +176,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="squantity">Aantal Stukjes</label>
-                                    <input type="number" value =0 class="form-control" id="squantity" placeholder="" onchange="aantal_kiezen(2);">
+                                    <label for="squantity">Aantal Stuks</label>
+                                    <input type="number" value =1 class="form-control" id="squantity" placeholder="" onchange="aantal_kiezen(2);">
                                 </div>
 
                                 <label for="stotaalprijs">Totaal Prijs</label>
@@ -243,48 +234,3 @@
     </body>
     
 </html>         
-    <!--
-        <script src="bzscript.js"></script> 
-        <tr>
-                                <td>Martino-Ansjovis<br> (Vulling Prijs €4) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kip <br> (Vulling Prijs €3.75)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Italiaanse Preparé <br> (Vulling Prijs € 4.25)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Chillie <br> (Vulling Prijs €4) </td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Subliem Kip <br> (Vulling Prijs €3.50)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td>Italiano Kips <br> (Vulling Prijs €4)</td>
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>
-                            <tr>
-                                <td> Boom Patat <br> (Vulling Prijs €3.75)</td>
-                                                               
-                                <td> </td>
-                                <td> </td>
-                                <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#speciale_details" onclick="">Kueze</button></td>
-                            </tr>-->

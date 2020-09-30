@@ -1,14 +1,27 @@
-//var producten=[];
 var producten;
 var category;
-var broodsoort;
-var broodtype;
+var broodsoort =[];
+var broodtype =[];
+//var broodsoort;
+//var broodtype;
 var prodcat1;
 var prodcat2;
 var prodcat3;
 var prodcat4;
 var huidig_product;
+/*var checked_broodsoort;
+var checked_broodtype;
+var checked_smos;
 //var count;
+var klassieke_brood_soort_selected;
+var klassieke_brood_type_selected;
+var speciale_brood_soort_selected;
+var speciale_brood_type_selected;*/
+var brood_type_selected_value;
+var brood_soort_selected_value;
+var smos_prijs;
+var bs_prijs;
+var bt_prijs;
 
 function admin_login()
 {
@@ -59,20 +72,7 @@ function start()
     lees_data();
 }
 
-/*function start()
-{   
-    const urlParams = new URLSearchParams(window.location.search);
-    const catid = urlParams.get("catid");
 
-    if(catid!="")
-    {
-        filter_producten_category(catid); 
-    }
-    
-    filter_producten_category(catid);
-    //lees_data();
-    
-}*/
 
 
 function lees_data() {
@@ -112,6 +112,7 @@ function lees_data() {
                         .done(function (response) {
                             console.log(response);
                             broodsoort = response.data.items
+                            console.log(broodsoort)
                             $.ajax({
                                 method: 'GET',
                                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
@@ -121,6 +122,7 @@ function lees_data() {
                                 .done(function (response) {
                                     console.log(response);
                                     broodtype = response.data.items
+                                    console.log(broodtype)
                                     assets_path = response.data.assets_path;
                                     sessionStorage.setItem("token", response.status.token)
                                     console.log(producten);
@@ -244,32 +246,111 @@ function filter_producten_category(catid)
 
     }
 
+    /*
+    var checked_broodsoort;
+var checked_broodtype;
+var checked_smos;
+    */
+  
+function get_radio_button_value_broodsoort()
+{
+    
+    var broodsoort= document.getElementsByName("BroodSoort");
+    if(broodsoort[0].checked)
+    {
+             brood_soort_selected_value = broodsoort[0].value;
+             console.log(brood_soort_selected_value);
 
-    function haal_brood_soort(bsidval) {
-
-        for (var i = 0; i < broodsoort.length; i++) {
-            if (broodsoort[i].bsid == bsidval) {
-                return broodsoort[i].bsprijs;
-    
-            }
-    
-        }
-    
     }
-    function haal_brood_type(btidval) {
+    else if(broodsoort[1].checked)
+    {
+            brood_soort_selected_value = broodsoort[1].value;
+            console.log(brood_soort_selected_value);
+     }
+     bs_prijs= haal_brood_soort(brood_soort_selected_value);
 
-        for (var i = 0; i < broodtype.length; i++) {
-            if (broodtype[i].btid == btidval) {
-                return broodtype[i].btprijs;
-    
-            }
-    
-        }
-    
+
+
+}
+
+
+
+function get_radio_button_value_broodtype() 
+{
+        
+    var broodtype=document.getElementsByName("BroodType");
+    if(broodtype[0].checked)
+    {
+        brood_type_selected_value = broodtype[0].value;
+        console.log(brood_type_selected_value);
+
+    }
+    else if(broodtype[1].checked)
+    {
+        brood_type_selected_value = broodtype[1].value;
+        console.log(brood_type_selected_value);
+    }
+    else if(broodtype[2].checked)
+    {
+        brood_type_selected_value = broodtype[2].value;
+        console.log(brood_type_selected_value);
     }
 
+    bt_prijs=haal_brood_type(brood_type_selected_value); 
+    
 
-    function product_gevonden(pid)
+}
+  
+ function get_radio_button_value_smos()
+ {
+   
+       var smos_gekozen = document.getElementsByName("smosselected");
+       if(smos_gekozen[0].checked)
+       {
+           smos_prijs=0;
+       }
+       else if(smos_gekozen[1].checked)
+       {
+           smos_prijs=0.70;
+       }
+ 
+   }
+
+function haal_brood_soort(checked_broodsoort) 
+{
+    console.log(checked_broodsoort);
+    for (var i = 0; i < broodsoort.length; i++)
+    {
+        if (broodsoort[i].bsid == checked_broodsoort)
+         {
+            console.log("works");
+           // bs_prijs=broodsoort[i].bsprijs;
+            return broodsoort[i].bsprijs;
+            console.log(bs_prijs);
+
+        }
+
+    }
+
+}
+
+function haal_brood_type(checked_broodtype)
+ {
+    console.log(checked_broodtype);
+    for (var i = 0; i < broodtype.length; i++)
+     {
+        if (broodtype[i].btid == checked_broodtype)
+         {
+            console.log("works");
+            //bt_prijs=broodtype[i].btprijs;
+            return broodtype[i].btprijs;
+            //console.log(bt_prijs);
+
+        }
+
+    }
+ }
+function product_gevonden(pid)
     {
        
         for (i = 0; i < producten.length; i++) 
@@ -285,42 +366,61 @@ function filter_producten_category(catid)
          }
     }
     
-    function product_gekozen(pid)
+function product_gekozen(pid)
     {
         product_gevonden(pid);
         console.log(huidig_product);
+        
 
         if(huidig_product.catid==1)
        {
         document.getElementById("knaam").value = huidig_product.pnaam;
+        document.getElementById("ktotaalprijs").value = huidig_product.prodprijs;
+        var beleg_prijs= huidig_product.prodprijs;
+        var sandwich_prijs = bs_prijs + bt_prijs + beleg_prijs + smos_prijs;
+        var aantalstukjes = Number(document.getElementById("kquantity").value);
+        var prijs = aantalstukjes * sandwich_prijs;
+        document.getElementById("ktotaalprijs").value = prijs;
+
+        /*var bs_prijs= haal_brood_soort(klassieke_brood_soort_selected);
+        console.log(bs_prijs);
+        var bt_prijs= haal_brood_type(checked_broodtype);
+        var beleg_prijs= huidig_product.prodprijs;
+        if(checked_smos==1)
+        {
+        var sandwich_prijs = bs_prijs + bt_prijs + beleg_prijs;
+        }
+        else if(checked_smos==2)
+        {
+            var sandwich_prijs = bs_prijs + bt_prijs + beleg_prijs + 0.70; 
+        }*/
        }
 
        else if(huidig_product.catid==2)
        {
             document.getElementById("snaam").value = huidig_product.pnaam; 
- 
-            //$('input[name="SpecialeBroodType"]:checked').val();
-            //var sbtidval =  $('input[name="SpecialeBroodType"]:checked').val();
-            if(document.getElementById("sbtid1").checked)
-            {
-                var sbtidval = document.getElementById("sbtid1").value;
-            }
+            document.getElementById("stotaalprijs").value = huidig_product.prodprijs;
+            var beleg_prijs= huidig_product.prodprijs;
+            var sandwich_prijs = bs_prijs + bt_prijs + beleg_prijs + smos_prijs;
+            var aantalstukjes = Number(document.getElementById("squantity").value);
+            var prijs = aantalstukjes * sandwich_prijs;
+            document.getElementById("stotaalprijs").value = prijs;
 
-            else if(document.getElementById("sbtid2").checked)
-            {
-                var sbtidval = document.getElementById("sbtid2").value;
-            }
-            else if(document.getElementById("sbtid3").checked)
-            {
-                var sbtidval = document.getElementById("sbtid3").value;
-            }
-            var sbtid_prijs= haal_brood_type(sbtidval);
-            console.log(sbtid_prijs);
 
-            var sbsidval = $('input[name="SpecialeBroodSoort"]:checked').val();
-            var sbsid_prijs= haal_brood_soort(sbsidval);
-            console.log(sbsid_prijs);
-
+            /*var bs_prijs= haal_brood_soort(checked_broodsoort);
+            var bt_prijs= haal_brood_type(checked_broodtype);
+            var beleg_prijs= huidig_product.prodprijs;
+            if(checked_smos==1)
+            {
+              var sandwich_prijs = bs_prijs + bt_prijs + beleg_prijs;
+            }
+            else if(checked_smos==2)
+            {
+               var sandwich_prijs = bs_prijs + bt_prijs + beleg_prijs + 0.70; 
+            }
+            
+           
+            */
 
        }
 
@@ -404,42 +504,79 @@ function filter_producten_category(catid)
 }
 
 
-/*
-function product_gekozen(pid)
-    {
-        product_gevonden(pid);
-        console.log(huidig_product);
+/*function radio_waard_teruggeven(divID)
+  {        
+    let radio_form= document.getElementById(divID);
 
-        
-        document.getElementById("knaam").value = huidig_product.pnaam;
-      
-      
-        document.getElementById("snaam").value = huidig_product.pnaam; 
-      
-      
-        document.getElementById("ksnaam").value = huidig_product.pnaam;
-        var aantalstukjes = Number(document.getElementById("ksquantity").value);
-        var prijs = aantalstukjes * huidig_product.prodprijs;
-        console.log(prijs);
-        //console.log(huidig_product);
-        document.getElementById("kstotaalprijs").value = prijs;
-      
-        document.getElementById("dnaam").value = huidig_product.pnaam;
-        var aantalstukjes = Number(document.getElementById("dquantity").value);
-        var prijs = aantalstukjes * huidig_product.prodprijs;
-        console.log(prijs);
-        //console.log(huidig_product);
-        document.getElementById("dtotaalprijs").value = prijs;
-    
-    
-        
-        
-        //document.getElementById("beeld").value = huidig_product.beeld;
-        //json stringify
-    
-        //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
-    
-        //console.log(image);
-    
-       
-    }*/
+    for (let i = 1; i <=  radio_form.children.length; i++)
+     {
+        if(document.getElementById(divID+i).checked)
+        {
+            if(divID=='sbsid')
+            {
+                checked_broodsoort = document.getElementById(divID+i).value;
+            } 
+            else if(divID=='sbtid')
+            {
+                checked_broodtype = document.getElementById(divID+i).value;
+            } 
+            else if(divID=='ssmos')
+            {
+                checked_smos = document.getElementById(divID+i).value;
+            }
+        }
+    }        
+   
+    for (let i = 1; i <=  radio_form.children.length; i++)
+     {
+        if(document.getElementById(divID+i).checked)
+        {
+            if(divID=='kbsid')
+            {
+                checked_broodsoort = document.getElementById(divID+i).value;
+            } 
+            else if(divID=='kbtid')
+            {
+                checked_broodtype = document.getElementById(divID+i).value;
+            } 
+            else if(divID=='ksmos')
+            {
+                checked_smos = document.getElementById(divID+i).value;
+            }
+        }
+    }  
+
+/*console.log(checked_broodsoort);
+    console.log(checked_broodtype);
+    console.log(checked_smos);
+
+            var brood_type_prijs = haal_broodjes_prijs(broodtype,'btid',checked_broodtype,'btprijs');
+            var brood_type_soort = haal_broodjes_prijs(broodsoort,'bsid',checked_broodsoort, 'bsprijs');
+            var total_prijs = Number(brood_type_prijs) + Number(brood_type_soort);
+            console.log(total_prijs);*/
+
+
+    /*}      
+    */
+
+
+    /*
+    function haal_broodjes_prijs(arr,id,waarde,prijs)
+  {
+      console.log(arr,id,waarde,prijs);
+    id;
+    prijs;
+    for (var i = 0; i < arr.length; i++) 
+    {
+        if (arr[i].id === waarde)
+         {
+             console.log('works')
+            console.log(arr[i].prijs);
+            return arr[i].prijs;
+
+        }
+
+    }
+
+  }*/
+
