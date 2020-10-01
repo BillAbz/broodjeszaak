@@ -127,7 +127,7 @@
 
                                 <div class="form-group">
                                     <label for="ksquantity">Aantal Stukjes</label>
-                                    <input type="number" value =1 class="form-control" id="ksquantity" placeholder="" onchange="aantal_kiezen(3);">
+                                    <input type="number" min="0" value =1 class="form-control" id="ksquantity" placeholder="" onchange="aantal_kiezen(3);">
                                 </div>
 
                                 <label for="kstotaalprijs">Prijs</label>
@@ -137,7 +137,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
+                                    <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(3);">Bevestig Bestelling</button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
                                 </div>
                             </form>
