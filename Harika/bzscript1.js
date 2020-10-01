@@ -224,7 +224,7 @@ function filter_producten_category(catid)
                  
                 maak_tabel(producten);
                
-                if(catid=="" || catid =="1" || catid =="2")
+                if(catid == "" || catid =="1" || catid =="2")
                 {
                     $.ajax({
                         method: 'GET',
@@ -266,6 +266,11 @@ function filter_producten_category(catid)
           
 function update_broodjes_modal(bsoort, btype)
 {   
+    document.getElementById('bsid').innerHTML="";
+    document.getElementById('btid').innerHTML="";
+    document.getElementById('sbsid').innerHTML="";
+    document.getElementById('sbtid').innerHTML="";
+
     for (let i = 0; i < bsoort.length; i++) {
 
         document.getElementById('bsid').innerHTML +=`
@@ -283,7 +288,7 @@ function update_broodjes_modal(bsoort, btype)
         <input type="radio" id="${btype[i].btid}" name="BroodType" value="${btype[i].btprijs}" onclick="get_radio_button_value_broodtype()">${btype[i].btnaam} <br>
                                     `
     }
-    /*for (let i = 0; i < bsoort.length; i++) {
+    for (let i = 0; i < bsoort.length; i++) {
 
         document.getElementById('sbsid').innerHTML +=`
        
@@ -298,7 +303,7 @@ function update_broodjes_modal(bsoort, btype)
         <img src="${btype[i].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
         <input type="radio" id="${btype[i].btid}" name="BroodType" value="${btype[i].btprijs}" onclick="get_radio_button_value_broodtype()">${btype[i].btnaam} <br>
                                     `
-    }*/
+    }
 
 
 }
@@ -309,19 +314,20 @@ function update_broodjes_modal(bsoort, btype)
     function get_radio_button_value_broodsoort()
 {
     
-    var broodsoort= document.getElementsByName("BroodSoort");
-    if(broodsoort[0].checked)
+    var brood_soort= document.getElementsByName("BroodSoort");
+
+    for (let index = 0; index < brood_soort.length; index++) {
+
+        if(brood_soort[index].checked)
     {
-             brood_soort_selected_value = broodsoort[0].value;
+             brood_soort_selected_value = brood_soort[index].value;
              console.log(brood_soort_selected_value);
 
     }
-    else if(broodsoort[1].checked)
-    {
-            brood_soort_selected_value = broodsoort[1].value;
-            console.log(brood_soort_selected_value);
-     }
+}  
+     console.log(brood_soort_selected_value);    
      bs_prijs= haal_brood_soort(brood_soort_selected_value);
+     console.log(bs_prijs);
 
 
 
@@ -331,23 +337,17 @@ function update_broodjes_modal(bsoort, btype)
 
 function get_radio_button_value_broodtype() 
 {
-        
-    var broodtype=document.getElementsByName("BroodType");
-    if(broodtype[0].checked)
-    {
-        brood_type_selected_value = broodtype[0].value;
-        console.log(brood_type_selected_value);
+     
+    var brood_type=document.getElementsByName("BroodType");
 
-    }
-    else if(broodtype[1].checked)
-    {
-        brood_type_selected_value = broodtype[1].value;
-        console.log(brood_type_selected_value);
-    }
-    else if(broodtype[2].checked)
-    {
-        brood_type_selected_value = broodtype[2].value;
-        console.log(brood_type_selected_value);
+    for (let j = 0; j < brood_type.length; j++) {
+        if(brood_type[j].checked)
+        {
+            brood_type_selected_value = brood_type[j].value;
+            console.log(brood_type_selected_value);
+    
+        }
+        
     }
 
     bt_prijs=haal_brood_type(brood_type_selected_value); 
@@ -370,9 +370,9 @@ function get_radio_button_value_broodtype()
  
    }
 
-function haal_brood_soort(checked_broodsoort) 
+/*function haal_brood_soort(checked_broodsoort) 
 {
-    console.log(checked_broodsoort);
+    checked_broodsoort;
     for (var i = 0; i < broodsoort.length; i++)
     {
         if (broodsoort[i].bsid == checked_broodsoort)
@@ -388,7 +388,8 @@ function haal_brood_soort(checked_broodsoort)
 
 }
 function haal_brood_type(checked_broodtype)
- {
+ {  
+    checked_broodtype;
     console.log(checked_broodtype);
     for (var i = 0; i < broodtype.length; i++)
      {
@@ -402,7 +403,7 @@ function haal_brood_type(checked_broodtype)
         }
 
     }
- }
+ }*/
 
 
     function product_gevonden(pid)

@@ -117,12 +117,12 @@
                             <form>
                                 <div class="form-group">
                                     <label for="ksnaam">Schotel Naam</label>
-                                    <input type="text" class="form-control" id="ksnaam" placeholder="">
+                                    <input type="text" class="form-control" id="ksnaam" placeholder="" disabled>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="kspromotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="kspromotieid" placeholder="">
+                                    <input type="textbox" class="form-control" id="kspromotieid" disabled>
                                 </div>
 
                                 <div class="form-group">
@@ -130,10 +130,12 @@
                                     <input type="number" min="0" value =1 class="form-control" id="ksquantity" placeholder="" onchange="aantal_kiezen(3);">
                                 </div>
 
-                                <label for="kstotaalprijs">Prijs</label>
+                                <label for="kstotaalprijs">Totaal Prijs</label>
+                                <br>
+                                <span id="kstotaalprijsspan"></span>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="kstotaalprijs" aria-label="Prijs in Euro" />
+                                    <input type="text" class="form-control" id="kstotaalprijs" aria-label="Prijs in Euro" disabled/>
                                 </div>
 
                                 <div class="modal-footer">
