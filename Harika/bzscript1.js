@@ -76,7 +76,7 @@ function start()
     filter_producten_category(catid);
    
 }
-
+/* 
 
 function lees_data() {
     $.ajax({
@@ -140,7 +140,7 @@ function lees_data() {
     
 
 }
-
+ */
 function maak_tabel(producten) {
 
    console.log(producten);
@@ -175,7 +175,7 @@ function maak_tabel(producten) {
 
     
  
-     function ga_naar_category(catid, catnaam)
+     function ga_naar_category(catid)
      {
 
          document.location="producten1.html?catid=" + catid;
@@ -196,9 +196,8 @@ function toon_apart_data()
 function filter_producten_category(catid)
 {
   
-         
-   
-            $.ajax({
+        
+        $.ajax({
             url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
             //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
@@ -206,42 +205,106 @@ function filter_producten_category(catid)
 
             //"filter": ["catid", "=", catid]
             "filter": ["catid", "like", "%" + catid + "%"]
-
             }
-    })
-        .done(function (json) {
+        }).done(function (json) {
             console.log("read done:");
             console.log(json);
             //prodcat1 = json.data.items;
             producten=json.data.items;
+           //console.log(producten);
            
-            
-           //console.log(prodcat1);
-           console.log(producten);
-           //if (prodcat1 == "") 
            if(producten=="")
             {
 
                 document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
 
             }
-            else {
+            else 
+            {
                  
                 maak_tabel(producten);
+               
+                if(catid= "" || catid =="1" || catid =="2")
+                {
+                    $.ajax({
+                        method: 'GET',
+                        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
+                        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                    })
+        
+                        .done(function (response) {
+                            console.log(response);
+                            broodsoort = response.data.items
+                            $.ajax({
+                                method: 'GET',
+                                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
+                                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                            }).done(function (response) {
+                                    console.log(response);
+                                    broodtype = response.data.items
+                                    //assets_path = response.data.assets_path;
+                                    //sessionStorage.setItem("token", response.status.token)
+                                    update_broodjes_modal(broodsoort, broodtype);
+                            }).fail(function (msg) {
+        
+                                console.log("read fail:");
+                                console.log(msg);
+                                
+                            });
+                        })
+                }
+            }                
+    })
+
+
+                            //update_broodjes_modal();
+        }
                //maak_tabel(prodcat1);
                //maak_tabel_paginas(prodcat1);
 
                 
-            }
+          
+function update_broodjes_modal(bsoort, btype)
+{   
+    for (let i = 0; i < bsoort.length; i++) {
 
-        })
-        .fail(function (msg) {
-            console.log("read fail:");
-            console.log(msg);
-        });
-
-
+        document.getElementById('kbsid').innerHTML +=`
+        <label for="kbsid"> Kies Brood Soort </label><br>
+        <img src="${bsoort[i].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+        <input type="radio" id="${bsoort[i].bsid}" name="BroodSoort" value="${bsoort[i].bsprijs}" onclick="get_radio_button_value_broodsoort()">${bsoort[i].bsnaam} <br>
+                `
     }
+
+    for (let i = 0; i < bsoort.length; i++)
+    {
+        document.getElementById('kbtid').innerHTML +=`
+        <label for="kbtid">Kies Brood Type</label><br>
+        <img src="${btype[i].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+        <input type="radio" id="${btype[i].btid}" name="BroodType" value="${btype[i].btprijs}" onclick="get_radio_button_value_broodtype()">${btype[i].btnaam} <br>
+                                    `
+    }
+    for (let i = 0; i < bsoort.length; i++) {
+
+        document.getElementById('sbsid').innerHTML +=`
+        <label for="kbsid"> Kies Brood Soort </label><br>
+        <img src="${bsoort[i].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+        <input type="radio" id="${bsoort[i].bsid}" name="BroodSoort" value="${bsoort[i].bsprijs}" onclick="get_radio_button_value_broodsoort()">${bsoort[i].bsnaam} <br>
+                `
+    }
+    for (let i = 0; i < bsoort.length; i++)
+    {
+        document.getElementById('sbtid').innerHTML +=`
+        <label for="kbtid">Kies Brood Type</label><br>
+        <img src="${btype[i].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+        <input type="radio" id="${btype[i].btid}" name="BroodType" value="${btype[i].btprijs}" onclick="get_radio_button_value_broodtype()">${btype[i].btnaam} <br>
+                                    `
+    }
+
+
+}
+  
+
+    
 
     function get_radio_button_value_broodsoort()
 {
