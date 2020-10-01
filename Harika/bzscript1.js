@@ -224,7 +224,7 @@ function filter_producten_category(catid)
                  
                 maak_tabel(producten);
                
-                if(catid= "" || catid =="1" || catid =="2")
+                if(catid=="" || catid =="1" || catid =="2")
                 {
                     $.ajax({
                         method: 'GET',
@@ -268,37 +268,37 @@ function update_broodjes_modal(bsoort, btype)
 {   
     for (let i = 0; i < bsoort.length; i++) {
 
-        document.getElementById('kbsid').innerHTML +=`
-        <label for="kbsid"> Kies Brood Soort </label><br>
+        document.getElementById('bsid').innerHTML +=`
+        
         <img src="${bsoort[i].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
         <input type="radio" id="${bsoort[i].bsid}" name="BroodSoort" value="${bsoort[i].bsprijs}" onclick="get_radio_button_value_broodsoort()">${bsoort[i].bsnaam} <br>
                 `
     }
 
-    for (let i = 0; i < bsoort.length; i++)
+    for (let i = 0; i < btype.length; i++)
     {
-        document.getElementById('kbtid').innerHTML +=`
-        <label for="kbtid">Kies Brood Type</label><br>
+        document.getElementById('btid').innerHTML +=`
+        
         <img src="${btype[i].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
         <input type="radio" id="${btype[i].btid}" name="BroodType" value="${btype[i].btprijs}" onclick="get_radio_button_value_broodtype()">${btype[i].btnaam} <br>
                                     `
     }
-    for (let i = 0; i < bsoort.length; i++) {
+    /*for (let i = 0; i < bsoort.length; i++) {
 
         document.getElementById('sbsid').innerHTML +=`
-        <label for="kbsid"> Kies Brood Soort </label><br>
+       
         <img src="${bsoort[i].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
         <input type="radio" id="${bsoort[i].bsid}" name="BroodSoort" value="${bsoort[i].bsprijs}" onclick="get_radio_button_value_broodsoort()">${bsoort[i].bsnaam} <br>
                 `
     }
-    for (let i = 0; i < bsoort.length; i++)
+    for (let i = 0; i < btype.length; i++)
     {
         document.getElementById('sbtid').innerHTML +=`
-        <label for="kbtid">Kies Brood Type</label><br>
+        
         <img src="${btype[i].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
         <input type="radio" id="${btype[i].btid}" name="BroodType" value="${btype[i].btprijs}" onclick="get_radio_button_value_broodtype()">${btype[i].btnaam} <br>
                                     `
-    }
+    }*/
 
 
 }
