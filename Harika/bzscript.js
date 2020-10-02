@@ -19,7 +19,7 @@ var broodtype_gekozen;
 var date = new Date();
 var day=date.getDay();
 console.log(day);
-
+var sandwich_prijs;
 
 function admin_login()
 {
@@ -207,6 +207,7 @@ function toon_prod_popup(pid)
     {
         var catid=huidig_product.catid;
         document.getElementById("knaam").value = huidig_product.pnaam;
+        sandwich_prijs=huidig_product.prodprijs;
         total_bereken(catid);
     }
     else if(huidig_product.catid==2)
@@ -269,7 +270,8 @@ function product_gevonden(pid)
 function total_bereken(catid)
 {
     if(catid==1)
-    {
+    {   
+       
         var beleg_prijs=huidig_product.prodprijs;
         console.log("In total_bereken before calculation: sandwich price with just filling price is: ",beleg_prijs);
         aantalstukjes = Number(document.getElementById("kquantity").value);
@@ -296,6 +298,7 @@ function total_bereken(catid)
     }
     else if(catid==2)
     {
+        
         var beleg_prijs=huidig_product.prodprijs;
         console.log("In total_bereken before calculation: sandwich price with just filling price is: ",beleg_prijs);
         aantalstukjes = Number(document.getElementById("squantity").value);
@@ -478,8 +481,8 @@ function leeg_modal(catid)
         document.getElementById("kbtid3").checked=false;
         document.getElementById("ksmos1").checked=false;
         document.getElementById("ksmos2").checked=false;
-        document.getElementById("kquantity").value="";
-        document.getElementById("ktotaalprijs").value="";
+        document.getElementById("kquantity").value=1;
+        document.getElementById("ktotaalprijs").value=huidig_product.prodprijs;
     }
     else if(catid==2)
     {
@@ -490,8 +493,8 @@ function leeg_modal(catid)
         document.getElementById("sbtid3").checked=false;
         document.getElementById("ssmos1").checked=false;
         document.getElementById("ssmos2").checked=false;
-        document.getElementById("squantity").value="";
-        document.getElementById("stotaalprijs").value="";
+        document.getElementById("squantity").value=1;
+        document.getElementById("stotaalprijs").value=huidig_product.prodprijs;
     }
     else if(catid==3)
     {
