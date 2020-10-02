@@ -40,7 +40,7 @@ function admin_login()
         //console.log(token_value)
         sessionStorage.setItem("token", response.status.token);
         console.log(sessionStorage);
-        document.location = "bzstartpagina.html";  
+        document.location = "index.html";  
     })
     .fail(function (msg) {
         console.log("read fail:");
