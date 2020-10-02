@@ -357,6 +357,8 @@ function get_radio_button_value_broodsoort(catid)
             document.getElementById("stotaalprijs").value=huidig_product.prodprijs;
         }
     }
+    toon_prod_popup();
+    total_bereken();
 }
 
 
@@ -414,6 +416,9 @@ function get_radio_button_value_broodtype(catid)
             document.getElementById("stotaalprijs").value=huidig_product.prodprijs;
         }
     }
+    toon_prod_popup();
+    total_bereken();
+
 }
 
 
@@ -451,6 +456,8 @@ function get_radio_button_value_smos(catid)
             document.getElementById("stotaalprijs").value=huidig_product.prodprijs;
         }
     }
+    toon_prod_popup();
+    total_bereken();
 }
 
 
