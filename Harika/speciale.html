@@ -15,9 +15,11 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
-        <!-- <script src="bzworkingscript.js"></script> -->
+        <!-- <script src="bzworkingscript.js"></script> 
+        <script src="bzscript.js"></script>-->
+        <script src="hbh.js"></script>
     </head>
-    <script src="bzscript.js"></script>
+    
 
     <body onload="toon_apart_data();">
 
@@ -142,9 +144,9 @@
                                 <div class="form-group" >
                                     <label>Kies Brood Soort</label><br>
                                     <img src="piccolo_image.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbsid1" name="BroodSoort" value="0.25" onclick="get_radio_button_value_broodsoort(2)" checked>Piccolo => 0.25 cents extra<br>
+                                   <input type="radio" id="sbsid1" name="BroodSoort" value="1" onclick="get_radio_button_value_broodsoort(2)" checked>Piccolo => 0.25 cents extra<br>
                                    <img src="halve_baget.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbsid2" name="BroodSoort" value="0.50" onclick="get_radio_button_value_broodsoort(2)">Halve Baguette => 0.50 cents extra 
+                                   <input type="radio" id="sbsid2" name="BroodSoort" value="2" onclick="get_radio_button_value_broodsoort(2)">Halve Baguette => 0.50 cents extra 
                                    
                                  
                                </div>
@@ -152,11 +154,11 @@
                                <div class="form-group">
                                  <label>Kies Brood Type</label><br>
                                     <img src="wit_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbtid1" name="BroodType" value="0.50" onclick="get_radio_button_value_broodtype(2)" checked>Wit => 0.50 cents extra <br>
+                                   <input type="radio" id="sbtid1" name="BroodType" value="1" onclick="get_radio_button_value_broodtype(2)" checked>Wit => 0.50 cents extra <br>
                                    <img src="bruin_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbtid2" name="BroodType" value="0.75" onclick="get_radio_button_value_broodtype(2)">Bruin => 0.75 cents extra <br>
+                                   <input type="radio" id="sbtid2" name="BroodType" value="2" onclick="get_radio_button_value_broodtype(2)">Bruin => 0.75 cents extra <br>
                                    <img src="meergranen_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbtid3" name="BroodType" value="1" onclick="get_radio_button_value_broodtype(2)">Meergranen => 1 euro extra
+                                   <input type="radio" id="sbtid3" name="BroodType" value="3" onclick="get_radio_button_value_broodtype(2)">Meergranen => 1 euro extra
 
                                    
                                </div>
@@ -180,12 +182,13 @@
                                     <input type="number" min="1" value =1 class="form-control" id="squantity" placeholder="" onchange="aantal_kiezen(2);">
                                 </div>
 
-                                <label for="stotaalprijs">Totaal Prijs</label>
-                                <br>
-                                <span id="stotaalprijsspan"></span>
+                                <span id="stotaalprijsspan"></span><br>
+                                <label for="stprijs">Totaal Prijs</label>
+                                
+                                
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="stotaalprijs" aria-label="Prijs in Euro" disabled/>
+                                    <input type="text" class="form-control" id="stprijs"  aria-label="Prijs in Euro" disabled/>
                                 </div>
 
                                 <div class="modal-footer">
