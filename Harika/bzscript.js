@@ -47,7 +47,7 @@ $.ajax({
 
         sessionStorage.setItem("token", response.status.token);
          console.log(sessionStorage);
-         document.location = "bzstartpagina.html";
+         document.location = "index.html";
        
    
        
@@ -176,7 +176,7 @@ function maak_tabel(producten) {
              tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
              */
         
-             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="toon_prod_popup(${producten[i].pid})">Kueze</button>` +
+             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="toon_prod_popup(${producten[i].pid})">Keuze</button>` +
                          "</td>";
              tabledata += "</tr>";
              
@@ -298,7 +298,7 @@ function filter_producten_category(catid)
             if(day===3)
             {
                 document.getElementById("kspromotieid").value ="20% korting op alle Koude Schotels vandaag (Woensdag)";
-                document.getElementById("kstotaalprijsspan").innerHTML="€"+ "&nbsp" + "Total Prijs before applying discount:"+ "&nbsp" +prijs;
+                document.getElementById("kstotaalprijsspan").value="€"+ "&nbsp" + "Total Prijs before applying discount:"+ "&nbsp" +prijs;
                 prijs= prijs - ((prijs*20)/100);
                 prijs=prijs.toFixed(2);
                 console.log("Total Prijs after discount", prijs);
@@ -427,7 +427,7 @@ function get_radio_button_value_broodsoort(catid)
             console.log("brood price after broodsoort selection:", bs_prijs);
             if(catid==1)
             {
-                document.getElementById("kquantity").value=0;
+                document.getElementById("kquantity").value=1;
                 document.getElementById("ktotaalprijs").value="";
             }
             else if(catid==2)
@@ -445,12 +445,12 @@ function get_radio_button_value_broodsoort(catid)
         console.log("brood price after broodsoort selection:", bs_prijs);
         if(catid==1)
             {
-                document.getElementById("kquantity").value=0;
+                document.getElementById("kquantity").value=1;
                 document.getElementById("ktotaalprijs").value="";
             }
             else if(catid==2)
             {
-                document.getElementById("squantity").value=0;
+                document.getElementById("squantity").value=1;
                 document.getElementById("stotaalprijs").value="";
             }
 
@@ -474,12 +474,12 @@ function get_radio_button_value_broodtype(catid)
          console.log("brood price after broodtype selection:", bt_prijs);
          if(catid==1)
             {
-                document.getElementById("kquantity").value=0;
+                document.getElementById("kquantity").value=1;
                 document.getElementById("ktotaalprijs").value="";
             }
             else if(catid==2)
             {
-                document.getElementById("squantity").value=0;
+                document.getElementById("squantity").value=1;
                 document.getElementById("stotaalprijs").value="";
             }
  
@@ -492,12 +492,12 @@ function get_radio_button_value_broodtype(catid)
         console.log("brood price after broodtype selection:", bt_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
       
@@ -509,12 +509,12 @@ function get_radio_button_value_broodtype(catid)
          console.log("brood price after broodtype selection:", bt_prijs);
          if(catid==1)
          {
-             document.getElementById("kquantity").value=0;
+             document.getElementById("kquantity").value=1;
              document.getElementById("ktotaalprijs").value="";
          }
          else if(catid==2)
          {
-             document.getElementById("squantity").value=0;
+             document.getElementById("squantity").value=1;
              document.getElementById("stotaalprijs").value="";
          }
         
@@ -536,12 +536,12 @@ function get_radio_button_value_smos(catid)
             console.log("Smos price after smos selection :",smos_prijs);
             if(catid==1)
             {
-                document.getElementById("kquantity").value=0;
+                document.getElementById("kquantity").value=1;
                 document.getElementById("ktotaalprijs").value="";
             }
             else if(catid==2)
             {
-                document.getElementById("squantity").value=0;
+                document.getElementById("squantity").value=1;
                 document.getElementById("stotaalprijs").value="";
             }
           
