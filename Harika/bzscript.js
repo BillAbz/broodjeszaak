@@ -335,12 +335,12 @@ function get_radio_button_value_broodsoort(catid)
         console.log("brood price after broodsoort selection:", bs_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
     }
@@ -350,15 +350,17 @@ function get_radio_button_value_broodsoort(catid)
         console.log("brood price after broodsoort selection:", bs_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
     }
+    toon_prod_popup();
+    total_bereken();
 }
 
 
@@ -372,12 +374,12 @@ function get_radio_button_value_broodtype(catid)
         console.log("brood price after broodtype selection:", bt_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
     }
@@ -402,15 +404,18 @@ function get_radio_button_value_broodtype(catid)
         console.log("brood price after broodtype selection:", bt_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
     }
+    toon_prod_popup();
+    total_bereken();
+
 }
 
 
@@ -424,12 +429,12 @@ function get_radio_button_value_smos(catid)
         console.log("Smos price after smos selection :",smos_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
     }
@@ -439,15 +444,17 @@ function get_radio_button_value_smos(catid)
         console.log("Smos price after  smos selection :",smos_prijs);
         if(catid==1)
         {
-            document.getElementById("kquantity").value=0;
+            document.getElementById("kquantity").value=1;
             document.getElementById("ktotaalprijs").value="";
         }
         else if(catid==2)
         {
-            document.getElementById("squantity").value=0;
+            document.getElementById("squantity").value=1;
             document.getElementById("stotaalprijs").value="";
         }
     }
+    toon_prod_popup();
+    total_bereken();
 }
 
 
