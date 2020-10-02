@@ -99,7 +99,6 @@ function lees_data() {
                     broodtype = response.data.items
                     console.log(broodtype)
                     assets_path = response.data.assets_path;
-                    sessionStorage.setItem("token", response.status.token)
                                 
                     $.ajax({
                         method: 'GET',
@@ -111,7 +110,6 @@ function lees_data() {
                         promoties = response.data.items
                         console.log(promoties)
                         assets_path = response.data.assets_path;
-                        sessionStorage.setItem("token", response.status.token)
                         maak_tabel(producten);
                     })
                 }) 
@@ -142,7 +140,7 @@ function maak_tabel(producten) {
             DO NOT DELETE THIS COMMENT
             tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
             */
-            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="toon_prod_popup(${producten[i].pid})">Kueze</button>` + "</td>";
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="toon_prod_popup(${producten[i].pid})">Keuze</button>` + "</td>";
         tabledata += "</tr>";
         
         document.getElementById("productendata").innerHTML += tabledata;
@@ -305,6 +303,7 @@ function total_bereken(catid)
         //var prijs= beleg_prijs + sandwich_prijs;
         var prijs= bt_prijs + bs_prijs + smos_prijs + beleg_prijs;
         console.log(prijs);
+        var total_prijs=prijs*aantalstukjes;
 
         if(day===2)
         {
@@ -318,8 +317,7 @@ function total_bereken(catid)
         {
             document.getElementById("spromotieid").value="10% korting op alle Speciale Broodjes allen op elke Dinsdag";
         }
-        var total_prijs=prijs*aantalstukjes;
-
+        
         document.getElementById("stotaalprijs").value = total_prijs;
     }
 } 
@@ -508,29 +506,23 @@ function aantal_kiezen(pgnum) {
     if(pgnum==1)
     {
         var count = document.getElementById("kquantity").value
-        huidige_prijs = count;
-        prijs = huidige_prijs;
         toon_prod_popup();
     }
+
+    
     else if(pgnum==2)
     {
         var count = document.getElementById("squantity").value
-        huidige_prijs = count;
-        prijs = huidige_prijs;
         toon_prod_popup();
     }
     else if(pgnum==3)
     {
         var count = document.getElementById("ksquantity").value
-        huidige_prijs = count;
-        prijs = huidige_prijs;
         toon_prod_popup();
     }
     else if(pgnum==4)
     {
         var count = document.getElementById("dquantity").value
-        huidige_prijs = count;
-        prijs = huidige_prijs;
         toon_prod_popup();
     }
 }
