@@ -142,7 +142,7 @@ function maak_tabel(producten) {
             DO NOT DELETE THIS COMMENT
             tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
             */
-            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="toon_prod_popup(${producten[i].pid})">Kueze</button>` + "</td>";
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="${producten[i].datatarget}" onclick="toon_prod_popup(${producten[i].pid})">Keuze</button>` + "</td>";
         tabledata += "</tr>";
         
         document.getElementById("productendata").innerHTML += tabledata;
@@ -505,6 +505,8 @@ function aantal_kiezen(pgnum) {
         prijs = huidige_prijs;
         toon_prod_popup();
     }
+
+    
     else if(pgnum==2)
     {
         var count = document.getElementById("squantity").value
