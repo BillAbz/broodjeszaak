@@ -291,19 +291,8 @@ function voorberekening(catid)
 {
     if(catid==1)
     {   
-        //var a=document.getElementById("ktprijs");
-        //console.log("line 297 value a",a);
-
         var total_prijs= broodsoort[0].bsprijs + broodtype[0].btprijs + huidig_product.prodprijs;
         console.log("when clicked the modal button for first time the total prijs that must be shown:",total_prijs);
-        //document.getElementById("ktprijs").value=total_default_value_klassieke;
-       
-        /*var beleg_prijs=huidig_product.prodprijs;
-        aantalstukjes = Number(document.getElementById("kquantity").value);
-        
-        var prijs= bt_prijs + bs_prijs + smos_prijs + beleg_prijs;
-        console.log("prijs after changing the choices of brood sort, brood prijs and smos in total_bereken()", prijs);
-        var total_prijs=prijs*aantalstukjes;*/
 
         /* sunday=0, monday=1, tuesday=2, wednesday=3, thursday=4, friday=5, saturday=6 */
         if(day===4)
@@ -390,9 +379,6 @@ function naberekening(catid) {
 
 
 function get_radio_button_value(catid){
-   /*radio_buttons[0]=0.25;
-    radio_buttons[1]=0.5;
-    radio_buttons[2]=0;*/
     radio_buttons[0]=broodsoort[0].bsprijs;
     radio_buttons[1]=broodtype[0].btprijs;
     radio_buttons[2]=0;
@@ -401,30 +387,24 @@ function get_radio_button_value(catid){
     var brood_soort= document.getElementsByName("BroodSoort");
     if (brood_soort[0].checked)
     {
-        //radio_buttons[0]=0.25;
         radio_buttons[0]=broodsoort[0].bsprijs;
-        
     }
     else if(brood_soort[1].checked)
     {
-        //radio_buttons[0]=0.5;
         radio_buttons[0]=broodsoort[1].bsprijs;
     }
 
     var brood_type=document.getElementsByName("BroodType");
     if(brood_type[0].checked)
     {
-        //radio_buttons[1]=0.5;
         radio_buttons[1]=broodtype[0].btprijs;
     }
     else if(brood_type[1].checked)
     {
-        //radio_buttons[1]=0.75;
         radio_buttons[1]=broodtype[1].btprijs;
     }
     else if(brood_type[2].checked)
     {
-        //radio_buttons[1]=1;
         radio_buttons[1]=broodtype[2].btprijs;
     }
 
@@ -441,19 +421,19 @@ function get_radio_button_value(catid){
 }
 
 
-
-
-
-
-
 function bevestig_bestelling(catid)
 {
     //console.log(huidig_product.prodprijs);
     leeg_modal(catid);
 }
-function annuleeren_bestelling(catid) {
+
+
+function annuleeren_bestelling(catid) 
+{
     leeg_modal(catid);
 }
+
+
 function leeg_modal(catid)
 {
     if(catid==1) 
@@ -502,8 +482,6 @@ function aantal_kiezen(pgnum) {
         var count = document.getElementById("kquantity").value
         toon_prod_popup();
     }
-
-    
     else if(pgnum==2)
     {
         var count = document.getElementById("squantity").value
