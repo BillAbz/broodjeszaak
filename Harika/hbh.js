@@ -21,6 +21,15 @@ var sandwich_prijs;
 var total_default_value_klassieke=0;
 var total_default_value_special=0;
 
+/* var localstorage_array={
+    product: ,
+    brood_soort: ,
+    brood_type:,
+    aantal_stuks:,
+    bedrag:
+}
+window.localStorage.setItem('winkelwagentje', JSON.stringify(person));*/
+
 function admin_login()
 {
     var admin_email = document.getElementById("admin_email").value;
@@ -417,7 +426,34 @@ function get_radio_button_value(catid){
 
 function bevestig_bestelling(catid)
 {
-    //console.log(huidig_product.prodprijs);
+    //console.log(huidig_product.prodprijs); 
+    /* var localstorage_array={
+    product: ,
+    brood_soort: ,
+    brood_type:,
+    aantal_stuks,
+    bedrag:
+}
+
+order=0
+window.localStorage.setItem('winkelwagentje', JSON.stringify(person));
+
+   localstorage_array.push(huidig_product.pnaam => product)
+   localstorage_array.push(broodsoort[0].bsnaam => brood_soort)
+   localstorage_array.push(broodtype[1].btnaam => brood_type)
+   var aantal_stuks= document.getElementsByID("kquantity");
+   var bedrag=document.getElementsByID("ktprijs"=>bedrag)
+   localstorage_array.push(aantal_stuks=> product)
+
+   
+
+    //window.localStorage.setItem('user', JSON.stringify(person));
+
+order++;
+document.getElementByID("order").innerHTML=order;
+*/
+
+
     leeg_modal(catid);
     $(huidig_product.datatarget).modal('hide');
 }
