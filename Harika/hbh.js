@@ -451,8 +451,9 @@ function bevestig_bestelling(catid)
     //console.log(huidig_product.prodprijs);
     leeg_modal(catid);
 }
-
-
+function annuleeren_bestelling(catid) {
+    leeg_modal(catid);
+}
 function leeg_modal(catid)
 {
     if(catid==1) 
@@ -460,10 +461,10 @@ function leeg_modal(catid)
         
         document.getElementById("kbsid1").checked=true;
         document.getElementById("kbsid2").checked=false;
-        document.getElementById("kbtid1").checked=false;
+        document.getElementById("kbtid1").checked=true;
         document.getElementById("kbtid2").checked=false;
         document.getElementById("kbtid3").checked=false;
-        document.getElementById("ksmos1").checked=false;
+        document.getElementById("ksmos1").checked=true;
         document.getElementById("ksmos2").checked=false;
         document.getElementById("kquantity").value=1;
         document.getElementById("ktprijs").value=broodsoort[0].bsprijs+broodtype[0].btprijs+huidig_product.prodprijs;
@@ -473,10 +474,10 @@ function leeg_modal(catid)
         
         document.getElementById("sbsid1").checked=true;
         document.getElementById("sbsid2").checked=false;
-        document.getElementById("sbtid1").checked=false;
+        document.getElementById("sbtid1").checked=true;
         document.getElementById("sbtid2").checked=false;
         document.getElementById("sbtid3").checked=false;
-        document.getElementById("ssmos1").checked=false;
+        document.getElementById("ssmos1").checked=true;
         document.getElementById("ssmos2").checked=false;
         document.getElementById("squantity").value=1;
         document.getElementById("stprijs").value=broodsoort[0].bsprijs+broodtype[0].btprijs+huidig_product.prodprijs;
