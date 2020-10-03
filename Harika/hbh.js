@@ -11,9 +11,6 @@ var radio_buttons=[];
 //var prodcat3;
 //var prodcat4;
 var huidig_product;
-var smos_prijs=0;
-var bs_prijs=0;
-var bt_prijs=0;
 var aantalstukjes=0;
 var broodsort_gekozen;
 var broodtype_gekozen;
@@ -295,7 +292,7 @@ function voorberekening(catid)
         console.log("when clicked the modal button for first time the total prijs that must be shown:",total_prijs);
 
         /* sunday=0, monday=1, tuesday=2, wednesday=3, thursday=4, friday=5, saturday=6 */
-        if(day===4)
+        if(day===6)
         {
             document.getElementById("kpromotieid").value="5% korting op alle Klassieke Broodjes vandaag (Donderdag)";
             document.getElementById("ktotaalprijsspan").innerHTML= "&nbsp" + "<b>"+"Total Prijs voor Korting:"+ "&nbsp" +"€"+ total_prijs+ "</b>";
@@ -313,8 +310,6 @@ function voorberekening(catid)
     }
     else if(catid==2)
     {
-        
-       
         var total_prijs= broodsoort[0].bsprijs + broodtype[0].btprijs + huidig_product.prodprijs;
         console.log("when clicked the modal button for the first time the total prijs that must be shown:", total_prijs);
         
@@ -341,10 +336,10 @@ function naberekening(catid) {
     console.log(radio_buttons);
     if(catid==1){
         var total_prijs= radio_buttons[0] + radio_buttons[1] + radio_buttons[2] + huidig_product.prodprijs;
-        if(day===4)
+        if(day===6)
         {
             document.getElementById("kpromotieid").value="5% korting op alle Klassieke Broodjes vandaag (Donderdag)";
-            document.getElementById("ktotaalprijsspan").innerHTML="€"+ "&nbsp" + "Total Prijs before applying discount:"+ "&nbsp" +total_prijs;
+            document.getElementById("ktotaalprijsspan").innerHTML="&nbsp" + "<b>"+"Total Prijs voor Korting:"+ "&nbsp" +"€"+ total_prijs+ "</b>";
             total_prijs=total_prijs - ((total_prijs*5)/100);
             total_prijs=total_prijs.toFixed(2);
             console.log("total_prijs after discount", total_prijs);
@@ -354,15 +349,15 @@ function naberekening(catid) {
             document.getElementById("kpromotieid").value="5% korting op alle Klassieke Broodjes allen op elke Donderdag";
         }
         var aantalstukjes = Number(document.getElementById("kquantity").value);
-        var total_prijs = aantalstukjes * total_prijs.toFixed(2);
-        document.getElementById("ktprijs").value = total_prijs.toFixed(2);
+        var total_prijs = aantalstukjes * total_prijs;
+        document.getElementById("ktprijs").value = total_prijs;
     }
     if(catid==2){
         var total_prijs= radio_buttons[0] + radio_buttons[1] + radio_buttons[2] + huidig_product.prodprijs;
         if(day===2)
         {
             document.getElementById("spromotieid").value="10% korting op Speciale Broodjes vandaag(Dinsdag)";
-            document.getElementById("stotaalprijsspan").value="€"+ "&nbsp" + "Total Prijs before applying discount:"+ "&nbsp" +total_prijs;
+            document.getElementById("stotaalprijsspan").value="&nbsp" + "<b>"+"Total Prijs voor Korting:"+ "&nbsp" +"€"+ total_prijs+ "</b>";
             total_prijs=total_prijs - ((total_prijs*10)/100);
             total_prijs=total_prijs.toFixed(2);
             console.log("total_prijs after discount", total_prijs);
@@ -372,8 +367,8 @@ function naberekening(catid) {
             document.getElementById("spromotieid").value="10% korting op alle Speciale Broodjes allen op elke Dinsdag";
         }
         var aantalstukjes = Number(document.getElementById("squantity").value);
-        var total_prijs = aantalstukjes * total_prijs.toFixed(2);
-        document.getElementById("stprijs").value = total_prijs.toFixed(2);
+        var total_prijs = aantalstukjes * total_prijs;
+        document.getElementById("stprijs").value = total_prijs;
     }
 }
 
@@ -382,7 +377,6 @@ function get_radio_button_value(catid){
     radio_buttons[0]=broodsoort[0].bsprijs;
     radio_buttons[1]=broodtype[0].btprijs;
     radio_buttons[2]=0;
-
 
     var brood_soort= document.getElementsByName("BroodSoort");
     if (brood_soort[0].checked)
@@ -425,6 +419,7 @@ function bevestig_bestelling(catid)
 {
     //console.log(huidig_product.prodprijs);
     leeg_modal(catid);
+    $(huidig_product.datatarget).modal('hide');
 }
 
 
@@ -438,7 +433,6 @@ function leeg_modal(catid)
 {
     if(catid==1) 
     {
-        
         document.getElementById("kbsid1").checked=true;
         document.getElementById("kbsid2").checked=false;
         document.getElementById("kbtid1").checked=true;
@@ -451,7 +445,6 @@ function leeg_modal(catid)
     }
     else if(catid==2)
     {
-        
         document.getElementById("sbsid1").checked=true;
         document.getElementById("sbsid2").checked=false;
         document.getElementById("sbtid1").checked=true;
