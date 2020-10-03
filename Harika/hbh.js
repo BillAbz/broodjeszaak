@@ -400,32 +400,42 @@ function naberekening(catid) {
 
 
 function get_radio_button_value(catid){
-    radio_buttons[0]=0.25;
+   /*radio_buttons[0]=0.25;
     radio_buttons[1]=0.5;
+    radio_buttons[2]=0;*/
+    radio_buttons[0]=broodsoort[0].bsprijs;
+    radio_buttons[1]=broodtype[0].btprijs;
     radio_buttons[2]=0;
+
 
     var brood_soort= document.getElementsByName("BroodSoort");
     if (brood_soort[0].checked)
     {
-        radio_buttons[0]=0.25;
+        //radio_buttons[0]=0.25;
+        radio_buttons[0]=broodsoort[0].bsprijs;
+        
     }
     else if(brood_soort[1].checked)
     {
-        radio_buttons[0]=0.5;
+        //radio_buttons[0]=0.5;
+        radio_buttons[0]=broodsoort[1].bsprijs;
     }
 
     var brood_type=document.getElementsByName("BroodType");
     if(brood_type[0].checked)
     {
-        radio_buttons[1]=0.5;
+        //radio_buttons[1]=0.5;
+        radio_buttons[1]=broodtype[0].btprijs;
     }
     else if(brood_type[1].checked)
     {
-        radio_buttons[1]=0.75;
+        //radio_buttons[1]=0.75;
+        radio_buttons[1]=broodtype[1].btprijs;
     }
     else if(brood_type[2].checked)
     {
-        radio_buttons[1]=1;
+        //radio_buttons[1]=1;
+        radio_buttons[1]=broodtype[2].btprijs;
     }
 
     var smos_gekozen = document.getElementsByName("smosselected");
@@ -634,7 +644,7 @@ function leeg_modal(catid)
 {
     if(catid==1) 
     {
-        console.log(total_default_value_klassieke);
+        
         document.getElementById("kbsid1").checked=true;
         document.getElementById("kbsid2").checked=false;
         document.getElementById("kbtid1").checked=false;
@@ -643,11 +653,11 @@ function leeg_modal(catid)
         document.getElementById("ksmos1").checked=false;
         document.getElementById("ksmos2").checked=false;
         document.getElementById("kquantity").value=1;
-        document.getElementById("ktprijs").value=total_default_value_klassieke;
+        document.getElementById("ktprijs").value=broodsoort[0].bsprijs+broodtype[0].btprijs+huidig_product.prodprijs;
     }
     else if(catid==2)
     {
-        console.log(total_default_value_special);
+        
         document.getElementById("sbsid1").checked=true;
         document.getElementById("sbsid2").checked=false;
         document.getElementById("sbtid1").checked=false;
@@ -656,7 +666,7 @@ function leeg_modal(catid)
         document.getElementById("ssmos1").checked=false;
         document.getElementById("ssmos2").checked=false;
         document.getElementById("squantity").value=1;
-        document.getElementById("stprijs").value=total_default_value_special;
+        document.getElementById("stprijs").value=broodsoort[0].bsprijs+broodtype[0].btprijs+huidig_product.prodprijs;
     }
     else if(catid==3)
     {
