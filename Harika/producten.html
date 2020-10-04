@@ -63,7 +63,7 @@
                             <a class="nav-link" href="wagentje.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
                         </li>
                         <li class="nav-item">
-                            <span id="order"></span>
+                            <span id="order" style="color: white;"></span>
                         </li>
                     </ul>
                     
@@ -172,7 +172,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(1);">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="annuleeren_bestelling(1);">Annuleren</button>
                                 </div>
                             </form>
                         </div>
@@ -203,9 +203,9 @@
                                 <div class="form-group">
                                     <label>Kies Brood Soort</label><br>
                                     <img src="piccolo_image.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbsid1" name="BroodSoort" value="1" onclick="get_radio_button_value(2)" checked>Piccolo => 0.25 cents extra<br>
+                                   <input type="radio" id="sbsid1" name="SBroodSoort" value="1" onclick="get_radio_button_value(2)" checked>Piccolo => 0.25 cents extra<br>
                                    <img src="halve_baget.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbsid2" name="BroodSoort" value="2" onclick="get_radio_button_value(2)">Halve Baguette => 0.50 cents extra 
+                                   <input type="radio" id="sbsid2" name="SBroodSoort" value="2" onclick="get_radio_button_value(2)">Halve Baguette => 0.50 cents extra 
                                    
                                  
                                </div>
@@ -213,19 +213,19 @@
                                <div class="form-group" >
                                    <label>Kies Brood Type</label><br>
                                    <img src="wit_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbtid1" name="BroodType" value="1" onclick="get_radio_button_value(2)" checked>Wit => 0.50 cents extra <br>
+                                   <input type="radio" id="sbtid1" name="SBroodType" value="1" onclick="get_radio_button_value(2)" checked>Wit => 0.50 cents extra <br>
                                    <img src="bruin_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbtid2" name="BroodType" value="2" onclick="get_radio_button_value(2)">Bruin => 0.75 cents extra <br>
+                                   <input type="radio" id="sbtid2" name="SBroodType" value="2" onclick="get_radio_button_value(2)">Bruin => 0.75 cents extra <br>
                                    <img src="meergranen_broodje.jpg" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                   <input type="radio" id="sbtid3" name="BroodType" value="3" onclick="get_radio_button_value(2)">Meergranen => 1 euro extra<br>
+                                   <input type="radio" id="sbtid3" name="SBroodType" value="3" onclick="get_radio_button_value(2)">Meergranen => 1 euro extra<br>
 
                                    
                                </div>
                                <div><label>Wil Je graag Smos?</label></div>
                                <div class="form-group">
                                    
-                                   <input type="radio" id="ssmos1" name="smosselected" value="0" onclick="get_radio_button_value(2)" checked>Neen <br>
-                                   <input type="radio" id="ssmos2" name="smosselected" value="0.70" onclick="get_radio_button_value(2)">Ja => Extra 0.70 Cent betalen
+                                   <input type="radio" id="ssmos1" name="Ssmosselected" value="0" onclick="get_radio_button_value(2)" checked>Neen <br>
+                                   <input type="radio" id="ssmos2" name="Ssmosselected" value="0.70" onclick="get_radio_button_value(2)">Ja => Extra 0.70 Cent betalen
                                </div>
 
 
@@ -252,7 +252,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(2);">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren"  onclick="annuleeren_bestelling(2);" >Annuleren</button>
                                 </div>
                             </form>
                         </div>
@@ -298,7 +298,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(3);">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="annuleeren_bestelling(3);">Annuleren</button>
                                 </div>
                             </form>
                         </div>
@@ -341,7 +341,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(4);">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="annuleeren_bestelling(4);">Annuleren</button>
                                 </div>
                             </form>
                         </div>
