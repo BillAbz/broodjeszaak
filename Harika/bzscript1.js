@@ -342,7 +342,7 @@ function create_modal(catid,pid)
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalform">Klassieke Broodjes Selectie <br> 
+                <h5 class="modal-title" id="modalform">Koude Schotel / Drankjes Selectie <br> 
                 (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
@@ -635,7 +635,7 @@ function bevestig_bestelling(pid,catid)
     }
         
    
-        winkelwagentje.push(winkel_data)
+        winkelwagentje.push(winkel_data);
         
         console.log(winkelwagentje);
 
