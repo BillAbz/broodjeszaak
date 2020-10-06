@@ -22,7 +22,7 @@
        
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
-                <a class="navbar-brand" href="bzstartpagina1.html">
+                <a class="navbar-brand" href="index1.html">
                     <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                 </a>
                 
@@ -50,16 +50,16 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="aanmelden.html">Aanmelden</a>
+                            <a class="nav-link" href="aanmelden1.html">Aanmelden</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact1.html">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="promoties.html">Promoties</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="wagentje.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                            <a class="nav-link" href="wagentje1.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
                         </li>    
                        
                         <li class="nav-item">
@@ -102,215 +102,8 @@
                 </table>
             </div>
             </section>
-
-             <!-- MODAL BUTTON KLASSIEKE CREATION-->
-            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#klassieke_details" onclick="">Product selectie</button>-->
-            <div class="modal fade" id="klassieke_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Klassieke Broodjes Selectie <br> 
-                            (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
-                            <form>
-                                <div class="form-group">
-                                    <label for="knaam">Het Beleg Gekozen</label>
-                                    <input type="text" class="form-control" id="knaam" placeholder="">
-                                </div>
-                                <label for="kbsid"> Kies Brood Soort </label><br>
-                                <div class="form-group" id="bsid">
-                                    
-                                    
-                                  
-                                </div>
-                                <label for="kbtid">Kies Brood Type</label><br>
-                                <div class="form-group" id="btid">
-                                   
-                                    
-
-                                   
-                                </div>
-                                <div class="form-group">
-                                    <label for="smos">Wil Je graag Smos?</label><br>
-                                    <input type="radio" id="smos1" name="smosselected" value="1" onclick="get_radio_button_value_smos()">Neen <br>
-                                    <input type="radio" id="smos2" name="smosselected" value="2" onclick="get_radio_button_value_smos()">Ja => Extra 0.70 Cent betalen
-                                </div>  
-                                
-                                <div class="form-group">
-                                    <label for="kpromotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="kpromotieid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="kquantity">Aantal Stuks</label>
-                                    <input type="number" value =0 class="form-control" id="kquantity" placeholder="" onchange="aantal_kiezen(1);">
-                                </div>
-
-                                <label for="ktotaalprijs">Totaal Prijs</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="ktotaalprijs" aria-label="Prijs in Euro" />
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         
-             <!-- SPECIALE MODAL BUTTON CREATION-->
-            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speciale_details" onclick="">Product selectie</button>-->
-            <div class="modal fade" id="speciale_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="false">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Speciale Broodjes Selectie<br>
-                                (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
-                            <form>
-                                <div class="form-group">
-                                    <label for="snaam">Het Beleg Gekozen</label>
-                                    <input type="text" class="form-control" id="snaam" placeholder="">
-                                </div>
-                                <label for="sbsid"> Kies Brood Soort </label><br>
-                                <div class="form-group" id="sbsid">
-                                    
-                                  
-                                </div>
-                                <label for="sbtid">Kies Brood Type</label><br>
-                                <div class="form-group" id="sbtid">
-                                    
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label for="smos">Wil Je graag Smos?</label><br>
-                                    <input type="radio" id="smos1" name="smosselected" value="1" onclick="get_radio_button_value_smos()">Neen <br>
-                                    <input type="radio" id="smos2" name="smosselected" value="2" onclick="get_radio_button_value_smos()">Ja => Extra 0.70 Cent betalen
-                                </div>  
-                                
-                                <div class="form-group">
-                                    <label for="spromotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="spromotieid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="squantity">Aantal Stuks</label>
-                                    <input type="number" value =0 class="form-control" id="squantity" placeholder="" onchange="aantal_kiezen(2);">
-                                </div>
-
-                                <label for="stotaalprijs">Totaal Prijs</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="stotaalprijs" aria-label="Prijs in Euro" />
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
- <!-- KOUDE SCHOTEL MODAL BUTTON CREATION-->
-            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#koudeschotel_details" onclick="">Product selectie</button>-->
-            <div class="modal fade" id="koudeschotel_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Koude Schotel Selectie<br> 
-                            (U kunt het aantal stuks wijzigen en op de knop Bestelling Bevestigen klikken)</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
-                            <form>
-                                <div class="form-group">
-                                    <label for="ksnaam">Schotel Naam</label>
-                                    <input type="text" class="form-control" id="ksnaam" placeholder="">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="kspromotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="kspromotieid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="ksquantity">Aantal Stuks</label>
-                                    <input type="number" value =1 class="form-control" id="ksquantity" placeholder="" onchange="aantal_kiezen(3);">
-                                </div>
-
-                                <label for="kstotaalprijs">Prijs</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="kstotaalprijs" aria-label="Prijs in Euro" />
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!-- DRANKJES MODAL BUTTON CREATION-->
-            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drankjes_details" onclick="">Product selectie</button>-->
-            <div class="modal fade" id="drankjes_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Drankjes Selectie<br> 
-                            (U kunt het aantal stuks wijzigen en op de knop Bestelling Bevestigen klikken)</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
-                            <form>
-                                <div class="form-group">
-                                    <label for="dnaam">Drankjes Naam</label>
-                                    <input type="text" class="form-control" id="dnaam" placeholder="">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="dpromotieid">Promotie</label>
-                                    <input type="text" class="form-control" id="dpromotieid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="dquantity">Aantal Stuks</label>
-                                    <input type="number" value =1 class="form-control" id="dquantity" placeholder="" onchange="aantal_kiezen(4);">  
-                                </div>
-
-                                <label for="dtotaalprijs">Prijs</label>
-                                <div class="input-group mb-3">  totaalprijs  
-                                    <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="dtotaalprijs" aria-label="Prijs in Euro" disabled="true"/>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="toevoeg_winkel_waagentje()">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="modal_data"></div>
+           
    </main>
 
         <footer class="page-footer font-small darken-3">
