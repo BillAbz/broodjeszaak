@@ -33,8 +33,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index1.html">Welkom</a>
                     </li>
-                    <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten<span class="sr-only">(current)</span></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="producten1.html?catid=">Alle Producten</a>
                             <div class="dropdown-divider"></div>
@@ -47,8 +47,15 @@
                             <a class="dropdown-item" href="producten1.html?catid=4">Drankjes</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="aanmelden1.html">Aanmelden</a>
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="aanmelden1.html">Aanmelden<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="geburikersnaam" role="button" value= "gebruikersnaam" data-toggle="dropdown"></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="aanmelden1.html" onclick="afmelden()">Log uit</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact1.html">Contact</a>
@@ -88,8 +95,8 @@
                                     <!-- Reecieve token through id="loginFormEmail" and  id="loginFormPassword"-->
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Al klant?</p>
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Log in</p>
-                                    <input type="email" id="loginFormEmail" class="form-control mb-4" placeholder="E-mail">
-                                    <input type="password" id="loginFormPassword" class="form-control mb-4" placeholder="Wachtwoord">
+                                    <input type="email" id="login_email" class="form-control mb-4" placeholder="E-mail">
+                                    <input type="password" id="login_wachtwoord" class="form-control mb-4" placeholder="Wachtwoord">
 
                                     <div class="d-flex justify-content-around">
                                         <div>
@@ -103,7 +110,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-cyan btn-block my-4" type="submit">Log in</button>
+                                    <button class="btn btn-cyan btn-block my-4" onclick="inloggen()" type="submit">Log in</button>
                                 
                                     <p>of log in met:</p>
                                 
@@ -156,7 +163,7 @@
                                         <label class="custom-control-label" for="suggesties">Ja, ik wens graag op de gehouden worden van promoties, suggesties en verlofperiodes.</label>
                                     </div>
 
-                                    <button class="btn btn-cyan my-4 btn-block" type="submit" onclick="registreren();">Registreer</button>
+                                    <button class="btn btn-cyan my-4 btn-block" type="submit" onclick="registreren()">Registreer</button>
 
                                     <p>of meld je aan bij:</p>
                                 

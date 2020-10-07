@@ -21,7 +21,7 @@ var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
-
+var gebruikersnaam= "haluk";
 function admin_login()
 {
 
@@ -47,8 +47,8 @@ $.ajax({
         //console.log(token_value)
 
         sessionStorage.setItem("token", response.status.token);
-         //console.log(sessionStorage);
-         document.location = "bzstartpagina1.html";
+        //console.log(sessionStorage);
+        document.location = "bzstartpagina1.html";
        
    
        
@@ -79,7 +79,6 @@ function start()
     
     filter_producten_category(catid); //else got to alle producten
     haalWinkelwagentjeOp();
-
     /*aantaal_bestellingen=window.localStorage.getItem('aantaal_bestellingen');
     document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
     winkel_wagentje=JSON.parse(localStorage.getItem('winkel_wagentje'));
@@ -758,14 +757,15 @@ function verwijder_bestelling(rowid)
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
     var achternaam = document.getElementById("achternaam").value;
-    var naam = voornaam +"&nbsp"+ achternaam;
+    var gebruikersnaam = voornaam +" "+ achternaam;
     var email = document.getElementById("email").value;
-    var wachtwoord = document.getElementById("wachtwoord").value;
+    var password = document.getElementById("wachtwoord").value;
     var telefoonnummer = document.getElementById("telefoonnummer").value;
     var adres  = document.getElementById("adres").value;
     var postcode =  document.getElementById("postcode").value;
     var suggesties = document.getElementById("suggesties").value;
     var rol = "klant";
+
     console.log(suggesties);
 
     $.ajax({
@@ -773,9 +773,9 @@ function registreren() {
         method: "POST",
         data: {
             "values":{
-                "naam" : naam,
+                "naam" : gebruikersnaam,
                 "email": email,
-                "wachtwoord": wachtwoord,
+                "password": password,
                 "telefoonnummer" : telefoonnummer,
                 "adres" : adres,
                 "postcode" : postcode,
@@ -790,5 +790,45 @@ function registreren() {
     }).fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
+    });
+}
+
+function inloggen() {
+    var email = document.getElementById("login_email").value;
+    var password = document.getElementById("login_wachtwoord").value;
+
+    console.log(suggesties);
+
+    $.ajax({
+        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
+        method: "POST",
+        data: {
+            "email": email,
+            "password": password,
+        }
+    }).done(function (response) {
+        console.log("log in done:");
+        console.log(response);
+        sessionStorage.setItem("token", response.status.token);
+        sessionStorage.setItem("gebruiker", email);
+        console.log(sessionStorage);
+        
+        var token_check=sessionStorage.getItem("token");
+        console.log(token_check);
+        var gebruiker=sessionStorage.getItem("gebruiker");
+        console.log(gebruiker);
+        if(token_check!=null){
+            document.getElementById("gebruikersnaam").value=sessionStorage.getItem("gebruiker");
+        } else{
+            document.getElementById("gebruikersnaam").value="Aanmelden";
+        }
+        
+        //document.getElementById("gebruikersnaam").style.display = "block"; 
+        //document.location = "producten1.html?catid=";
+        
+    }).fail(function (msg) {
+        console.log("registiration fail:");
+        console.log(msg);
+        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
     });
 }
