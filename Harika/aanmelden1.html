@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="bzscript1.js"></script>
+    <script src="haluk_bzscript1.js"></script>
 </head>
 
 <body>
@@ -86,7 +86,7 @@
     
                                 <form class="text-center" action="#!">
                                     <!-- Reecieve token through id="loginFormEmail" and  id="loginFormPassword"-->
-
+                                    <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Al een klant?</p>
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Log in</p>
                                     <input type="email" id="loginFormEmail" class="form-control mb-4" placeholder="E-mail">
                                     <input type="password" id="loginFormPassword" class="form-control mb-4" placeholder="Wachtwoord">
@@ -126,39 +126,37 @@
                             <div class="card-body">
 
                                 <form class="text-center" action="#!">
-
-                                    <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Aanmelden</p>
+                                    <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white"> Nieuwe gebruiker? </p>
+                                    <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white"> Registreren</p>
                                 
                                     <div class="form-row mb-4">
                                         <div class="col">
-                                            <input type="text" id="registerFormFirstName" class="form-control" placeholder="Voornaam">
+                                            <input type="text" id="voornaam" class="form-control" placeholder="Voornaam">
                                         </div>
                                         <div class="col">
-                                            <input type="text" id="registerFormLastName" class="form-control" placeholder="Achternaam">
+                                            <input type="text" id="achternaam" class="form-control" placeholder="Achternaam">
                                         </div>
                                     </div>
                                     
-                                    <input type="email" id="registerFormEmail" class="form-control mb-4" placeholder="E-mail">
-                                    <input type="text" id="registerPhonePassword" class="form-control mb-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock">
-                                    <input type="password" id="registerFormPassword" class="form-control" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock">
+                                    <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+                                    <input type="text" id="telefoonnummer" class="form-control mb-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock">
+                                    <input type="password" id="wachtwoord" class="form-control" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock">
                                     <small id="registerFormPasswordHelpBlock" class="form-text text-muted mb-4">Minimaal 8 karakters en 1 cijfer</small>
                                     
                                     <hr>
 
-                                    <input type="text" id="registerFormStraat" class="form-control my-4" placeholder="Straat">
-                                    <input type="text" id="registerFormNummer" class="form-control mb-4" placeholder="Nummer">
-                                    <input type="text" id="registerFormBus" class="form-control mb-4" placeholder="Bus">
-                                    <input type="text" id="registerFormPostcode" class="form-control mb-4" placeholder="Postcode">
+                                    <input type="text" id="adres" class="form-control my-4" placeholder="Adres">
+                                    <input type="text" id="postcode" class="form-control mb-4" placeholder="Postcode">
                                     <select class="browser-default custom-select mb-4">
                                         <option value="België" selected disabled>België</option>
                                     </select>
 
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="registerFormNewsletter">
-                                        <label class="custom-control-label" for="registerFormNewsletter">Ja, ik wens graag op de gehouden gehouden worden van promoties, suggesties en verlofperiodes.</label>
+                                        <input type="checkbox" class="custom-control-input" id="suggesties">
+                                        <label class="custom-control-label" for="suggesties">Ja, ik wens graag op de gehouden worden van promoties, suggesties en verlofperiodes.</label>
                                     </div>
 
-                                    <button class="btn btn-cyan my-4 btn-block" type="submit">Registreer</button>
+                                    <button class="btn btn-cyan my-4 btn-block" type="submit" onclick="registreren();">Registreer</button>
 
                                     <p>of meld je aan bij:</p>
                                 
