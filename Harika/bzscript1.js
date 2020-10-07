@@ -1,6 +1,5 @@
 var producten1;
 var category;
-//var winkel_wagentje =[];
 var broodsoort=[];
 var broodtype=[];
 var huidig_product;
@@ -21,6 +20,7 @@ var aantaal_bestellingen=0;
 var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
+var final_bedrag=0.0;
 
 function admin_login()
 {
@@ -69,14 +69,15 @@ $.ajax({
 function start()
 {   
     const urlParams = new URLSearchParams(window.location.search);
-    const catid = urlParams.get("catid");
+    const catid = urlParams.get("catid");  //"" or 1 or 2 or 3 or 4
 
+    //If catid!="" go to either of klassieke or speciale or koudeschotels or drankjes
     if(catid!="")
     {
         filter_producten_category(catid); 
     }
     
-    filter_producten_category(catid);
+    filter_producten_category(catid); //else got to alle producten
     haalWinkelwagentjeOp();
 
     /*aantaal_bestellingen=window.localStorage.getItem('aantaal_bestellingen');
@@ -111,9 +112,9 @@ function filter_producten_category(catid)
         }).done(function (json) {
             console.log("read done:");
             console.log(json);
-            //prodcat1 = json.data.items;
+           
             producten1=json.data.items;
-           //console.log(producten);
+           
            
            if(producten1=="")
             {
@@ -188,7 +189,7 @@ function maak_tabel(producten1) {
              tabledata += "</tr>";
              
  
-             //document.getElementById("productendata_klassieke").innerHTML += tabledata;
+            
              document.getElementById("productendata").innerHTML += tabledata;
          }
          
@@ -199,7 +200,7 @@ function maak_tabel(producten1) {
          product_gevonden(pid);
          create_modal(catid,pid);
          
-         //product_gevonden(pid);
+        
          //console.log(huidig_product);
  
          if(huidig_product.catid==1 || huidig_product.catid==2)
@@ -242,9 +243,7 @@ function maak_tabel(producten1) {
                  {
          
                      huidig_product = producten1[i];
-                     //console.log(huidig_product);
-     
-                     //return;
+                     
                  }
           }
  }    
@@ -396,11 +395,11 @@ function create_modal(catid,pid)
     smos_gekozen_id=smos_gekozen;
     broodsoort_gekozen_naam=broodsoort[0].bsnaam;
     broodtype_gekozen_naam=broodtype[0].btnaam;
-    smos_gekozen_naam="";
+    smos_gekozen_naam="Geen Smos";
     
-        berekening(catid)
+        berekening(catid);
         console.log("catid in voorberekening", catid);
-        update_modal(catid)
+        update_modal(catid);
     
       
 } 
@@ -454,7 +453,8 @@ function berekening(catid)
     
 }
 
-function update_modal(catid){
+function update_modal(catid)
+{
     if(catid==1 || catid==2)
     {   
        
@@ -583,6 +583,7 @@ function bevestig_bestelling(pid,catid)
 {
         
         var winkelwagentje=haalWinkelwagentjeOp();
+
         console.log(catid);
         var product_id=pid;
         var product_naam=huidig_product.pnaam;
@@ -655,12 +656,17 @@ function bevestig_bestelling(pid,catid)
 function toon_winkel_wagentje()
 {
     var winkelwagentje=haalWinkelwagentjeOp();
-    //var final_bedrag=0.0;
+    
+    final_bedrag=0.0;
+
+    document.getElementById("winkeltablebody").innerHTML="";
+    
 
     for(var i=0; i<winkelwagentje.length; i++)
     
     {
         var tabledata ="";
+        var tabledata1=""
         tabledata += "<tr>";
 
         if(winkelwagentje[i].snaam!=null)
@@ -693,12 +699,36 @@ function toon_winkel_wagentje()
 
         tabledata += "<td>" + winkelwagentje[i].totaal_stuks + "</td>";
         tabledata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
-        tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid}, '${winkelwagentje[i].pnaam}','${winkelwagentje[i].bsnaam}','${winkelwagentje[i].btnaam}','${winkelwagentje[i].totaal_stuks}','${winkelwagentje[i].totaal_bedrag}','${winkelwagentje[i].snaam}')">Verwijder</button>`
+        tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
         "</td>";
+        tabledata += "</tr>";
+       
         document.getElementById("winkeltablebody").innerHTML += tabledata;
-        //final_bedrag += winkelwagentje[i].totaal_bedrag;
-    }
-   // document.getElementById("final_bedrag") = final_bedrag;
+
+        final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
+
+        //console.log("final bedrag in toon_winkel_wagentje function:",final_bedrag);
+        // document.getElementById("final_bedrag") = final_bedrag;
+
+}
+   
+   
+   tabledata1 += ` <tr>
+   <td> </td>
+   <td> </td>
+   <td> </td>
+   <td>
+       <h5 class="mt-2"><strong>Totaal</strong></h5>
+   </td>
+   <td class="text-right" colspan="2">
+       <h5 class="mt-2" id="final_bedrag"><strong> ${final_bedrag} </strong></h5>
+   </td>
+
+   <td class="text-right">
+       <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+   </td>
+   </tr>`;
+   document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
 function verwijder_bestelling(rowid)
@@ -711,32 +741,21 @@ function verwijder_bestelling(rowid)
     {
         if(winkelwagentje[i].rowid==rowid)
         {
-            //delete winkelwagentje[i];
-            //Gebruik Splice'
+            final_bedrag=Number(final_bedrag)-Number(winkelwagentje[i].totaal_bedrag);
+
+            winkelwagentje.splice(i,1);
             
         }
     }
+    console.log("final bedrag in verwijderen:", final_bedrag);
+    console.log(winkelwagentje);
     aantaal_bestellingen--;
     sessionStorage.setItem('aantaal_bestellingen', JSON.stringify(aantaal_bestellingen));
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
 }
 
-/*function verwijder_product_gevonden(pid)
- {
-        var winkelwagentje=haalWinkelwagentjeOp();
-         for (i = 0; i < winkelwagentje.length; i++) 
-         {
-                 if (pid == winkelwagentje[i].pid) 
-                 {
-         
-                     verwijder_huidig_product = winkelwagentje[i];
-                     //console.log(huidig_product);
-     
-                     //return;
-                 }
-          }
- }  */  
+
 
    /* if(winkelwagentje[i].pid==verwijder_huidig_product.pid && winkelwagentje[i].pnaam == verwijder_huidig_product.pnaam && 
             winkelwagentje[i].bsnaam ==verwijder_huidig_product.bsnaam  && winkelwagentje[i].btnaam==verwijder_huidig_product.btnaam && 
