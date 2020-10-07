@@ -598,24 +598,7 @@ function bevestig_bestelling(pid,catid)
         var cid=huidig_product.catid;
         var korting_day=day;
 
-        console.log("rowid:", rowid);
-        console.log("product id:", product_id);
-        console.log("category id:", cid);
-        console.log("product_naam:",product_naam);
-        console.log("product_gekozen_prijs:",product_gekozen_prijs);
-        console.log("brood sort id:", broodsoort_gekozen_id);
-        console.log("brood soort naam:", broodsoort_gekozen_naam);
-        console.log("brood sort price:", broodsoort_gekozen);
-        console.log("brood type id:", broodtype_gekozen_id);
-        console.log("brood type naam:", broodtype_gekozen_naam);
-        console.log("brood type price:", broodtype_gekozen);
-        console.log("smos gekozen id:", smos_gekozen_id);
-        console.log("smos_name", smos_gekozen_naam);
-        console.log("smos price:", smos_gekozen);
-        console.log("vandaag:", korting_day);
-        console.log("aantal stuks:", aantal_quantity);
-        console.log("total price:", bedrag);
-         
+                 
        if(catid==1 || catid==2)
        {
 
@@ -769,25 +752,7 @@ function toon_winkel_wagentje()
    document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
-/*
-            "rowid": rowid,
-            "pid" : product_id, 
-            "catid": cid,
-            "pnaam": product_naam,
-            "pprijs":product_gekozen_prijs,
-            "bsid": broodsoort_gekozen_id, 
-            "bsnaam": broodsoort_gekozen_naam,
-            "bsprijs": broodsoort_gekozen,
-            "btid": broodtype_gekozen_id, 
-            "btnaam": broodtype_gekozen_naam,
-            "btprijs": broodtype_gekozen,
-            "snaam": smos_gekozen_naam,
-            "smprice": smos_gekozen,
-            "dag": korting_day,
-            "totaal_stuks": aantal_quantity, 
-            "totaal_bedrag":  bedrag 
 
-*/
 
 function aantal_prijs_wijzigen(rowid)
 {
