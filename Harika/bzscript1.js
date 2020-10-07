@@ -716,7 +716,7 @@ function toon_winkel_wagentje()
    tabledata1 += ` <tr>
    <td> </td>
    <td> </td>
-   <td> </td>
+  
    <td>
        <h5 class="mt-2"><strong>Totaal</strong></h5>
    </td>
