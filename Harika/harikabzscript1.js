@@ -862,4 +862,18 @@ function verwijder_bestelling(rowid)
 
 
 
-   
+   /* if(winkelwagentje[i].pid==verwijder_huidig_product.pid && winkelwagentje[i].pnaam == verwijder_huidig_product.pnaam && 
+            winkelwagentje[i].bsnaam ==verwijder_huidig_product.bsnaam  && winkelwagentje[i].btnaam==verwijder_huidig_product.btnaam && 
+            winkelwagentje[i].totaal_stuks==verwijder_huidig_product.totaal_stuks && 
+            winkelwagentje.totaal_bedrag==verwijder_huidig_product.totaal_bedrag)*/ 
+
+/*THE BELOW FUNCTION WILL INCREMENT THE ORDER NUMBER NEXT TO WINKEL WAGENTJE*/
+/*function toevoeg_winkel_waagentje()
+{
+    var gekozen_dnaam=document.getElementById("dnaam").value;
+    var gekozen_dquantity=document.getElementById("dquantity").value;
+    var gekozen_dtotaalprijs=document.getElementById("dtotaalprijs").value;
+    total_selected_products_amount++;
+    document.getElementById("antaal_producten").innerHTML=total_selected_products_amount; 
+} */
+
