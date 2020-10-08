@@ -972,7 +972,7 @@ function verwijder_bestelling(rowid)
     toon_winkel_wagentje();
 }
 
-
+//started session control
 function sessioncontrol()
 {
  
