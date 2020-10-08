@@ -982,7 +982,7 @@ function sessioncontrol()
  if(token_check==null)
  {
     window.alert("Please log in to continue further");
-    document.location = "aanmelden1.html";
+    document.location = "aanmelden1.html?directed_from=wagentje1";
 
  }
  else{

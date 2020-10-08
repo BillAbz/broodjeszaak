@@ -27,6 +27,30 @@ var final_bedrag=0.0;
 var userdata =[];
 var username;
 
+
+function start()
+{   
+    const urlParams = new URLSearchParams(window.location.search);
+    const catid = urlParams.get("catid");  //"" or 1 or 2 or 3 or 4
+
+    //If catid!="" go to either of klassieke or speciale or koudeschotels or drankjes
+    var token_check= sessionStorage.getItem("token");
+    console.log(username);
+    console.log(sessionStorage);
+    
+        if(catid!="")
+       {
+            filter_producten_category(catid); 
+       }
+    
+    filter_producten_category(catid); //else got to alle producten
+    haalWinkelwagentjeOp();
+   
+ 
+}
+
+
+
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
     var achternaam = document.getElementById("achternaam").value;
@@ -71,6 +95,9 @@ function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
 
+    const urlParams1 = new URLSearchParams(window.location.search);
+    const directed_from = urlParams1.get("directed_from");
+    
     $.ajax
     ({
         url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
@@ -86,9 +113,17 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
+        if(directed_from=="wagentje1")
+        {
+            document.location = "wagentje1.html";
+        }
+        else
+        {
+            document.location= "producten1.html?catid=";
+        }
         
-        document.location = "producten1.html?catid=";
-        //krijg_naam();
+        //document.location = "producten1.html?catid=";
+        
     })
     .fail(function (msg) {
         console.log("registiration fail:");
@@ -140,7 +175,6 @@ function toon_gebruiker_naam()
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
         </div>`;
-        
     }
     else
     {
@@ -177,26 +211,6 @@ function afmelden()
 }
 
 
-function start()
-{   
-    const urlParams = new URLSearchParams(window.location.search);
-    const catid = urlParams.get("catid");  //"" or 1 or 2 or 3 or 4
-
-    //If catid!="" go to either of klassieke or speciale or koudeschotels or drankjes
-    var token_check= sessionStorage.getItem("token");
-    console.log(username);
-    console.log(sessionStorage);
-    
-        if(catid!="")
-       {
-            filter_producten_category(catid); 
-       }
-    
-    filter_producten_category(catid); //else got to alle producten
-    haalWinkelwagentjeOp();
-   
- 
-}
 
 function ga_naar_category(catid)
 {
@@ -934,5 +948,22 @@ function verwijder_bestelling(rowid)
     toon_winkel_wagentje();
 }
 
+function sessioncontrol()
+{
+ 
+ var winkelwagentje=haalWinkelwagentjeOp();   
+ var token_check=sessionStorage.getItem("token");
 
-   
+ if(token_check==null)
+ {
+    window.alert("Please log in to continue further");
+    document.location = "aanmelden1.html?directed_from=wagentje1";
+
+ }
+ else{
+     //write ajax to post winkel wagentje data
+     }
+
+
+
+}
