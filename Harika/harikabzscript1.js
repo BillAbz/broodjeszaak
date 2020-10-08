@@ -25,24 +25,27 @@ var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
 var gebruikernaam;
+var userdata =[];
+var username;
+
 
 
 function toon_gebruiker_naam()
 {
         var token_check= sessionStorage.getItem("token");
-        var gebruikernaam= sessionStorage.getItem("gebruikernaam");
-        console.log(token_check);
-        console.log(gebruikernaam);
+        //var gebruikernaam= sessionStorage.getItem("gebruikernaam");
+        //console.log(token_check);
+        console.log(username);
         console.log(sessionStorage);
         if(token_check!=null)
         {
-            document.getElementById("gebruikernaam").innerHTML=gebruikernaam;
+            document.getElementById("gebruikernaam").innerHTML=username;
             
         }
         else
         {
             document.getElementById("gebruikernaam").innerHTML="";
-            //document.location = "aanmelden1.html";
+            document.location = "aanmelden1.html";
         }
         
 }
@@ -65,11 +68,11 @@ function inloggen() {
         console.log(response);
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruikernaam", email);
-        sessionStorage.setItem("userID", response.data.user_ID);
         console.log(sessionStorage.getItem("token"));
         console.log(sessionStorage.getItem("gebruikernaam"));
-        toon_gebruiker_naam();
-        document.location = "producten1.html?catid=";
+        krijg_naam();
+        //toon_gebruiker_naam();
+        //document.location = "producten1.html?catid=";
         
     }).fail(function (msg) {
         console.log("registiration fail:");
@@ -153,7 +156,36 @@ function afmelden() {
       });
   }
 
+function krijg_naam()
+{
+        var token_check= sessionStorage.getItem("token");
+        var useremail= sessionStorage.getItem("gebruikernaam");
+     
+        $.ajax({
+            method: 'GET',
+            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
+            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+            "filter": ["email", "like", "%" + useremail + "%"]
+          
+        }).done(function (response) {
+                console.log(response);
+                userdata=response.data.items;
+                for(var i=0;i<userdata.length;i++)
+                {
+                    if(useremail==userdata[i].email)
+                    {
+                        username=userdata[i].naam;
+                    }
+                }
+                toon_gebruiker_naam(); 
 
+        }).fail(function (msg) {
+
+            console.log("read fail:");
+            console.log(msg);
+            
+        });
+}
 
 
 
@@ -939,6 +971,28 @@ function verwijder_bestelling(rowid)
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
 }
+
+
+function sessioncontrol()
+{
+ 
+ var winkelwagentje=haalWinkelwagentjeOp();   
+ var token_check=sessionStorage.getItem("token");
+
+ if(token_check==null)
+ {
+    window.alert("Please log in to continue further");
+    document.location = "aanmelden1.html";
+
+ }
+ else{
+     document.location = "wagentje1.html";
+ }
+
+
+
+}
+
 
 
 
