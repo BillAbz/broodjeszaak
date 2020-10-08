@@ -787,17 +787,14 @@ function toon_winkel_wagentje()
 
     document.getElementById("winkeltablebody").innerHTML="";
     
-
     for(var i=0; i<winkelwagentje.length; i++)
-    
     {
         var tabledata ="";
         var tabledata1=""
         tabledata += "<tr>";
 
         if(winkelwagentje[i].snaam!=null)
-        {
-               
+        {  
             tabledata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
         }
         else
@@ -829,41 +826,70 @@ function toon_winkel_wagentje()
                      <input type="number" id= "wquantity${winkelwagentje[i].rowid}" min="1" value= ${winkelwagentje[i].totaal_stuks} aria-label="Search" class="form-control" style="width: 100px" onchange="aantal_prijs_wijzigen(${winkelwagentje[i].rowid});">
                      </td>`;
 
-
-
         tabledata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
         tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
-        "</td>";
+                    "</td>";
         tabledata += "</tr>";
        
         document.getElementById("winkeltablebody").innerHTML += tabledata;
 
         final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
         final_bedrag = final_bedrag.toFixed(2);
-
+    }
+   
+    tabledata1 += ` <tr>
+        <td> </td>
+        <td> </td>
         
+        <td>
+            <h5 class="mt-2"><strong>Totaal</strong></h5>
+        </td>
+        <td class="text-right" colspan="2">
+            <h5 class="mt-2" id="final_bedrag"><strong> ${final_bedrag} </strong></h5>
+        </td>
 
-}
-   
-   
-   tabledata1 += ` <tr>
-   <td> </td>
-   <td> </td>
-  
-   <td>
-       <h5 class="mt-2"><strong>Totaal</strong></h5>
-   </td>
-   <td class="text-right" colspan="2">
-       <h5 class="mt-2" id="final_bedrag"><strong> ${final_bedrag} </strong></h5>
-   </td>
-
-   <td class="text-right">
-       <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
-   </td>
-   </tr>`;
-   document.getElementById("winkeltablebody").innerHTML += tabledata1;
+        <td class="text-right">
+            <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+        </td>
+    </tr>`;
+    document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
+
+function winkel_samenvatting()
+{
+    document.getElementById("winkelsamenvatting").innerHTML="";
+    var winkelwagentje=haalWinkelwagentjeOp();
+    
+    for(var i=0; i<winkelwagentje.length; i++)
+    {
+        var samenvattingdata ="";
+        var samenvattingdata1=""
+        samenvattingdata += "<tr>";
+
+        if(winkelwagentje[i].snaam!=null)
+        {  
+            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
+        }
+        else
+        {
+            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
+        }
+        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+        samenvattingdata += "</tr>";
+
+        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
+    }
+    samenvattingdata1 += ` <tr>
+        <td>
+            <strong>Totaal</strong>
+        </td>
+        <td>
+            <strong> ${final_bedrag} </strong>
+        </td>
+    </tr>`
+    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+}
 
 
 function aantal_prijs_wijzigen(rowid)
