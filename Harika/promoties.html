@@ -3,6 +3,7 @@
 <html>
  
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,62 +17,68 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
         <!--<script src="bzscript.js"></script> -->
-        <script src="bzscript.js"></script>
+        <script src="bzscript_promotie.js"></script>
     </head>
 
     <body onload="start();">
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark" >
-                <a class="navbar-brand" href="index.html">
-                    <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                </a>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" >
+            <a class="navbar-brand" href="index1.html">
+                <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index1.html">Welkom</a>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="producten.html">Producten</a>
+                    </li>-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!--<a class="dropdown-item" href="producten.html">Alle Producten</a>
+                            <div class="dropdown-divider"></div>-->
+                            <a class="dropdown-item" href="producten1.html?catid=">Alle Producten</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="producten1.html?catid=1">Klassieke Broodjes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="producten1.html?catid=2">Speciale Broodjes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="producten1.html?catid=3">Koude Schotels</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="producten1.html?catid=4">Drankjes</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aanmelden1.html">Aanmelden</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact1.html">Contact</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="promoties.html">Promoties<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wagentje1.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <span id="antaal_producten" style="color: white;"></span>
+                    </li>
+                </ul>
                 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-    
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Welkom</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="producten.html">Alle Producten</a>
-                              <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="klassieke.html?catid=1">Klassieke Broodjes</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="speciale.html?catid=2">Koude Schotel</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="koudeschotel.html?catid=3">Speciale Broodjes</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="drankjes.html?catid=4">Drankjes</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aanmelden.html">Aanmelden</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="promoties.html">Promoties<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="wagentje.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </nav>
-        </header>
-
+            </div>
+        </nav>
+    </header>
         <main>
-            <div class="container my-5">
-
+            
                 <!-- Section -->
-                <section>
+                <section class="container">
                   
                   <style>
                     .gallery {
@@ -83,8 +90,8 @@
                       column-width: 33%; 
                     }
                       .gallery .pics {
-                      -webkit-transition: all 350ms ease;
-                      transition: all 350ms ease; 
+                      -webkit-transition: all 500ms ease;
+                      transition: all 500ms ease; 
                     }
                       .gallery .animation {
                       -webkit-transform: scale(1);
@@ -114,7 +121,28 @@
                       right: 0;
                       z-index: 2;
                       padding-right: 1rem;
-                      padding-top: .6rem;
+                      padding-top: .8rem;
+                    }
+                    .coupon {
+                      border: 3px dotted #bbb;
+                      width: 80%;
+                      border-radius: 10px;
+                      margin: 10 auto;
+                      max-width: 500px;
+                    }
+                    .container3 {
+                      padding: 2px;
+                      background-color: #bbb;
+                      
+                    }
+                    
+                    .promo {
+                      background: #ccc;
+                      padding: 3px;
+                    }
+                    
+                    .expire {
+                      color: red;
                     }
                   </style>
                   
@@ -184,7 +212,7 @@
                   <div class="row">
               
                     <!-- Grid column -->
-                    <div class="col-md-12 dark-grey-text d-flex justify-content-center mb-5">
+                   <!-- <div class="col-md-12 dark-grey-text d-flex justify-content-center mb-5">
               
                       <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="all">All</button>
                       <p class="font-weight-bold mb-0 px-1 py-1">/</p>
@@ -194,45 +222,57 @@
                       <p class="font-weight-bold mb-0 px-1 py-1">/</p>
                       <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="3">Koude Schotels</button>
               
-                    </div>
+                    </div>  -->
                     <!-- Grid column -->
               
                   </div>
                   <!-- Grid row -->
+                  <div class="gallery mb-5" id="gallery">
+                    <div class="mb-1 pics animation all 2" data-toggle="modal" data-target="#basicExampleModal">
+                      <div id="promotie_categorie"></div>
+                    </div>
+                  </div>
+
               
                   <!-- Grid row -->
-                  <div class="gallery mb-5" id="gallery">
-                    <!-- Grid column -->
-                    <div class="mb-3 pics animation all 1">
-                      <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" src="promotie foto/image.jpg" alt="Card image cap">
-                      </a>
+                  <div class="gallery" id="gallery">
+                    <div class="mb-1 pics animation all 1" data-toggle="modal" data-target="#basicExampleModal">
+                      <div id="promotie_categorie"></div>
                     </div>
-                    <!-- Grid column -->
-              
-                    <!-- Grid column -->
-                    <div class="mb-3 pics all 2 animation">
-                      <a data-toggle="modal" data-target="#basicExampleModal">
-                        <img class="img-fluid z-depth-1 rounded" width="240px" src="promotie foto/cocacola.png" alt="Card image cap">
-                      </a>
+                    <!-- Grid column
+                    <div class="mb-1 pics animation all 2" data-toggle="modal" data-target="#basicExampleModal">
+                      <div class="coupon" class="img-fluid z-depth-1 rounded">
+                        <div class="container3">
+                          <h3>Klassieke Broodjes</h3>
+                        </div>
+                        <img src="promotie foto/korting-supermarkt.jpg" alt="Avatar" style="width:100%;">
+                        <div class="container3" style="background-color:white">
+                          <h2><b>20% OFF YOUR PURCHASE</b></h2> 
+                          <p>Lorem ipsum dolor sit amet, et nam pertinax gloriatur. Sea te minim soleat senserit, ex quo luptatum tacimates voluptatum, salutandi delicatissimi eam ea. In sed nullam laboramus appellantur, mei ei omnis dolorem mnesarchum.</p>
+                        </div>
+                        <div class="container3">
+                          <p>
+                            <a href="javascript:" type="button" id="klassieke" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('1','klassieke')"><i class="fas fa-bread-slice fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
+                          </p>
+                          <p class="expire">Expires: Donderdag</p>
+                        </div>
+                      </div>
                     </div>
-                    <!-- Grid column -->
-              
-                    <!-- Grid column -->
+                    <-- Grid column -->
+            
+                    <!-- Grid column 
                     <div class="mb-3 pics animation all 3">
                       <a data-toggle="modal" data-target="#basicExampleModal">
                         <img class="img-fluid z-depth-1 rounded" width="300px" src="promotie foto/180 171 85885 97585 170 115 HOOFDGERECHT KOUDE SCHOTEL.jpg" alt="Card image cap">
                       </a>
                     </div>
-                    <!-- Grid column -->
+                     Grid column -->
               
                   </div>
                   <!-- Grid row -->
               
                 </section>
-                <!-- Section -->
-              
-              </div>
+                <!-- Section -->       
         </main>
         
         <footer class="page-footer font-small darken-3">
@@ -269,19 +309,4 @@
         </footer>
 
     </body>
-    <script>
-      $(function () {
-          var selectedClass = "";
-          $(".filter").click(function () {
-            selectedClass = $(this).attr("data-rel");
-            $("#gallery").fadeTo(100, 0.1);
-            $("#gallery div").not("." + selectedClass).fadeOut().removeClass('animation');
-            setTimeout(function () {
-              $("." + selectedClass).fadeIn().addClass('animation');
-              $("#gallery").fadeTo(300, 1);
-            }, 300);
-          });
-        });
-
-    </script>
 </html>

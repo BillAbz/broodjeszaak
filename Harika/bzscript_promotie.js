@@ -1,3 +1,4 @@
+var promotie_cat;
 var producten1;
 var category;
 var broodsoort=[];
@@ -13,15 +14,19 @@ var broodsoort_gekozen_id;
 var broodtype_gekozen_id;
 var broodsoort_gekozen_naam;
 var broodtype_gekozen_naam;
+var broodsoort_gekozen_prijs;
+var broodtype_gekozen_prijs;
 var smos_gekozen=0;
 var smos_gekozen_id;
 var smos_gekozen_naam;
+var smos_gekozen_prijs;
 var aantaal_bestellingen=0;
 var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
-var gebruikersnaam= "haluk";
+
+
 function admin_login()
 {
 
@@ -47,8 +52,8 @@ $.ajax({
         //console.log(token_value)
 
         sessionStorage.setItem("token", response.status.token);
-        //console.log(sessionStorage);
-        document.location = "bzstartpagina1.html";
+         //console.log(sessionStorage);
+         document.location = "bzstartpagina1.html";
        
    
        
@@ -69,16 +74,20 @@ $.ajax({
 function start()
 {   
     const urlParams = new URLSearchParams(window.location.search);
-    const catid = urlParams.get("catid");  //"" or 1 or 2 or 3 or 4
-
+    //const catid = urlParams.get("catid");  //"" or 1 or 2 or 3 or 4
+    const promid = urlParams.get("promid");
+    console.log(promid);
     //If catid!="" go to either of klassieke or speciale or koudeschotels or drankjes
-    if(catid!="")
+    if(promid!="")
     {
-        filter_producten_category(catid); 
+        /*filter_producten_category(catid); */
+        promotie_categorie();
     }
     
-    filter_producten_category(catid); //else got to alle producten
-    haalWinkelwagentjeOp();
+    /*filter_producten_category(catid); //else got to alle producten
+    haalWinkelwagentjeOp();*/
+    promotie_categorie();
+
     /*aantaal_bestellingen=window.localStorage.getItem('aantaal_bestellingen');
     document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
     winkel_wagentje=JSON.parse(localStorage.getItem('winkel_wagentje'));
@@ -323,7 +332,7 @@ function create_modal(catid,pid)
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="annuleeren_bestelling(${pid},'${catid}');">Annuleren</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
                                 </div>
                             </form>
                         </div>
@@ -579,23 +588,35 @@ function toon_aantal_bestellingen()
 }
 
 function bevestig_bestelling(pid,catid)
-{
+{ 
         
         var winkelwagentje=haalWinkelwagentjeOp();
 
         console.log(catid);
         var product_id=pid;
         var product_naam=huidig_product.pnaam;
+        var product_gekozen_prijs=huidig_product.prodprijs;
         console.log("product_id:",product_id);
         var aantal_quantity=document.getElementById("quantity").value;
         var bedrag=document.getElementById("prijs").value;
+        var cid=huidig_product.catid;
+        var korting_day=day;
 
         console.log("rowid:", rowid);
+        console.log("product id:", product_id);
+        console.log("category id:", cid);
         console.log("product_naam:",product_naam);
+        console.log("product_gekozen_prijs:",product_gekozen_prijs);
         console.log("brood sort id:", broodsoort_gekozen_id);
+        console.log("brood soort naam:", broodsoort_gekozen_naam);
+        console.log("brood sort price:", broodsoort_gekozen);
         console.log("brood type id:", broodtype_gekozen_id);
+        console.log("brood type naam:", broodtype_gekozen_naam);
+        console.log("brood type price:", broodtype_gekozen);
         console.log("smos gekozen id:", smos_gekozen_id);
         console.log("smos_name", smos_gekozen_naam);
+        console.log("smos price:", smos_gekozen);
+        console.log("vandaag:", korting_day);
         console.log("aantal stuks:", aantal_quantity);
         console.log("total price:", bedrag);
          
@@ -605,12 +626,18 @@ function bevestig_bestelling(pid,catid)
         var winkel_data={
             "rowid": rowid,
             "pid" : product_id, 
+            "catid": cid,
             "pnaam": product_naam,
+            "pprijs":product_gekozen_prijs,
             "bsid": broodsoort_gekozen_id, 
             "bsnaam": broodsoort_gekozen_naam,
+            "bsprijs": broodsoort_gekozen,
             "btid": broodtype_gekozen_id, 
             "btnaam": broodtype_gekozen_naam,
+            "btprijs": broodtype_gekozen,
             "snaam": smos_gekozen_naam,
+            "smprice": smos_gekozen,
+            "dag": korting_day,
             "totaal_stuks": aantal_quantity, 
             "totaal_bedrag":  bedrag 
         };
@@ -621,14 +648,20 @@ function bevestig_bestelling(pid,catid)
         var winkel_data={
             "rowid": rowid,
             "pid" : product_id, 
+            "catid": cid,
             "pnaam": product_naam,
+            "pprijs":product_gekozen_prijs,
             "bsid": null, 
             "bsnaam": null,
+            "bsprijs": null,
             "btid": null, 
             "btnaam": null,
+            "btprijs": null,
             "snaam": null,
+            "smprice": null,
+            "dag": korting_day,
             "totaal_stuks": aantal_quantity, 
-            "totaal_bedrag":  bedrag 
+            "totaal_bedrag":  bedrag  
         };
         console.log(winkel_data);
 
@@ -649,6 +682,7 @@ function bevestig_bestelling(pid,catid)
         sessionStorage.setItem('aantaal_bestellingen', JSON.stringify(aantaal_bestellingen));
         sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
         toon_aantal_bestellingen();
+        $('#broodjesZaak_details').modal('hide');
 
 }
 
@@ -696,8 +730,16 @@ function toon_winkel_wagentje()
             tabledata += "<td>"+ "---" + "</td>";
         }
 
-        tabledata += "<td>" + winkelwagentje[i].totaal_stuks + "</td>";
+        //tabledata += "<td>" + winkelwagentje[i].totaal_stuks + "</td>";
+
+        tabledata += `<td>
+                     <input type="number" id= "wquantity${winkelwagentje[i].rowid}" min="1" value= ${winkelwagentje[i].totaal_stuks} aria-label="Search" class="form-control" style="width: 100px" onchange="aantal_prijs_wijzigen(${winkelwagentje[i].rowid});">
+                     </td>`;
+
+
+
         tabledata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+        //tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="aantal_veranderen(${})">Verwijder</button>`
         tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
         "</td>";
         tabledata += "</tr>";
@@ -705,6 +747,7 @@ function toon_winkel_wagentje()
         document.getElementById("winkeltablebody").innerHTML += tabledata;
 
         final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
+        final_bedrag = final_bedrag.toFixed(2);
 
         //console.log("final bedrag in toon_winkel_wagentje function:",final_bedrag);
         // document.getElementById("final_bedrag") = final_bedrag;
@@ -730,6 +773,73 @@ function toon_winkel_wagentje()
    document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
+/*
+            "rowid": rowid,
+            "pid" : product_id, 
+            "catid": cid,
+            "pnaam": product_naam,
+            "pprijs":product_gekozen_prijs,
+            "bsid": broodsoort_gekozen_id, 
+            "bsnaam": broodsoort_gekozen_naam,
+            "bsprijs": broodsoort_gekozen,
+            "btid": broodtype_gekozen_id, 
+            "btnaam": broodtype_gekozen_naam,
+            "btprijs": broodtype_gekozen,
+            "snaam": smos_gekozen_naam,
+            "smprice": smos_gekozen,
+            "dag": korting_day,
+            "totaal_stuks": aantal_quantity, 
+            "totaal_bedrag":  bedrag 
+
+*/
+
+function aantal_prijs_wijzigen(rowid)
+{
+    var winkelwagentje=haalWinkelwagentjeOp();
+    var totaal_bedrag=0;
+   
+    for(var i=0; i<winkelwagentje.length; i++)
+    {
+        if(winkelwagentje[i].rowid==rowid)
+        {
+           var count=document.getElementById("wquantity"+winkelwagentje[i].rowid).value;
+           
+            console.log(count);
+            winkelwagentje[i].totaal_stuks=count;
+            totaal_bedrag = (Number(winkelwagentje[i].pprijs) + Number(winkelwagentje[i].bsprijs) + Number(winkelwagentje[i].btprijs) + Number(winkelwagentje[i].smprice))  * count;
+            
+            if(winkelwagentje[i].catid==1 && winkelwagentje[i].dag==5 )
+            {
+                totaal_bedrag = totaal_bedrag - ((totaal_bedrag * 5)/100);
+                totaal_bedrag = totaal_bedrag.toFixed(2);
+            }
+            else if(winkelwagentje[i].catid==2 && winkelwagentje[i].dag==2)
+            {
+                totaal_bedrag = totaal_bedrag - ((totaal_bedrag * 10)/100);
+                totaal_bedrag = totaal_bedrag.toFixed(2);
+            }
+            else if(winkelwagentje[i].catid==3 && winkelwagentje[i].dag==3)
+            {
+                totaal_bedrag = totaal_bedrag - ((totaal_bedrag * 20)/100);
+                totaal_bedrag = totaal_bedrag.toFixed(2);
+            }
+
+            winkelwagentje[i].totaal_bedrag =totaal_bedrag;
+            console.log(winkelwagentje[i].totaal_bedrag);
+            console.log(winkelwagentje[i].totaal_stuks);
+            
+        }
+    }
+
+    sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
+    toon_winkel_wagentje();
+
+
+
+}
+
+
+
 function verwijder_bestelling(rowid)
 {
     
@@ -754,81 +864,130 @@ function verwijder_bestelling(rowid)
     toon_winkel_wagentje();
 }
 
-function registreren() {
-    var voornaam = document.getElementById("voornaam").value;
-    var achternaam = document.getElementById("achternaam").value;
-    var gebruikersnaam = voornaam +" "+ achternaam;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("wachtwoord").value;
-    var telefoonnummer = document.getElementById("telefoonnummer").value;
-    var adres  = document.getElementById("adres").value;
-    var postcode =  document.getElementById("postcode").value;
-    var suggesties = document.getElementById("suggesties").value;
-    var rol = "klant";
 
-    console.log(suggesties);
 
+   
+function promotie_categorie() {
     $.ajax({
-        url: "https://api.data-web.be/user/register?project=fjgub4eD3ddg", 
-        method: "POST",
-        data: {
-            "values":{
-                "naam" : gebruikersnaam,
-                "email": email,
-                "password": password,
-                "telefoonnummer" : telefoonnummer,
-                "adres" : adres,
-                "postcode" : postcode,
-                "suggesties" : suggesties,
-                "rol" : rol,
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=promoties",
+        type: "GET"
+
+    }).done(function (json) {
+        console.log("read done:");
+        console.log(json);
+        promotie_cat = json.data.items;
+        //console.log(promotie_cat);
+       if(promotie_cat=="")
+            {
+
+                document.getElementById("promotie_categorie").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
+
             }
-        }
-    }).done(function (response) {
-        console.log("registiration done:");
-        console.log(response);
-        
+            else 
+            {
+                promoties_tonen_cupons(promotie_cat);
+                }
     }).fail(function (msg) {
-        console.log("registiration fail:");
+        
+        console.log("read fail:");
         console.log(msg);
+        
     });
 }
 
-function inloggen() {
-    var email = document.getElementById("login_email").value;
-    var password = document.getElementById("login_wachtwoord").value;
 
-    console.log(suggesties);
+function promoties_tonen_cupons(promotie_cat) {
+    document.getElementById("promotie_categorie").innerHTML="";
+    for (var i = 0; i < promotie_cat.length; i++){
+        var prom_cat=""
+        prom_cat+= 
+                    '<div class="coupon" class="img-fluid z-depth-1 rounded">' +
+                        '<div class="container3 text-center">' +
+                            '<h3 class:"text-center">'+promotie_cat[i].dag + '</h3>' +
+                        '</div>' +
+                        '<img src="promotie foto/korting-supermarkt.jpg" alt="Avatar" style="width:100%;">' +
+                        '<div class="container3 p-2" style="background-color:white">' +
+                        '<h2><b>' + promotie_cat[i].dagen + '</b></h2> ' +
+                        '</div>' +
+                                    '<div class="container3 text-center">' +
+                                    '<p>' +
+                                        '<a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('+promotie_cat[i].catid+')">'+promotie_cat[i].catnaam+'</a>'+
+                                    '</p>' +
+                                    '<p class="expire text-center">Expires:' + promotie_cat[i].dag + '</p>' +
+                                    '</div>' +
+                    '</div>';
+                    
+        console.log(promotie_cat);
+        document.getElementById("promotie_categorie").innerHTML += prom_cat;
+    }
+    /*if(promid == 1){
+        document.getElementById("promotie_categorie").innerHTML=
+        `
+        <div class="coupon" class="img-fluid z-depth-1 rounded">
+            <div class="container3">
+                 <h3>Klassieke Broodjes</h3>
+            </div>
+             <img src="klassieke.jpg" alt="Avatar" style="width:100%;">
+            <div class="container3" style="background-color:white">
+            <h2><b>20% OFF YOUR PURCHASE</b></h2> 
+              <p>Lorem ipsum dolor sit amet, et nam pertinax gloriatur. Sea te minim soleat senserit, ex quo luptatum tacimates voluptatum, salutandi delicatissimi eam ea. In sed nullam laboramus appellantur, mei ei omnis dolorem mnesarchum.</p>
+            </div>
+                        <div class="container3">
+                          <p>
+                            <a href="javascript:" type="button" id="klassieke" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('1','klassieke')"><i class="fas fa-bread-slice fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
+                          </p>
+                          <p class="expire">Expires: Donderdag</p>
+                        </div>
+        </div>
+        `
+    }
+    if(promid == 2){
+        document.getElementById("promotie_categorie").innerHTML=
+        `
+        <div class="mb-1 pics animation all 2" data-toggle="modal" data-target="#basicExampleModal">
+            <div class="mb-3 pics all 1 animation" data-toggle="modal" data-target="#basicExampleModal">
+                <div class="coupon" class="img-fluid z-depth-1 rounded">
+                    <div class="container3">
+                    <h3>Speciale Broodjes</h3>
+                    </div>
+                    <img src="speciale.jpg" alt="Avatar" style="width:100%;">
+                    <div class="container3" style="background-color:white">
+                    <h2><b>20% OFF YOUR PURCHASE</b></h2> 
+                    <p>Lorem ipsum dolor sit amet, et nam pertinax gloriatur. Sea te minim soleat senserit, ex quo luptatum tacimates voluptatum, salutandi delicatissimi eam ea. In sed nullam laboramus appellantur, mei ei omnis dolorem mnesarchum.</p>
+                    </div>
+                    <div class="container3">
+                    <p>
+                        <a href="javascript:" type="button" id="speciale" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('2','speciale')"><i class="fas fa-hamburger fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
+                    </p>
+                    <p class="expire">Expires: Dinsdag</p>
+                    </div>
+                </div>
+            </div>  
+        </div>          
+        `
+    }
+    if(promid == 3){
+        document.getElementById("promotie_categorie").innerHTML=
 
-    $.ajax({
-        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
-        method: "POST",
-        data: {
-            "email": email,
-            "password": password,
-        }
-    }).done(function (response) {
-        console.log("log in done:");
-        console.log(response);
-        sessionStorage.setItem("token", response.status.token);
-        sessionStorage.setItem("gebruiker", email);
-        console.log(sessionStorage);
-        
-        var token_check=sessionStorage.getItem("token");
-        console.log(token_check);
-        var gebruiker=sessionStorage.getItem("gebruiker");
-        console.log(gebruiker);
-        if(token_check!=null){
-            document.getElementById("gebruikersnaam").value=sessionStorage.getItem("gebruiker");
-        } else{
-            document.getElementById("gebruikersnaam").value="Aanmelden";
-        }
-        
-        //document.getElementById("gebruikersnaam").style.display = "block"; 
-        //document.location = "producten1.html?catid=";
-        
-    }).fail(function (msg) {
-        console.log("registiration fail:");
-        console.log(msg);
-        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
-    });
+        `
+        <div class="mb-2 pics all 2 animation" data-toggle="modal" data-target="#basicExampleModal">
+            <div class="coupon" class="img-fluid z-depth-1 rounded">
+            <div class="container3">
+                <h3>Koude Schotels</h3>
+            </div>
+            <img src="koudeschotel.jpg" alt="Avatar" style="width:100%;">
+            <div class="container3" style="background-color:white">
+                <h2><b>20% OFF YOUR PURCHASE</b></h2> 
+                <p>Lorem ipsum dolor sit amet, et nam pertinax gloriatur. Sea te minim soleat senserit, ex quo luptatum tacimates voluptatum, salutandi delicatissimi eam ea. In sed nullam laboramus appellantur, mei ei omnis dolorem mnesarchum.</p>
+            </div>
+            <div class="container3">
+                <p>
+                <a href="javascript:" type="button" id="schotel" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('3','koudeschotel')"><i class="fas fa-utensils fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
+                </p>
+                <p class="expire">Expires: Woensdag</p>
+            </div>
+            </div>
+        </div>
+        `
+    }*/
 }
