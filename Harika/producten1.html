@@ -16,9 +16,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
         <!-- <script src="bzworkingscript.js"></script> -->
-    <script src="bzscript1.js"></script>
+    <script src="harikabzscript1.js"></script>
 
-    <body onload="start();">
+    <body onload="start(); toon_gebruiker_naam();">
        
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -34,6 +34,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index1.html">Welkom</a>
+                            <span id="gebruikernaam" style="color: white;"></span>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten<span class="sr-only">(current)</span></a>
@@ -57,6 +58,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="promoties.html">Promoties</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: white;">Log Out</button>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="wagentje1.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
@@ -90,6 +94,7 @@
                                                
                         <tr>
                             <th scope="col">Naam</th>
+                            <th scope="col">Brood soort Aangeboden <br> (Naam en Prijs) </th>
                             <th scope="col">Promotie</th>
                             <th scope="col">Beeld</th>
                             <th scope="col">Keuze</th>

@@ -24,51 +24,136 @@ var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
+var gebruikernaam;
 
 
-function admin_login()
+function toon_gebruiker_naam()
 {
-
-var admin_email = document.getElementById("admin_email").value;
-var admin_password = document.getElementById("admin_password").value;
-
-$.ajax({
-       
-    url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg",
-   
-    type: "POST",
-    data: {
-       
-            "email": admin_email,
-            "password": admin_password,
-           
-        },
-
-})
-    .done(function (response) {
-        console.log(response);
-        //var token_value = response.status.token
-        //console.log(token_value)
-
-        sessionStorage.setItem("token", response.status.token);
-         //console.log(sessionStorage);
-         document.location = "bzstartpagina1.html";
-       
-   
-       
-       
-    })
-    .fail(function (msg) {
+        var token_check= sessionStorage.getItem("token");
+        var gebruikernaam= sessionStorage.getItem("gebruikernaam");
+        console.log(token_check);
+        console.log(gebruikernaam);
+        console.log(sessionStorage);
+        if(token_check!=null)
+        {
+            document.getElementById("gebruikernaam").innerHTML=gebruikernaam;
+            
+        }
+        else
+        {
+            document.getElementById("gebruikernaam").innerHTML="";
+            //document.location = "aanmelden1.html";
+        }
         
-        //console.log("read fail:");
-        //console.log(msg);
-        alert("ENTERED Email ID or PASSWORD IS WRONG. Please Re-Enter Values");
-    });
-
-
-
-
 }
+
+function inloggen() {
+    var email = document.getElementById("login_email").value;
+    var password = document.getElementById("login_wachtwoord").value;
+
+    console.log(suggesties);
+
+    $.ajax({
+        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
+        method: "POST",
+        data: {
+            "email": email,
+            "password": password,
+        }
+    }).done(function (response) {
+        console.log("registiration done:");
+        console.log(response);
+        sessionStorage.setItem("token", response.status.token);
+        sessionStorage.setItem("gebruikernaam", email);
+        sessionStorage.setItem("userID", response.data.user_ID);
+        console.log(sessionStorage.getItem("token"));
+        console.log(sessionStorage.getItem("gebruikernaam"));
+        toon_gebruiker_naam();
+        document.location = "producten1.html?catid=";
+        
+    }).fail(function (msg) {
+        console.log("registiration fail:");
+        console.log(msg);
+        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
+    });
+}
+
+
+function registreren() {
+    var voornaam = document.getElementById("voornaam").value;
+    var achternaam = document.getElementById("achternaam").value;
+    var gebruikersnaam = voornaam +" "+ achternaam;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("wachtwoord").value;
+    var telefoonnummer = document.getElementById("telefoonnummer").value;
+    var adres  = document.getElementById("adres").value;
+    var postcode =  document.getElementById("postcode").value;
+    var suggesties = document.getElementById("suggesties").value;
+    var rol = "klant";
+
+    console.log(suggesties);
+
+    $.ajax({
+        url: "https://api.data-web.be/user/register?project=fjgub4eD3ddg", 
+        method: "POST",
+        data: {
+            "values":{
+                "naam" : gebruikersnaam,
+                "email": email,
+                "password": password,
+                "telefoonnummer" : telefoonnummer,
+                "adres" : adres,
+                "postcode" : postcode,
+                "suggesties" : suggesties,
+                "rol" : rol,
+            }
+        }
+    }).done(function (response) {
+
+        document.location="aanmelden1.html";
+        sessionStorage.setItem("userID",response.data.user_id);
+        console.log(sessionStorage.getItem("userID"));
+        console.log("registiration done:");
+        console.log(response);
+        window.alert("Registration Successful, Please log in again to continue");
+        document.location = "aanmelden1.html";
+        
+    }).fail(function (msg) {
+        console.log("registiration fail:");
+        console.log(msg);
+    });
+}
+
+function afmelden() {
+
+    var token_check=sessionStorage.getItem("token");
+    console.log(token_check);
+
+    $.ajax({
+  
+      url: "https://api.data-web.be/user/logout?project=fjgub4eD3ddg",
+      headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+      type: "Get",
+    })
+      .done(function (response) {
+        console.log(response);
+        //gebruikernaam = "";
+        if (token_check = null) {
+        document.getElementById("gebruikernaam").innerHTML="";
+        }
+        document.location = "aanmelden1.html";
+  
+      })
+      .fail(function (msg) {
+  
+        console.log("read fail:");
+        console.log(msg);
+      });
+  }
+
+
+
+
 
 function start()
 {   
@@ -82,15 +167,9 @@ function start()
     }
     
     filter_producten_category(catid); //else got to alle producten
+    
     haalWinkelwagentjeOp();
 
-    /*aantaal_bestellingen=window.localStorage.getItem('aantaal_bestellingen');
-    document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
-    winkel_wagentje=JSON.parse(localStorage.getItem('winkel_wagentje'));
-
-
-    console.log(winkel_wagentje);*/
-   
 }
 
 function ga_naar_category(catid)
@@ -102,70 +181,71 @@ function ga_naar_category(catid)
 
 function filter_producten_category(catid)
 {
-  
-        
-        $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
-            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "GET",
-            data: {
+    $.ajax({
+        method: 'GET',
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
+        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        })
 
-            //"filter": ["catid", "=", catid]
-            "filter": ["catid", "like", "%" + catid + "%"]
-            }
-        }).done(function (json) {
-            console.log("read done:");
-            console.log(json);
-           
-            producten1=json.data.items;
-           
-           
-           if(producten1=="")
-            {
-
-                document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
-
-            }
-            else 
-            {
-                 
-                maak_tabel(producten1);
-               
-               
-                    $.ajax({
-                        method: 'GET',
-                        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
-                        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                    })
-        
-                        .done(function (response) {
-                            console.log(response);
-                            broodsoort = response.data.items
-                            $.ajax({
-                                method: 'GET',
-                                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
-                                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                            }).done(function (response) {
-                                    console.log(response);
-                                    broodtype = response.data.items
-                                    //assets_path = response.data.assets_path;
-                                    //sessionStorage.setItem("token", response.status.token)
-                                    //update_broodjes_modal(broodsoort, broodtype);
-                                    //create_modal(broodsoort, broodtype, catid);
-
-                            }).fail(function (msg) {
-        
-                                console.log("read fail:");
-                                console.log(msg);
-                                
-                            });
+        .done(function (response) 
+        {
+            console.log(response);
+            broodsoort = response.data.items
+            console.log(broodsoort);
+            
+                $.ajax({
+                            method: 'GET',
+                            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
+                            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
                         })
-                
-            }                
-    })
+                        .done(function (response) 
+                        {
+                            console.log(response);
+                            broodtype = response.data.items
+                            console.log(broodtype);
+                   
+                            $.ajax
+                            ({
+                                    url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
+                                    //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                                     type: "GET",
+                                    data: {
 
+            
+                                                 "filter": ["catid", "like", "%" + catid + "%"]
+                                            }
+                            })
+                            .done(function (json) 
+                            {
+                                    console.log("read done:");
+                                    console.log(json);
+           
+                                    producten1=json.data.items;
+            
+                                    console.log(producten1);
+           
+                                    if(producten1=="")
+                                    {
 
-                            
+                                            document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
+
+                                    }
+                                    else 
+                                    {
+                 
+                                             maak_tabel(producten1,broodsoort);
+               
+                                     }                
+                            })
+        
+                        })
+        }).fail(function (msg) 
+           {
+
+            console.log("read fail:");
+            console.log(msg); 
+            });
+
 }
 
 
@@ -176,12 +256,22 @@ function maak_tabel(producten1) {
      for (var i = 0; i < producten1.length; i++) 
      {
             var tabledata ="";
-           // var catid= producten[i].catid;
-        
+            var catid= producten1[i].catid;
+
+                   
              tabledata += "<tr>";
             
              tabledata += "<td>" + producten1[i].pnaam + "</td>";
-             tabledata += "<td>" + + "</td>";
+             if(catid==1 || catid==2)
+             {
+                tabledata += "<td>" + broodsoort[0].bsnaam + "<br>" + broodsoort[1].bsnaam + "</td>";
+             }
+             else if(catid==3 || catid==4)
+             {
+                tabledata += "<td>" + "---" + "</td>";
+             }
+             
+             tabledata += "<td>" + producten1[i].pomschrijving + "</td>";
              tabledata += "<td>" +`<img src="${producten1[i].beeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">` + "</td>";
              /*
              DO NOT DELETE THIS COMMENT
@@ -191,8 +281,7 @@ function maak_tabel(producten1) {
              tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Kueze</button>` +
                          "</td>";
              tabledata += "</tr>";
-             
- 
+            
             
              document.getElementById("productendata").innerHTML += tabledata;
          }
@@ -562,6 +651,8 @@ function get_radio_button_value(price, bst, catid, id, naam)
 }
 
 function haalWinkelwagentjeOp() {    
+
+        
         
         toon_aantal_bestellingen();            
         
@@ -763,31 +854,12 @@ function toon_winkel_wagentje()
    </td>
 
    <td class="text-right">
-       <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+       <a type="button" href="javascript:;"  class="btn btn-cyan" onclick="sessioncontrol()">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
    </td>
    </tr>`;
    document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
-/*
-            "rowid": rowid,
-            "pid" : product_id, 
-            "catid": cid,
-            "pnaam": product_naam,
-            "pprijs":product_gekozen_prijs,
-            "bsid": broodsoort_gekozen_id, 
-            "bsnaam": broodsoort_gekozen_naam,
-            "bsprijs": broodsoort_gekozen,
-            "btid": broodtype_gekozen_id, 
-            "btnaam": broodtype_gekozen_naam,
-            "btprijs": broodtype_gekozen,
-            "snaam": smos_gekozen_naam,
-            "smprice": smos_gekozen,
-            "dag": korting_day,
-            "totaal_stuks": aantal_quantity, 
-            "totaal_bedrag":  bedrag 
-
-*/
 
 function aantal_prijs_wijzigen(rowid)
 {

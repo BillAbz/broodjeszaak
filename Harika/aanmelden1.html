@@ -13,10 +13,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="haluk_bzscript1.js"></script>
+    <script src="harikabzscript1.js"></script>
 </head>
 
-<body>
+<body onload="toon_gebruiker_naam();">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -32,6 +32,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index1.html">Welkom</a>
+                        
+                        <span id="gebruikernaam" style="color: white;"></span>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten<span class="sr-only">(current)</span></a>
@@ -48,7 +50,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="aanmelden1.html">Aanmelden</a>
+                        <a class="nav-link" href="aanmelden1.html" >Aanmelden</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact1.html">Contact</a>
@@ -57,12 +59,17 @@
                         <a class="nav-link" href="promoties.html">Promoties</a>
                     </li>
                     <li class="nav-item">
+                        <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: white;">Log Out</button>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="wagentje1.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
                     </li>    
                    
                     <li class="nav-item">
                     <span id="antaal_producten" style="color: white;"></span>
                    </li>
+                   
+
                 </ul>
                 
             </div>
@@ -84,12 +91,12 @@
                         <div class="card z-depth-5">
                             <div class="card-body">
     
-                                <form class="text-center" action="#!">
+                                <form class="text-center">
                                     <!-- Reecieve token through id="loginFormEmail" and  id="loginFormPassword"-->
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Al klant?</p>
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Log in</p>
-                                    <input type="email" id="loginFormEmail" class="form-control mb-4" placeholder="E-mail">
-                                    <input type="password" id="loginFormPassword" class="form-control mb-4" placeholder="Wachtwoord">
+                                    <input type="email" id="login_email" class="form-control mb-4" placeholder="E-mail">
+                                    <input type="password" id="login_wachtwoord" class="form-control mb-4" placeholder="Wachtwoord">
 
                                     <div class="d-flex justify-content-around">
                                         <div>
@@ -103,7 +110,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-cyan btn-block my-4" type="submit">Log in</button>
+                                    <button class="btn btn-cyan btn-block my-4" type="button" onclick="inloggen();">Log in</button>
                                 
                                     <p>of log in met:</p>
                                 

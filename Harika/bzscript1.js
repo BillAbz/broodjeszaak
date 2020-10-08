@@ -84,12 +84,7 @@ function start()
     filter_producten_category(catid); //else got to alle producten
     haalWinkelwagentjeOp();
 
-    /*aantaal_bestellingen=window.localStorage.getItem('aantaal_bestellingen');
-    document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
-    winkel_wagentje=JSON.parse(localStorage.getItem('winkel_wagentje'));
-
-
-    console.log(winkel_wagentje);*/
+   
    
 }
 
@@ -102,70 +97,71 @@ function ga_naar_category(catid)
 
 function filter_producten_category(catid)
 {
-  
-        
-        $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
-            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "GET",
-            data: {
+    $.ajax({
+        method: 'GET',
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
+        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        })
 
-            //"filter": ["catid", "=", catid]
-            "filter": ["catid", "like", "%" + catid + "%"]
-            }
-        }).done(function (json) {
-            console.log("read done:");
-            console.log(json);
-           
-            producten1=json.data.items;
-           
-           
-           if(producten1=="")
-            {
-
-                document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
-
-            }
-            else 
-            {
-                 
-                maak_tabel(producten1);
-               
-               
-                    $.ajax({
-                        method: 'GET',
-                        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
-                        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                    })
-        
-                        .done(function (response) {
-                            console.log(response);
-                            broodsoort = response.data.items
-                            $.ajax({
-                                method: 'GET',
-                                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
-                                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                            }).done(function (response) {
-                                    console.log(response);
-                                    broodtype = response.data.items
-                                    //assets_path = response.data.assets_path;
-                                    //sessionStorage.setItem("token", response.status.token)
-                                    //update_broodjes_modal(broodsoort, broodtype);
-                                    //create_modal(broodsoort, broodtype, catid);
-
-                            }).fail(function (msg) {
-        
-                                console.log("read fail:");
-                                console.log(msg);
-                                
-                            });
+        .done(function (response) 
+        {
+            console.log(response);
+            broodsoort = response.data.items
+            console.log(broodsoort);
+            
+                $.ajax({
+                            method: 'GET',
+                            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
+                            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
                         })
-                
-            }                
-    })
+                        .done(function (response) 
+                        {
+                            console.log(response);
+                            broodtype = response.data.items
+                            console.log(broodtype);
+                   
+                            $.ajax
+                            ({
+                                    url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
+                                    //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                                     type: "GET",
+                                    data: {
 
+            
+                                                 "filter": ["catid", "like", "%" + catid + "%"]
+                                            }
+                            })
+                            .done(function (json) 
+                            {
+                                    console.log("read done:");
+                                    console.log(json);
+           
+                                    producten1=json.data.items;
+            
+                                    console.log(producten1);
+           
+                                    if(producten1=="")
+                                    {
 
-                            
+                                            document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
+
+                                    }
+                                    else 
+                                    {
+                 
+                                             maak_tabel(producten1,broodsoort);
+               
+                                     }                
+                            })
+        
+                        })
+        }).fail(function (msg) 
+           {
+
+            console.log("read fail:");
+            console.log(msg); 
+            });
+
 }
 
 
@@ -176,12 +172,22 @@ function maak_tabel(producten1) {
      for (var i = 0; i < producten1.length; i++) 
      {
             var tabledata ="";
-           // var catid= producten[i].catid;
-        
+            var catid= producten1[i].catid;
+
+                   
              tabledata += "<tr>";
             
              tabledata += "<td>" + producten1[i].pnaam + "</td>";
-             tabledata += "<td>" + + "</td>";
+             if(catid==1 || catid==2)
+             {
+                tabledata += "<td>" + broodsoort[0].bsnaam + "<br>" + broodsoort[1].bsnaam + "</td>";
+             }
+             else if(catid==3 || catid==4)
+             {
+                tabledata += "<td>" + "---" + "</td>";
+             }
+             
+             tabledata += "<td>" + producten1[i].pomschrijving + "</td>";
              tabledata += "<td>" +`<img src="${producten1[i].beeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">` + "</td>";
              /*
              DO NOT DELETE THIS COMMENT
@@ -191,8 +197,7 @@ function maak_tabel(producten1) {
              tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Kueze</button>` +
                          "</td>";
              tabledata += "</tr>";
-             
- 
+            
             
              document.getElementById("productendata").innerHTML += tabledata;
          }
@@ -718,7 +723,6 @@ function toon_winkel_wagentje()
 
 
         tabledata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
-        //tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="aantal_veranderen(${})">Verwijder</button>`
         tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
         "</td>";
         tabledata += "</tr>";
@@ -728,8 +732,7 @@ function toon_winkel_wagentje()
         final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
         final_bedrag = final_bedrag.toFixed(2);
 
-        //console.log("final bedrag in toon_winkel_wagentje function:",final_bedrag);
-        // document.getElementById("final_bedrag") = final_bedrag;
+        
 
 }
    
