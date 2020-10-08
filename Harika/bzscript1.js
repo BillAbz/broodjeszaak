@@ -24,7 +24,8 @@ var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
-
+var userdata =[];
+var username;
 
 function admin_login()
 {

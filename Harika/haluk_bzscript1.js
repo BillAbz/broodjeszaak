@@ -812,7 +812,7 @@ function inloggen() {
         console.log("log in done:");
         console.log(response);
         sessionStorage.setItem("token", response.status.token);
-        sessionStorage.setItem("gebruiker", email);
+        sessionStorage.setItem("userid", response.data.user_id);
         console.log(sessionStorage);
         
         //document.location = "producten1.html?catid=";
@@ -821,7 +821,7 @@ function inloggen() {
     .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
-        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
+        $("#verkeerdeWachtwoordModal").modal();
     });
 }
 
