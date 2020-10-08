@@ -180,7 +180,13 @@ function maak_tabel(producten1) {
              tabledata += "<td>" + producten1[i].pnaam + "</td>";
              if(catid==1 || catid==2)
              {
-                tabledata += "<td>" + broodsoort[0].bsnaam + "<br>" + broodsoort[1].bsnaam + "</td>";
+                var p1= Number(producten1[i].prodprijs) + Number(broodsoort[0].bsprijs);
+                p1=p1.toFixed(2);
+                var p2= Number(producten1[i].prodprijs) + Number(broodsoort[1].bsprijs);
+                p2=p2.toFixed(2);
+                tabledata += "<td>" + "Picolo =>"  + "€ " + p1 +  
+                             "<br>" + "Halve Baget=>" + "€ " + p2 + 
+                             "</td>";
              }
              else if(catid==3 || catid==4)
              {
