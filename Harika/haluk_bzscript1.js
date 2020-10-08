@@ -21,7 +21,8 @@ var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
-var gebruikersnaam= "haluk";
+var userdata =[];
+var username;
 function admin_login()
 {
 
@@ -793,42 +794,112 @@ function registreren() {
     });
 }
 
+
 function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
 
-    console.log(suggesties);
-
-    $.ajax({
+    $.ajax
+    ({
         url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
         method: "POST",
         data: {
             "email": email,
             "password": password,
         }
-    }).done(function (response) {
+    })
+    .done(function (response) {
         console.log("log in done:");
         console.log(response);
         sessionStorage.setItem("token", response.status.token);
-        sessionStorage.setItem("gebruiker", email);
+        sessionStorage.setItem("userid", response.data.user_id);
         console.log(sessionStorage);
         
-        var token_check=sessionStorage.getItem("token");
-        console.log(token_check);
-        var gebruiker=sessionStorage.getItem("gebruiker");
-        console.log(gebruiker);
-        if(token_check!=null){
-            document.getElementById("gebruikersnaam").value=sessionStorage.getItem("gebruiker");
-        } else{
-            document.getElementById("gebruikersnaam").value="Aanmelden";
-        }
-        
-        //document.getElementById("gebruikersnaam").style.display = "block"; 
         //document.location = "producten1.html?catid=";
-        
-    }).fail(function (msg) {
+        krijg_naam();
+    })
+    .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
-        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
+        $("#verkeerdeWachtwoordModal").modal();
     });
 }
+
+
+function krijg_naam()
+{
+    var useremail= sessionStorage.getItem("gebruiker");
+    $.ajax
+    ({
+        method: 'GET',
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        "filter": ["email", "like", "%" + useremail + "%"]
+    })
+    .done(function (response) {
+        console.log(response);
+        userdata=response.data.items;
+        for(var i=0;i<userdata.length;i++)
+        {
+            if(useremail==userdata[i].email)
+            {
+                username=userdata[i].naam;
+            }
+        }
+        toon_gebruiker_naam(); 
+
+    }).fail(function (msg) {
+        console.log("read fail:");
+        console.log(msg);
+    });
+}
+
+
+function toon_gebruiker_naam()
+{
+    var token_check= sessionStorage.getItem("token");
+    console.log(username);
+    console.log(sessionStorage);
+    if(token_check!=null)
+    {
+        document.getElementById("gebruikersnaam").style.display = "block";
+        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
+        </div>`;
+    }
+    else
+    {
+        document.getElementById("gebruikernaam").innerHTML="";
+        //document.location = "aanmelden1.html";
+    }
+}
+
+
+function afmelden() 
+{
+    var token_check=sessionStorage.getItem("token");
+    console.log(token_check);
+
+    $.ajax
+    ({
+        url: "https://api.data-web.be/user/logout?project=fjgub4eD3ddg",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        type: "Get",
+    })
+    .done(function (response) {
+        console.log(response);
+        if (token_check = null) {
+        sessionStorage.setItem("gebruikernaam", "");    
+        gebruikernaam = "";    
+        document.getElementById("gebruikernaam").innerHTML="";
+        }
+        document.location = "aanmelden1.html";
+    })
+    .fail(function (msg) {
+        console.log("read fail:");
+        console.log(msg);
+    });
+}
+
+

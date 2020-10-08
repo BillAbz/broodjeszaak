@@ -24,39 +24,34 @@ var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
 var final_bedrag=0.0;
-
+var userdata =[];
+var username;
 
 function admin_login()
 {
 
-var admin_email = document.getElementById("admin_email").value;
-var admin_password = document.getElementById("admin_password").value;
+    var admin_email = document.getElementById("admin_email").value;
+    var admin_password = document.getElementById("admin_password").value;
 
-$.ajax({
-       
-    url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg",
-   
-    type: "POST",
-    data: {
-       
-            "email": admin_email,
-            "password": admin_password,
-           
-        },
+    $.ajax({
+        
+        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg",
+    
+        type: "POST",
+        data: {
+                "email": admin_email,
+                "password": admin_password, 
+            },
 
-})
+    })
     .done(function (response) {
         console.log(response);
         //var token_value = response.status.token
         //console.log(token_value)
 
         sessionStorage.setItem("token", response.status.token);
-         //console.log(sessionStorage);
-         document.location = "bzstartpagina1.html";
-       
-   
-       
-       
+        //console.log(sessionStorage);
+        document.location = "bzstartpagina1.html";
     })
     .fail(function (msg) {
         
@@ -64,9 +59,6 @@ $.ajax({
         //console.log(msg);
         alert("ENTERED Email ID or PASSWORD IS WRONG. Please Re-Enter Values");
     });
-
-
-
 
 }
 
@@ -83,16 +75,11 @@ function start()
     
     filter_producten_category(catid); //else got to alle producten
     haalWinkelwagentjeOp();
-
-   
-   
 }
 
 function ga_naar_category(catid)
 {
-
     document.location="producten1.html?catid=" + catid;
-
 }
 
 function filter_producten_category(catid)
@@ -128,8 +115,8 @@ function filter_producten_category(catid)
                                     data: {
 
             
-                                                 "filter": ["catid", "like", "%" + catid + "%"]
-                                            }
+                                            "filter": ["catid", "like", "%" + catid + "%"]
+                                    }
                             })
                             .done(function (json) 
                             {
@@ -208,35 +195,32 @@ function maak_tabel(producten1) {
              document.getElementById("productendata").innerHTML += tabledata;
          }
          
-     }
+    }
 
-     function toon_producten_popup(pid,catid)
-     {
-         product_gevonden(pid);
-         create_modal(catid,pid);
+    function toon_producten_popup(pid,catid)
+    {
+        product_gevonden(pid);
+        create_modal(catid,pid);
          
-        
-         //console.log(huidig_product);
+        //console.log(huidig_product);
  
-         if(huidig_product.catid==1 || huidig_product.catid==2)
-         {
+        if(huidig_product.catid==1 || huidig_product.catid==2)
+        {
                  document.getElementById("naam").value = huidig_product.pnaam;
                  broodsoort_gekozen = broodsoort[0].bsprijs;
                  broodtype_gekozen  = broodtype[0].btprijs;
-                 voorberekening(catid);
-                
-                 
-         }
+                 voorberekening(catid);        
+        }
          
-         else if(huidig_product.catid==3 || huidig_product.catid==4)
-         {
+        else if(huidig_product.catid==3 || huidig_product.catid==4)
+        {
        
-                 document.getElementById("naam").value = huidig_product.pnaam;
-                 voorberekening(catid);
+                document.getElementById("naam").value = huidig_product.pnaam;
+                voorberekening(catid);
                 
-         }
+        }
      
-        }     
+    }     
          
          
          //document.getElementById("beeld").value = huidig_product.beeld;
@@ -656,8 +640,6 @@ function bevestig_bestelling(pid,catid)
         console.log(winkel_data);
 
     }
-        
-   
         winkelwagentje.push(winkel_data);
         
         console.log(winkelwagentje);
@@ -804,10 +786,7 @@ function aantal_prijs_wijzigen(rowid)
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
 
-
-
 }
-
 
 
 function verwijder_bestelling(rowid)
@@ -833,6 +812,155 @@ function verwijder_bestelling(rowid)
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
 }
+
+function registreren() {
+    var voornaam = document.getElementById("voornaam").value;
+    var achternaam = document.getElementById("achternaam").value;
+    var gebruikersnaam = voornaam +" "+ achternaam;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("wachtwoord").value;
+    var telefoonnummer = document.getElementById("telefoonnummer").value;
+    var adres  = document.getElementById("adres").value;
+    var postcode =  document.getElementById("postcode").value;
+    var suggesties = document.getElementById("suggesties").value;
+    var rol = "klant";
+
+    console.log(suggesties);
+
+    $.ajax({
+        url: "https://api.data-web.be/user/register?project=fjgub4eD3ddg", 
+        method: "POST",
+        data: {
+            "values":{
+                "naam" : gebruikersnaam,
+                "email": email,
+                "password": password,
+                "telefoonnummer" : telefoonnummer,
+                "adres" : adres,
+                "postcode" : postcode,
+                "suggesties" : suggesties,
+                "rol" : rol,
+            }
+        }
+    }).done(function (response) {
+        console.log("registiration done:");
+        console.log(response);
+        
+    }).fail(function (msg) {
+        console.log("registiration fail:");
+        console.log(msg);
+    });
+}
+
+
+function inloggen() {
+    var email = document.getElementById("login_email").value;
+    var password = document.getElementById("login_wachtwoord").value;
+
+    $.ajax
+    ({
+        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
+        method: "POST",
+        data: {
+            "email": email,
+            "password": password,
+        }
+    })
+    .done(function (response) {
+        console.log("log in done:");
+        console.log(response);
+        sessionStorage.setItem("token", response.status.token);
+        sessionStorage.setItem("gebruiker", email);
+        console.log(sessionStorage);
+        
+        //document.location = "producten1.html?catid=";
+        krijg_naam();
+    })
+    .fail(function (msg) {
+        console.log("registiration fail:");
+        console.log(msg);
+        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
+    });
+}
+
+
+function krijg_naam()
+{
+    var useremail= sessionStorage.getItem("gebruiker");
+    $.ajax
+    ({
+        method: 'GET',
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        "filter": ["email", "like", "%" + useremail + "%"]
+    })
+    .done(function (response) {
+        console.log(response);
+        userdata=response.data.items;
+        for(var i=0;i<userdata.length;i++)
+        {
+            if(useremail==userdata[i].email)
+            {
+                username=userdata[i].naam;
+            }
+        }
+        toon_gebruiker_naam(); 
+
+    }).fail(function (msg) {
+        console.log("read fail:");
+        console.log(msg);
+    });
+}
+
+
+function toon_gebruiker_naam()
+{
+    var token_check= sessionStorage.getItem("token");
+    console.log(username);
+    console.log(sessionStorage);
+    if(token_check!=null)
+    {
+        document.getElementById("gebruikersnaam").style.display = "block";
+        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
+        </div>`;
+    }
+    else
+    {
+        document.getElementById("gebruikernaam").innerHTML="";
+        //document.location = "aanmelden1.html";
+    }
+}
+
+
+function afmelden() 
+{
+    var token_check=sessionStorage.getItem("token");
+    console.log(token_check);
+
+    $.ajax
+    ({
+        url: "https://api.data-web.be/user/logout?project=fjgub4eD3ddg",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        type: "Get",
+    })
+    .done(function (response) {
+        console.log(response);
+        if (token_check = null) {
+        sessionStorage.setItem("gebruikernaam", "");    
+        gebruikernaam = "";    
+        document.getElementById("gebruikernaam").innerHTML="";
+        }
+        document.location = "aanmelden1.html";
+    })
+    .fail(function (msg) {
+        console.log("read fail:");
+        console.log(msg);
+    });
+}
+
+
 
 
 
