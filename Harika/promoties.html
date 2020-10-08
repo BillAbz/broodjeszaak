@@ -17,10 +17,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
         <!--<script src="bzscript.js"></script> -->
-        <script src="bzscript1_promotie.js"></script>
+        <script src="bzscript_promotie.js"></script>
     </head>
 
-    <body onload="start(); toon_winkel_wagentje();">
+    <body onload="start();">
       <header>
         <nav class="navbar navbar-expand-lg navbar-dark" >
             <a class="navbar-brand" href="index1.html">
@@ -59,15 +59,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="aanmelden1.html">Aanmelden</a>
                     </li>
+                    <li class="nav-item dropdown" id="gebruikersnaam"></li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact1.html">Contact</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="promoties.html">Promoties<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <!--  <li class="nav-item">
                       <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: white;">Log Out</button>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="wagentje1.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
                     </li>
@@ -128,11 +129,11 @@
                       padding-top: .8rem;
                     }
                     .coupon {
-                      border: 3px dotted #bbb;
+                      border: 4px dotted #bbb;
                       width: 80%;
                       border-radius: 10px;
                       margin: 10 auto;
-                      max-width: 500px;
+                      max-width: auto;
                     }
                     .container3 {
                       padding: 2px;
