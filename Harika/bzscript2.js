@@ -99,7 +99,8 @@ function inloggen() {
 
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
-    
+
+     
     $.ajax
     ({
         url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
