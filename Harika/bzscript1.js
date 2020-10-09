@@ -106,7 +106,7 @@ function inloggen() {
     .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
-        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
+        $("#verkeerdeWachtwoordModal").modal();
     });
 }
 
