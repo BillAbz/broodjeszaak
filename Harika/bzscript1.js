@@ -130,7 +130,7 @@ function krijg_naam()
             if(useremail==userdata[i].email)
             {
                 username=userdata[i].naam;
-                userid=userdata[i].user_id;
+                user_id=userdata[i].user_id;
                 sessionStorage.setItem("username",username);
             }
         }
