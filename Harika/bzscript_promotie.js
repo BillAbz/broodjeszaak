@@ -71,7 +71,7 @@ $.ajax({
 
 }
 
-function start()
+function begint()
 {   
     const urlParams = new URLSearchParams(window.location.search);
     //const catid = urlParams.get("catid");  //"" or 1 or 2 or 3 or 4
