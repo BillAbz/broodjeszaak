@@ -32,7 +32,6 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index1.html">Welkom</a>
-                        <!--<span id="gebruikernaam" style="color: white;"></span>-->
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Producten</a>
@@ -86,195 +85,151 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="row">
+                        <div class="col-lg-12">
 
-                            <div class="col-lg-12">
+                            <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
+                                <li class="nav-item">
+                                    <a class="nav-link active text-dark" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestellingen</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" data-toggle="tab" href="#tabCheckoutPayment" role="tab" onclick="winkel_samenvatting()">2. Uw betaling</a>
+                                </li>
+                            </ul>
 
-                                <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
-                                    <li class="nav-item">
-                                        <a class="nav-link active text-dark" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestellingen</a>
-                                    </li>
+                            <div class="tab-content pt-4">
+        
+                                <!--Panel 1-->
+                                <div class="tab-pane fade in show active" id="tabCheckoutOrder" role="tabpanel">
+
+                                    <section class="dark-grey-text">
+
+                                        <div class="table-responsive">
                                     
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" data-toggle="tab" href="#tabCheckoutPayment" role="tab">2. Uw betaling</a>
-                                    </li>
-                                </ul>
-
-                                <div class="tab-content pt-4">
-          
-                                    <!--Panel 1-->
-                                    <div class="tab-pane fade in show active" id="tabCheckoutOrder" role="tabpanel">
-
-                                        <section class="dark-grey-text">
-
-                                            <div class="table-responsive">
-                                        
-                                                <table class="table product-table mb-0">
-                                        
-                                                <!-- Table head -->
-                                                <thead class="mdb-color lighten-5">
-                                                    <tr>
-                                                    
-                                                        <th class="font-weight-bold">
-                                                            <strong>Product</strong>
-                                                        </th>
-                                                        
-                                                        <th class="font-weight-bold text-center">
-                                                            <strong>Brood Soort</strong>
-                                                        </th>
-
-                                                        <th class="font-weight-bold text-center">
-                                                            <strong>Brood Type</strong>
-                                                        </th>
-
-                                                        <th class="font-weight-bold text-center">
-                                                            <strong>Aantal Stuks</strong>
-                                                        </th>
-
-                                                        <th class="font-weight-bold text-center">
-                                                            <strong>Bedrag</strong>
-                                                        </th>
-
-                                                        <th></th>
-
-                                                    </tr>
-                                                </thead>
-                                                <!-- /.Table head -->
-                                        
-                                                <!-- Table body -->
-                                                <tbody id="winkeltablebody">
-
-                                                    
-
-                                                </tbody>
-                                               
+                                            <table class="table product-table mb-0">
                                     
-                                                <!-- /.Table body -->
-                                                </table>
-                                        
-                                            </div>
-                                        </section>
-                                    </div>
-                                    <!--/.Panel 1-->
-                    
-                                    <!--Panel 2-->
-                                    <div class="tab-pane fade" id="tabCheckoutPayment" role="tabpanel">
-                    
-                                        <div class="d-block m-4">
-                                            <div class="mb-2">
-                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioCredit" checked required>
-                                                <span class="image-payment"><img class="border border-cyan px-1" src="creditcard_xpay.webp"></span>
-                                                <label class="form-check-label" for="radioCredit">Kredietkaart</label>
-                                            </div>
+                                            <!-- Table head -->
+                                            <thead class="mdb-color lighten-5">
+                                                <tr>
+                                                
+                                                    <th class="font-weight-bold">
+                                                        <strong>Product</strong>
+                                                    </th>
+                                                    
+                                                    <th class="font-weight-bold text-center">
+                                                        <strong>Brood Soort</strong>
+                                                    </th>
 
-                                            <div class="mb-2">
-                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioContact" required>
-                                                <span class="image-payment"><img class="border border-cyan px-1" src="directdebit_bancontact_xpay.webp"></span>
-                                                <label class="form-check-label" for="radioContact">Bancontact</label>
-                                            </div>
+                                                    <th class="font-weight-bold text-center">
+                                                        <strong>Brood Type</strong>
+                                                    </th>
 
-                                            <div class="mb-2">
-                                                <input name="common" type="radio" class="form-check-input with-gap" id="radioPaypal" required>
-                                                <span class="image-payment"><img class="border border-cyan px-1" src="paypal_xpay.webp"></span>
-                                                <label class="form-check-label" for="radioPaypal">PayPal</label>
-                                            </div>
+                                                    <th class="font-weight-bold text-center">
+                                                        <strong>Aantal Stuks</strong>
+                                                    </th>
+
+                                                    <th class="font-weight-bold text-center">
+                                                        <strong>Bedrag</strong>
+                                                    </th>
+
+                                                    <th></th>
+
+                                                </tr>
+                                            </thead>
+                                            <!-- /.Table head -->
+                                    
+                                            <!-- Table body -->
+                                            <tbody id="winkeltablebody"></tbody>
+                                            <!-- /.Table body -->
+                                            </table>
+                                    
                                         </div>
+                                    </section>
+                                </div>
+                                <!--/.Panel 1-->
+                
+                                <!--Panel 2-->
+                                <div class="tab-pane fade" id="tabCheckoutPayment" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="d-block m-4">
+                                                <div class="mb-2">
+                                                    <input name="common" type="radio" class="form-check-input with-gap" id="radioCredit" checked required>
+                                                    <span class="image-payment"><img class="border border-cyan px-1" src="creditcard_xpay.webp"></span>
+                                                    <label class="form-check-label" for="radioCredit">Kredietkaart</label>
+                                                </div>
 
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="cc-name123">Naam op de kaart</label>
-                                                <input type="text" class="form-control" id="cc-name123" placeholder="" required>
-                                                <small class="text-muted">Volledige naam zoals weergegeven op kaart</small>
-                                                <div class="invalid-feedback">Naam op kaart is vereist</div>
+                                                <div class="mb-2">
+                                                    <input name="common" type="radio" class="form-check-input with-gap" id="radioContact" required>
+                                                    <span class="image-payment"><img class="border border-cyan px-1" src="directdebit_bancontact_xpay.webp"></span>
+                                                    <label class="form-check-label" for="radioContact">Bancontact</label>
+                                                </div>
+
+                                                <div class="mb-2">
+                                                    <input name="common" type="radio" class="form-check-input with-gap" id="radioPaypal" required>
+                                                    <span class="image-payment"><img class="border border-cyan px-1" src="paypal_xpay.webp"></span>
+                                                    <label class="form-check-label" for="radioPaypal">PayPal</label>
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-6 mb-3">
-                                                <label for="cc-number123">Creditcardnummer</label>
-                                                <input type="text" class="form-control" id="cc-number123" placeholder="" required>
-                                                <div class="invalid-feedback">Creditcardnummer is vereist</div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="cc-name123">Naam op de kaart</label>
+                                                    <input type="text" class="form-control" id="cc-name123" placeholder="" required>
+                                                    <small class="text-muted">Volledige naam zoals weergegeven op kaart</small>
+                                                    <div class="invalid-feedback">Naam op kaart is vereist</div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="cc-number123">Creditcardnummer</label>
+                                                    <input type="text" class="form-control" id="cc-number123" placeholder="" required>
+                                                    <div class="invalid-feedback">Creditcardnummer is vereist</div>
+                                                </div>
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="cc-expiration123">Vervaldatum</label>
+                                                    <input type="text" class="form-control" id="cc-expiration123" placeholder="" required>
+                                                    <div class="invalid-feedback">Vervaldatum is vereist</div>
+                                                </div>
+
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="cc-cvv123">CSC-code</label>
+                                                    <input type="text" class="form-control" id="cc-cvv123" placeholder="" required>
+                                                    <div class="invalid-feedback">Beveiligingscode is vereist</div>
+                                                </div>
+                                            </div>
+                                            <!--<hr class="mb-4">
+                                            <button class="btn btn-cyan btn-lg btn-block" type="submit">Plaats bestelling</button>-->
                                         </div>
-
-                                        <div class="row">
-                                            <div class="col-md-3 mb-3">
-                                                <label for="cc-expiration123">Vervaldatum</label>
-                                                <input type="text" class="form-control" id="cc-expiration123" placeholder="" required>
-                                                <div class="invalid-feedback">Vervaldatum is vereist</div>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="cc-cvv123">CSC-code</label>
-                                                <input type="text" class="form-control" id="cc-cvv123" placeholder="" required>
-                                                <div class="invalid-feedback">Beveiligingscode is vereist</div>
-                                            </div>
-                                        </div>
-
 
                                         <div class="col-lg-4 mb-4">
                                             <!--Card-->
                                             <div class="card z-depth-0 border border-light rounded-0">
                                                 <!--Card content-->
-                                                <div class="card-body">
-                                                    <h4 class="mb-4 mt-1 h5 text-center font-weight-bold">Samenvatting</h4>
+                                                <div class="table-responsive">
                                     
-                                                    <hr>
-                                                    <dl class="row">
-                                                        <dd class="col-sm-8"></dd>
-                                                        <dd class="col-sm-4">1</dd>
-                                                    </dl>
-            
-                                                    <dl class="row">
-                                                        <dd class="col-sm-8"></dd>
-                                                        <dd class="col-sm-4"></dd>
-                                                    </dl>
-                                                    <hr>
+                                                    <table class="table product-table mb-0">
+                                                    
+                                                        <h4 class="mb-4 mt-1 h5 text-center font-weight-bold">Samenvatting</h4>
                                     
-                                                    <dl class="row">
-                                                        <dd class="col-sm-8"></dd>
-                                                        <dd class="col-sm-4"></dd>
-                                                    </dl>
-                                    
-                                                    <hr>
-                                    
-                                                    <dl class="row">
-                                                        <dd class="col-sm-8"></dd>
-                                                        <dd class="col-sm-4"></dd>
-                                                    </dl>
-                                    
-                                                    <hr>
-                                    
-                                                    <dl class="row">
-                                                        <dt class="col-sm-8">Totaal</dt>
-                                                        <dt class="col-sm-4"></dt>
-                                                    </dl>
+                                                        <hr>
+                                                        <tbody id="winkelsamenvatting"></tbody>
+                                                    </table>
                                                 </div>
-                            
                                             </div>
                                             <!--/.Card-->
                                         </div>
-                                            </div>
-            
-                                        </div>
-
-                                        <!--<hr class="mb-4">
-                    
-                                        <button class="btn btn-cyan btn-lg btn-block" type="submit">Plaats bestelling</button>-->
-                    
                                     </div>
-                                    <!--/.Panel 2-->
-                                        <!--Grid column-->
-                           
-
-                            
-                            <!--Grid column-->
+                                </div>
+                                <!--/.Panel 2-->
+                            </div>   
                         </div>
-                        <!--Grid row-->
                     </div>
                 </div>
             </section>
-            <!--Section: Content-->
         </div>
-
     </main>
 
     <footer class="page-footer font-small darken-3">
@@ -323,76 +278,3 @@
 </body>
 
 </html>
-
-
-<!--
-    <tr>
-                                                        <td>
-                                                            <p id="product">Kaas</p>
-                                                            <p class="text-muted">+smos</p>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <p id="brood_soort">Piccolo</p>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <p id="brood_type">Wit</p>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <p>1</p>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <p>€ 3.95</p>
-                                                        </td>
-
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item">Verwijder</button>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <p id="vulling">Coca-Cola</p>
-                                                            <p class="text-muted"></p>
-                                                        </td>
-    
-                                                        <td class="text-center">
-                                                            <p id="brood_soort"></p>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <p id="brood_type"></p>
-                                                        </td>
-    
-                                                        <td class="text-center">
-                                                            <p>1</p>
-                                                        </td>
-    
-                                                        <td class="text-center">
-                                                            <p>€ 1.25</p>
-                                                        </td>
-    
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item">Verwijder</button>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td colspan="2"></td>
-
-                                                        <td>
-                                                            <h5 class="mt-2"><strong>Totaal</strong></h5>
-                                                        </td>
-
-                                                        <td class="text-right" colspan="2">
-                                                            <h5 class="mt-2"><strong>€ 5.20</strong></h5>
-                                                        </td>
-
-                                                        <td class="text-right">
-                                                            <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
-                                                        </td>
-                                                    </tr>
--->
