@@ -61,8 +61,8 @@ $.ajax({
     })
     .fail(function (msg) {
         
-        //console.log("read fail:");
-        //console.log(msg);
+        console.log("read fail:");
+        console.log(msg);
         alert("ENTERED Email ID or PASSWORD IS WRONG. Please Re-Enter Values");
     });
 
@@ -84,17 +84,8 @@ function start()
         promotie_categorie();
     }
     
-    /*filter_producten_category(catid); //else got to alle producten
-    haalWinkelwagentjeOp();*/
     promotie_categorie();
 
-    /*aantaal_bestellingen=window.localStorage.getItem('aantaal_bestellingen');
-    document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
-    winkel_wagentje=JSON.parse(localStorage.getItem('winkel_wagentje'));
-
-
-    console.log(winkel_wagentje);*/
-   
 }
 
 function ga_naar_category(catid)
