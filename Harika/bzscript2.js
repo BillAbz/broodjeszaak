@@ -26,6 +26,8 @@ var rowid=1;
 var final_bedrag=0.0;
 var userdata =[];
 var username;
+var user_id;
+var browid=1;
 
 
 function start()
@@ -151,6 +153,7 @@ function krijg_naam()
             if(useremail==userdata[i].email)
             {
                 username=userdata[i].naam;
+                user_id=userdata[i].user_id;
                 sessionStorage.setItem("username",username);
             }
         }
@@ -851,7 +854,7 @@ function toon_winkel_wagentje()
 
 
         tabledata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
-        tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
+        tabledata += "<td>" + `<button type="button"  class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
         "</td>";
         tabledata += "</tr>";
        
@@ -953,28 +956,147 @@ function verwijder_bestelling(rowid)
     toon_winkel_wagentje();
 }
 
+
+function winkel_samenvatting()
+{
+    document.getElementById("winkelsamenvatting").innerHTML="";
+    var winkelwagentje=haalWinkelwagentjeOp();
+    
+    for(var i=0; i<winkelwagentje.length; i++)
+    {
+        var samenvattingdata ="";
+        var samenvattingdata1=""
+        samenvattingdata += "<tr>";
+
+        if(winkelwagentje[i].snaam!=null)
+        {  
+            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
+        }
+        else
+        {
+            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
+        }
+        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+        samenvattingdata += "</tr>";
+
+        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
+    }
+    samenvattingdata1 += ` <tr>
+        <td>
+            <strong>Totaal</strong>
+        </td>
+        <td>
+            <strong> ${final_bedrag} </strong>
+        </td>
+    </tr>`
+    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+}
+
+
+
+
 function sessioncontrol()
 {
- 
- var winkelwagentje=haalWinkelwagentjeOp();   
- var token_check=sessionStorage.getItem("token");
+    
+     var winkelwagentje=haalWinkelwagentjeOp();   
+    var token_check=sessionStorage.getItem("token");
+    var formData = new FormData();
 
- if(token_check==null)
- {
-    window.alert("Please log in to continue further");
-    document.location = "aanmelden1.html?directed_from=wagentje1";
+    if(token_check==null)
+    {
+        window.alert("Please log in to continue further");
+        document.location = "aanmelden1.html?directed_from=wagentje1";
 
- }
- else{
-     //write ajax to post winkel wagentje data
-     }
+    }
+    else
+    {
+        
+        
 
+        for(var i=0;i<winkelwagentje.length;i++)
+        {
+             if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
+             {
+                var  values= {
+                                     "pid":  winkelwagentje[i].pid,
+                                     "bsid": winkelwagentje[i].bsid,
+                                     "btid": winkelwagentje[i].btid,
+                                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                                    "user_id": user_id,
+    
+           
+                            };
+            }
+            else
+            {
+                var  values= {
+                    "pid":  winkelwagentje[i].pid,
+                    "bsid": "0",
+                    "btid": "0",
+                   "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                   "user_id": user_id,
+
+
+           };
+            }
+            formData.set("values", JSON.stringify(values));
+    
+
+                 $.ajax
+                 ({
+                        method: 'POST',
+                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=product_bestelling",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                         //"filter": ["email", "like", "%" + useremail + "%"]
+                         processData: false,
+                         contentType: false,
+                         data: formData
+                        
+                })
+                 .done(function (response) 
+                 {
+                    console.log("create done:");
+                    console.log(response);
+                    if (response.status.success == true) {
+                    console.log("created");
+                    var pbid = response.data.pbid;
+                    console.log(pbid);
+            }
+            else {
+                console.log("not created");
+                }
+                      
+                })
+                .fail(function (msg) 
+                {
+                        console.log("read fail:");
+                        console.log(msg);
+                });
+        }
+    }
 
 
 }
 
 
 
-
+/* var winkel_data={
+            "rowid": rowid,
+            "pid" : product_id, 
+            "catid": cid,
+            "pnaam": product_naam,
+            "pprijs":product_gekozen_prijs,
+            "bsid": broodsoort_gekozen_id, 
+            "bsnaam": broodsoort_gekozen_naam,
+            "bsprijs": broodsoort_gekozen,
+            "btid": broodtype_gekozen_id, 
+            "btnaam": broodtype_gekozen_naam,
+            "btprijs": broodtype_gekozen,
+            "snaam": smos_gekozen_naam,
+            "smprice": smos_gekozen,
+            "dag": korting_day,
+            "totaal_stuks": aantal_quantity, 
+            "totaal_bedrag":  bedrag 
+        }; */
 
     

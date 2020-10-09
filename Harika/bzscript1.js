@@ -23,9 +23,11 @@ var aantaal_bestellingen=0;
 var total_prijs;
 var voor_korting_prijs;
 var rowid=1;
+var browid=1;
 var final_bedrag=0.0;
 var userdata =[];
 var username;
+var user_id;
 
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
@@ -71,6 +73,9 @@ function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
 
+    const urlParams1 = new URLSearchParams(window.location.search);
+    const directed_from = urlParams1.get("directed_from");
+    
     $.ajax
     ({
         url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
@@ -86,9 +91,17 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
+        if(directed_from=="wagentje1")
+        {
+            document.location = "wagentje1.html";
+        }
+        else
+        {
+            document.location= "producten1.html?catid=";
+        }
         
-        document.location = "producten1.html?catid=";
-        //krijg_naam();
+        //document.location = "producten1.html?catid=";
+        
     })
     .fail(function (msg) {
         console.log("registiration fail:");
@@ -96,6 +109,7 @@ function inloggen() {
         alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
     });
 }
+
 
 
 function krijg_naam()
@@ -852,7 +866,7 @@ function toon_winkel_wagentje()
         </td>
 
         <td class="text-right">
-            <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+            <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan" onclick="sessioncontrol()">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
         </td>
     </tr>`;
     document.getElementById("winkeltablebody").innerHTML += tabledata1;
@@ -962,6 +976,89 @@ function verwijder_bestelling(rowid)
     sessionStorage.setItem('aantaal_bestellingen', JSON.stringify(aantaal_bestellingen));
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
+}
+
+function sessioncontrol()
+{
+    
+     var winkelwagentje=haalWinkelwagentjeOp();   
+    var token_check=sessionStorage.getItem("token");
+    var formData = new FormData();
+
+    if(token_check==null)
+    {
+        window.alert("Please log in to continue further");
+        document.location = "aanmelden1.html?directed_from=wagentje1";
+
+    }
+    else
+    {
+        
+        
+
+        for(var i=0;i<winkelwagentje.length;i++)
+        {
+             if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
+             {
+                var  values= {
+                                     "pid":  winkelwagentje[i].pid,
+                                     "bsid": winkelwagentje[i].bsid,
+                                     "btid": winkelwagentje[i].btid,
+                                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                                    "user_id": user_id,
+    
+           
+                            };
+            }
+            else
+            {
+                var  values= {
+                    "pid":  winkelwagentje[i].pid,
+                    "bsid": "0",
+                    "btid": "0",
+                   "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                   "user_id": user_id,
+
+
+           };
+            }
+            formData.set("values", JSON.stringify(values));
+    
+
+                 $.ajax
+                 ({
+                        method: 'POST',
+                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=product_bestelling",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                         //"filter": ["email", "like", "%" + useremail + "%"]
+                         processData: false,
+                         contentType: false,
+                         data: formData
+                        
+                })
+                 .done(function (response) 
+                 {
+                    console.log("create done:");
+                    console.log(response);
+                    if (response.status.success == true) {
+                    console.log("created");
+                    var pbid = response.data.pbid;
+                    console.log(pbid);
+            }
+            else {
+                console.log("not created");
+                }
+                      
+                })
+                .fail(function (msg) 
+                {
+                        console.log("read fail:");
+                        console.log(msg);
+                });
+        }
+    }
+
+
 }
 
 
