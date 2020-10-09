@@ -858,6 +858,7 @@ function toon_winkel_wagentje()
     document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
+/* New function*/
 
 function winkel_samenvatting()
 {
