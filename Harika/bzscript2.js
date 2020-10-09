@@ -186,7 +186,6 @@ function toon_gebruiker_naam()
 
 function afmelden() 
 {
-    var winkelwagentje = haalWinkelwagentjeOp();
     var token_check=sessionStorage.getItem("token");
     console.log(token_check);
 
@@ -202,8 +201,6 @@ function afmelden()
         sessionStorage.setItem("gebruikernaam", "");    
         gebruikernaam = "";    
         document.getElementById("gebruikernaam").innerHTML="";
-        sessionStorage.clear();
-        
         }
         document.location = "aanmelden1.html";
     })
@@ -212,8 +209,6 @@ function afmelden()
         console.log(msg);
     });
 }
-
-
 
 
 
@@ -877,7 +872,7 @@ function toon_winkel_wagentje()
    </td>
 
    <td class="text-right">
-       <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan" onclick="sessioncontrol()">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+       <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
    </td>
    </tr>`;
    document.getElementById("winkeltablebody").innerHTML += tabledata1;
@@ -972,9 +967,3 @@ function sessioncontrol()
 
 
 }
-
-
-
-
-
-    

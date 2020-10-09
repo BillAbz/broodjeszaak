@@ -116,7 +116,6 @@ function krijg_naam()
             if(useremail==userdata[i].email)
             {
                 username=userdata[i].naam;
-                userid=userdata[i].user_id;
                 sessionStorage.setItem("username",username);
             }
         }
@@ -153,7 +152,6 @@ function toon_gebruiker_naam()
 
 function afmelden() 
 {
-    var winkelwagentje = haalWinkelwagentjeOp();
     var token_check=sessionStorage.getItem("token");
     console.log(token_check);
 
@@ -169,7 +167,6 @@ function afmelden()
         sessionStorage.setItem("gebruikernaam", "");    
         gebruikernaam = "";    
         document.getElementById("gebruikernaam").innerHTML="";
-        sessionStorage.clear();
         }
         document.location = "aanmelden1.html";
     })
@@ -858,7 +855,6 @@ function toon_winkel_wagentje()
     document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
-/* New function*/
 
 function winkel_samenvatting()
 {
