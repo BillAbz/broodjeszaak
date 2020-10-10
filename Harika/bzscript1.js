@@ -111,7 +111,6 @@ function inloggen() {
 }
 
 
-
 function krijg_naam()
 {
     var useremail= sessionStorage.getItem("gebruiker");
@@ -155,7 +154,6 @@ function toon_gebruiker_naam()
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
         </div>`;
-        
     }
     else
     {
@@ -204,162 +202,146 @@ function start()
     console.log(username);
     console.log(sessionStorage);
     
-        if(catid!="")
-       {
-            filter_producten_category(catid); 
-       }
+    if(catid!="")
+    {
+        filter_producten_category(catid); 
+    }
     
     filter_producten_category(catid); //else got to alle producten
     haalWinkelwagentjeOp();
-   
- 
 }
+
 
 function ga_naar_category(catid)
 {
     document.location="producten1.html?catid=" + catid;
 }
 
+
 function filter_producten_category(catid)
 {
-    $.ajax({
+    $.ajax
+    ({
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
         //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+    })
+    .done(function (response) 
+    {
+        console.log(response);
+        broodsoort = response.data.items
+        console.log(broodsoort);
+        
+        $.ajax({
+            method: 'GET',
+            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
+            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         })
-
         .done(function (response) 
         {
             console.log(response);
-            broodsoort = response.data.items
-            console.log(broodsoort);
-            
-                $.ajax({
-                            method: 'GET',
-                            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
-                            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                        })
-                        .done(function (response) 
-                        {
-                            console.log(response);
-                            broodtype = response.data.items
-                            console.log(broodtype);
-                   
-                            $.ajax
-                            ({
-                                    url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
-                                    //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                                     type: "GET",
-                                    data: {
+            broodtype = response.data.items
+            console.log(broodtype);
+                
+            $.ajax
+            ({
+                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
+                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                type: "GET",
+                data: {
+                    "filter": ["catid", "like", "%" + catid + "%"]
+                }
+            })
+            .done(function (json) 
+            {
+                console.log("read done:");
+                console.log(json);
 
-            
-                                            "filter": ["catid", "like", "%" + catid + "%"]
-                                    }
-                            })
-                            .done(function (json) 
-                            {
-                                    console.log("read done:");
-                                    console.log(json);
-           
-                                    producten1=json.data.items;
-            
-                                    console.log(producten1);
-           
-                                    if(producten1=="")
-                                    {
+                producten1=json.data.items;
 
-                                            document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
+                console.log(producten1);
 
-                                    }
-                                    else 
-                                    {
-                 
-                                             maak_tabel(producten1,broodsoort);
-               
-                                     }                
-                            })
-        
-                        })
-        }).fail(function (msg) 
-           {
-
-            console.log("read fail:");
-            console.log(msg); 
-            });
-
+                if(producten1=="")
+                {
+                    document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
+                }
+                else 
+                {
+                    maak_tabel(producten1,broodsoort);
+                }                
+            })
+    
+        })
+    })
+    .fail(function (msg) 
+    {
+        console.log("read fail:");
+        console.log(msg); 
+    });
 }
 
 
-function maak_tabel(producten1) {
-    
+function maak_tabel(producten1) 
+{
     document.getElementById("productendata").innerHTML = "";
   
-     for (var i = 0; i < producten1.length; i++) 
-     {
-            var tabledata ="";
-            var catid= producten1[i].catid;
-
-                   
-             tabledata += "<tr>";
-            
-             tabledata += "<td>" + producten1[i].pnaam + "</td>";
-             if(catid==1 || catid==2)
-             {
-                var p1= Number(producten1[i].prodprijs) + Number(broodsoort[0].bsprijs);
-                p1=p1.toFixed(2);
-                var p2= Number(producten1[i].prodprijs) + Number(broodsoort[1].bsprijs);
-                p2=p2.toFixed(2);
-                tabledata += "<td>" + "Picolo =>"  + "€ " + p1 +  
-                             "<br>" + "Halve Baget=>" + "€ " + p2 + 
-                             "</td>";
-             }
-             else if(catid==3 || catid==4)
-             {
-                tabledata += "<td>" + "---" + "</td>";
-             }
-             
-             tabledata += "<td>" + producten1[i].pomschrijving + "</td>";
-             tabledata += "<td>" +`<img src="${producten1[i].beeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">` + "</td>";
-             /*
-             DO NOT DELETE THIS COMMENT
-             tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
-             */
-        
-             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Kueze</button>` +
-                         "</td>";
-             tabledata += "</tr>";
-            
-            
-             document.getElementById("productendata").innerHTML += tabledata;
-         }
-         
-    }
-
-    function toon_producten_popup(pid,catid)
+    for (var i = 0; i < producten1.length; i++) 
     {
-        product_gevonden(pid);
-        create_modal(catid,pid);
-         
-        //console.log(huidig_product);
- 
-        if(huidig_product.catid==1 || huidig_product.catid==2)
+        var tabledata ="";
+        var catid= producten1[i].catid;
+
+        tabledata += "<tr>";
+    
+        tabledata += "<td>" + producten1[i].pnaam + "</td>";
+        if(catid==1 || catid==2)
         {
-                 document.getElementById("naam").value = huidig_product.pnaam;
-                 broodsoort_gekozen = broodsoort[0].bsprijs;
-                 broodtype_gekozen  = broodtype[0].btprijs;
-                 voorberekening(catid);        
+            var p1= Number(producten1[i].prodprijs) + Number(broodsoort[0].bsprijs);
+            p1=p1.toFixed(2);
+            var p2= Number(producten1[i].prodprijs) + Number(broodsoort[1].bsprijs);
+            p2=p2.toFixed(2);
+            tabledata += "<td>" + "Picolo =>"  + "€ " + p1 +  
+                        "<br>" + "Halve Baget=>" + "€ " + p2 + 
+                        "</td>";
         }
-         
-        else if(huidig_product.catid==3 || huidig_product.catid==4)
+        else if(catid==3 || catid==4)
         {
-       
-                document.getElementById("naam").value = huidig_product.pnaam;
-                voorberekening(catid);
-                
+            tabledata += "<td>" + "---" + "</td>";
         }
-     
+        
+        tabledata += "<td>" + producten1[i].pomschrijving + "</td>";
+        tabledata += "<td>" +`<img src="${producten1[i].beeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">` + "</td>";
+        /*
+        DO NOT DELETE THIS COMMENT
+        tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
+        */
+
+        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Kueze</button>` +
+                    "</td>";
+        tabledata += "</tr>";
+
+        document.getElementById("productendata").innerHTML += tabledata;
     }     
-         
+}
+
+
+function toon_producten_popup(pid,catid)
+{
+    product_gevonden(pid);
+    create_modal(catid,pid);
+
+    if(huidig_product.catid==1 || huidig_product.catid==2)
+    {
+        document.getElementById("naam").value = huidig_product.pnaam;
+        broodsoort_gekozen = broodsoort[0].bsprijs;
+        broodtype_gekozen  = broodtype[0].btprijs;
+        voorberekening(catid);        
+    } 
+    else if(huidig_product.catid==3 || huidig_product.catid==4)
+    {
+        document.getElementById("naam").value = huidig_product.pnaam;
+        voorberekening(catid);
+    }
+}     
          
          //document.getElementById("beeld").value = huidig_product.beeld;
          //json stringify
@@ -368,165 +350,151 @@ function maak_tabel(producten1) {
      
          //console.log(image);
      
-        
-   
                    
- function product_gevonden(pid)
- {
-        
-         for (i = 0; i < producten1.length; i++) 
-         {
-                 if (pid == producten1[i].pid) 
-                 {
-         
-                     huidig_product = producten1[i];
-                     
-                 }
-          }
- }    
- 
+function product_gevonden(pid)
+{
+    for (i = 0; i < producten1.length; i++) 
+    {
+        if (pid == producten1[i].pid) 
+        {
+            huidig_product = producten1[i];
+        }
+    }
+}    
+
+
 function create_modal(catid,pid)
 {
-   
-  if(catid==1 || catid==2)
-  {
-      console.log(broodsoort)
+    if(catid==1 || catid==2)
+    {
+        console.log(broodsoort)
 
-   document.getElementById("modal_data").innerHTML=
-    ` 
-    <div class="modal fade" id="broodjesZaak_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Broodjes Selectie <br> 
-                            (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
-                            <form>
-                                <div class="form-group">
-                                    <label for="naam">Het Beleg Gekozen</label>
-                                    <input type="text" class="form-control" id="naam" placeholder="" disabled>
-                                </div>
+        document.getElementById("modal_data").innerHTML=
+        ` 
+        <div class="modal fade" id="broodjesZaak_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalform">Broodjes Selectie <br> 
+                        (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
+                        <form>
+                            <div class="form-group">
+                                <label for="naam">Het Beleg Gekozen</label>
+                                <input type="text" class="form-control" id="naam" placeholder="" disabled>
+                            </div>
 
-                                
-                                <div class="form-group">
-                                    <label> Kies Brood Soort </label><br>
-                                    <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                    <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 cents extra <br>
-                                    <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                    <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve Baugette => 0.50 cents extra
-                                    
-                                  
-                                </div>
+                            <div class="form-group">
+                                <label> Kies Brood Soort </label><br>
+                                <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 cents extra <br>
+                                <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve Baugette => 0.50 cents extra
+                            </div>
 
-                               
-                                <div class="form-group" >
-                                    <label>Kies Brood Type</label><br>
-                                    <img src="${broodtype[0].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                    <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => 0.50 cents extra <br>
-                                    <img src="${broodtype[1].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                    <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => 0.75 cents extra <br>
-                                    <img src="${broodtype[2].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                    <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen => 1 euro extra 
+                            
+                            <div class="form-group" >
+                                <label>Kies Brood Type</label><br>
+                                <img src="${broodtype[0].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => 0.50 cents extra <br>
+                                <img src="${broodtype[1].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => 0.75 cents extra <br>
+                                <img src="${broodtype[2].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                                <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen => 1 euro extra 
+                            </div>
 
-                                   
-                                </div>
-
-                               
-                                <div class="form-group">
-                                    <label>Wil Je graag Smos?</label><br>
-                                    <input type="radio" id="1" name="smosselected" value="0" onclick="get_radio_button_value('0','smos','${catid}','1','Geen Smos')" checked>Neen <br>
-                                    <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => Extra 0.70 Cent betalen
-                                </div>  
-
-                                 <div class="form-group">
-                                    <label for="promotieid">Promotie</label>
-                                    <input type="textbox" class="form-control" id="promotieid"  disabled>
-                                </div>
+                            <div class="form-group">
+                                <label>Wil Je graag Smos?</label><br>
+                                <input type="radio" id="1" name="smosselected" value="0" onclick="get_radio_button_value('0','smos','${catid}','1','Geen Smos')" checked>Neen <br>
+                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => Extra 0.70 Cent betalen
+                            </div>  
 
                                 <div class="form-group">
-                                    <label for="quantity">Aantal Stuks</label>
-                                    <input type="number" min="1" value =1 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen(${pid},'${catid}');">
-                                </div>
+                                <label for="promotieid">Promotie</label>
+                                <input type="textbox" class="form-control" id="promotieid"  disabled>
+                            </div>
 
-                                <span id="totaalprijsspan"></span><br>
-                                <label for="prijs">Totaal Prijs</label><br>
-                               
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">€</span>
-                                    <input type="text" class="form-control" id="prijs"  aria-label="Prijs in Euro" disabled/>
-                                </div>
+                            <div class="form-group">
+                                <label for="quantity">Aantal Stuks</label>
+                                <input type="number" min="1" value =1 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen(${pid},'${catid}');">
+                            </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
-                                </div>
-                            </form>
-                        </div>
+                            <span id="totaalprijsspan"></span><br>
+                            <label for="prijs">Totaal Prijs</label><br>
+                            
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">€</span>
+                                <input type="text" class="form-control" id="prijs"  aria-label="Prijs in Euro" disabled/>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        `
-  }
-  else if(catid==3 || catid==4)
-  {
-    document.getElementById("modal_data").innerHTML=
-    `
-    <div class="modal fade" id="broodjesZaak_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalform">Koude Schotel / Drankjes Selectie <br> 
-                (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
-                <form>
-                    <div class="form-group">
-                        <label for="naam">Het Beleg Gekozen</label>
-                        <input type="text" class="form-control" id="naam" placeholder="" disabled>
-                    </div>
-
-                     <div class="form-group">
-                        <label for="promotieid">Promotie</label>
-                        <input type="textbox" class="form-control" id="promotieid"  disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantity">Aantal Stuks</label>
-                        <input type="number" min="1" value =1 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen(${pid},'${catid}');">
-                    </div>
-
-                    <span id="totaalprijsspan"></span><br>
-                    <label for="prijs">Totaal Prijs</label><br>
-                   
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">€</span>
-                        <input type="text" class="form-control" id="prijs"  aria-label="Prijs in Euro" disabled/>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
-                    </div>
-                </form>
-              </div>
-           </div>
         </div>
-      </div>
-     `;
+        `
+    }
+    else if(catid==3 || catid==4)
+    {
+        document.getElementById("modal_data").innerHTML=
+        `
+        <div class="modal fade" id="broodjesZaak_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalform">Koude Schotel / Drankjes Selectie <br> 
+                        (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
+                        <form>
+                            <div class="form-group">
+                                <label for="naam">Het Beleg Gekozen</label>
+                                <input type="text" class="form-control" id="naam" placeholder="" disabled>
+                            </div>
 
-   }
+                            <div class="form-group">
+                                <label for="promotieid">Promotie</label>
+                                <input type="textbox" class="form-control" id="promotieid"  disabled>
+                            </div>
 
- }
+                            <div class="form-group">
+                                <label for="quantity">Aantal Stuks</label>
+                                <input type="number" min="1" value =1 class="form-control" id="quantity" placeholder="" onchange="aantal_kiezen(${pid},'${catid}');">
+                            </div>
 
- function voorberekening(catid)
+                            <span id="totaalprijsspan"></span><br>
+                            <label for="prijs">Totaal Prijs</label><br>
+                        
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">€</span>
+                                <input type="text" class="form-control" id="prijs"  aria-label="Prijs in Euro" disabled/>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+}
+
+
+function voorberekening(catid)
 {   
-    
-    
     broodsoort_gekozen_id=broodsoort[0].bsid;
     broodtype_gekozen_id=broodtype[0].btid;
     smos_gekozen_id=smos_gekozen;
@@ -534,68 +502,54 @@ function create_modal(catid,pid)
     broodtype_gekozen_naam=broodtype[0].btnaam;
     smos_gekozen_naam="Geen Smos";
     
-        berekening(catid);
-        console.log("catid in voorberekening", catid);
-        update_modal(catid);
-    
-      
-} 
+    berekening(catid);
+    console.log("catid in voorberekening", catid);
+    update_modal(catid);     
+}
 
 function berekening(catid)
 {
-         
-        if(catid==1 || catid==2)
-        {   
-           
-            total_prijs= Number(broodsoort_gekozen) + Number(broodtype_gekozen) + Number(smos_gekozen)+Number(huidig_product.prodprijs);
-            
-                 
-            var aantalstukjes = Number(document.getElementById("quantity").value);
-           
-            total_prijs = aantalstukjes * total_prijs;
-            voor_korting_prijs=total_prijs;
-    
-            /* sunday=0, monday=1, tuesday=2, wednesday=3, thursday=4, friday=5, saturday=6 */
-            if(catid==1 && day===5)
-            {
-                total_prijs=total_prijs - ((total_prijs*5)/100);
-                total_prijs=total_prijs.toFixed(2);
-                
-            }
-            else if(catid==2 && day===2)
-            {
-                total_prijs=total_prijs - ((total_prijs*10)/100);
-                total_prijs=total_prijs.toFixed(2);
-            }
-            
-            
-            
-        }
-      
-        else if(catid==3 || catid==4)
+    if(catid==1 || catid==2)
+    {   
+        total_prijs= Number(broodsoort_gekozen) + Number(broodtype_gekozen) + Number(smos_gekozen)+Number(huidig_product.prodprijs);
+        
+        var aantalstukjes = Number(document.getElementById("quantity").value);
+        
+        total_prijs = aantalstukjes * total_prijs;
+        voor_korting_prijs=total_prijs;
+
+        /* sunday=0, monday=1, tuesday=2, wednesday=3, thursday=4, friday=5, saturday=6 */
+        if(catid==1 && day===5)
         {
-
-            var aantalstukjes = Number(document.getElementById("quantity").value);
-            total_prijs = aantalstukjes * huidig_product.prodprijs;
-            voor_korting_prijs=total_prijs;
-
-            if(catid==3 && day==3)
-            {
-                     total_prijs=total_prijs - ((total_prijs*20)/100);
-                     total_prijs=total_prijs.toFixed(2);
-            }
-
+            total_prijs=total_prijs - ((total_prijs*5)/100);
+            total_prijs=total_prijs.toFixed(2);
         }
-       
-    
+        else if(catid==2 && day===2)
+        {
+            total_prijs=total_prijs - ((total_prijs*10)/100);
+            total_prijs=total_prijs.toFixed(2);
+        }
+    }
+    else if(catid==3 || catid==4)
+    {
+        var aantalstukjes = Number(document.getElementById("quantity").value);
+        total_prijs = aantalstukjes * huidig_product.prodprijs;
+        voor_korting_prijs=total_prijs;
+
+        if(catid==3 && day==3)
+        {
+            total_prijs=total_prijs - ((total_prijs*20)/100);
+            total_prijs=total_prijs.toFixed(2);
+        }
+    }
 }
+
 
 function update_modal(catid)
 {
     if(catid==1 || catid==2)
-    {   
-       
-     /* sunday=0, monday=1, tuesday=2, wednesday=3, thursday=4, friday=5, saturday=6 */
+    {
+        /* sunday=0, monday=1, tuesday=2, wednesday=3, thursday=4, friday=5, saturday=6 */
         if(day===5 && catid==1)
         {
             document.getElementById("promotieid").value="5% korting op alle Klassieke Broodjes vandaag (vrijdag)";
@@ -626,7 +580,7 @@ function update_modal(catid)
         {
             document.getElementById("promotieid").value="20% korting op alle koude schotels vandaag (Woensdag)";
             document.getElementById("totaalprijsspan").innerHTML= "&nbsp" + "<b>"+"Total Prijs voor Korting:"+ "&nbsp" +"€"+ voor_korting_prijs+ "</b>";
-       
+
             console.log("total_prijs after discount", total_prijs);
         }
         else if(catid==3 && day!=3)
@@ -637,7 +591,7 @@ function update_modal(catid)
         {
             document.getElementById("promotieid").value="Geen korting op drankjes";
         }
-       document.getElementById("prijs").value = total_prijs;
+        document.getElementById("prijs").value = total_prijs;
     }
    
 }
@@ -646,13 +600,13 @@ function aantal_kiezen(pid, catid)
 {
     if(catid==1 || catid==2)
     {
-    berekening(catid);
-    update_modal(catid);
+        berekening(catid);
+        update_modal(catid);
     }
     else
     {
-      berekening(catid);
-      update_modal(catid);
+        berekening(catid);
+        update_modal(catid);
     }
 }               
           
@@ -661,16 +615,11 @@ function get_radio_button_value(price, bst, catid, id, naam)
 
         if(bst=="broodsoort")
         {
-
             broodsoort_gekozen=price;
             broodsoort_gekozen_id=id;
-
             broodsoort_gekozen_naam=naam;
-
             console.log("broodsoort_gekozen_id via radio button:",broodsoort_gekozen_id);
             console.log("broodsoort_gekozen_naam via radio button:",broodsoort_gekozen_naam);
-
-
         }
         else if(bst=="broodtype")
         {
@@ -700,14 +649,15 @@ function haalWinkelwagentjeOp() {
         
         var winkelwagentje = JSON.parse(sessionStorage.getItem("winkelwagentje"));    
        
-
-        if (winkelwagentje == null) {
+        if (winkelwagentje == null) 
+        {
             winkelwagentje =[];
         }
         console.log(winkelwagentje);
         
         return winkelwagentje;
-    } 
+} 
+
 
 function toon_aantal_bestellingen()
 {
@@ -716,25 +666,22 @@ function toon_aantal_bestellingen()
         document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
 }
 
+
 function bevestig_bestelling(pid,catid)
 { 
-        
-        var winkelwagentje=haalWinkelwagentjeOp();
+    var winkelwagentje=haalWinkelwagentjeOp();
+    console.log(catid);
+    var product_id=pid;
+    var product_naam=huidig_product.pnaam;
+    var product_gekozen_prijs=huidig_product.prodprijs;
+    console.log("product_id:",product_id);
+    var aantal_quantity=document.getElementById("quantity").value;
+    var bedrag=document.getElementById("prijs").value;
+    var cid=huidig_product.catid;
+    var korting_day=day;
 
-        console.log(catid);
-        var product_id=pid;
-        var product_naam=huidig_product.pnaam;
-        var product_gekozen_prijs=huidig_product.prodprijs;
-        console.log("product_id:",product_id);
-        var aantal_quantity=document.getElementById("quantity").value;
-        var bedrag=document.getElementById("prijs").value;
-        var cid=huidig_product.catid;
-        var korting_day=day;
-
-                 
-       if(catid==1 || catid==2)
-       {
-
+    if(catid==1 || catid==2)
+    {
         var winkel_data={
             "rowid": rowid,
             "pid" : product_id, 
@@ -776,25 +723,22 @@ function bevestig_bestelling(pid,catid)
             "totaal_bedrag":  bedrag  
         };
         console.log(winkel_data);
-
     }
-        winkelwagentje.push(winkel_data);
-        
-        console.log(winkelwagentje);
+    winkelwagentje.push(winkel_data);
+    
+    console.log(winkelwagentje);
 
-        rowid++;
+    rowid++;
 
-        aantaal_bestellingen++;
-       
-        
-   
-        sessionStorage.setItem('rowid', JSON.stringify(rowid));
-        sessionStorage.setItem('aantaal_bestellingen', JSON.stringify(aantaal_bestellingen));
-        sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
-        toon_aantal_bestellingen();
-        $('#broodjesZaak_details').modal('hide');
+    aantaal_bestellingen++;
 
+    sessionStorage.setItem('rowid', JSON.stringify(rowid));
+    sessionStorage.setItem('aantaal_bestellingen', JSON.stringify(aantaal_bestellingen));
+    sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
+    toon_aantal_bestellingen();
+    $('#broodjesZaak_details').modal('hide');
 }
+
 
 function toon_winkel_wagentje()
 {
@@ -873,7 +817,6 @@ function toon_winkel_wagentje()
 }
 
 /* New function*/
-
 function winkel_samenvatting()
 {
     document.getElementById("winkelsamenvatting").innerHTML="";
@@ -919,7 +862,7 @@ function aantal_prijs_wijzigen(rowid)
     {
         if(winkelwagentje[i].rowid==rowid)
         {
-           var count=document.getElementById("wquantity"+winkelwagentje[i].rowid).value;
+            var count=document.getElementById("wquantity"+winkelwagentje[i].rowid).value;
            
             console.log(count);
             winkelwagentje[i].totaal_stuks=count;
@@ -950,13 +893,11 @@ function aantal_prijs_wijzigen(rowid)
 
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
-
 }
 
 
 function verwijder_bestelling(rowid)
 {
-    
     var winkelwagentje=haalWinkelwagentjeOp();
     console.log(winkelwagentje);
     
@@ -967,7 +908,6 @@ function verwijder_bestelling(rowid)
             final_bedrag=Number(final_bedrag)-Number(winkelwagentje[i].totaal_bedrag);
 
             winkelwagentje.splice(i,1);
-            
         }
     }
     console.log("final bedrag in verwijderen:", final_bedrag);
@@ -978,10 +918,10 @@ function verwijder_bestelling(rowid)
     toon_winkel_wagentje();
 }
 
+
 function sessioncontrol()
 {
-    
-     var winkelwagentje=haalWinkelwagentjeOp();   
+    var winkelwagentje=haalWinkelwagentjeOp();   
     var token_check=sessionStorage.getItem("token");
     var formData = new FormData();
 
@@ -989,77 +929,67 @@ function sessioncontrol()
     {
         window.alert("Please log in to continue further");
         document.location = "aanmelden1.html?directed_from=wagentje1";
-
     }
     else
-    {
-        
-        
-
+    {   
         for(var i=0;i<winkelwagentje.length;i++)
         {
-             if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
-             {
-                var  values= {
-                                     "pid":  winkelwagentje[i].pid,
-                                     "bsid": winkelwagentje[i].bsid,
-                                     "btid": winkelwagentje[i].btid,
-                                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
-                                    "user_id": user_id,
-    
-           
-                            };
+            if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
+            {
+                var values= 
+                {
+                    "pid":  winkelwagentje[i].pid,
+                    "bsid": winkelwagentje[i].bsid,
+                    "btid": winkelwagentje[i].btid,
+                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                    "user_id": user_id,
+                };
             }
             else
             {
-                var  values= {
+                var values= 
+                {
                     "pid":  winkelwagentje[i].pid,
                     "bsid": "0",
                     "btid": "0",
-                   "totaal_prijs": winkelwagentje[i].totaal_bedrag,
-                   "user_id": user_id,
-
-
-           };
+                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                    "user_id": user_id,
+                };
             }
             formData.set("values", JSON.stringify(values));
     
-
-                 $.ajax
-                 ({
-                        method: 'POST',
-                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=product_bestelling",
-                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                         //"filter": ["email", "like", "%" + useremail + "%"]
-                         processData: false,
-                         contentType: false,
-                         data: formData
-                        
-                })
-                 .done(function (response) 
-                 {
-                    console.log("create done:");
-                    console.log(response);
-                    if (response.status.success == true) {
+            $.ajax
+            ({
+                method: 'POST',
+                url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=product_bestelling",
+                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                //"filter": ["email", "like", "%" + useremail + "%"]
+                processData: false,
+                contentType: false,
+                data: formData
+            })
+            .done(function (response) 
+            {
+                console.log("create done:");
+                console.log(response);
+                if (response.status.success == true) 
+                {
                     console.log("created");
                     var pbid = response.data.pbid;
                     console.log(pbid);
-            }
-            else {
-                console.log("not created");
                 }
-                      
-                })
-                .fail(function (msg) 
+                else 
                 {
-                        console.log("read fail:");
-                        console.log(msg);
-                });
+                    console.log("not created");
+                }   
+            })
+            .fail(function (msg) 
+            {
+                console.log("read fail:");
+                console.log(msg);
+            });
         }
     }
-
-
 }
 
 
-   
