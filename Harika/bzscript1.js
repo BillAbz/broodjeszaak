@@ -43,7 +43,8 @@ function registreren() {
 
     console.log(suggesties);
 
-    $.ajax({
+    $.ajax
+    ({
         url: "https://api.data-web.be/user/register?project=fjgub4eD3ddg", 
         method: "POST",
         data: {
@@ -58,11 +59,12 @@ function registreren() {
                 "rol" : rol,
             }
         }
-    }).done(function (response) {
+    })
+    .done(function (response) {
         console.log("registiration done:");
         console.log(response);
-        
-    }).fail(function (msg) {
+    })
+    .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
     });
@@ -99,9 +101,7 @@ function inloggen() {
         {
             document.location= "producten1.html?catid=";
         }
-        
         //document.location = "producten1.html?catid=";
-        
     })
     .fail(function (msg) {
         console.log("registiration fail:");
@@ -232,7 +232,8 @@ function filter_producten_category(catid)
         broodsoort = response.data.items
         console.log(broodsoort);
         
-        $.ajax({
+        $.ajax
+        ({
             method: 'GET',
             url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodtype",
             //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
@@ -613,57 +614,57 @@ function aantal_kiezen(pid, catid)
 function get_radio_button_value(price, bst, catid, id, naam)
 {
 
-        if(bst=="broodsoort")
-        {
-            broodsoort_gekozen=price;
-            broodsoort_gekozen_id=id;
-            broodsoort_gekozen_naam=naam;
-            console.log("broodsoort_gekozen_id via radio button:",broodsoort_gekozen_id);
-            console.log("broodsoort_gekozen_naam via radio button:",broodsoort_gekozen_naam);
-        }
-        else if(bst=="broodtype")
-        {
-            broodtype_gekozen=price;
-            broodtype_gekozen_id=id;
-            broodtype_gekozen_naam=naam;
-            console.log("broodtype_gekozen_id via radio button:",broodtype_gekozen_id);
-            console.log("broodtype_gekozen_naam via radio button:",broodtype_gekozen_naam);
+    if(bst=="broodsoort")
+    {
+        broodsoort_gekozen=price;
+        broodsoort_gekozen_id=id;
+        broodsoort_gekozen_naam=naam;
+        console.log("broodsoort_gekozen_id via radio button:",broodsoort_gekozen_id);
+        console.log("broodsoort_gekozen_naam via radio button:",broodsoort_gekozen_naam);
+    }
+    else if(bst=="broodtype")
+    {
+        broodtype_gekozen=price;
+        broodtype_gekozen_id=id;
+        broodtype_gekozen_naam=naam;
+        console.log("broodtype_gekozen_id via radio button:",broodtype_gekozen_id);
+        console.log("broodtype_gekozen_naam via radio button:",broodtype_gekozen_naam);
 
-        }
-        else if(bst=="smos")
-        {
-            smos_gekozen=price;
-            smos_gekozen_id=id;
-            smos_gekozen_naam=naam;
-            console.log(smos_gekozen_naam);
-            console.log("smos_gekozen_id via radio button:",smos_gekozen_id);
-        }
+    }
+    else if(bst=="smos")
+    {
+        smos_gekozen=price;
+        smos_gekozen_id=id;
+        smos_gekozen_naam=naam;
+        console.log(smos_gekozen_naam);
+        console.log("smos_gekozen_id via radio button:",smos_gekozen_id);
+    }
 
-        berekening(catid);
-        update_modal(catid);
+    berekening(catid);
+    update_modal(catid);
 }
 
 function haalWinkelwagentjeOp() {    
         
-        toon_aantal_bestellingen();            
-        
-        var winkelwagentje = JSON.parse(sessionStorage.getItem("winkelwagentje"));    
-       
-        if (winkelwagentje == null) 
-        {
-            winkelwagentje =[];
-        }
-        console.log(winkelwagentje);
-        
-        return winkelwagentje;
+    toon_aantal_bestellingen();            
+    
+    var winkelwagentje = JSON.parse(sessionStorage.getItem("winkelwagentje"));    
+    
+    if (winkelwagentje == null) 
+    {
+        winkelwagentje =[];
+    }
+    console.log(winkelwagentje);
+    
+    return winkelwagentje;
 } 
 
 
 function toon_aantal_bestellingen()
 {
-        rowid=sessionStorage.getItem('rowid');
-        aantaal_bestellingen=sessionStorage.getItem('aantaal_bestellingen');
-        document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
+    rowid=sessionStorage.getItem('rowid');
+    aantaal_bestellingen=sessionStorage.getItem('aantaal_bestellingen');
+    document.getElementById("antaal_producten").innerHTML=aantaal_bestellingen;
 }
 
 
@@ -887,10 +888,8 @@ function aantal_prijs_wijzigen(rowid)
             winkelwagentje[i].totaal_bedrag =totaal_bedrag;
             console.log(winkelwagentje[i].totaal_bedrag);
             console.log(winkelwagentje[i].totaal_stuks);
-            
         }
     }
-
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
 }
