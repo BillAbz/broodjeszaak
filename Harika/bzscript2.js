@@ -28,6 +28,7 @@ var userdata =[];
 var username;
 var user_id;
 var browid=1;
+var user_telefoonnummer;
 
 
 function start()
@@ -99,6 +100,9 @@ function inloggen() {
 
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
+    // document.location = "contact1.html?came_from=contact1";
+    const urlParams2 = new URLSearchParams(window.location.search);
+    const came_from = urlParams2.get("came_from");
 
      
     $.ajax
@@ -119,6 +123,10 @@ function inloggen() {
         if(directed_from=="wagentje1")
         {
             document.location = "wagentje1.html";
+        }
+        else if(came_from=="contact1")
+        {
+            document.location = "contact1.html";
         }
         else
         {
@@ -155,7 +163,9 @@ function krijg_naam()
             {
                 username=userdata[i].naam;
                 user_id=userdata[i].user_id;
+                user_telefoonnummer=userdata[i].telefoonnummer;
                 sessionStorage.setItem("username",username);
+                sessionStorage.setItem("telefoonnummer", telefoonnummer)
             }
         }
         toon_gebruiker_naam(); 
@@ -175,7 +185,7 @@ function toon_gebruiker_naam()
     if(token_check!=null)
     {
         document.getElementById("gebruikersnaam").style.display = "block";
-        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}</a>
+        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}<br>(Klant nummer: ${user_id})</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
         </div>`;
@@ -1024,6 +1034,7 @@ function sessioncontrol()
                                      "btid": winkelwagentje[i].btid,
                                     "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                                     "user_id": user_id,
+                                     "catid":catid,
     
            
                             };
@@ -1036,6 +1047,7 @@ function sessioncontrol()
                     "btid": "0",
                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                    "user_id": user_id,
+                   "catid":catid,
 
 
            };
@@ -1079,25 +1091,7 @@ function sessioncontrol()
 
 }
 
+//sessionStorage.setItem("gebruiker", email);
+//Call this function in body onload of contact page
 
 
-/* var winkel_data={
-            "rowid": rowid,
-            "pid" : product_id, 
-            "catid": cid,
-            "pnaam": product_naam,
-            "pprijs":product_gekozen_prijs,
-            "bsid": broodsoort_gekozen_id, 
-            "bsnaam": broodsoort_gekozen_naam,
-            "bsprijs": broodsoort_gekozen,
-            "btid": broodtype_gekozen_id, 
-            "btnaam": broodtype_gekozen_naam,
-            "btprijs": broodtype_gekozen,
-            "snaam": smos_gekozen_naam,
-            "smprice": smos_gekozen,
-            "dag": korting_day,
-            "totaal_stuks": aantal_quantity, 
-            "totaal_bedrag":  bedrag 
-        }; */
-
-    

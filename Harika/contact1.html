@@ -117,17 +117,26 @@
                                     <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail">
                                     <input type="tel" id="defaultContactFormTel" class="form-control mb-4" placeholder="Telefoonnummer">
 
-                                    <select class="browser-default custom-select mb-4">
+                                    <select class="browser-default custom-select mb-4" id="defaultContactFormInfo" onchange="get_vraag_selectie_value()">
+                                     <!--   <select class="browser-default custom-select mb-4" id="defaultContactFormInfo">-->
                                         <option value="" selected disabled>Type vraag</option>
                                         <option value="1">Over product</option>
                                         <option value="2">Over bestelling</option>
                                         <option value="3">Over na-service</option>
                                     </select>
+                                    <!--<div id="bestellingnummer"></div>
+                                    <label for="ordernummer"> Voer uw bestelnummer in </label> 
+                                    <br>
+                                    <input type="text" id="ordernummer" name="ordernumber"></input> 
+                                    <br>
+                                    <label for="klantnummer"> Voer uw klant nummer in </label>
+                                    <br>
+                                    <input type="text" id="klantnummer" name="ordernumber"></input>-->
                                     <!--<input type="text" id="defaultContactFormNumber" class="form-control mb-4" placeholder="Bestellingnummer">-->
                                     <div class="form-group">
-                                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Vraag"></textarea>
+                                        <textarea class="form-control rounded-0" id="vraag" rows="3" placeholder="Vraag"></textarea>
                                     </div>
-                                    <button class="btn btn-cyan btn-block" type="submit">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>
+                                    <button class="btn btn-cyan btn-block" type="submit" onclick="post_contact_formulier()">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>
                         
                                 </form>
 

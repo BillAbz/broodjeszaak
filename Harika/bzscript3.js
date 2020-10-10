@@ -28,6 +28,7 @@ var final_bedrag=0.0;
 var userdata =[];
 var username;
 var user_id;
+var user_telefoonnummer;
 
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
@@ -69,12 +70,41 @@ function registreren() {
 }
 
 
+
 function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
-   
+    var errormessage = document.getElementById("error_message");
+    var error_text;
+    //alert(email);
+
+    errormessage.style.padding="10px";
+
+    if(email=="" && password=="")
+    {
+        error_text="vul het e-mailadres en wachtwoord in alstublieft";
+        errormessage.innerHTML=error_text;
+       
+    }
+    else if(email=="")
+    {
+        error_text="vul het e-mailadres in alstublieft";
+        errormessage.innerHTML=error_text;
+        
+    }
+    else if(password=="")
+    {
+        error_text="Voer wachtwoord in alstublieft";
+        errormessage.innerHTML=error_text;
+       
+    }
+    else
+    {
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
+    const urlParams2 = new URLSearchParams(window.location.search);
+    const came_from = urlParams2.get("came_from");
+
     
     $.ajax
     ({
@@ -95,6 +125,10 @@ function inloggen() {
         {
             document.location = "wagentje1.html";
         }
+        else if(came_from=="contact1")
+        {
+            document.location = "contact1.html";
+        }
         else
         {
             document.location= "producten1.html?catid=";
@@ -106,9 +140,10 @@ function inloggen() {
     .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
-      alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
-        
+        error_text="Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!";
+        errormessage.innerHTML=error_text;
     });
+    
 }
 }
 
@@ -133,7 +168,9 @@ function krijg_naam()
             {
                 username=userdata[i].naam;
                 user_id=userdata[i].user_id;
+                telefoonnummer=userdata[i].telefoonnummer;
                 sessionStorage.setItem("username",username);
+                sessionStorage.setItem("telefoonnummer", telefoonnummer);
             }
         }
         toon_gebruiker_naam(); 
@@ -1085,5 +1122,61 @@ function sessioncontrol()
 
 }
 
+function post_contact_formulier()
+{
 
-   
+    var token_check=sessionStorage.getItem("token");
+    //var formData = new FormData();
+
+    if(token_check==null)
+    {
+        window.alert("Please log in to continue further");
+        document.location = "contact1.html?came_from=contact1";
+
+    }
+    else
+    {
+
+        var c_username=document.getElementById("defaultContactFormName").value;
+        var c_email=document.getElementById("defaultContactFormEmail").value;
+        var c_telefoonnummer=document.getElementById("defaultContactFormTel").value;
+        var c_option =document.getElementById("defaultContactFormInfo").value;
+        var klantnummer= document.getElementById("klantnummer").value;;
+        var ordernummer= document.getElementById("ordernummer").value;
+        var informatie = document.getElementById("vraag").value;
+
+        console.log(c_username);
+        console.log(c_email);
+        console.log(c_telefoonnummer);
+        console.log(c_option);
+        console.log(klantnummer);
+        console.log(ordernummer);
+        console.log(informatie);
+
+
+    }
+
+ 
+
+
+}
+
+function get_vraag_selectie_value()
+{
+    var c_option =document.getElementById("defaultContactFormInfo").value;
+    if (c_option==2 || c_option == 3)
+        {
+            document.getElementById("bestellingnummer").innerHTML = `
+            
+            <label for="ordernummer"> Voer uw bestelnummer in </label> &nbsp &nbsp <label for="klantnummer"> Voer uw klant nummer in </label>
+            <br>
+            <input type="text" id="ordernummer" name="ordernumber"></input> &nbsp &nbsp <input type="text" id="klantnummer" name="ordernumber"></input>
+            
+            `;
+           
+          
+        }
+    else{
+        document.getElementById("bestellingnummer").innerHTML = "";
+    }
+}
