@@ -25,9 +25,10 @@ var voor_korting_prijs;
 var rowid=1;
 var browid=1;
 var final_bedrag=0.0;
-var userdata =[];
+var userdata;
 var username;
 var user_id;
+var telefoonnummer;
 
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
@@ -120,20 +121,20 @@ function krijg_naam()
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
         headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        "filter": ["email", "like", "%" + useremail + "%"]
+        data:
+        {
+                "filter": ["email", "like", "%" + useremail + "%"]
+        }
     })
     .done(function (response) {
         console.log(response);
         userdata=response.data.items;
-        for(var i=0;i<userdata.length;i++)
-        {
-            if(useremail==userdata[i].email)
-            {
-                username=userdata[i].naam;
-                user_id=userdata[i].user_id;
+        
+                username=response.data.items[0].naam;
+                user_id=response.data.items[0].user_id;
+                telefoonnummer=response.data.items[0].telefoonnummer;
                 sessionStorage.setItem("username",username);
-            }
-        }
+          
         toon_gebruiker_naam(); 
 
     }).fail(function (msg) {
@@ -963,6 +964,7 @@ function sessioncontrol()
                     "btid": winkelwagentje[i].btid,
                     "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                     "user_id": user_id,
+                    "catid": winkelwagentje[i].catid,
                 };
             }
             else
@@ -974,6 +976,7 @@ function sessioncontrol()
                     "btid": "0",
                     "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                     "user_id": user_id,
+                    "catid": winkelwagentje[i].catid,
                 };
             }
             formData.set("values", JSON.stringify(values));

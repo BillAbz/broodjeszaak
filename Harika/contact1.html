@@ -16,7 +16,7 @@
     <script src="bzscript1.js"></script>
 </head>
 
-<body onload="haalWinkelwagentjeOp(); krijg_naam()">
+<body onload="haalWinkelwagentjeOp(); krijg_naam(); ">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -124,8 +124,8 @@
                                         <option value="2">Over bestelling</option>
                                         <option value="3">Over na-service</option>
                                     </select>
-                                    <!--<div id="bestellingnummer"></div>
-                                    <label for="ordernummer"> Voer uw bestelnummer in </label> 
+                                    <div id="bestellingnummer"></div>
+                                    <!--<label for="ordernummer"> Voer uw bestelnummer in </label> 
                                     <br>
                                     <input type="text" id="ordernummer" name="ordernumber"></input> 
                                     <br>
@@ -136,7 +136,7 @@
                                     <div class="form-group">
                                         <textarea class="form-control rounded-0" id="vraag" rows="3" placeholder="Vraag"></textarea>
                                     </div>
-                                    <button class="btn btn-cyan btn-block" type="submit" onclick="post_contact_formulier()">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>
+                                    <button class="btn btn-cyan btn-block" type="button" onclick="post_contact_formulier()">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>
                         
                                 </form>
 

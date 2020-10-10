@@ -25,7 +25,7 @@ var voor_korting_prijs;
 var rowid=1;
 var browid=1;
 var final_bedrag=0.0;
-var userdata =[];
+var userdata;
 var username;
 var user_id;
 var user_telefoonnummer;
@@ -102,9 +102,9 @@ function inloggen() {
     {
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
-    const urlParams2 = new URLSearchParams(window.location.search);
-    const came_from = urlParams2.get("came_from");
-
+    //const urlParams2 = new URLSearchParams(window.location.search);
+    //const came_from = urlParams2.get("came_from");
+  
     
     $.ajax
     ({
@@ -125,7 +125,7 @@ function inloggen() {
         {
             document.location = "wagentje1.html";
         }
-        else if(came_from=="contact1")
+        else if(directed_from=="contact1")
         {
             document.location = "contact1.html";
         }
@@ -148,7 +148,6 @@ function inloggen() {
 }
 
 
-
 function krijg_naam()
 {
     var useremail= sessionStorage.getItem("gebruiker");
@@ -157,22 +156,17 @@ function krijg_naam()
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
         headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        "filter": ["email", "like", "%" + useremail + "%"]
+        data:
+        {
+                "filter": ["email", "like", "%" + useremail + "%"]
+        }
     })
     .done(function (response) {
         console.log(response);
-        userdata=response.data.items;
-        for(var i=0;i<userdata.length;i++)
-        {
-            if(useremail==userdata[i].email)
-            {
-                username=userdata[i].naam;
-                user_id=userdata[i].user_id;
-                telefoonnummer=userdata[i].telefoonnummer;
-                sessionStorage.setItem("username",username);
-                sessionStorage.setItem("telefoonnummer", telefoonnummer);
-            }
-        }
+               sessionStorage.setItem("userdata", JSON.stringify( response.data.items[0]));
+               userdata=JSON.parse(sessionStorage.getItem("userdata"));
+
+            
         toon_gebruiker_naam(); 
 
     }).fail(function (msg) {
@@ -185,12 +179,12 @@ function krijg_naam()
 function toon_gebruiker_naam()
 {
     var token_check= sessionStorage.getItem("token");
-    console.log(username);
+    //console.log(username);
     console.log(sessionStorage);
     if(token_check!=null)
     {
         document.getElementById("gebruikersnaam").style.display = "block";
-        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}<br>(Klant nummer: ${user_id})</a>
+        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${userdata.naam}<br>(Klant nummer: ${userdata.user_id})</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
         </div>`;
@@ -738,6 +732,7 @@ function haalWinkelwagentjeOp() {
         toon_aantal_bestellingen();            
         
         var winkelwagentje = JSON.parse(sessionStorage.getItem("winkelwagentje"));    
+        
        
 
         if (winkelwagentje == null) {
@@ -1058,14 +1053,15 @@ function sessioncontrol()
         for(var i=0;i<winkelwagentje.length;i++)
         {
              if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
-             {
+             {  
+                 
                 var  values= {
                                      "pid":  winkelwagentje[i].pid,
                                      "bsid": winkelwagentje[i].bsid,
                                      "btid": winkelwagentje[i].btid,
-                                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                                      "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                                     "user_id": user_id,
-                                    "catid":catid,
+                                        "catid": winkelwagentje[i].catid,
     
            
                             };
@@ -1078,7 +1074,7 @@ function sessioncontrol()
                     "btid": "0",
                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                    "user_id": user_id,
-                   "catid":catid,
+                   "catid": winkelwagentje[i].catid,
 
 
            };
@@ -1122,44 +1118,105 @@ function sessioncontrol()
 
 }
 
-function post_contact_formulier()
+
+
+function fill_contact_formulier()
 {
-
     var token_check=sessionStorage.getItem("token");
-    //var formData = new FormData();
-
     if(token_check==null)
     {
         window.alert("Please log in to continue further");
-        document.location = "contact1.html?came_from=contact1";
+        
+        document.location= "aanmelden1.html?directed_from=contact1";
 
     }
     else
     {
+        var userdata=JSON.parse(sessionStorage.getItem("userdata"));
+        document.getElementById("defaultContactFormName").value = userdata.naam;
+        document.getElementById("defaultContactFormEmail").value= userdata.email;
+        document.getElementById("defaultContactFormTel").value=userdata.telefoonnummer;
+        console.log(userdata.naam);
+        console.log(userdata.email);
+        console.log(userdata.telefoonnummer);
+    }
+}
 
-        var c_username=document.getElementById("defaultContactFormName").value;
-        var c_email=document.getElementById("defaultContactFormEmail").value;
-        var c_telefoonnummer=document.getElementById("defaultContactFormTel").value;
+function post_contact_formulier()
+{
+
+    var userdata=JSON.parse(sessionStorage.getItem("userdata"));
+    var formData = new FormData();
+
+   
         var c_option =document.getElementById("defaultContactFormInfo").value;
         var klantnummer= document.getElementById("klantnummer").value;;
         var ordernummer= document.getElementById("ordernummer").value;
         var informatie = document.getElementById("vraag").value;
 
-        console.log(c_username);
-        console.log(c_email);
-        console.log(c_telefoonnummer);
+      
         console.log(c_option);
         console.log(klantnummer);
         console.log(ordernummer);
-        console.log(informatie);
+        console.log(informatie); 
+
+       
+            var  values= {
+                "naam": userdata.naam,
+                "email": userdata.email,
+                "telefoonnummer": userdata.telefoonnummer,
+              "user_id": klantnummer,
+               "besid": ordernummer,
+               "omschrijving":informatie,
+
+
+       };
+       
+        formData.set("values", JSON.stringify(values));
+
+
+             $.ajax
+             ({
+                    method: 'POST',
+                    url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=ctest",
+                    headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                     //"filter": ["email", "like", "%" + useremail + "%"]
+                     processData: false,
+                     contentType: false,
+                     data: formData
+                    
+            })
+             .done(function (response) 
+             {
+                console.log("create done:");
+                console.log(response);
+                if (response.status.success == true) {
+                console.log("created");
+                var cfid = response.data.cfid;
+                console.log(cfid);
+                }
+             else {
+                     console.log("not created");
+                    }
+                  
+            })
+            .fail(function (msg) 
+            {
+                    console.log("read fail:");
+                    console.log(msg);
+            });
+
+
+
 
 
     }
 
+
  
 
 
-}
+
 
 function get_vraag_selectie_value()
 {
@@ -1168,9 +1225,10 @@ function get_vraag_selectie_value()
         {
             document.getElementById("bestellingnummer").innerHTML = `
             
-            <label for="ordernummer"> Voer uw bestelnummer in </label> &nbsp &nbsp <label for="klantnummer"> Voer uw klant nummer in </label>
-            <br>
-            <input type="text" id="ordernummer" name="ordernumber"></input> &nbsp &nbsp <input type="text" id="klantnummer" name="ordernumber"></input>
+            <label for="ordernummer"> Voer uw bestelnummer in </label> <input type="text" id="ordernummer" name="ordernumber"></input>    
+            <br>   
+            <label for="klantnummer"> Voer uw klant nummer in </label>  <input type="text" id="klantnummer" name="ordernumber"></input>
+               
             
             `;
            
