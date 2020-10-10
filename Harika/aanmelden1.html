@@ -13,6 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="bzscript1.js"></script>
 </head>
 
@@ -233,14 +234,16 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        </div>
+                    </div>
+                    <form method="post"></form>
                         <div class="modal-body">
                             <p>Voer je e-mailadres in. Je ontvangt een link via e-mail om een nieuw wachtwoord in te stellen.</p>
-                            <input type="email" id="registerFormEmail" class="form-control mb-4" placeholder="E-mail">
+                            <input type="email" id="vergetenEmail" class="form-control mb-4" placeholder="E-mail">
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-cyan" data-dismiss="modal">Wachtwoord Opnieuw Instellen</button>
-                    </div>
+                            <button type="button" class="btn btn-cyan" data-dismiss="modal" onclick="vergetenEmail()">Wachtwoord Opnieuw Instellen</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

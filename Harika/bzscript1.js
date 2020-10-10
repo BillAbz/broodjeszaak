@@ -992,3 +992,17 @@ function sessioncontrol()
 }
 
 
+function vergetenEmail()
+{
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username : "vsa.ned.haluk@gmail.com",
+        Password : "Dorado.2678",
+        To : document.getElementById("vergetenEmail"),
+        From : "vsa.ned.haluk@gmail.com",
+        Subject : "Wachtwoord vergeten",
+        Body : "Je wachtwoord:",
+    }).then(
+        alert("E-mail succesvol verzonden")
+    );
+}
