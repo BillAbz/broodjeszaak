@@ -5,6 +5,11 @@ var broodtype=[];
 var huidig_product;
 var verwijder_huidig_product;
 var date = new Date();
+var date1 = date.getDate();
+var month1 = date.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+var year1 = date.getFullYear();
+var huidig_date=date1 + "/" + month1 + "/" + year1;
+console.log(huidig_date);
 var day=date.getDay();
 console.log(day);
 var broodsoort_gekozen ;
@@ -29,6 +34,7 @@ var userdata;
 var username;
 var user_id;
 var telefoonnummer;
+var total_no_of_products;
 
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
@@ -662,26 +668,6 @@ function haalWinkelwagentjeOp() {
 } 
 
 
-
-/*
-
-var bestellingen = JSON.parse(localStorage.getItem("bestelling"));
- 
-if(bestellingen == null)
-{
-    bestellingen =[];
-
-}
-
-
-
-
-
-*/
-
-
-
-
 function toon_aantal_bestellingen()
 {
     rowid=sessionStorage.getItem('rowid');
@@ -768,6 +754,7 @@ function toon_winkel_wagentje()
     var winkelwagentje=haalWinkelwagentjeOp();
     
     final_bedrag=0.0;
+    total_no_of_products=0;
 
     document.getElementById("winkeltablebody").innerHTML="";
     
@@ -819,6 +806,8 @@ function toon_winkel_wagentje()
 
         final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
         final_bedrag = final_bedrag.toFixed(2);
+        total_no_of_products = total_no_of_products + Number(winkelwagentje[i].totaal_stuks);
+        console.log(total_no_of_products);
     }
    
     tabledata1 += ` <tr>
@@ -839,41 +828,7 @@ function toon_winkel_wagentje()
     document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
-/* New function*/
-function winkel_samenvatting()
-{
-    document.getElementById("winkelsamenvatting").innerHTML="";
-    var winkelwagentje=haalWinkelwagentjeOp();
-    
-    for(var i=0; i<winkelwagentje.length; i++)
-    {
-        var samenvattingdata ="";
-        var samenvattingdata1=""
-        samenvattingdata += "<tr>";
 
-        if(winkelwagentje[i].snaam!=null)
-        {  
-            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
-        }
-        else
-        {
-            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
-        }
-        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
-        samenvattingdata += "</tr>";
-
-        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
-    }
-    samenvattingdata1 += ` <tr>
-        <td>
-            <strong>Totaal</strong>
-        </td>
-        <td>
-            <strong> ${final_bedrag} </strong>
-        </td>
-    </tr>`
-    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
-}
 
 
 function aantal_prijs_wijzigen(rowid)
@@ -965,6 +920,7 @@ function sessioncontrol()
                     "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                     "user_id": user_id,
                     "catid": winkelwagentje[i].catid,
+                    "datum": date,
                 };
             }
             else
@@ -977,6 +933,7 @@ function sessioncontrol()
                     "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                     "user_id": user_id,
                     "catid": winkelwagentje[i].catid,
+                    "datum": date,
                 };
             }
             formData.set("values", JSON.stringify(values));
@@ -1016,6 +973,99 @@ function sessioncontrol()
 }
 
 
+function winkel_samenvatting()
+{
+    document.getElementById("winkelsamenvatting").innerHTML="";
+   
+
+    var formData = new FormData();
+    
+    var  values= {
+                        "user_id": user_id,
+                        "datum": date,
+                        "totaal_stuks": total_no_of_products,
+                        "totaal_bedrag": final_bedrag,
+                        
+                };
+    formData.set("values", JSON.stringify(values));
+    $.ajax
+                 ({
+                        method: 'POST',
+                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=bestelling",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                         //"filter": ["email", "like", "%" + useremail + "%"]
+                         processData: false,
+                         contentType: false,
+                         data: formData
+                        
+                })
+                 .done(function (response) 
+                 {
+                    console.log("create done:");
+                    console.log(response);
+                    if (response.status.success == true) 
+                    {
+                                 console.log("created");
+                                 var besid = response.data.item_id;
+                                 console.log(besid);
+                                 samenvattingdata(besid);
+                    }
+                    else 
+                    {
+                        console.log("not created");
+                    }
+                      
+                })
+                .fail(function (msg) 
+                {
+                        console.log("read fail:");
+                        console.log(msg);
+                });
+}
+
+function samenvattingdata(besid)
+{
+    var winkelwagentje=haalWinkelwagentjeOp();
+
+        var samenvattingdata2 ="";
+        samenvattingdata2 += "<td>" + "Bestelling Number :  " + besid + 
+                             "<br>" + "Klant Number :   " + user_id + "</td>" + 
+                             "<br>" + "Datum :   " + huidig_date + "</td>";
+        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata2;
+
+        for(var i=0; i<winkelwagentje.length; i++)
+        {
+                var samenvattingdata ="";
+                var samenvattingdata1=""
+                samenvattingdata += "<tr>";
+
+                
+
+                if(winkelwagentje[i].snaam!=null)
+                {  
+                    samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
+                }
+                else
+                {
+                        samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
+                }
+                        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+                        samenvattingdata += "</tr>";
+
+                document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
+        }
+            samenvattingdata1 += ` <tr>
+            <td>
+                    <strong>Totaal</strong>
+            </td>
+            <td>
+                    <strong> ${final_bedrag} </strong>
+            </td>
+                                    </tr>`
+            //document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+            document.getElementById("winkelsamenvatting").innerHTML +=  samenvattingdata1;
+}
+
 function vergetenWachtwoord()
 {
     Email.send({
@@ -1030,3 +1080,40 @@ function vergetenWachtwoord()
         alert("E-mail succesvol verzonden")
     );
 }
+
+
+/* New function
+function winkel_samenvatting()
+{
+    document.getElementById("winkelsamenvatting").innerHTML="";
+    var winkelwagentje=haalWinkelwagentjeOp();
+    
+    for(var i=0; i<winkelwagentje.length; i++)
+    {
+        var samenvattingdata ="";
+        var samenvattingdata1=""
+        samenvattingdata += "<tr>";
+
+        if(winkelwagentje[i].snaam!=null)
+        {  
+            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
+        }
+        else
+        {
+            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
+        }
+        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+        samenvattingdata += "</tr>";
+
+        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
+    }
+    samenvattingdata1 += ` <tr>
+        <td>
+            <strong>Totaal</strong>
+        </td>
+        <td>
+            <strong> ${final_bedrag} </strong>
+        </td>
+    </tr>`
+    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+}*/

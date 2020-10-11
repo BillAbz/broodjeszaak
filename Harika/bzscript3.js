@@ -29,6 +29,7 @@ var userdata;
 var username;
 var user_id;
 var user_telefoonnummer;
+var total_no_of_products;
 
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
@@ -78,7 +79,7 @@ function inloggen() {
     var error_text;
     //alert(email);
 
-    errormessage.style.padding="10px";
+    //errormessage.style.padding="10px";
 
     if(email=="" && password=="")
     {
@@ -855,6 +856,7 @@ function toon_winkel_wagentje()
     var winkelwagentje=haalWinkelwagentjeOp();
     
     final_bedrag=0.0;
+    total_no_of_products=0;
 
     document.getElementById("winkeltablebody").innerHTML="";
     
@@ -906,6 +908,9 @@ function toon_winkel_wagentje()
 
         final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
         final_bedrag = final_bedrag.toFixed(2);
+        total_no_of_products = total_no_of_products + Number(winkelwagentje[i].totaal_stuks);
+        console.log(total_no_of_products);
+
     }
    
     tabledata1 += ` <tr>

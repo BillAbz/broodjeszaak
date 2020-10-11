@@ -5,6 +5,10 @@ var broodtype=[];
 var huidig_product;
 var verwijder_huidig_product;
 var date = new Date();
+var date1 = date.getDate();
+var month1 = date.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+var year1 = date.getFullYear();
+var huidig_date=date1 + "/" + month1 + "/" + year1;
 var day=date.getDay();
 console.log(day);
 var broodsoort_gekozen ;
@@ -29,6 +33,7 @@ var username;
 var user_id;
 var browid=1;
 var user_telefoonnummer;
+var total_no_of_products;
 
 
 function start()
@@ -97,14 +102,10 @@ function registreren() {
 function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
-
+   
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
-    // document.location = "contact1.html?came_from=contact1";
-    const urlParams2 = new URLSearchParams(window.location.search);
-    const came_from = urlParams2.get("came_from");
-
-     
+    
     $.ajax
     ({
         url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
@@ -124,22 +125,16 @@ function inloggen() {
         {
             document.location = "wagentje1.html";
         }
-        else if(came_from=="contact1")
-        {
-            document.location = "contact1.html";
-        }
         else
         {
             document.location= "producten1.html?catid=";
         }
-        
         //document.location = "producten1.html?catid=";
-        
     })
     .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
-        alert("Ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!");
+        $("#verkeerdeWachtwoordModal").modal();
     });
 }
 
@@ -152,22 +147,20 @@ function krijg_naam()
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
         headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        "filter": ["email", "like", "%" + useremail + "%"]
+        data:
+        {
+                "filter": ["email", "like", "%" + useremail + "%"]
+        }
     })
     .done(function (response) {
         console.log(response);
         userdata=response.data.items;
-        for(var i=0;i<userdata.length;i++)
-        {
-            if(useremail==userdata[i].email)
-            {
-                username=userdata[i].naam;
-                user_id=userdata[i].user_id;
-                user_telefoonnummer=userdata[i].telefoonnummer;
+        
+                username=response.data.items[0].naam;
+                user_id=response.data.items[0].user_id;
+                telefoonnummer=response.data.items[0].telefoonnummer;
                 sessionStorage.setItem("username",username);
-                sessionStorage.setItem("telefoonnummer", telefoonnummer)
-            }
-        }
+          
         toon_gebruiker_naam(); 
 
     }).fail(function (msg) {
@@ -817,6 +810,7 @@ function toon_winkel_wagentje()
     var winkelwagentje=haalWinkelwagentjeOp();
     
     final_bedrag=0.0;
+    total_no_of_products=0;
 
     document.getElementById("winkeltablebody").innerHTML="";
     
@@ -873,7 +867,8 @@ function toon_winkel_wagentje()
 
         final_bedrag = Number(final_bedrag) + Number(winkelwagentje[i].totaal_bedrag);
         final_bedrag = final_bedrag.toFixed(2);
-
+        total_no_of_products = total_no_of_products + Number(winkelwagentje[i].totaal_stuks);
+        console.log(total_no_of_products);
         
 
 }
@@ -971,36 +966,95 @@ function verwijder_bestelling(rowid)
 function winkel_samenvatting()
 {
     document.getElementById("winkelsamenvatting").innerHTML="";
-    var winkelwagentje=haalWinkelwagentjeOp();
+   
+
+    var formData = new FormData();
     
-    for(var i=0; i<winkelwagentje.length; i++)
-    {
-        var samenvattingdata ="";
-        var samenvattingdata1=""
-        samenvattingdata += "<tr>";
+    var  values= {
+                        "user_id": user_id,
+                        "datum": date,
+                        "totaal_stuks": total_no_of_products,
+                        "totaal_bedrag": final_bedrag,
+                        
+                };
+    formData.set("values", JSON.stringify(values));
+    $.ajax
+                 ({
+                        method: 'POST',
+                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=bestelling",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                         //"filter": ["email", "like", "%" + useremail + "%"]
+                         processData: false,
+                         contentType: false,
+                         data: formData
+                        
+                })
+                 .done(function (response) 
+                 {
+                    console.log("create done:");
+                    console.log(response);
+                    if (response.status.success == true) 
+                    {
+                                 console.log("created");
+                                 var besid = response.data.item_id;
+                                 console.log(besid);
+                                 samenvattingdata(besid);
+                    }
+                    else 
+                    {
+                        console.log("not created");
+                    }
+                      
+                })
+                .fail(function (msg) 
+                {
+                        console.log("read fail:");
+                        console.log(msg);
+                });
+}
 
-        if(winkelwagentje[i].snaam!=null)
-        {  
-            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
-        }
-        else
+function samenvattingdata(besid)
+{
+    var winkelwagentje=haalWinkelwagentjeOp();
+
+    var samenvattingdata2 ="";
+
+    samenvattingdata2 += "<td>" + "Bestelling Number :  " + besid + 
+                         "<br>" + "Klant Number :   " + user_id + "</td>" + 
+                         "<br>" + "Datum :   " + huidig_date + "</td>";
+    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata2;
+
+        for(var i=0; i<winkelwagentje.length; i++)
         {
-            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
-        }
-        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
-        samenvattingdata += "</tr>";
+                var samenvattingdata ="";
+                var samenvattingdata1=""
+                samenvattingdata += "<tr>";
 
-        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
-    }
-    samenvattingdata1 += ` <tr>
-        <td>
-            <strong>Totaal</strong>
-        </td>
-        <td>
-            <strong> ${final_bedrag} </strong>
-        </td>
-    </tr>`
-    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+                
+
+                if(winkelwagentje[i].snaam!=null)
+                {  
+                    samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
+                }
+                else
+                {
+                        samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
+                }
+                        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+                        samenvattingdata += "</tr>";
+
+                document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
+        }
+            samenvattingdata1 += ` <tr>
+            <td>
+                    <strong>Totaal</strong>
+            </td>
+            <td>
+                    <strong> ${final_bedrag} </strong>
+            </td>
+                                    </tr>`
+            //document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+            document.getElementById("winkelsamenvatting").innerHTML +=  samenvattingdata1;
 }
 
 
@@ -1034,7 +1088,7 @@ function sessioncontrol()
                                      "btid": winkelwagentje[i].btid,
                                     "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                                     "user_id": user_id,
-                                     "catid":catid,
+                                     "catid":winkelwagentje[i].catid,
     
            
                             };
@@ -1047,7 +1101,7 @@ function sessioncontrol()
                     "btid": "0",
                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
                    "user_id": user_id,
-                   "catid":catid,
+                   "catid":winkelwagentje[i].catid,
 
 
            };
@@ -1090,8 +1144,20 @@ function sessioncontrol()
 
 
 }
+function vergetenWachtwoord()
+{
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username : "vsa.ned.haluk@gmail.com",
+        Password : "Dorado.2678",
+        To : "ha_look@yahoo.com",
+        From : "vsa.ned.haluk@gmail.com",
+        Subject : "Wachtwoord vergeten",
+        Body : "Je wachtwoord:",
+    }).then(
+        alert("E-mail succesvol verzonden")
+    );
+}
 
-//sessionStorage.setItem("gebruiker", email);
-//Call this function in body onload of contact page
 
 
