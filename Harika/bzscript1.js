@@ -1040,8 +1040,8 @@ function samenvattingdata(besid)
     var winkelwagentje=haalWinkelwagentjeOp();
 
         var samenvattingdata2 ="";
-        samenvattingdata2 += "<td>" + "Bestelling Number :  " + besid + 
-                             "<br>" + "Klant Number :   " + user_id + "</td>" + 
+        samenvattingdata2 += "<td>" + "Bestellingnummer :  " + besid + 
+                             "<br>" + "Klantnummer :   " + user_id + "</td>" + 
                              "<br>" + "Datum :   " + huidig_date + "</td>";
         document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata2;
 
