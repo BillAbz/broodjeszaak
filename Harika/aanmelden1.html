@@ -91,20 +91,16 @@
                             <div class="card-body">
     
                                 <!--<form class="text-center" id="loginform" onsubmit="return login_form_validation()">-->
-                                    <form class="text-center" id="loginform"></form>
+                                <form class="text-center" id="loginform">
                                     <!-- Reecieve token through id="loginFormEmail" and  id="loginFormPassword"-->
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Al klant?</p>
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Log in</p>
-                                   
-                                        
 
-                                  
-                                    <input type="email" id="login_email" class="form-control mb-4" placeholder="E-mail">
-                                   
-                                    <input type="password" id="login_wachtwoord" class="form-control mb-4" placeholder="Wachtwoord">
-                                    
-
-                                    <div class="d-flex justify-content-around">
+                                    <input type="email" id="login_email" class="form-control" placeholder="E-mail" required>
+                                    <div id="login_warning_0"></div>
+                                    <input type="password" id="login_wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" required>
+                                    <div id="login_warning_1"></div>
+                                    <div class="d-flex justify-content-around mt-4">
                                         <div>
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="loginFormRemember">
@@ -116,7 +112,7 @@
                                         </div>
                                     </div>
                                    
-                                    <button class="btn btn-cyan btn-block my-4" type="button" onclick="inloggen();">Log in</button>
+                                    <button class="btn btn-cyan btn-block my-4" type="button" onclick="validatie();">Log in</button>
                                 
                                     <p>of log in met:</p>
                                 
@@ -144,22 +140,22 @@
                                 
                                     <div class="form-row mb-4">
                                         <div class="col">
-                                            <input type="text" id="voornaam" class="form-control" placeholder="Voornaam">
+                                            <input type="text" id="voornaam" class="form-control" placeholder="Voornaam" required>
                                         </div>
                                         <div class="col">
-                                            <input type="text" id="achternaam" class="form-control" placeholder="Achternaam">
+                                            <input type="text" id="achternaam" class="form-control" placeholder="Achternaam" required>
                                         </div>
                                     </div>
                                     
-                                    <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
-                                    <input type="text" id="telefoonnummer" class="form-control mb-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock">
-                                    <input type="password" id="wachtwoord" class="form-control" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock">
+                                    <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" required>
+                                    <input type="text" id="telefoonnummer" class="form-control mb-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock" required>
+                                    <input type="password" id="wachtwoord" class="form-control" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock" required>
                                     <small id="registerFormPasswordHelpBlock" class="form-text text-muted mb-4">Minimaal 8 karakters en 1 cijfer</small>
                                     
                                     <hr>
 
-                                    <input type="text" id="adres" class="form-control my-4" placeholder="Adres">
-                                    <input type="text" id="postcode" class="form-control mb-4" placeholder="Postcode">
+                                    <input type="text" id="adres" class="form-control my-4" placeholder="Adres" required>
+                                    <input type="text" id="postcode" class="form-control mb-4" placeholder="Postcode" required>
                                     <select class="browser-default custom-select mb-4">
                                         <option value="België" selected disabled>België</option>
                                     </select>

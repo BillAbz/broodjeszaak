@@ -81,7 +81,7 @@ function registreren() {
 function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
-   
+    
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
     
@@ -111,12 +111,24 @@ function inloggen() {
         //document.location = "producten1.html?catid=";
     })
     .fail(function (msg) {
-        console.log("registiration fail:");
+        console.log("log in fail:");
         console.log(msg);
-        $("#verkeerdeWachtwoordModal").modal();
+        //$("#verkeerdeWachtwoordModal").modal();
     });
 }
 
+
+function validatie(){
+    document.getElementById("login_warning_0").innerHTML= "";
+    document.getElementById("login_warning_1").innerHTML= "";
+
+    var form = $("#loginform");
+    $('input', form).each(function(index) {
+       if ($(this)[0].checkValidity() == false) {
+        document.getElementById("login_warning_"+index).innerHTML= '<small class="form-text text-muted mb-4">Vul alstublieft dit veld in!</small>'
+       } else {inloggen()}
+    })
+}
 
 
 function krijg_naam()
