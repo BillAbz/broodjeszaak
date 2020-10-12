@@ -413,7 +413,7 @@ function create_modal(catid,pid)
                                 <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 cents extra <br>
                                 <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baugette => 0.50 cents extra
+                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baguette => 0.50 cents extra
                             </div>
 
                             
