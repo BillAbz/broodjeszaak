@@ -320,7 +320,7 @@ function maak_tabel(producten1)
             p1=p1.toFixed(2);
             var p2= Number(producten1[i].prodprijs) + Number(broodsoort[1].bsprijs);
             p2=p2.toFixed(2);
-            tabledata += "<td>" + "Picolo =>"  + "€ " + p1 +  
+            tabledata += "<td>" + "Piccolo =>"  + "€ " + p1 +  
                         "<br>" + "Halve Baget=>" + "€ " + p2 + 
                         "</td>";
         }
@@ -336,7 +336,7 @@ function maak_tabel(producten1)
         tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
         */
 
-        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Kueze</button>` +
+        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Keuze</button>` +
                     "</td>";
         tabledata += "</tr>";
 
@@ -404,33 +404,33 @@ function create_modal(catid,pid)
                         <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                         <form>
                             <div class="form-group">
-                                <label for="naam">Het Beleg Gekozen</label>
+                                <label for="naam"> Keuze Beleg</label>
                                 <input type="text" class="form-control" id="naam" placeholder="" disabled>
                             </div>
 
                             <div class="form-group">
-                                <label> Kies Brood Soort </label><br>
+                                <label> Keuze Broodsoort </label><br>
                                 <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 cents extra <br>
+                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 euro extra <br>
                                 <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve Baugette => 0.50 cents extra
+                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baguette => 0.50 euro extra
                             </div>
 
                             
                             <div class="form-group" >
-                                <label>Kies Brood Type</label><br>
+                                <label>Keuze Broodtype</label><br>
                                 <img src="${broodtype[0].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => 0.50 cents extra <br>
+                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => 0.50 euro extra <br>
                                 <img src="${broodtype[1].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => 0.75 cents extra <br>
+                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => 0.75 euro extra <br>
                                 <img src="${broodtype[2].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen => 1 euro extra 
                             </div>
 
                             <div class="form-group">
-                                <label>Wil Je graag Smos?</label><br>
+                                <label>Smos?</label><br>
                                 <input type="radio" id="1" name="smosselected" value="0" onclick="get_radio_button_value('0','smos','${catid}','1','Geen Smos')" checked>Neen <br>
-                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => Extra 0.70 Cent betalen
+                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => Extra 0.70 euro betalen
                             </div>  
 
                                 <div class="form-group">
@@ -478,7 +478,7 @@ function create_modal(catid,pid)
                         <!-- CREATION OF FORM ELEMENT WHEN KEUZE BUTTON IS CLICKED-->
                         <form>
                             <div class="form-group">
-                                <label for="naam">Het Beleg Gekozen</label>
+                                <label for="naam"> Keuze Beleg </label>
                                 <input type="text" class="form-control" id="naam" placeholder="" disabled>
                             </div>
 
@@ -580,18 +580,18 @@ function update_modal(catid)
         }
         else if(catid==1 && day!=5)
         {
-            document.getElementById("promotieid").value="5% korting op alle Klassieke Broodjes op elke vrijdag";
+            document.getElementById("promotieid").value="5% korting op alle Klassieke Broodjes elke vrijdag";
         }
         else if(day===2 && catid==2)
         {
-            document.getElementById("promotieid").value="10% korting op alle Speciale Broodjes vandaag (Dinsdag)";
+            document.getElementById("promotieid").value="10% korting op alle Speciale Broodjes vandaag (dinsdag)";
             document.getElementById("totaalprijsspan").innerHTML= "&nbsp" + "<b>"+"Total Prijs voor Korting:"+ "&nbsp" +"€"+ voor_korting_prijs+ "</b>";
        
             console.log("total_prijs after discount", total_prijs);
         }
         else if(day!=2 && catid==2)
         {
-            document.getElementById("promotieid").value="10% korting op alle Speciale Broodjes op elke Dinsdag";
+            document.getElementById("promotieid").value="10% korting op alle Speciale Broodjes elke dinsdag";
         }
         document.getElementById("prijs").value = total_prijs;
     }
@@ -599,14 +599,14 @@ function update_modal(catid)
     {
         if(catid==3 && day==3)
         {
-            document.getElementById("promotieid").value="20% korting op alle koude schotels vandaag (Woensdag)";
+            document.getElementById("promotieid").value="20% korting op alle koude schotels vandaag (woensdag)";
             document.getElementById("totaalprijsspan").innerHTML= "&nbsp" + "<b>"+"Total Prijs voor Korting:"+ "&nbsp" +"€"+ voor_korting_prijs+ "</b>";
 
             console.log("total_prijs after discount", total_prijs);
         }
         else if(catid==3 && day!=3)
         {
-            document.getElementById("promotieid").value="20% korting op alle Speciale Broodjes op elke Woensdag";
+            document.getElementById("promotieid").value="20% korting op alle Speciale Broodjes elke woensdag";
         }
         else if(catid==4)
         {
@@ -1040,8 +1040,8 @@ function samenvattingdata(besid)
     var winkelwagentje=haalWinkelwagentjeOp();
 
         var samenvattingdata2 ="";
-        samenvattingdata2 += "<td>" + "Bestelling Number :  " + besid + 
-                             "<br>" + "Klant Number :   " + user_id + "</td>" + 
+        samenvattingdata2 += "<td>" + "Bestellingnummer :  " + besid + 
+                             "<br>" + "Klantnummer :   " + user_id + "</td>" + 
                              "<br>" + "Datum :   " + huidig_date + "</td>";
         document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata2;
 
