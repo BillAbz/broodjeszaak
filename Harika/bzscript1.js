@@ -409,7 +409,7 @@ function create_modal(catid,pid)
                             </div>
 
                             <div class="form-group">
-                                <label> Keuze BroodSoort </label><br>
+                                <label> Keuze Broodsoort </label><br>
                                 <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 cents extra <br>
                                 <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
@@ -428,7 +428,7 @@ function create_modal(catid,pid)
                             </div>
 
                             <div class="form-group">
-                                <label>smos?</label><br>
+                                <label>Smos?</label><br>
                                 <input type="radio" id="1" name="smosselected" value="0" onclick="get_radio_button_value('0','smos','${catid}','1','Geen Smos')" checked>Neen <br>
                                 <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => Extra 0.70 Cent betalen
                             </div>  
