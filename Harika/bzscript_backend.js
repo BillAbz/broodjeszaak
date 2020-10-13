@@ -104,15 +104,15 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        if(directed_from=="wagentje1")
+        /*if(directed_from=="wagentje1")
         {
             document.location = "wagentje1.html";
         }
         else
         {
             document.location= "producten1.html?catid=";
-        }
-        //document.location = "producten1.html?catid=";
+        }*/
+        document.location = "producten_backend.html";
     })
     .fail(function (msg) {
         console.log("log in fail:");
@@ -121,6 +121,20 @@ function inloggen() {
     });
 }
 
+function vergetenWachtwoord()
+{
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username : "vsa.ned.haluk@gmail.com",
+        Password : "Dorado.2678",
+        To : "ha_look@yahoo.com",
+        From : "vsa.ned.haluk@gmail.com",
+        Subject : "Wachtwoord vergeten",
+        Body : "Je wachtwoord:",
+    }).then(
+        alert("E-mail succesvol verzonden")
+    );
+}
 
 function krijg_naam()
 {
