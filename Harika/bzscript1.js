@@ -173,17 +173,17 @@ function krijg_naam()
         headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         data:
         {
-                "filter": ["email", "like", "%" + useremail + "%"]
+            "filter": ["email", "like", "%" + useremail + "%"]
         }
     })
     .done(function (response) {
         console.log(response);
         userdata=response.data.items;
         
-                username=response.data.items[0].naam;
-                user_id=response.data.items[0].user_id;
-                telefoonnummer=response.data.items[0].telefoonnummer;
-                sessionStorage.setItem("username",username);
+        username=response.data.items[0].naam;
+        user_id=response.data.items[0].user_id;
+        telefoonnummer=response.data.items[0].telefoonnummer;
+        sessionStorage.setItem("username",username);
           
         toon_gebruiker_naam(); 
 
@@ -257,8 +257,26 @@ function start()
     if(catid!="")
     {
         filter_producten_category(catid); 
+        
     }
-    
+
+    if (catid==1)
+    {
+        document.getElementById("klassieke").innerHTML=`<a class="btn btn-white btn-outline-default btn-lg z-depth-5"><h4><strong>KLASSIEKE BROODJES</strong></h4></a>`;
+    }
+    else if(catid==2)
+    {
+        document.getElementById("speciale").innerHTML=`<a class="btn btn-white btn-outline-default btn-lg z-depth-5"><h4><strong>SPECIALE BROODJES</strong></h4></a>`;
+    }
+    else if(catid==3)
+    {
+        document.getElementById("schotel").innerHTML=`<a class="btn btn-white btn-outline-default btn-lg z-depth-5"><h4><strong>KOUDE SCHOTELS</strong></h4></a>`;
+    }
+    else if(catid==4)
+    {
+        document.getElementById("drankjes").innerHTML=`<a class="btn btn-white btn-outline-default btn-lg z-depth-5"><h4><strong>DRANKJES</strong></h4></a>`;
+    }
+
     filter_producten_category(catid); //else got to alle producten
     haalWinkelwagentjeOp();
 }
@@ -452,7 +470,6 @@ function create_modal(catid,pid)
                                 </label><br>
                                 </div>
 
-                            
                             <div class="form-group" >
                                 <label>Keuze Broodtype</label><br>
                                 <img src="${broodtype[0].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
@@ -574,6 +591,7 @@ function voorberekening(catid)
     update_modal(catid);     
 }
 
+
 function berekening(catid)
 {
     if(catid==1 || catid==2)
@@ -663,6 +681,7 @@ function update_modal(catid)
    
 }
 
+
 function aantal_kiezen(pid, catid) 
 {
     if(catid==1 || catid==2)
@@ -704,14 +723,13 @@ function get_radio_button_value(price, bst, catid, id, naam)
         console.log(smos_gekozen_naam);
         console.log("smos_gekozen_id via radio button:",smos_gekozen_id);
     }
-
     berekening(catid);
     update_modal(catid);
 }
 
 
-function haalWinkelwagentjeOp() {    
-        
+function haalWinkelwagentjeOp() 
+{    
     toon_aantal_bestellingen();            
     
     var winkelwagentje = JSON.parse(sessionStorage.getItem("winkelwagentje"));    
@@ -1135,23 +1153,22 @@ function vergetenWachtwoord()
 }
 
 
-function contactformulier() {
+function contactformulier() 
+{
     var contactuserid = "";
     var contactbestellingid = "";
     var datum_bestelling = "";
-    if(document.getElementById("klantnummer") !== null){
+    if(document.getElementById("klantnummer") !== null)
+    {
         var contactuserid = document.getElementById("klantnummer").value;
         var contactbestellingid = document.getElementById("ordernummer").value;
         var datum_bestelling = document.getElementById("bestellingdatum").value;
-    }
-
-            
-            var contactnaam = document.getElementById("defaultContactFormName").value;
-            var contactemail = document.getElementById("defaultContactFormEmail").value;
-            var contacttelefoon = document.getElementById("defaultContactFormTel").value;
-            var contactomschrijving = document.getElementById("vraag").value;
-            var datum = new Date();
-            
+    }   
+    var contactnaam = document.getElementById("defaultContactFormName").value;
+    var contactemail = document.getElementById("defaultContactFormEmail").value;
+    var contacttelefoon = document.getElementById("defaultContactFormTel").value;
+    var contactomschrijving = document.getElementById("vraag").value;
+    var datum = new Date();
             
     var settings = {
         "async": true,
@@ -1164,50 +1181,37 @@ function contactformulier() {
             \"omschrijving\" : \"${contactomschrijving}\", \"user_id\" : \"${contactuserid}\", \"besid\" : \"${contactbestellingid}\",
             \"datum_bestelling\" : \"${datum_bestelling}\", \"datum_cf\" : \"${huidig_date2}\"}`        
         }
-      }
+    }
       
-      $.ajax(settings).done(function (response) {
+    $.ajax(settings).done(function (response) {
         console.log(response);
         var cfid = response.data.cfid;
         console.log(cfid);
-      })
-
-            .fail(function (msg) 
-            {
-                    console.log("read fail:");
-                    console.log(msg);
-            });
-
-
-
-
-
-    }
+    })
+    .fail(function (msg) 
+    {
+        console.log("read fail:");
+        console.log(msg);
+    });
+}
 
     
 function get_vraag_selectie_value()
 {
     var c_option =document.getElementById("defaultContactFormInfo").value;
     if (c_option==2 || c_option == 3)
-        {
-            document.getElementById("bestellingnummer").innerHTML = `
-            
-            <label for="ordernummer"> Voer uw bestelnummer in </label> <input type="text" id="ordernummer" name="ordernummer"></input>    
-            <br>   
-            <label for="klantnummer"> Voer uw klant nummer in </label>  <input type="text" id="klantnummer" name="klantnummer"></input>
-            <br>
-            <label for="bestellingdatum"> Voer uw datum van bestelling in (yyyy/mm/dd) </label>  <input type="text" id="bestellingdatum" name="bestellingdatum"></input>
-               
-            
-            `;
-           
-          
-        }
-    else{
+    {
+        document.getElementById("bestellingnummer").innerHTML = `  
+            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in">
+            <input type="text" id="klantnummer" class="form-control mb-4" placeholder="Voer uw klant nummer in">
+            <input type="text" id="bestellingdatum" class="form-control mb-4" placeholder="Voer uw datum van bestelling in">
+        `;
+    }
+    else
+    {
         document.getElementById("bestellingnummer").innerHTML = "";
     }
 }
-
 
 
 /* New function
