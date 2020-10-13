@@ -5,8 +5,10 @@ var broodtype=[];
 var huidig_product;
 var verwijder_huidig_product;
 var date = new Date();
-var day=date.getDay();
-console.log(day);
+var date1 = date.getDate();
+var month1 = date.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+var year1 = date.getFullYear();
+var huidig_date=year1 + "/" + month1 + "/" + date1;
 var broodsoort_gekozen ;
 var broodtype_gekozen ;
 var broodsoort_gekozen_id;
@@ -263,29 +265,42 @@ function start()
  
 }
 function contactformulier() {
-    if(document.getElementById("klantnummer").value !== undefined ||  document.getElementById("ordernummer").value !== undefined){
-        var contactuserid = document.getElementById("klantnummer").value;
-        var contactbestellingid = document.getElementById("ordernummer").value;
+            var contactuserid = document.getElementById("klantnummer").value;
+            var contactbestellingid = document.getElementById("ordernummer").value;
+            var contactnaam = document.getElementById("defaultContactFormName").value;
+            var contactemail = document.getElementById("defaultContactFormEmail").value;
+            var contacttelefoon = document.getElementById("defaultContactFormTel").value;
+            var contactomschrijving = document.getElementById("vraag").value;
+            var datum_bestelling = document.getElementById("bestellingdatum").value;
+            var datum = new Date();
+           
+            var formData = new FormData();
+    
+    var  values= 
+    {
+      "naam" : contactnaam,
+      "email" : contactemail, 
+      "telefoonnummer" : contacttelefoon,
+      "omschrijving" : contactomschrijving,
+      "user_id" : contactuserid,
+      "besid" : contactbestellingid,
+      "datum_bestelling" : datum_bestelling,
+      "datum_cf" : datum   
     }
-
-    var contactnaam = document.getElementById("defaultContactFormName").value;
-    var contactemail = document.getElementById("defaultContactFormEmail").value;
-    var contacttelefoon = document.getElementById("defaultContactFormTel").value;
-    var contactomschrijving = document.getElementById("vraag").value;
-
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
-        "method": "POST",
-        "headers": {},
-        "data": {
-            "values": `{\"naam\" : \"${contactnaam}\", \"email\" : \"${contactemail}\", \"telefoonnummer\" : \"${contacttelefoon}\", 
-            \"omschrijving\" : \"${contactomschrijving}\", \"user_id\" : \"${contactuserid}\", \"besid\" : \"${contactbestellingid}\"}`        
-        }
-      }
+    formData.set("values", JSON.stringify(values));
+            
+    
       
-      $.ajax(settings).done(function (response) {
+      $.ajax({
+        async: true,
+        crossDomain: true,
+        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+        method: "POST",
+        headers: {},
+        data: formData
+              
+        
+      }).done(function (response) {
         console.log(response);
         var cfid = response.data.cfid;
         console.log(cfid);
@@ -317,9 +332,11 @@ function get_vraag_selectie_value()
         {
             document.getElementById("bestellingnummer").innerHTML = `
             
-            <label for="ordernummer"> Voer uw bestelnummer in </label> <input type="text" id="ordernummer" name="ordernumber"></input>    
+            <label for="ordernummer"> Voer uw bestelnummer in </label> <input type="text" id="ordernummer" name="ordernummer"></input>    
             <br>   
-            <label for="klantnummer"> Voer uw klant nummer in </label>  <input type="text" id="klantnummer" name="ordernumber"></input>
+            <label for="klantnummer"> Voer uw klant nummer in </label>  <input type="text" id="klantnummer" name="klantnummer"></input>
+            <br>
+            <label for="bestellingdatum"> Voer uw datum van bestelling in (yyyy/mm/dd) </label>  <input type="text" id="bestellingdatum" name="bestellingdatum"></input>
                
             
             `;
