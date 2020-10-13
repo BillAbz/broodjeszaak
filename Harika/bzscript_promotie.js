@@ -144,7 +144,7 @@ function promoties_tonen_cupons(promotie_cat) {
                                     '<p>' +
                                         '<a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('+promotie_cat[i].catid+')">'+promotie_cat[i].catnaam+'</a>'+
                                     '</p>' +
-                                    '<p class="expire text-center">Expires:' + promotie_cat[i].dag + '</p>' +
+                                    '<p class="expire text-center">' + promotie_cat[i].dag + '</p>' +
                                     '</div>' +
                     '</div>';
                     
