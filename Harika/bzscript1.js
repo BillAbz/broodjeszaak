@@ -1133,6 +1133,8 @@ function vergetenWachtwoord()
         alert("E-mail succesvol verzonden")
     );
 }
+
+
 function contactformulier() {
     var contactuserid = "";
     var contactbestellingid = "";
@@ -1183,12 +1185,6 @@ function contactformulier() {
     }
 
     
-
-
-
-
-
-
 function get_vraag_selectie_value()
 {
     var c_option =document.getElementById("defaultContactFormInfo").value;
