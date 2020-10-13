@@ -9,6 +9,7 @@ var date1 = date.getDate();
 var month1 = date.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
 var year1 = date.getFullYear();
 var huidig_date=year1 + "/" + month1 + "/" + date1;
+console.log(day);
 var broodsoort_gekozen ;
 var broodtype_gekozen ;
 var broodsoort_gekozen_id;
@@ -265,42 +266,37 @@ function start()
  
 }
 function contactformulier() {
-            var contactuserid = document.getElementById("klantnummer").value;
-            var contactbestellingid = document.getElementById("ordernummer").value;
+    var contactuserid = "";
+    var contactbestellingid = "";
+    var datum_bestelling = "";
+    if(document.getElementById("klantnummer") !== null){
+        var contactuserid = document.getElementById("klantnummer").value;
+        var contactbestellingid = document.getElementById("ordernummer").value;
+        var datum_bestelling = document.getElementById("bestellingdatum").value;
+    }
+
+            
             var contactnaam = document.getElementById("defaultContactFormName").value;
             var contactemail = document.getElementById("defaultContactFormEmail").value;
             var contacttelefoon = document.getElementById("defaultContactFormTel").value;
             var contactomschrijving = document.getElementById("vraag").value;
-            var datum_bestelling = document.getElementById("bestellingdatum").value;
             var datum = new Date();
-           
-            var formData = new FormData();
-    
-    var  values= 
-    {
-      "naam" : contactnaam,
-      "email" : contactemail, 
-      "telefoonnummer" : contacttelefoon,
-      "omschrijving" : contactomschrijving,
-      "user_id" : contactuserid,
-      "besid" : contactbestellingid,
-      "datum_bestelling" : datum_bestelling,
-      "datum_cf" : datum   
-    }
-    formData.set("values", JSON.stringify(values));
             
-    
+            
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+        "method": "POST",
+        "headers": {},
+        "data": {
+            "values": `{\"naam\" : \"${contactnaam}\", \"email\" : \"${contactemail}\", \"telefoonnummer\" : \"${contacttelefoon}\", 
+            \"omschrijving\" : \"${contactomschrijving}\", \"user_id\" : \"${contactuserid}\", \"besid\" : \"${contactbestellingid}\",
+            \"datum_bestelling\" : \"${datum_bestelling}\", \"datum_cf\" : \"${huidig_date}\"}`        
+        }
+      }
       
-      $.ajax({
-        async: true,
-        crossDomain: true,
-        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
-        method: "POST",
-        headers: {},
-        data: formData
-              
-        
-      }).done(function (response) {
+      $.ajax(settings).done(function (response) {
         console.log(response);
         var cfid = response.data.cfid;
         console.log(cfid);

@@ -1243,3 +1243,100 @@ function get_vraag_selectie_value()
         document.getElementById("bestellingnummer").innerHTML = "";
     }
 }
+
+
+/*function vul_contactformulier_in()
+{
+    var token_check=sessionStorage.getItem("token");
+    if(token_check==null)
+    {
+        window.alert("Please log in to continue further");
+        
+        document.location= "aanmelden1.html?directed_from=contact1";
+
+    }
+    else
+    {
+        var userdata=JSON.parse(sessionStorage.getItem("userdata"));
+        document.getElementById("defaultContactFormName").value = userdata.naam;
+        document.getElementById("defaultContactFormEmail").value = userdata.email;
+        document.getElementById("defaultContactFormTel").value = userdata.telefoonnummer;
+        console.log(userdata.naam);
+        console.log(userdata.email);
+        console.log(userdata.telefoonnummer);
+    }
+}
+
+function post_contact_formulier()
+{
+
+    var userdata=JSON.parse(sessionStorage.getItem("userdata"));
+    var formData = new FormData();
+
+   
+        var c_option =document.getElementById("defaultContactFormInfo").value;
+        var klantnummer= document.getElementById("klantnummer").value;
+        var ordernummer= document.getElementById("ordernummer").value;
+        var informatie = document.getElementById("vraag").value;
+
+      
+        console.log(c_option);
+        console.log(klantnummer);
+        console.log(ordernummer);
+        console.log(informatie); 
+
+       
+            var  values= {
+                "naam": userdata.naam,
+                "email": userdata.email,
+                "telefoonnummer": userdata.telefoonnummer,
+                "user_id": klantnummer,
+                "besid": ordernummer,
+                "omschrijving": informatie,
+
+
+       };
+       
+        formData.set("values", JSON.stringify(values));
+
+
+             $.ajax
+             ({
+                    method: 'POST',
+                    url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+                    //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                     //"filter": ["email", "like", "%" + useremail + "%"]
+                     processData: false,
+                     contentType: false,
+                     data: formData
+                    
+            })
+             .done(function (response) 
+             {
+                console.log("create done:");
+                console.log(response);
+                if (response.status.success == true) {
+                console.log("created");
+                var cfid = response.data.cfid;
+                console.log(cfid);
+                }
+             else {
+                     console.log("not created");
+                    }
+                  
+            })
+            .fail(function (msg) 
+            {
+                    console.log("read fail:");
+                    console.log(msg);
+            });
+
+
+
+
+
+    }
+
+
+ 
+*/

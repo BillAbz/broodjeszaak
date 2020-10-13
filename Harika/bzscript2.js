@@ -1226,5 +1226,89 @@ function vergetenWachtwoord()
     );
 }
 
+function contactformulier() {
+    var contactuserid = document.getElementById("klantnummer").value;
+    var contactbestellingid = document.getElementById("ordernummer").value;
+    var contactnaam = document.getElementById("defaultContactFormName").value;
+    var contactemail = document.getElementById("defaultContactFormEmail").value;
+    var contacttelefoon = document.getElementById("defaultContactFormTel").value;
+    var contactomschrijving = document.getElementById("vraag").value;
+    var datum_bestelling = document.getElementById("bestellingdatum").value;
+    var datum = new Date();
+   
+    var formData = new FormData();
+
+var  values= {
+"naam" : contactnaam,
+"email" : contactemail, 
+"telefoonnummer" : contacttelefoon,
+"omschrijving" : contactomschrijving,
+"user_id" : contactuserid,
+"besid" : contactbestellingid,
+"datum_bestelling" : datum_bestelling,
+"datum_cf" : datum   
+}
+formData.set("values", JSON.stringify(values));
+    
+
+
+$.ajax({
+async: true,
+crossDomain: true,
+url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+method: "POST",
+headers: {},
+data: formData
+      
+
+}).done(function (response) {
+console.log(response);
+var cfid = response.data.cfid;
+console.log(cfid);
+})
+
+    .fail(function (msg) 
+    {
+            console.log("read fail:");
+            console.log(msg);
+    });
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+function get_vraag_selectie_value()
+{
+console.log('work')
+var c_option =document.getElementById("defaultContactFormInfo").value;
+if (c_option==2 || c_option == 3)
+{
+    document.getElementById("bestellingnummer").innerHTML = `
+    
+    <label for="ordernummer"> Voer uw bestelnummer in </label> <input type="text" id="ordernummer" name="ordernummer"></input>    
+    <br>   
+    <label for="klantnummer"> Voer uw klant nummer in </label>  <input type="text" id="klantnummer" name="klantnummer"></input>
+    <br>
+    <label for="bestellingdatum"> Voer uw datum van bestelling in (yyyy/mm/dd) </label>  <input type="text" id="bestellingdatum" name="bestellingdatum"></input>
+       
+    
+    `;
+   
+  
+}
+else{
+document.getElementById("bestellingnummer").innerHTML = "";
+}
+}
+
 
 
