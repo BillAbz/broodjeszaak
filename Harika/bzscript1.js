@@ -1081,7 +1081,7 @@ function samenvattingdata(besid)
 
     var samenvattingdata2 ="";
     samenvattingdata2 += "<td>" + "Bestellingnummer :  " + besid + 
-                            "<br>" + "Klantnummer :   " + user_id + "</td>" + 
+                            "<br>" + "Klantnummer :   " + user_id +  
                             "<br>" + "Datum :   " + huidig_date + "</td>";
     document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata2;
 
