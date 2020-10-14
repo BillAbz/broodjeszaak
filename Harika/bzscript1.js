@@ -1059,7 +1059,9 @@ function winkel_samenvatting()
         "user_id": user_id,
         "datum": date,
         "totaal_stuks": total_no_of_products,
-        "totaal_bedrag": final_bedrag,      
+        "totaal_bedrag": final_bedrag,  
+        "betaald": "0",
+        "geleverd": "0",   
     };
     formData.set("values", JSON.stringify(values));
     $.ajax

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>HBH Broodjeszaak - Producten Beheren</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
+    <script src="bzscript_backend_harika.js"></script>
+</head>
+
+<body onload="krijg_naam();">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" >
+            
+           
+                <img class="navbar-brand" src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+           
+            <h3 style="color: white;">Bestelling Overzicht</h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="bestellingen_backend1.html"  role="button" >Bestellingen_Beheren</a>
+
+                      
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminaanmelden_bestellingen.html" >Admin_Aanmelden</a>
+                     </li>
+                     <li class="nav-item dropdown" id="gebruikersnaam"></li>
+                 
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+    <main>
+        <div class="wrapper">
+           
+                   <!-- USER OVERZICHT BUTTON CREATION-->
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_details" onclick="OnclickofBestellingenOpvolgen()">Bestellingen Opvolgen/Raadplegen</button>
+                   <div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+                       <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <h5 class="modal-title" id="modalform">Bestellingen Opvolgen/Raadplegen</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                   </button>
+                               </div>
+                               <div class="modal-body">
+                                   <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
+                                   <form>
+                                       <div class="form-group">
+                                           <input id="id" hidden>
+                                           <label for="naam">User ID</label>
+                                           <input type="text" class="form-control" id="user_id" placeholder="">
+                                       </div>
+                                       <div class="input-group mb-3">
+                                           <label for="datum">Datum</label>
+                                           <input type="text" class="form-control" id="datum" placeholder="">
+                                       </div>
+                                       <div class="input-group mb-3">
+                                           <label for="totaal_stuks">Totaal Stuks</label>
+                                           <input type="text" class="form-control" id="totaal_stuks" placeholder="">
+                                        </div>
+                                       <div class="input-group mb-3">
+                                            <label for="totaal_bedrag">Totaal Bedrag</label>
+                                            <input type="tel" id="totaal_bedrag" class="form-control mt-4" placeholder="">
+    
+                                       </div>
+                                       <div class="input-group mb-3">
+                                        <label for="betaald">Betaald</label>
+                                        <input type="tel" id="betaald" class="form-control mt-4" placeholder="">
+
+                                    </div>
+                                       <div class="input-group mb-3">
+                                           <label for="geleverd">Geleverd</label>
+                                           <input type="tel" id="geleverd" class="form-control mt-4" placeholder="">
+
+                                       </div>
+                                       
+                                       <div class="modal-footer">
+                                           <button type="button" class="btn btn-primary" id="Bewaren" onclick="BestellingenRaadplegen()">Bewaren</button>
+                                           <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                       </div>
+                                   </form>
+                               </div>
+                               <!-- SAVE AND CANCEL BUTTONS CREATION -->
+       
+                           </div>
+                       </div>
+                   </div>
+           </div>
+         
+    <table class="table" id="bestellingtable">
+        <thead>
+            <tr>
+                <th scope="col">user_id</th>
+                <th scope="col">datum</th>
+                <th scope="col">totaal_stuks</th>
+                <th scope="col">totaal_bedrag</th>
+                <th scope="col">betaald</th>
+                <th scope="col">geleverd</th>
+                <th scope="col">Verwijderen / Bewaren</th>
+            </tr>
+        </thead>
+        <tbody id="bestellingdata">
+        </tbody>
+    </table>
+    <!--Verwijderen Modal-->
+    <div class="modal fade" id="modal_verwijderen" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalform">Bestelling Verwijderen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    Wenst u dit product te verwijderen?
+                </div>
+                <!-- Yes AND NO BUTTONS CREATION -->
+                <div class="modal-footer">
+                    <button type="button" id="Ja" class="btn btn-primary" onclick="bevestig_verwijderen()">Ja</button>
+                    <button type="button" id="Neen" class="btn btn-primary" data-dismiss="modal">Neen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+    <footer class="page-footer font-small darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 py-3">
+                    <div class="mb-5 flex-center">
+                        <a class="fb-ic" href="https://www.facebook.com/">
+                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="tw-ic" href="https://twitter.com/">
+                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="gplus-ic" href="https://accounts.google.com">
+                            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="li-ic" href="https://www.linkedin.com/login/">
+                            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="ins-ic" href="https://www.instagram.com/">
+                            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="pin-ic" href="https://www.pinterest.com/">
+                            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright text-center py-3">Alle rechten voorbehouden © 2020:
+            <a href="https://mdbootstrap.com/"> HBH Broodjeszaak</a>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
+
