@@ -18,7 +18,7 @@
     <script src="bzscript_backend_harika.js"></script>
 </head>
 
-<body onload="krijg_naam();">
+<body onload="start(); krijg_naam();">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -52,8 +52,8 @@
     <main>
         <div class="wrapper">
            
-                   <!-- USER OVERZICHT BUTTON CREATION-->
-                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_details" onclick="OnclickofBestellingenOpvolgen()">Bestellingen Opvolgen/Raadplegen</button>
+                   <!-- USER OVERZICHT BUTTON CREATION
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_details" onclick="OnclickofBestellingenOpvolgen()">Bestellingen Opvolgen/Raadplegen</button>-->
                    <div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
                        <div class="modal-dialog" role="document">
                            <div class="modal-content">
@@ -68,30 +68,38 @@
                                    <form>
                                        <div class="form-group">
                                            <input id="id" hidden>
-                                           <label for="naam">User ID</label>
-                                           <input type="text" class="form-control" id="user_id" placeholder="">
+                                           <label for="user_id">User ID</label>
+                                           <br>
+                                           <input type="text" class="form-control" id="user_id" placeholder="" disabled>
                                        </div>
-                                       <div class="input-group mb-3">
+                                       
+                                      <!-- <div class="input-group mb-3">-->
+                                         <div class="form-group">
                                            <label for="datum">Datum</label>
-                                           <input type="text" class="form-control" id="datum" placeholder="">
+                                           <br>
+                                           <input type="text" class="form-control" id="datum" placeholder="" disabled>
                                        </div>
-                                       <div class="input-group mb-3">
+                                       <div class="form-group">
                                            <label for="totaal_stuks">Totaal Stuks</label>
-                                           <input type="text" class="form-control" id="totaal_stuks" placeholder="">
+                                           <br>
+                                           <input type="text" class="form-control" id="totaal_stuks" placeholder="" disabled>
                                         </div>
-                                       <div class="input-group mb-3">
-                                            <label for="totaal_bedrag">Totaal Bedrag</label>
-                                            <input type="tel" id="totaal_bedrag" class="form-control mt-4" placeholder="">
+                                        <label for="totaal_bedrag">Totaal Bedrag</label>
+                                        <br>
+                                        <div class="input-group mb-3">
+                                            
+                                            <span class="input-group-text">€</span>
+                                            <input type="text" id="totaal_bedrag" class="form-control mt-4" placeholder="" disabled>
     
                                        </div>
-                                       <div class="input-group mb-3">
-                                        <label for="betaald">Betaald</label>
-                                        <input type="tel" id="betaald" class="form-control mt-4" placeholder="">
-
+                                       <div>
+                                        <input type="checkbox" id="betaald" name="betaald" value="0" onclick="set_betaald_value();">
+                                        <label for="betaald"> Betaald</label><br>
                                     </div>
-                                       <div class="input-group mb-3">
-                                           <label for="geleverd">Geleverd</label>
-                                           <input type="tel" id="geleverd" class="form-control mt-4" placeholder="">
+                                       <div class="form-group">
+                                           <label for="afgehaald">Afgehaald</label>
+                                           <br>
+                                           <input type="tel" id="afgehaald" class="form-control mt-4" placeholder="" disabled>
 
                                        </div>
                                        
@@ -111,13 +119,15 @@
     <table class="table" id="bestellingtable">
         <thead>
             <tr>
-                <th scope="col">user_id</th>
+                <th scope="col">Klant_nummer</th>
+                <th scope="col">Klant_naam</th>
+                <th scope="col">Klant_email</th>
                 <th scope="col">datum</th>
                 <th scope="col">totaal_stuks</th>
                 <th scope="col">totaal_bedrag</th>
                 <th scope="col">betaald</th>
                 <th scope="col">geleverd</th>
-                <th scope="col">Verwijderen / Bewaren</th>
+                <th scope="col">Bewaren</th>
             </tr>
         </thead>
         <tbody id="bestellingdata">
