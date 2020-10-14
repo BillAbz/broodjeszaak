@@ -1034,6 +1034,7 @@ function winkel_samenvatting()
     document.getElementById("winkelsamenvatting").innerHTML="";
    
     var formData = new FormData();
+    console.log(date);
     
     var  values= 
     {
