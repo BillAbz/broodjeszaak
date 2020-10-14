@@ -1141,10 +1141,10 @@ function vergetenWachtwoord()
 {
     Email.send({
         Host: "smtp.gmail.com",
-        Username : "vsa.ned.haluk@gmail.com",
-        Password : "Dorado.2678",
+        Username : "broodjeszaak@yandex.ru",
+        Password : "Broodjeszaak",
         To : "ha_look@yahoo.com",
-        From : "vsa.ned.haluk@gmail.com",
+        From : "broodjeszaak@yandex.ru",
         Subject : "Wachtwoord vergeten",
         Body : "Je wachtwoord:",
     }).then(
