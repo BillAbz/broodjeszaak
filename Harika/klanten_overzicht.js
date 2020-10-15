@@ -109,11 +109,10 @@ function legen()
 {
     document.getElementById("naam").value = "";
     document.getElementById("email").value = "";
+    document.getElementById("wachtwoord").value = "";
     document.getElementById("telefoonnummer").value = "";
     document.getElementById("adres").value = "";
     document.getElementById("postcode").value = "";
-    document.getElementById("suggesties").checked = false;
-    document.getElementById("actief").checked = false;
 }
 
 // popup/update
@@ -127,8 +126,23 @@ function bewerken(num)
     document.getElementById("telefoonnummer").value = klanten[num].telefoonnummer;
     document.getElementById("adres").value = klanten[num].adres;
     document.getElementById("postcode").value = klanten[num].postcode;
-    document.getElementById("suggesties").value = klanten[num].suggesties;
-    document.getElementById("actief").value = klanten[num].actief;
+    
+    if(klanten[num].suggesties=="1")
+    {
+        document.getElementById("suggesties").checked=true;
+    }
+    else
+    {
+        document.getElementById("suggesties").checked=false;
+    }
+    if(klanten[num].actief=="1")
+    {
+        document.getElementById("actief").checked=true;
+    }
+    else
+    {
+        document.getElementById("actief").checked=false;
+    }
 }
 
 // client/update
