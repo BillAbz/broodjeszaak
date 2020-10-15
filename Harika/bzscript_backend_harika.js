@@ -301,6 +301,17 @@ function get_bestelling_data(besid,user_naam,user_email)
     document.getElementById("totaal_stuks").value = huidig_product.totaal_stuks;
     document.getElementById("totaal_bedrag").value = huidig_product.totaal_bedrag;
     document.getElementById("betaald").value = huidig_product.betaald;
+    if(huidig_product.betaald=="1")
+    {
+        document.getElementById("betaald").checked=true;
+    }
+    else
+    {
+        document.getElementById("betaald").checked=false;
+    }
+
+
+
     document.getElementById("afgehaald").value = huidig_product.afgehaald;
     
     console.log("line 304 huidig_product",huidig_product);
@@ -344,7 +355,7 @@ function bijwerken_bestellingen() {
         document.getElementById("betaald").value="1"
         document.getElementById("afgehaald").value="1";
      }
-     else{
+     else if(!betaald.checked){
         document.getElementById("betaald").value="0"
         document.getElementById("afgehaald").value="0";
      }
