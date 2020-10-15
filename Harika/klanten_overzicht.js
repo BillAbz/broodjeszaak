@@ -223,13 +223,21 @@ function bewaren_bewerken(num)
 // popup/delete
 function verwijderen(num) 
 {
-    document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-blue" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-blue" data-dismiss="modal">NEEN</button>';
+    document.getElementById("verwijderWaarschuwing").innerHTML = "";
+    document.getElementById("modalVerwijder").innerHTML = "";
+    if (klanten[num].actief=="1")
+    {
+        document.getElementById("verwijderWaarschuwing").innerHTML = '<p>U verwijdert een actieve klant. Om het te verwijderen, moet u het deactiveren.</p>';
+    }
+    else{
+        document.getElementById("verwijderWaarschuwing").innerHTML = '<p>Wilt u deze klant verwijderen?</p>';
+        document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-blue" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-blue" data-dismiss="modal">NEEN</button>';
+    }
 }
 
 // client/delete
 function verwijderen_ja(num) 
 {
-    console.log(num);
     $.ajax
     ({
         url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=user",
