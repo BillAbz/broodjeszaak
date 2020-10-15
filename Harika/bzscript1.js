@@ -71,10 +71,15 @@ function registreren() {
     var telefoonnummer = document.getElementById("telefoonnummer").value;
     var adres  = document.getElementById("adres").value;
     var postcode =  document.getElementById("postcode").value;
-    var suggesties = document.getElementById("suggesties").value;
     var rol = "klant";
-
-    console.log(suggesties);
+    var suggesties= document.getElementById("suggesties");
+    if(suggesties.checked)
+    {
+        suggesties="1"
+    }
+    else {
+        suggesties="0";
+    }
 
     $.ajax
     ({
