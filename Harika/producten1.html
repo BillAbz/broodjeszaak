@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>HBH Broodjeszak - Producten</title>
+        <title>HBH Broodjeszaak - Producten</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
@@ -60,9 +60,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="promoties.html">Promoties</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: white;">Log Out</button>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="wagentje1.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
                         </li>    
@@ -78,44 +75,42 @@
              
         <main>
             <div class=" container-fluid">
-            <div class="btn-group flex-center pb-5" role="group" aria-label="Basic example">
-                <div id="klassieke">
-                    <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('1')"><i class="fas fa-bread-slice fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
+                <div class="btn-group flex-center pb-5" role="group" aria-label="Basic example">
+                    <div id="klassieke">
+                        <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('1')"><i class="fas fa-bread-slice fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
+                    </div>
+                    <div id="speciale">
+                        <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('2')"><i class="fas fa-hamburger fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
+                    </div>
+                    <div id="schotel">
+                        <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('3')"><i class="fas fa-utensils fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
+                    </div>
+                    <div id="drankjes">
+                        <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('4')"><i class="fas fa-glass-martini fa-sm pr-2"aria-hidden="true"></i>DRANKJES</a>
+                    </div>
                 </div>
-                <div id="speciale">
-                    <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('2')"><i class="fas fa-hamburger fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
-                </div>
-                <div id="schotel">
-                    <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('3')"><i class="fas fa-utensils fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
-                </div>
-                <div id="drankjes">
-                    <a href="javascript:" type="button" class="btn btn-white btn-outline-default waves-effect btn-lg z-depth-5" onclick="ga_naar_category('4')"><i class="fas fa-glass-martini fa-sm pr-2"aria-hidden="true"></i>DRANKJES</a>
-                </div>
-            </div>
             </div>
             <section class="soorten">
-            <div class="table-responsive text-nowrap">
-                <table class="table" id="klassieketable">
-                    <thead>
-                                               
-                        <tr>
-                            <th scope="col">Naam</th>
-                            <th scope="col">Broodsoort<br> (Naam en Prijs) </th>
-                            <th scope="col">Promotie</th>
-                            <th scope="col">Photo</th>
-                            <th scope="col">Keuze</th>
+                <div class="card-body">
+                    <table class="table table-bordered table-responsive-md table-striped text-center" >
+                        <thead>              
+                            <tr>
+                                <th scope="col">Naam</th>
+                                <th scope="col">Broodsoort<br> (Naam en Prijs) </th>
+                                <th scope="col">Promotie</th>
+                                <th scope="col">Photo</th>
+                                <th scope="col">Keuze</th>
+                                <!--<th scope="col"></th>-->
+                            </tr>
+                        </thead>
 
-                            <!--<th scope="col"></th>-->
-                        </tr>
-                    </thead>
-                    <!--<tbody id="productendata_klassieke"></tbody>-->
-                    <tbody id="productendata"></tbody>
-                </table>
-            </div>
+                        <tbody id="productendata"></tbody>
+                    </table>
+                </div>
             </section>
             <div id="modal_data"></div>
            
-   </main>
+        </main>
 
         <footer class="page-footer font-small darken-3">
             <div class="container">
@@ -154,15 +149,3 @@
     
 </html>         
 
-<!--
-
-     <div class="btn-group flex-center" role="group" aria-label="Basic example">
-                <a href="klassieke.html" type="button" id="klassike" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="filter_producten_category(1)"><i class="fas fa-car fa-sm pr-2"aria-hidden="true"></i>KLASSIEKE BROODJES</a>
-                
-                <a href="speciale.html" type="button" id="speciale" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="filter_producten_category(2)"><i class="fas fa-train fa-sm pr-2"aria-hidden="true"></i>SPECIALE BROODJES</a>
-                
-                <a href="koudeschotel.html" type="button" id="schotel" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="filter_producten_category(3)"><i class="fas fa-plane fa-sm pr-2"aria-hidden="true"></i>KOUDE SCHOTELS</a>
-               
-                <a href="drankjes.html" type="button" id= "drankjes" class="btn btn-white btn-outline-default waves-effect btn-lg" onclick="filter_producten_category(4)">DRANKJES</a>
-            </div>
--->
