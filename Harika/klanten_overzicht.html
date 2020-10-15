@@ -31,10 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index1.html">Klanten Beheren</a>
+                            <a class="nav-link" href="klanten_overzicht.html">Klanten_Beheren</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="aanmelden1.html">Admin Aanmelden</a>
+                            <a class="nav-link" href="adminaanmelden1.html">Admin_Aanmelden</a>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +49,8 @@
             <div class="modal fade" id="product" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header" id="modalHeader">
+                        <div class="modal-header">
+                            <div id="modalHeader"></div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
         
@@ -64,6 +65,12 @@
                                 <input type="text" id="email" class="form-control">
                                 <div id="warning_1"></div>
                             </div>
+                            
+                                <div class="form-outline mb-4" id="invoerWachtwoord" style="display: none;">
+                                    <label for="wachtwoord">Wachtwoord</label>
+                                    <input type="text" id="wachtwoord" class="form-control">
+                                </div>
+                            
                             <div class="form-outline mb-4">
                                 <label for="telefoonnummer">Telefoonnummer</label>
                                 <input type="text" id="telefoonnummer" class="form-control">
@@ -127,7 +134,7 @@
                     <div class="col-6 col-sm-3">
                         <label for="sorteer">Sorteer</label>
                         <select class="browser-default custom-select" id="sorteer" onchange="sortering()" name="sorteer">
-                            <option selected></option>
+                            <option value="user_id"selected></option>
                             <option value="naam">Naam</option>
                             <option value="email">E-mail</option>
                             <option value="postcode">Postcode</option>

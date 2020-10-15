@@ -62,6 +62,7 @@ function toevoegen()
 {
     legen();
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Klant toevoegen</h4>';
+    document.getElementById("invoerWachtwoord").style.display = "block"; 
     document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
 }
 
@@ -73,11 +74,13 @@ function bewaren_toevoegen()
     {
         "naam": $("#naam").val(), 
         "email": $("#email").val(),
+        "password" : $("#wachtwoord").val(),
         "telefoonnummer": $("#telefoonnummer").val(),
         "adres": $("#adres").val(), 
         "postcode": $("#postcode").val(),
         "suggesties": $("#suggesties").val(),
         "actief": $("#actief").val(),
+        "rol" : "klant"
     };
     formData.set("values", JSON.stringify(values));         
     
@@ -117,6 +120,7 @@ function legen()
 function bewerken(num) 
 {
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Klant bijwerken</h4>';
+    document.getElementById("invoerWachtwoord").style.display = "none";
     document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewaren_bewerken('+num+')" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
     document.getElementById("naam").value = klanten[num].naam;
     document.getElementById("email").value = klanten[num].email;
