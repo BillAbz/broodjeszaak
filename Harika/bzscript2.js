@@ -1033,14 +1033,19 @@ function winkel_samenvatting()
    
 
     var formData = new FormData();
+    console.log(date);
+    var betaald=Math.random() >= 0.5;
+    console.log(betaald);
     
-    var  values= {
-                        "user_id": user_id,
-                        "datum": date,
-                        "totaal_stuks": total_no_of_products,
-                        "totaal_bedrag": final_bedrag,
-                        
-                };
+    var  values= 
+    {
+        "user_id": user_id,
+        "datum": date,
+        "totaal_stuks": total_no_of_products,
+        "totaal_bedrag": final_bedrag,  
+        "betaald": "0",
+        "afgehaald": "0",   
+    };
     formData.set("values", JSON.stringify(values));
     $.ajax
                  ({

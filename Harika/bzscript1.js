@@ -36,7 +36,9 @@ var username;
 var user_id;
 var telefoonnummer;
 var total_no_of_products;
-
+var besid;
+var betaald;
+var afgehaald;
 
 function register_validatie()
 {
@@ -968,95 +970,42 @@ function verwijder_bestelling(rowid)
     toon_winkel_wagentje();
 }
 
-
 function sessioncontrol()
 {
-    var winkelwagentje=haalWinkelwagentjeOp();   
+    
+     
     var token_check=sessionStorage.getItem("token");
+    //console.log(token_check);
     var formData = new FormData();
 
     if(token_check==null)
     {
         window.alert("Please log in to continue further");
         document.location = "aanmelden1.html?directed_from=wagentje1";
+
     }
     else
-    {   
-        for(var i=0;i<winkelwagentje.length;i++)
-        {
-            if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
-            {
-                var values= 
-                {
-                    "pid":  winkelwagentje[i].pid,
-                    "bsid": winkelwagentje[i].bsid,
-                    "btid": winkelwagentje[i].btid,
-                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
-                    "user_id": user_id,
-                    "catid": winkelwagentje[i].catid,
-                    "datum": date,
-                };
-            }
-            else
-            {
-                var values= 
-                {
-                    "pid":  winkelwagentje[i].pid,
-                    "bsid": "0",
-                    "btid": "0",
-                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
-                    "user_id": user_id,
-                    "catid": winkelwagentje[i].catid,
-                    "datum": date,
-                };
-            }
-            formData.set("values", JSON.stringify(values));
-    
-            $.ajax
-            ({
-                method: 'POST',
-                url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=product_bestelling",
-                headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-                //"filter": ["email", "like", "%" + useremail + "%"]
-                processData: false,
-                contentType: false,
-                data: formData
-            })
-            .done(function (response) 
-            {
-                console.log("create done:");
-                console.log(response);
-                if (response.status.success == true) 
-                {
-                    console.log("created");
-                    var pbid = response.data.pbid;
-                    console.log(pbid);
-                }
-                else 
-                {
-                    console.log("not created");
-                }   
-            })
-            .fail(function (msg) 
-            {
-                console.log("read fail:");
-                console.log(msg);
-            });
-        }
-    }
-}
-
-
-function winkel_samenvatting()
-{
-    document.getElementById("winkelsamenvatting").innerHTML="";
+    {
+        
+        document.getElementById("winkelsamenvatting").innerHTML="";
    
+
     var formData = new FormData();
     console.log(date);
-    var betaald=Math.random() >= 0.5;
+    var random_nummer=Math.random() >= 0.5;
+    console.log(random_nummer);
+    if(random_nummer==false)
+    {
+        betaald=0;
+        afgehaald=0;
+    }
+    else if(random_nummer==true)
+    {
+        betaald=1;
+        afgehaald=1;
+    }
     console.log(betaald);
-
-    //if(betaald=)
+    console.log(afgehaald);
     
     var  values= 
     {
@@ -1064,43 +1013,134 @@ function winkel_samenvatting()
         "datum": date,
         "totaal_stuks": total_no_of_products,
         "totaal_bedrag": final_bedrag,  
-        "betaald": "0",
-        "afgehaald": "0",   
+        "betaald": String(betaald),
+        "afgehaald": String(afgehaald),   
     };
+    console.log("values to be set in form data in session control function",values);
     formData.set("values", JSON.stringify(values));
+    console.log("form data in session control function", formData);
     $.ajax
-    ({
-        method: 'POST',
-        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=bestelling",
-        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        //"filter": ["email", "like", "%" + useremail + "%"]
-        processData: false,
-        contentType: false,
-        data: formData
-    })
-    .done(function (response) 
-    {
-        console.log("create done:");
-        console.log(response);
-        if (response.status.success == true) 
-        {
-            console.log("created");
-            var besid = response.data.item_id;
-            console.log(besid);
-            samenvattingdata(besid);
-        }
-        else 
-        {
-            console.log("not created");
-        }     
-    })
-    .fail(function (msg) 
-    {
-        console.log("read fail:");
-        console.log(msg);
-    });
+                 ({
+                        method: 'POST',
+                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=bestelling",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                         //"filter": ["email", "like", "%" + useremail + "%"]
+                         processData: false,
+                         contentType: false,
+                         data: formData
+                        
+                })
+                 .done(function (response) 
+                 {
+                    console.log("create done:");
+                    console.log(response);
+                    if (response.status.success == true) 
+                    {
+                                 console.log("created");
+                                 besid = response.data.item_id;
+                                 console.log(besid);
+                                 //samenvattingdata(besid);
+                    }
+                    else 
+                    {
+                        console.log("not created");
+                    }
+                      
+                })
+                .fail(function (msg) 
+                {
+                        console.log("read fail:");
+                        console.log(msg);
+                });
+
+       
+    }
+
+
 }
 
+
+//function winkel_samenvatting()
+function post_in_producten_bestelling_tabel()
+{
+   if(betaald==1 && afgehaald==1)
+   {
+    var winkelwagentje=haalWinkelwagentjeOp(); 
+    var formData = new FormData();  
+    for(var i=0;i<winkelwagentje.length;i++)
+        {
+             if(winkelwagentje[i].catid==1 || winkelwagentje[i].catid==2)
+             {
+                var  values= {
+                                     "pid":  winkelwagentje[i].pid,
+                                     "besid":besid,
+                                     "bsid": winkelwagentje[i].bsid,
+                                     "btid": winkelwagentje[i].btid,
+                                    "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                                    "user_id": user_id,
+                                     "catid":winkelwagentje[i].catid,
+                                     "datum":date,
+    
+           
+                            };
+            }
+            else
+            {
+                var  values= {
+                    "pid":  winkelwagentje[i].pid,
+                    "besid":besid,
+                    "bsid": "0",
+                    "btid": "0",
+                   "totaal_prijs": winkelwagentje[i].totaal_bedrag,
+                   "user_id": user_id,
+                   "catid":winkelwagentje[i].catid,
+                   "datum":date,
+
+           };
+            }
+            formData.set("values", JSON.stringify(values));
+    
+
+                 $.ajax
+                 ({
+                        method: 'POST',
+                        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=product_bestelling",
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                         //"filter": ["email", "like", "%" + useremail + "%"]
+                         processData: false,
+                         contentType: false,
+                         data: formData
+                        
+                })
+                 .done(function (response) 
+                 {
+                    console.log("create done:");
+                    console.log(response);
+                    if (response.status.success == true) {
+                    console.log("created");
+                    var pbid = response.data.pbid;
+                    //console.log(pbid);
+                    samenvattingdata(besid);
+                    
+            }
+            else {
+                console.log("not created");
+                }
+                      
+                })
+                .fail(function (msg) 
+                {
+                        console.log("read fail:");
+                        console.log(msg);
+                });
+        }
+   }
+   else{
+        samenvattingdata(besid)
+       alert("Please make the payment to recieve the order");
+   }
+
+}
 
 function samenvattingdata(besid)
 {
@@ -1142,6 +1182,8 @@ function samenvattingdata(besid)
     //document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
     document.getElementById("winkelsamenvatting").innerHTML +=  samenvattingdata1;
 }
+
+
 
 
 function vergetenWachtwoord()
