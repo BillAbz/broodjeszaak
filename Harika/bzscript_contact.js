@@ -265,6 +265,29 @@ function start()
    
  
 }
+function contactformulier_validatie()
+{
+    document.getElementById("formulier_warning_0").innerHTML= "";
+    document.getElementById("formulier_warning_1").innerHTML= "";
+    document.getElementById("formulier_warning_2").innerHTML= "";
+    //document.getElementById("formulier_warning_3").innerHTML= "";
+    //document.getElementById("formulier_warning_4").innerHTML= "";
+    document.getElementById("formulier_warning_3").innerHTML= "";
+    var validate= true;
+    var form = $("#formulierform");
+    $('input', form).each(function(index) {
+        if ($(this)[0].checkValidity() == false) 
+        {
+        document.getElementById("formulier_warning_"+index).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+        validate= false; 
+        }
+    })
+    if (validate==true)
+    {
+        contactformulier()
+    }
+}
+
 function contactformulier() {
     var contactuserid = "";
     var contactbestellingid = "";
@@ -329,8 +352,12 @@ function get_vraag_selectie_value()
             document.getElementById("bestellingnummer").innerHTML = `
             
             <label for="ordernummer"> Voer uw bestelnummer in </label> <input type="text" id="ordernummer" name="ordernummer"></input>    
-            <br>   
+            <br> 
+            <div id="formulier_warning_3"></div>  
+            <br>
             <label for="klantnummer"> Voer uw klant nummer in </label>  <input type="text" id="klantnummer" name="klantnummer"></input>
+            <br>
+            <div id="formulier_warning_4"></div>
             <br>
             <label for="bestellingdatum"> Voer uw datum van bestelling in (yyyy/mm/dd) </label>  <input type="text" id="bestellingdatum" name="bestellingdatum"></input>
                
