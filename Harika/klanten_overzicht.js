@@ -69,6 +69,23 @@ function toevoegen()
 // client/create
 function bewaren_toevoegen() 
 {
+    var suggesties= document.getElementById("suggesties");
+    if(suggesties.checked)
+    {
+        suggesties="1"
+    }
+    else {
+        suggesties="0";
+    }
+    var actief= document.getElementById("actief");
+    if(actief.checked)
+    {
+        actief="1"
+    }
+    else 
+    {
+        actief="0";
+    }
     var formData = new FormData();
     var values = 
     {
@@ -78,8 +95,8 @@ function bewaren_toevoegen()
         "telefoonnummer": $("#telefoonnummer").val(),
         "adres": $("#adres").val(), 
         "postcode": $("#postcode").val(),
-        "suggesties": $("#suggesties").val(),
-        "actief": $("#actief").val(),
+        "suggesties": suggesties,
+        "actief": actief,
         "rol" : "klant"
     };
     formData.set("values", JSON.stringify(values));         
@@ -113,6 +130,8 @@ function legen()
     document.getElementById("telefoonnummer").value = "";
     document.getElementById("adres").value = "";
     document.getElementById("postcode").value = "";
+    document.getElementById("suggesties").checked=false;
+    document.getElementById("actief").checked=false;
 }
 
 // popup/update
@@ -148,6 +167,24 @@ function bewerken(num)
 // client/update
 function bewaren_bewerken(num) 
 {
+    var suggesties= document.getElementById("suggesties");
+    if(suggesties.checked)
+    {
+        suggesties="1"
+    }
+    else {
+        suggesties="0";
+    }
+    var actief= document.getElementById("actief");
+    if(actief.checked)
+    {
+        actief="1"
+    }
+    else 
+    {
+        actief="0";
+    }
+
     var formData = new FormData();
     var values = 
     {
@@ -156,8 +193,8 @@ function bewaren_bewerken(num)
         "telefoonnummer": $("#telefoonnummer").val(),
         "adres": $("#adres").val(), 
         "postcode": $("#postcode").val(),
-        "suggesties": $("#suggesties").val(),
-        "actief": $("#actief").val(),
+        "suggesties": suggesties,
+        "actief": actief,
     };
     formData.set("values", JSON.stringify(values));         
     formData.set("filter", JSON.stringify([{"field": "user_id", "operator": "=", "value": klanten[num].user_id}]));
