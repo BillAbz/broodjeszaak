@@ -112,7 +112,7 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        document.location = "bestellingen_backend1.html";
+        document.location = "bestellingen_overzicht.html";
     })
     .fail(function (msg) {
         console.log("log in fail:");
@@ -211,7 +211,7 @@ function afmelden()
         document.getElementById("gebruikernaam").innerHTML="";
         sessionStorage.clear();
         }
-        document.location = "adminaanmelden_bestellingen.html";
+        document.location = "aadmin_aanmelden.html";
     })
     .fail(function (msg) {
         console.log("read fail:");
