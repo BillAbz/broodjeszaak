@@ -8,6 +8,9 @@ var user_email;
 var user_naam;
 var category = [];
 var producten = [];
+var huidige_pagina=1;
+var aantal_paginas;
+
 function register_validatie()
 {
     for (var i=0; i<7; i++)
@@ -114,7 +117,7 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        document.location = "bestellingen_overzicht.html";
+        document.location = "producten_backend_bilal.html";
     })
     .fail(function (msg) {
         console.log("log in fail:");
@@ -213,7 +216,7 @@ function afmelden()
         document.getElementById("gebruikernaam").innerHTML="";
         sessionStorage.clear();
         }
-        document.location = "aadmin_aanmelden.html";
+        document.location = "adminaanmelden1.html";
     })
     .fail(function (msg) {
         console.log("read fail:");
@@ -238,8 +241,15 @@ function read_items() {
 
             $.ajax({
                 method: 'GET',
-                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
+                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
                 //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+               /* data: {
+                    "paging": {
+                        "page": huidige_pagina,
+                        "items_per_page": 10,
+                    }
+                   
+                }*/
             })
 
                 .done(function (response) {
@@ -264,7 +274,7 @@ function vernieuw_producten_tabel() {
 
 
         if (producten[i].pid !== null) {
-
+            console.log(producten.beeld)
             var catnaam = haalcatnaam(producten[i].catid);
             console.log(catnaam);
             var tabledata = "";
@@ -278,7 +288,7 @@ function vernieuw_producten_tabel() {
 
             tabledata += "<td>" + producten[i].prodprijs + "</td>";
           
-           tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image"/>' + "</td>";
+           tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image"/>' + "</td>";
 
             //tabledata += "<td>" + +"</td>";
             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_product(${producten[i].pid})">Verwijderen</button>` +
@@ -335,7 +345,7 @@ function bijwerken_producten() {
     huidig_product.pomschrijving = document.getElementById("pomschrijving").value;
     huidig_product.prodprijs = document.getElementById("prodprijs").value;
     huidig_product.catid = document.getElementById("catid").value;
-    huidig_product.beeld = document.getElementById("beeld").value;
+    huidig_product.beeld = document.getElementById("beeldoriginal").value;
     
 
     vernieuw_producten_tabel();
@@ -359,7 +369,7 @@ function bewarenproducten() {
         huidig_product.catid = document.getElementById("catid").value;
         huidig_product.prodprijs = document.getElementById("prodprijs").value;
         //huidig_product.beeld = document.getElementById("beeld").value;
-        huidig_product.beeldoriginal = document.getElementById("beeld").value;
+        huidig_product.beeldoriginal = document.getElementById("beeldoriginal").value;
 
         console.log(huidig_product.beeld);
         console.log(huidig_product);
@@ -379,7 +389,7 @@ function bewarenproducten() {
         formData.set("beeld", $("#beeld")[0].files[0]);
 
         $.ajax({
-            url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=producten",
+            url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=producten1",
             headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "PUT",
             processData: false,
@@ -416,7 +426,7 @@ function bewarenproducten() {
         formData.set("beeld", $("#beeld")[0].files[0]);
 
         $.ajax({
-            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=producten",
+            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=producten1",
             headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "POST",
             processData: false,
@@ -478,7 +488,7 @@ function bevestig_verwijderen() {
 
 
     $.ajax({
-        url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=producten",
+        url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=producten1",
         //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         type: "DELETE",
         data: {
@@ -548,7 +558,7 @@ function filter_producten() {
 
     if (fnaam != null || fomschrijving != null || fprijs != null) {
         $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
+            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
             //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
@@ -588,7 +598,7 @@ function sorteer_producten() {
     console.log(sorteer);
     if (sorteer == "snaam") {
         $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
+            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
             //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
@@ -615,7 +625,7 @@ function sorteer_producten() {
     }
     else if (sorteer == "somschrijving") {
         $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
+            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
             //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
@@ -640,7 +650,7 @@ function sorteer_producten() {
     }
     else if (sorteer == "sprijs") {
         $.ajax({
-            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten",
+            url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
             //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
@@ -668,3 +678,19 @@ function sorteer_producten() {
         alert("Kies een optie");
     }
 }
+
+
+function paginas(dir) 
+{
+    if (huidige_pagina>=1 && huidige_pagina<aantal_paginas && dir=="volgende") 
+    {
+        huidige_pagina++;
+    } 
+    else if (huidige_pagina>1 && huidige_pagina<=aantal_paginas && dir=="vorige")
+    {
+        huidige_pagina--;
+    }
+    
+    read_items();
+}
+
