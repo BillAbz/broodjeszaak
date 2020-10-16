@@ -40,6 +40,7 @@ var besid;
 var betaald;
 var afgehaald;
 var opgelost;
+var assets_path;
 
 function register_validatie()
 {
@@ -172,7 +173,7 @@ function inloggen() {
 
 function krijg_naam()
 {
-    console.log("calistir")
+    
     var useremail= sessionStorage.getItem("gebruiker");
     $.ajax
     ({
@@ -336,6 +337,7 @@ function filter_producten_category(catid)
                 console.log("read done:");
                 console.log(json);
 
+                assets_path = json.data.assets_path;
                 producten1=json.data.items;
 
                 console.log(producten1);
@@ -388,11 +390,11 @@ function maak_tabel(producten1)
         }
         
         tabledata += "<td>" + producten1[i].pomschrijving + "</td>";
-        tabledata += "<td>" +`<img src="${producten1[i].beeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">` + "</td>";
-        /*
-        DO NOT DELETE THIS COMMENT
-        tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" />' + "</td>";
-        */
+        //tabledata += "<td>" +`<img src="${producten1[i].beeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">` + "</td>";
+        
+        //DO NOT DELETE THIS COMMENT
+        tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten1[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image" />' + "</td>";
+        
 
         tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Keuze</button>` +
                     "</td>";
