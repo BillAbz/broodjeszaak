@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>HBH Broodjeszaak - Klanten Overzicht</title>
+        <title>HBH Broodjeszaak - Categorien Overzicht</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
@@ -15,7 +15,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
-        <script src="klanten_overzicht.js"></script>
+        <script src="categorien_overzicht.js"></script>
     </head>
 
     <body onload="starten()">
@@ -23,7 +23,7 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
                 <img class="navbar-brand" src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-                <h3 style="color: white;">Klanten Overzicht</h3>
+                <h3 style="color: white;">Categorien Overzicht</h3>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -31,10 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="klanten_overzicht.html">Klanten_Beheren</a>
+                            <a class="nav-link" href="categorien_overzicht.html">Categorien_Beheren</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_aanmelden.html">Admin_Aanmelden</a>
+                            <a class="nav-link" href="admin_aanmelden_cat.html">Admin_Aanmelden</a>
                         </li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
              
         <main>
             <div class="text-left">
-                <a href="" class="btn btn-blue mb-4" data-toggle="modal" onclick="toevoegen()" data-target="#product">Klant Toevoegen</a>
+                <a href="" class="btn btn-blue mb-4" data-toggle="modal" onclick="toevoegen()" data-target="#product">Categorie Toevoegen</a>
             </div>
         
             <div class="modal fade" id="product" tabindex="-1" role="dialog">
@@ -56,89 +56,13 @@
         
                         <form class="modal-body">        
                             <div class="form-outline mb-4">
-                                <label for="naam">Naam</label>
-                                <input type="text" id="naam" class="form-control">
+                                <label for="catnaam">Categorie Naam</label>
+                                <input type="text" id="catnaam" class="form-control">
                                 <div id="warning_0"></div>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label for="email">E-mail</label>
-                                <input type="text" id="email" class="form-control">
-                                <div id="warning_1"></div>
-                            </div>
-                            
-                            <div class="form-outline mb-4" id="invoerWachtwoord" style="display: none;">
-                                <label for="wachtwoord">Wachtwoord</label>
-                                <input type="text" id="wachtwoord" class="form-control">
-                            </div>
-                            
-                            <div class="form-outline mb-4">
-                                <label for="telefoonnummer">Telefoonnummer</label>
-                                <input type="text" id="telefoonnummer" class="form-control">
-                                <div id="warning_2"></div>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label for="adres">Adres</label>
-                                <input type="text" id="adres" class="form-control">
-                                <div id="warning_3"></div>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label for="postcode">Postcode</label>
-                                <input type="text" id="postcode" class="form-control">
-                                <div id="warning_4"></div>
-                            </div>
-                            <div class="custom-control custom-checkbox mb-4">
-                                <input class="custom-control-input" type="checkbox" id="suggesties" unchecked>
-                                <label for="suggesties" class="custom-control-label">Suggesties</label>
-                            </div>
-                            <div class="custom-control custom-checkbox mb-4">
-                                <input class="custom-control-input" type="checkbox" id="actief" unchecked >
-                                <label for="actief" class="custom-control-label">Actief</label>
                             </div>
                         </form>
         
                         <div class="modal-footer d-flex justify-content-center" id="modalFooter"></div>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="container" id="filter">    
-                <div class="row">
-                    <div class="col-sm">
-                        <label for="filternaam">Naam</label><br>
-                        <input type="text" id="filternaam" class="form-control">
-                    </div>
-        
-                    <div class="col-sm">
-                        <label for="filteremail">E-mail</label><br>
-                        <input type="text" id="filteremail" class="form-control">
-                    </div>
-        
-                    <div class="col-sm">
-                        <label for="filterpostcode">Postcode</label><br>
-                        <input type="text" id="filterpostcode" class="form-control">
-                    </div>
-
-                    <div class="col-sm">
-                        <label for="filteractief">Actief (Ja/Neen)</label><br>
-                        <input type="text" id="filteractief" class="form-control">
-                    </div>
-        
-                    <div class="col-sm align-self-end">
-                        <input class="btn btn-blue btn-sm" value="Filter" onclick="filteren()">
-                    </div>
-                </div>
-            </div>
-        
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 col-sm-3">
-                        <label for="sorteer">Sorteer</label>
-                        <select class="browser-default custom-select" id="sorteer" onchange="sortering()" name="sorteer">
-                            <option value="user_id"selected></option>
-                            <option value="naam">Naam</option>
-                            <option value="email">E-mail</option>
-                            <option value="postcode">Postcode</option>
-                        </select>
                     </div>
                 </div>
             </div>
@@ -148,14 +72,8 @@
                 <table class="table table-bordered table-responsive-md table-striped text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">Klanten ID</th>
-                            <th class="text-center">Naam</th>
-                            <th class="text-center">E-mail</th>
-                            <th class="text-center">Telefoonnummer</th>
-                            <th class="text-center">Adres</th>
-                            <th class="text-center">Postcode</th>
-                            <th class="text-center">Suggesties</th>
-                            <th class="text-center">Actief</th>
+                            <th class="text-center">Categorie ID</th>
+                            <th class="text-center">Categorie Naam</th>
                             <th class="text-center"></th>
                         </tr>
                     </thead>
@@ -180,14 +98,15 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title w-100 font-weight-bold">Klant verwijderen</h4>
+                            <h4 class="modal-title w-100 font-weight-bold">Categorie verwijderen</h4>
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                         </div>
         
-                        <div class="modal-body" id="verwijderWaarschuwing"></div>
+                        <div class="modal-body" id="verwijderWaarschuwing">
+                            <p>Wilt u deze categorie verwijderen?</p>
+                        </div>
         
                         <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper" id="modalVerwijder"></div>
-        
                     </div>
                 </div>
             </div>
