@@ -191,7 +191,7 @@ function toon_gebruiker_naam()
     else
     {
         document.getElementById("gebruikernaam").innerHTML="";
-        //document.location = "aanmelden1.html";
+        document.location = "producten_admin_aanmelden.html";
     }
 }
 
