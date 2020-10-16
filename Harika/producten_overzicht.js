@@ -10,6 +10,7 @@ var category = [];
 var producten = [];
 var huidige_pagina=1;
 var aantal_paginas;
+var pid = huidig_product.pid;
 
 function register_validatie()
 {
@@ -117,7 +118,7 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        document.location = "producten_backend_bilal.html";
+        document.location = "producten_overzicht.html";
     })
     .fail(function (msg) {
         console.log("log in fail:");
@@ -216,7 +217,7 @@ function afmelden()
         document.getElementById("gebruikernaam").innerHTML="";
         sessionStorage.clear();
         }
-        document.location = "adminaanmelden1.html";
+        document.location = "producten_admin_aanmelden.html";
     })
     .fail(function (msg) {
         console.log("read fail:");
@@ -361,6 +362,7 @@ function bewarenproducten() {
 
     var formData = new FormData();
     var pid = huidig_product.pid;
+
 
     if (pid !== "") {
 
