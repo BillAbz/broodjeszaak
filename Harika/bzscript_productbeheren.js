@@ -384,7 +384,7 @@ function bewarenproducten() {
 
         };
         formData.set("values", JSON.stringify(values));
-        formData.set("filter", JSON.stringify(["id", "=", huidig_product.pid]));
+        formData.set("filter", JSON.stringify(["pid", "=", huidig_product.pid]));
 
         formData.set("beeld", $("#beeld")[0].files[0]);
 

@@ -112,7 +112,7 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        document.location = "bestellingen_overzicht.html";
+        document.location = "contact_overzicht.html";
     })
     .fail(function (msg) {
         console.log("log in fail:");
@@ -211,7 +211,7 @@ function afmelden()
         document.getElementById("gebruikernaam").innerHTML="";
         sessionStorage.clear();
         }
-        document.location = "admin_aanmelden.html";
+        document.location = "admin_aanmelden_contact.html";
     })
     .fail(function (msg) {
         console.log("read fail:");
@@ -237,9 +237,9 @@ function read_items() {
         //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         data: {
         "project":"fjgub4eD3ddg",
-        "entity":"bestelling",
+        "entity":"contactformulier",
             "relation": 
-            [{"pri_entity":"bestelling","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
+            [{"pri_entity":"contactformulier","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
         }
 
     })

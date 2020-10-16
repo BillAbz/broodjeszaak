@@ -39,6 +39,7 @@ var total_no_of_products;
 var besid;
 var betaald;
 var afgehaald;
+var opgelost;
 
 function register_validatie()
 {
@@ -1209,35 +1210,48 @@ function vergetenWachtwoord()
 
 function contactformulier() 
 {
-    var contactuserid = "";
+
+    var formData = new FormData(); 
+
+    //var contactuserid = "";
     var contactbestellingid = "";
-    var datum_bestelling = "";
-    if(document.getElementById("klantnummer") !== null)
-    {
-        var contactuserid = document.getElementById("klantnummer").value;
-        var contactbestellingid = document.getElementById("ordernummer").value;
-        var datum_bestelling = document.getElementById("bestellingdatum").value;
-    }   
+    //var datum_bestelling = "";
     var contactnaam = document.getElementById("defaultContactFormName").value;
     var contactemail = document.getElementById("defaultContactFormEmail").value;
     var contacttelefoon = document.getElementById("defaultContactFormTel").value;
-    var contactomschrijving = document.getElementById("vraag").value;
-    var datum = new Date();
-            
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
-        "method": "POST",
-        "headers": {},
-        "data": {
-            "values": `{\"naam\" : \"${contactnaam}\", \"email\" : \"${contactemail}\", \"telefoonnummer\" : \"${contacttelefoon}\", 
-            \"omschrijving\" : \"${contactomschrijving}\", \"user_id\" : \"${contactuserid}\", \"besid\" : \"${contactbestellingid}\",
-            \"datum_bestelling\" : \"${datum_bestelling}\", \"datum_cf\" : \"${huidig_date2}\"}`        
-        }
+    var c_option =document.getElementById("defaultContactFormInfo").value;
+    if (c_option==2 || c_option == 3)
+    {
+        var contactbestellingid = document.getElementById("ordernummer").value;;
     }
-      
-    $.ajax(settings).done(function (response) {
+   
+    
+    var contactomschrijving = document.getElementById("vraag").value;
+    opgelost=0;
+   
+    var values =  {
+        "naam": contactnaam,
+        "email" : contactemail,
+        "telefoonnummer" :contacttelefoon, 
+       "omschrijving" :contactomschrijving, 
+        "besid" : contactbestellingid,
+        "datum_cf" :date,
+        "opgelost" : String(opgelost)    
+    }
+    formData.set("values", JSON.stringify(values));
+
+    $.ajax
+    ({
+           method: 'POST',
+           url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier",
+           
+            //"filter": ["email", "like", "%" + useremail + "%"]
+            processData: false,
+            contentType: false,
+            data: formData
+           
+   })
+   .done(function (response) {
         console.log(response);
         var cfid = response.data.cfid;
         console.log(cfid);
@@ -1257,8 +1271,7 @@ function get_vraag_selectie_value()
     {
         document.getElementById("bestellingnummer").innerHTML = `  
             <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in">
-            <input type="text" id="klantnummer" class="form-control mb-4" placeholder="Voer uw klant nummer in">
-            <input type="text" id="bestellingdatum" class="form-control mb-4" placeholder="Voer uw datum van bestelling in">
+            
         `;
     }
     else
@@ -1303,3 +1316,32 @@ function winkel_samenvatting()
     </tr>`
     document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
 }*/
+ /*if(document.getElementById("klantnummer") !== null)
+    {
+        var contactuserid = document.getElementById("klantnummer").value;
+        var contactbestellingid = document.getElementById("ordernummer").value;
+        var datum_bestelling = document.getElementById("bestellingdatum").value;
+    } 
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+        "method": "POST",
+        "headers": {},
+        "data": {
+                   values: values
+        }
+    }
+    //var datum = new Date();
+    /*var random_nummer=Math.random() >= 0.5;
+    console.log(random_nummer);
+    if(random_nummer==false)
+    {
+        opgelost=0;
+    }
+    else if(random_nummer==true)
+    {
+        opgelost=1;
+    }*/
+            
+    //console.log(opgelost);*/ 
