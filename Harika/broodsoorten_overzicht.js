@@ -117,20 +117,23 @@ function bewarenBewerken(num) {
     formData.set("filter", JSON.stringify([{"field": "bsid", "operator": "=", "value": broodsoorten[num].bsid}]));
     formData.set("bsbeeld", $("#bsbeeld")[0].files[0]);
 
-    $.ajax({
-            url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=broodsoort",
-            type: "PUT",
-            //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
-            processData: false,
-            contentType: false,
-            data: formData
+    $.ajax
+    ({
+        url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=broodsoort",
+        type: "PUT",
+        //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
+        processData: false,
+        contentType: false,
+        data: formData
             
-    }).done(function(response) {
+    })
+    .done(function(response) {
         console.log("update done:");
         console.log(response);
         starten();
         
-    }).fail(function (msg) {
+    })
+    .fail(function (msg) {
         console.log("update fail:");
         console.log(msg);
     });
