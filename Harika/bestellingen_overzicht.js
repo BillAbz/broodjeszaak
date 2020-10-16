@@ -221,37 +221,38 @@ function afmelden()
 
 function start() {
 
-    if(sessionStorage.getItem("user_rol"=="admin"))
-    {
+    
        read_items();
-    }
-    else{
-        alert("you dont have permission to view this page");
-    }
+   
 
 }
 function read_items() {
-    $.ajax({
-        method: 'GET',
-        url: "https://api.data-web.be/item/read",
-        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        data: {
-        "project":"fjgub4eD3ddg",
-        "entity":"bestelling",
-            "relation": 
-            [{"pri_entity":"bestelling","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
-        }
+   
+    
+                $.ajax({
+                            method: 'GET',
+                            url: "https://api.data-web.be/item/read",
+                                //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                        data: {
+                                    "project":"fjgub4eD3ddg",
+                                     "entity":"bestelling",
+                                     "relation": 
+                                        [{"pri_entity":"bestelling","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
+                                 }
 
-    })
-        .done(function (response) {
-            console.log(response);
-            bestellingen = response.data.items;
-            console.log(bestellingen);
-            vernieuw_bestelling_tabel();
-        }).fail(function (msg) {
-            console.log("update fail:");
-            console.log(msg);
-        });
+                        })
+                .done(function (response) {
+                                                    console.log(response);
+                                                    bestellingen = response.data.items;
+                                                    console.log(bestellingen);
+                                                    vernieuw_bestelling_tabel();
+                     })
+                .fail(function (msg) {
+                                            console.log("update fail:");
+                                            console.log(msg);
+                     });
+    
+    
 
 }
 function vernieuw_bestelling_tabel() {
