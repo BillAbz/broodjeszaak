@@ -1,4 +1,4 @@
-var categorien=[];
+var broodsoorten=[];
 var num;
 var huidige_pagina=1;
 var aantal_paginas;
@@ -8,7 +8,7 @@ function starten() {
     //console.log(sessionStorage.getItem("token"));        
     $.ajax
     ({
-        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=category",
+        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=broodsoort",
         data: {
             "paging": {
                 "page": huidige_pagina,
@@ -17,11 +17,11 @@ function starten() {
         }
     })
     .done(function(response) {
-        console.log("read categorien done:");
+        console.log("read broodsoorten done:");
         console.log(response);
-        categorien = response.data.items;
+        broodsoorten = response.data.items;
         aantal_paginas = response.data.paging.page_count;
-        toon_categorien_tabel();
+        toon_broodsoorten_tabel();
     })
     .fail(function (msg) {
         console.log("read fail:");
@@ -30,15 +30,19 @@ function starten() {
 }
 
 // client/table
-function toon_categorien_tabel() 
+function toon_broodsoorten_tabel() 
 {
     document.getElementById('tabel').innerHTML = "";
-    for (i=0; i<categorien.length; i++) 
-    {
+    for (i=0; i<broodsoorten.length; i++) 
+    {   
+        if(broodsoorten[i].bsbeeld!=null) {
+            var beeld_url= '<img class="img-fluid" alt="Responsive image" src ="https://api.data-web.be/files/fjgub4eD3ddg/broodsoort/'+broodsoorten[i].bsbeeld.name+'">';
+        } else beeld_url="";
         document.getElementById("tabel").innerHTML += '<tr>'
-        +'<td>'+categorien[i].catid+'</td> <td>'+categorien[i].catnaam+'</td>'
-        +'<td> <span class="text-left"><a class="btn btn-blue btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span></td>'
-        +'</tr>';
+        +'<td>'+broodsoorten[i].bsid+'</td> <td>'+broodsoorten[i].bsnaam+'</td> <td>'+broodsoorten[i].bsprijs+'</td> <td>'+beeld_url+'</td>'
+        +'<td> <span class="text-left"><a class="btn btn-blue btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span>'
+        +'<span class="text-left"><a class="btn btn-blue btn-sm my-0" id="bewerken'+i+'" onclick="bewerken('+i+')" data-toggle="modal" data-target="#product">Bewerken</a></span>'
+        +'</td> </tr>';
     }
 }
 
@@ -46,7 +50,7 @@ function toon_categorien_tabel()
 function toevoegen() 
 {
     legen();
-    document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Categorie toevoegen</h4>';
+    document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Broodsoort toevoegen</h4>';
     document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
 }
 
@@ -56,13 +60,16 @@ function bewaren_toevoegen()
     var formData = new FormData();
     var values = 
     {
-        "catnaam": $("#catnaam").val(), 
+        "bsnaam": $("#bsnaam").val(),
+        "bsprijs": $("#bsprijs").val(),
+        "bsbeeld": $("#beeld_origineel").val()
     };
-    formData.set("values", JSON.stringify(values));         
+    formData.set("values", JSON.stringify(values));       
+    formData.set("Beeld", $("#beeld")[0].files[0]);       
     
     $.ajax
     ({
-        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=category",
+        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=broodsoort",
         type: "POST",
         //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
         processData: false,
@@ -83,7 +90,49 @@ function bewaren_toevoegen()
 // popup/empty
 function legen() 
 {
-    document.getElementById("catnaam").value = "";
+    document.getElementById("bsnaam").value = "";
+    document.getElementById("bsprijs").value = "";
+    document.getElementById("bsbeeld").value = "";
+}
+
+// popup/update
+function bewerken(num) {
+    document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Broodsoort bijwerken</h4>';
+    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewarenBewerken('+num+')" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
+    document.getElementById("bsnaam").value = broodsoorten[num].bsnaam;
+    document.getElementById("bsprijs").value = broodsoorten[num].bsprijs;
+    document.getElementById("beeld_origineel").value = JSON.stringify(broodsoorten[num].bsbeeld);
+}
+
+// item/update
+function bewarenBewerken(num) {
+    var formData = new FormData();
+    var values = {
+        "bsnaam": $("#bsnaam").val(), 
+        "bsprijs": $("#bsprijs").val(),
+        "bsbeeld": $("#beeld_origineel").val()
+    };
+    formData.set("values", JSON.stringify(values));         
+    formData.set("filter", JSON.stringify([{"field": "bsid", "operator": "=", "value": broodsoorten[num].bsid}]));
+    formData.set("bsbeeld", $("#bsbeeld")[0].files[0]);
+
+    $.ajax({
+            url: "https://api.data-web.be/item/update?project=4N9TfujyfeXB&entity=broodsoort",
+            type: "PUT",
+            //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
+            processData: false,
+            contentType: false,
+            data: formData
+            
+    }).done(function(response) {
+        console.log("update done:");
+        console.log(response);
+        starten();
+        
+    }).fail(function (msg) {
+        console.log("update fail:");
+        console.log(msg);
+    });
 }
 
 // popup/delete
@@ -97,12 +146,12 @@ function verwijderen_ja(num)
 {
     $.ajax
     ({
-        url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=category",
+        url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=broodsoort",
         type: "DELETE",
         //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
         data: {                
             "filter": [
-                    {"field": "catid", "operator": "=", "value": categorien[num].catid}
+                    {"field": "bsid", "operator": "=", "value": broodsoorten[num].bsid}
             ]
         }
     })
