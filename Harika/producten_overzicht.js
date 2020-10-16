@@ -10,7 +10,7 @@ var category = [];
 var producten = [];
 var huidige_pagina=1;
 var aantal_paginas;
-var pid = huidig_product.pid;
+var pid;
 
 function register_validatie()
 {
@@ -293,7 +293,7 @@ function vernieuw_producten_tabel() {
 
             //tabledata += "<td>" + +"</td>";
             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_product(${producten[i].pid})">Verwijderen</button>` +
-                `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="toon_product(${producten[i].pid})">Bijwerken</button>` +
+                `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="toon_product('update', ${producten[i].pid})">Bijwerken</button>` +
                 "</td>";
             tabledata += "</tr>";
 
@@ -318,23 +318,37 @@ function haalcatnaam(catid) {
 }
 
 
-function toon_product(prod_id) {
+function toon_product(actie, prod_id) {
+    $("#product_actie").val(actie);
+    console.log(actie)
+    if(actie == "insert"){
+        document.getElementById("pnaam").value = "";
+        document.getElementById("pomschrijving").value = "";
+        document.getElementById("prodprijs").value = "";
+        document.getElementById("catid").value = "";
+        //document.getElementById("beeld").value = huidig_product.beeld;
+        //json stringify
+    
+        document.getElementById("beeldoriginal").value = "";
+    }
 
-    find_product(prod_id);
-    console.log(prod_id);
-    //document.getElementById("pid").value = huidig_product.pid;
-    document.getElementById("pnaam").value = huidig_product.pnaam;
-    document.getElementById("pomschrijving").value = huidig_product.pomschrijving;
-    document.getElementById("prodprijs").value = huidig_product.prodprijs;
-    document.getElementById("catid").value = huidig_product.catid;
-    //document.getElementById("beeld").value = huidig_product.beeld;
-    //json stringify
+    if(actie == "update"){
+        find_product(prod_id);
+        console.log(prod_id);
+        //document.getElementById("pid").value = huidig_product.pid;
+        document.getElementById("pnaam").value = huidig_product.pnaam;
+        document.getElementById("pomschrijving").value = huidig_product.pomschrijving;
+        document.getElementById("prodprijs").value = huidig_product.prodprijs;
+        document.getElementById("catid").value = huidig_product.catid;
+        //document.getElementById("beeld").value = huidig_product.beeld;
+        //json stringify
 
-    document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
+        document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
 
-    //console.log(image);
-    console.log(huidig_product);
-
+        //console.log(image);
+        console.log(huidig_product);
+    }
+    
 
 }
 
@@ -359,13 +373,13 @@ function bijwerken_producten() {
 
 
 function bewarenproducten() {
+    var product_actie = $("#product_actie").val();
+    console.log(product_actie)
 
-    var formData = new FormData();
-    var pid = huidig_product.pid;
+    if (product_actie == "update") {
 
-
-    if (pid !== "") {
-
+        var formData = new FormData();
+        var pid = huidig_product.pid;
         huidig_product.pnaam = document.getElementById("pnaam").value;
         huidig_product.pomschrijving = document.getElementById("pomschrijving").value;
         huidig_product.catid = document.getElementById("catid").value;
@@ -402,19 +416,22 @@ function bewarenproducten() {
             console.log(response);
             if (response.status.success == true) {
                 console.log("updated");
+                $('#modal_details').modal('hide');
             }
             else {
                 console.log("not updated");
+                $('#modal_details').modal('hide');
             }
         }).fail(function (msg) {
             console.log("update fail:");
             console.log(msg);
         });
+    
     }
 
-    else {
+    if(product_actie == "insert") {
 
-
+        var formData = new FormData();
         var values = {
             "pnaam": $("#pnaam").val(),
             "pomschrijving": $("#pomschrijving").val(),
@@ -441,21 +458,23 @@ function bewarenproducten() {
                 console.log("created");
                 var pid = response.data.pid;
                 console.log(pid);
+                $('#modal_details').modal('hide');
             }
             else {
                 console.log("not created");
+                $('#modal_details').modal('hide');
             }
         }).fail(function (msg) {
             console.log("create fail:");
             console.log(msg);
         });
     }
-        read_items();
+    
+    read_items();
+    $('#modal_details').modal('hide');
+        
 
-    }
-
-
-      
+}
    
 
 
