@@ -36,7 +36,8 @@ function toon_broodsoorten_tabel()
     for (i=0; i<broodsoorten.length; i++) 
     {   
         if(broodsoorten[i].bsbeeld!=null) {
-            var beeld_url= '<img class="img-fluid" alt="Responsive image" src ="https://api.data-web.be/files/fjgub4eD3ddg/broodsoort/'+broodsoorten[i].bsbeeld.name+'">';
+            var beeld_url= '<img class="img-fluid" style="max-height:150px" alt="Responsive image" src ="'+broodsoorten[i].bsbeeld+'">';
+        console.log(beeld_url);
         } else beeld_url="";
         document.getElementById("tabel").innerHTML += '<tr>'
         +'<td>'+broodsoorten[i].bsid+'</td> <td>'+broodsoorten[i].bsnaam+'</td> <td>'+broodsoorten[i].bsprijs+'</td> <td>'+beeld_url+'</td>'
@@ -62,10 +63,10 @@ function bewaren_toevoegen()
     {
         "bsnaam": $("#bsnaam").val(),
         "bsprijs": $("#bsprijs").val(),
-        "bsbeeld": $("#beeld_origineel").val()
+        "bsbeeld": $("#beeld_origineel").val(),
     };
     formData.set("values", JSON.stringify(values));       
-    formData.set("Beeld", $("#beeld")[0].files[0]);       
+    formData.set("bsbeeld", $("#bsbeeld")[0].files[0]);       
     
     $.ajax
     ({
@@ -117,7 +118,7 @@ function bewarenBewerken(num) {
     formData.set("bsbeeld", $("#bsbeeld")[0].files[0]);
 
     $.ajax({
-            url: "https://api.data-web.be/item/update?project=4N9TfujyfeXB&entity=broodsoort",
+            url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=broodsoort",
             type: "PUT",
             //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
             processData: false,
