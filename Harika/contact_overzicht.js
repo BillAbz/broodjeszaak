@@ -1,7 +1,7 @@
 var username;
 var user_id;
 var user_rol;
-var bestellingen =[];
+var contactformulier =[];
 var huidig_product;
 var besid;
 var user_email;
@@ -221,13 +221,9 @@ function afmelden()
 
 function start() {
 
-    if(sessionStorage.getItem("user_rol"=="admin"))
-    {
+    
        read_items();
-    }
-    else{
-        alert("you dont have permission to view this page");
-    }
+   
 
 }
 function read_items() {
@@ -239,55 +235,52 @@ function read_items() {
         "project":"fjgub4eD3ddg",
         "entity":"contactformulier",
             "relation": 
-            [{"pri_entity":"contactformulier","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
+            [{"pri_entity":"contactformulier","pri_key":"besid","sec_entity":"bestelling", "sec_key":"besid"}]
         }
 
     })
         .done(function (response) {
             console.log(response);
-            bestellingen = response.data.items;
-            console.log(bestellingen);
-            vernieuw_bestelling_tabel();
+            contactformulier = response.data.items;
+            console.log(contactformulier);
+            vernieuw_contact_tabel();
         }).fail(function (msg) {
             console.log("update fail:");
             console.log(msg);
         });
 
 }
-function vernieuw_bestelling_tabel() {
+function vernieuw_contact_tabel() {
 
-    document.getElementById("bestellingdata").innerHTML = "";
+    document.getElementById("contactformulierdata").innerHTML = "";
 
-    for (var i = 0; i < bestellingen.length; i++) {
+    for (var i = 0; i < contactformulier.length; i++) {
 
 
-        if (bestellingen[i].besid !== null) {
+        if (contactformulier[i].cfid !== null) {
 
             
-           
-            console.log(user_naam);
-            console.log(user_email);
             var tabledata = "";
             tabledata += "<tr>";
-            tabledata += "<td>" + bestellingen[i].user_id + "</td>";
-            tabledata += "<td>" + bestellingen[i].user[0].naam + "</td>";
-            tabledata += "<td>" + bestellingen[i].user[0].email + "</td>";
-            tabledata += "<td>" + bestellingen[i].datum + "</td>";
-            tabledata += "<td>" + bestellingen[i].totaal_stuks + "</td>";
-            tabledata += "<td>" +"€ " +bestellingen[i].totaal_bedrag+ "</td>";
-            tabledata += "<td>" + bestellingen[i].betaald + "</td>";
-            tabledata += "<td>" + bestellingen[i].afgehaald + "</td>";
+            tabledata += "<td>" + contactformulier[i].naam + "</td>";
+            tabledata += "<td>" + contactformulier[i].email + "</td>";
+            tabledata += "<td>" + contactformulier[i].telefoonnummer + "</td>";
+            tabledata += "<td>" + contactformulier[i].besid+ "</td>";
+            tabledata += "<td>" + contactformulier[i].omschrijving + "</td>";
+            tabledata += "<td>" + contactformulier[i].datum_cf + "</td>";
+            tabledata += "<td>" + contactformulier[i].opgelost + "</td>";
+            
             
             //if(bestellingen[i].betaald=="0")
             //{
 
-            tabledata += "<td>" + 
-                `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="get_bestelling_data(${bestellingen[i].besid},${user_naam},${user_email})">Bijwerken</button>` +
+            tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_contact_data(${contactformulier[i].cfid})">Verwijderen</button>` +
+                `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="get_contact_data(${contactformulier[i].cfid})">Bijwerken</button>` +
                 "</td>";
            // }
             tabledata += "</tr>";
 
-            document.getElementById("bestellingdata").innerHTML += tabledata;
+            document.getElementById("contactformulierdata").innerHTML += tabledata;
         }
     }
 
@@ -296,55 +289,58 @@ function vernieuw_bestelling_tabel() {
 
 
 
-function get_bestelling_data(besid,user_naam,user_email) 
+function get_contact_data(cfid) 
 {
 
-    find_bestelling_data(besid);
-    console.log("line 304 huidig_product",huidig_product);
-    document.getElementById("user_id").value = huidig_product.user_id;
-    document.getElementById("datum").value = huidig_product.datum;
-    document.getElementById("totaal_stuks").value = huidig_product.totaal_stuks;
-    document.getElementById("totaal_bedrag").value = huidig_product.totaal_bedrag;
-    document.getElementById("betaald").value = huidig_product.betaald;
-    if(huidig_product.betaald=="1")
+    find_contact_data(cfid);
+    console.log("line 300 huidig_product",huidig_product);
+    document.getElementById("naam").value = huidig_product.naam;
+    document.getElementById("email").value = huidig_product.email;
+    document.getElementById("telefoonnummer").value = huidig_product.telefoonnummer;
+    document.getElementById("besid").value = huidig_product.besid;
+    document.getElementById("omschrijving").value = huidig_product.omschrijving;
+    document.getElementById("datum_cf").value = huidig_product.datum_cf;
+    document.getElementById("opgelost").value = huidig_product.opgelost;
+
+    if(huidig_product.opgelost=="1")
     {
-        document.getElementById("betaald").checked=true;
+        document.getElementById("opgelost").checked=true;
     }
     else
     {
-        document.getElementById("betaald").checked=false;
+        document.getElementById("opgelost").checked=false;
     }
 
 
 
-    document.getElementById("afgehaald").value = huidig_product.afgehaald;
+    document.getElementById("opgelost").value = huidig_product.opgelost;
     
     console.log("line 304 huidig_product",huidig_product);
 }
 
-function find_bestelling_data(besid) 
+function find_contact_data(cfid) 
 {
-    for (i = 0; i < bestellingen.length; i++) {
-        if (besid == bestellingen[i].besid) {
+    for (i = 0; i < contactformulier.length; i++) {
+        if (cfid == contactformulier[i].cfid) {
 
-            huidig_product = bestellingen[i];
-            console.log("in find_bestelling_data function, consoling huidig_product",huidig_product);
+            huidig_product = contactformulier[i];
+            console.log("in find_contact_data function, consoling huidig_product",huidig_product);
             //return;
         }
     }
 
 }
-function bijwerken_bestellingen() {
+function bijwerken_contacten() {
 
-    huidig_product.user_id = document.getElementById("user_id").value;
-    huidig_product.datum = document.getElementById("datum").value;
-    huidig_product.totaal_stuks = document.getElementById("totaal_stuks").value;
-    huidig_product.totaal_bedrag = document.getElementById("totaal_bedrag").value;
-    huidig_product.betaald = document.getElementById("betaald").value;
-    huidig_product.afgehaald = document.getElementById("afgehaald").value;
-    
+    huidig_product.naam = document.getElementById("naam").value;
+    huidig_product.email = document.getElementById("email").value;
+    huidig_product.telefoonnummer = document.getElementById("telefoonnummer").value;
+    huidig_product.besid = document.getElementById("besid").value;
+    huidig_product.omschrijving = document.getElementById("omschrijving").value;
+    huidig_product.datum_cf = document.getElementById("datum_cf").value;
+    huidig_product.opgelost=  document.getElementById("opgelost").value;
 
-    vernieuw_bestelling_tabel();
+    vernieuw_contact_tabel();
     console.log(huidig_product);
     console.log(producten);
 
@@ -352,61 +348,62 @@ function bijwerken_bestellingen() {
 }
 
 
- function set_betaald_value()
+ function set_opgelost_value()
  {
-     var betaald= document.getElementById("betaald");
-     if(betaald.checked)
+     var opgelost= document.getElementById("opgelost");
+     if(opgelost.checked)
      {
-        document.getElementById("betaald").value="1"
-        document.getElementById("afgehaald").value="1";
-     }
-     else if(!betaald.checked){
-        document.getElementById("betaald").value="0"
-        document.getElementById("afgehaald").value="0";
+        document.getElementById("opgelost").value="1";
+     }  
+     else if(!opgelost.checked){
+        document.getElementById("opgelost").value="0";
+       
      }
  }
 
 
-function BestellingenRaadplegen() {
+function contacten_opvolgen() {
 
-   console.log("reaches bestellingenraadplegen function");
+   console.log("reaches contacten_opvolegen function");
 
     var formData = new FormData();
-    var id = document.getElementById("id").value;
-    console.log(id);
+    //var id = document.getElementById("cfid").value;
+    //console.log(id);
 
     if (huidig_product.besid !== "") {
 
         console.log("reached after id not empty condition");
 
-        huidig_product.user_id = document.getElementById("user_id").value;
-        huidig_product.datum = document.getElementById("datum").value;
-        huidig_product.totaal_stuks = document.getElementById("totaal_stuks").value;
-        huidig_product.totaal_bedrag = document.getElementById("totaal_bedrag").value;
-        huidig_product.betaald = document.getElementById("betaald").value;
-        huidig_product.afgehaald=document.getElementById("afgehaald").value;
+        huidig_product.naam = document.getElementById("naam").value;
+        huidig_product.email = document.getElementById("email").value;
+        huidig_product.telefoonnummer = document.getElementById("telefoonnummer").value;
+        huidig_product.besid = document.getElementById("besid").value;
+        huidig_product.omschrijving = document.getElementById("omschrijving").value;
+        huidig_product.datum_cf = document.getElementById("datum_cf").value;
+        huidig_product.opgelost=  document.getElementById("opgelost").value;
         
         
         console.log(huidig_product);
         
 
         var values = {
-            "user_id": huidig_product.user_id,
-            "datum": huidig_product.datum,
-            "totaal_stuks": huidig_product.totaal_stuks,
-            "totaal_bedrag": huidig_product.totaal_bedrag,
-            "betaald": huidig_product.betaald,
-            "afgehaald": huidig_product.afgehaald,
+            "naam": huidig_product.naam,
+            "email": huidig_product.email,
+            "telefoonnummer": huidig_product.telefoonnummer,
+            "besid": huidig_product.besid,
+            "omschrijving":  huidig_product.omschrijving,
+            "datum_cf": huidig_product.datum_cf,
+            "opgelost": huidig_product.opgelost
 
         };
         console.log("new values after changing in bewerken",values)
         formData.set("values", JSON.stringify(values));
-        formData.set("filter", JSON.stringify(["besid", "=", huidig_product.besid]));
+        formData.set("filter", JSON.stringify(["cfid", "=", huidig_product.cfid]));
 
         //formData.set("beeld", $("#beeld")[0].files[0]);
         console.log(formData);
         $.ajax({
-            url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=bestelling",
+            url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=contactformulier",
             headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "PUT",
             processData: false,
@@ -428,17 +425,51 @@ function BestellingenRaadplegen() {
     }
 
    
-        read_items();
+    vernieuw_contact_tabel();
 
     }
 
+    function bevestig_verwijderen() {
+
+
+        $.ajax({
+            url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=contactformulier",
+            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+            type: "DELETE",
+            data: {
+                "filter": [
+                    ["cfid", "=", huidig_product.cfid]
+                ]
+            }
+        }).done(function (response) {
+            console.log("delete done:");
+            console.log(response);
+            if (response.status.success == true) {
+                console.log("deleted");
+    
+            }
+            else {
+                console.log("not deleted");
+    
+            }
+        }).fail(function (msg) {
+            console.log("delete fail:");
+            console.log(msg);
+        });
+        vernieuw_contact_tabel();
+    }
+
+
+
+
     function OnclickofBestellingenOpvolgen()
     {
-        document.getElementById("user_id").value="";
-        document.getElementById("datum").value="";
-        document.getElementById("totaal_stuks").value="";
-        document.getElementById("totaal_bedrag").value="";
-        document.getElementById("betaald").value="";
-        document.getElementById("geleverd").value="";
+        document.getElementById("naam").value = "";
+        document.getElementById("email").value = "" ;
+        document.getElementById("telefoonnummer").value = "" ;
+        document.getElementById("besid").value = "";
+        document.getElementById("omschrijving").value = "" ;
+        document.getElementById("datum_cf").value = "" ;
+        document.getElementById("opgelost").value = "";
         
     }

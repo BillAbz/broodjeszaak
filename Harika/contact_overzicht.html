@@ -15,7 +15,7 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
-    <script src="bestellingen_overzicht.js"></script>
+    <script src="contact_overzicht.js"></script>
 </head>
 
 <body onload="start(); krijg_naam();">
@@ -26,7 +26,7 @@
            
                 <img class="navbar-brand" src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
            
-            <h3 style="color: white;">Bestelling Overzicht</h3>
+            <h3 style="color: white;">Contacten Overzicht</h3>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,12 +35,12 @@
                 <ul class="navbar-nav ml-auto">
                   
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="bestellingen_overzicht.html"  role="button" >Bestellingen_Beheren</a>
+                        <a class="nav-link" href="contact_overzicht.html"  role="button" >Contacten_Beheren</a>
 
                       
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_aanmelden.html" >Admin_Aanmelden</a>
+                        <a class="nav-link" href="admin_aanmelden_contact.html" >Admin_Aanmelden</a>
                      </li>
                      <li class="nav-item dropdown" id="gebruikersnaam"></li>
                  
@@ -58,7 +58,7 @@
                        <div class="modal-dialog" role="document">
                            <div class="modal-content">
                                <div class="modal-header">
-                                   <h5 class="modal-title" id="modalform">Bestellingen Opvolgen/Raadplegen</h5>
+                                   <h5 class="modal-title" id="modalform">Contacten Opvolgen/Bekijken</h5>
                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                            <span aria-hidden="true">&times;</span>
                                    </button>
@@ -68,44 +68,44 @@
                                    <form>
                                        <div class="form-group">
                                            <input id="id" hidden>
-                                           <label for="user_id">User ID</label>
+                                           <label for="naam">Naam</label>
                                            <br>
-                                           <input type="text" class="form-control" id="user_id" placeholder="" disabled>
+                                           <input type="text" class="form-control" id="naam" placeholder="" disabled>
                                        </div>
                                        
                                       <!-- <div class="input-group mb-3">-->
                                          <div class="form-group">
-                                           <label for="datum">Datum</label>
+                                           <label for="email">Email</label>
                                            <br>
-                                           <input type="text" class="form-control" id="datum" placeholder="" disabled>
+                                           <input type="text" class="form-control" id="email" placeholder="" disabled>
                                        </div>
                                        <div class="form-group">
-                                           <label for="totaal_stuks">Totaal Stuks</label>
+                                           <label for="telefoonnummer">Telefoon_nummer</label>
                                            <br>
-                                           <input type="text" class="form-control" id="totaal_stuks" placeholder="" disabled>
+                                           <input type="text" class="form-control" id="telefoonnummer" placeholder="" disabled>
                                         </div>
-                                        
-                                        <label for="totaal_bedrag">Totaal Bedrag</label>
-                                        <div class="input-group mb-3">
-                                           
-                                           
-                                            <span class="input-group-text">€</span>
-                                            <input type="text" id="totaal_bedrag" class="form-control" placeholder="" disabled>
-    
-                                       </div>
-                                       <div>
-                                        <input type="checkbox" id="betaald" name="betaald" value="0" onclick="set_betaald_value();">
-                                        <label for="betaald"> Betaald</label><br>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="besid">Bestelling_nummer</label>
+                                            <br>
+                                            <input type="text" class="form-control" id="besid" placeholder="" disabled>
+                                         </div>
+                                        <div class="form-group">
+                                            <label for="omschrijving">Omschrijving</label>
+                                            <br>
+                                            <input type="text" size="50" class="form-control" id="omschrijving" placeholder="" disabled>
+                                         </div>
                                        <div class="form-group">
-                                           <label for="afgehaald">Afgehaald</label>
-                                           <br>
-                                           <input type="tel" id="afgehaald" class="form-control" placeholder="" disabled>
-
-                                       </div>
-                                       
+                                        <label for="datum_cf">Datum van contacteren</label>
+                                        <br>
+                                        <input type="text" class="form-control" id="datum_cf" placeholder="" disabled>
+                                    </div>
+                                       <div>
+                                        <input type="checkbox" id="opgelost" name="opgelost" value="0" onclick="set_opgelost_value();">
+                                        <label for="opgelost"> Opgelost</label><br>
+                                    </div>
+                                                                             
                                        <div class="modal-footer">
-                                           <button type="button" class="btn btn-primary" id="Bewaren" onclick="BestellingenRaadplegen()">Bewaren</button>
+                                           <button type="button" class="btn btn-primary" id="Bewaren" onclick="contacten_opvolgen()">Bewaren</button>
                                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
                                        </div>
                                    </form>
@@ -117,21 +117,22 @@
                    </div>
            </div>
          
-    <table class="table" id="bestellingtable">
+    <table class="table" id="contactformuliertable">
         <thead>
             <tr>
-                <th scope="col">Klant_nummer</th>
+               
                 <th scope="col">Klant_naam</th>
                 <th scope="col">Klant_email</th>
-                <th scope="col">datum</th>
-                <th scope="col">totaal_stuks</th>
-                <th scope="col">totaal_bedrag</th>
-                <th scope="col">betaald</th>
-                <th scope="col">geleverd</th>
-                <th scope="col">Bewaren</th>
+                <th scope="col">Klant_telefoon_nummer</th>
+                <th scope="col">Bestelling_nummer</th>
+                <th scope="col">Omschrijving</th>
+                <th scope="col">Datum van contacteren</th>
+                <th scope="col">opgelost</th>
+                <th scope="col">Verwijderen / Bijwerken</th>
+
             </tr>
         </thead>
-        <tbody id="bestellingdata">
+        <tbody id="contactformulierdata">
         </tbody>
     </table>
     <!--Verwijderen Modal-->

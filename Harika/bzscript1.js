@@ -1227,7 +1227,17 @@ function contactformulier()
    
     
     var contactomschrijving = document.getElementById("vraag").value;
-    opgelost=0;
+
+    var random_nummer=Math.random() >= 0.5;
+    console.log(random_nummer);
+    if(random_nummer==false)
+    {
+        opgelost=0;
+    }
+    else if(random_nummer==true)
+    {
+        opgelost=1;
+    }
    
     var values =  {
         "naam": contactnaam,
