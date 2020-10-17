@@ -364,6 +364,7 @@ function filter_producten_category(catid)
 
 function maak_tabel(producten1) 
 {
+    console.log(producten1);
     document.getElementById("productendata").innerHTML = "";
   
     for (var i = 0; i < producten1.length; i++) 
@@ -374,6 +375,7 @@ function maak_tabel(producten1)
         tabledata += "<tr>";
     
         tabledata += "<td>" + producten1[i].pnaam + "</td>";
+        
         if(catid==1 || catid==2)
         {
             var p1= Number(producten1[i].prodprijs) + Number(broodsoort[0].bsprijs);
@@ -395,9 +397,8 @@ function maak_tabel(producten1)
         //DO NOT DELETE THIS COMMENT
         tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten1[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image" />' + "</td>";
         
-
-        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Keuze</button>` +
-                    "</td>";
+        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Keuze</button>` +"</td>";
+        
         tabledata += "</tr>";
 
         document.getElementById("productendata").innerHTML += tabledata;
@@ -1193,7 +1194,6 @@ function samenvattingdata(besid)
 
 
 
-
 function vergetenWachtwoord()
 {
     Email.send({
@@ -1207,6 +1207,31 @@ function vergetenWachtwoord()
     }).then(
         alert("E-mail succesvol verzonden")
     );
+}
+
+
+function zoek_product() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("input_product");
+    filter = input.value.toUpperCase();
+    //table = document.getElementById("tabel");
+    //tr = table.getElementsByTagName("tr");
+    for (i = 0; i < producten1.length; i++) 
+    {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) 
+        {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) 
+            {
+                tr[i].style.display = "";
+            } 
+            else 
+            {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
 }
 
 
