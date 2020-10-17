@@ -23,13 +23,18 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark" >
                 <a class="navbar-brand" href="index1.html">
-                    <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+                    <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-5" style="max-width: 100px" alt="Responsive image">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-    
+                <form class="form-inline mr-auto">
+                    <div class="md-form my-0">
+                        <input class="form-control" type="text" placeholder="Zoek een product" id="input_product" onkeyup="zoek_product()" aria-label="Search">
+                        <i class="fas fa-search text-white ml-3" aria-hidden="true"></i>
+                    </div>
+                </form>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
