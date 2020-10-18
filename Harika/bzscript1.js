@@ -1184,7 +1184,6 @@ function vergetenWachtwoord()
     ({
         method: 'GET',
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
-        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         data:
         {
             "filter": ["email", "like", "%" + useremail + "%"]
