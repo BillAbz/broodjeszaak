@@ -271,8 +271,8 @@ function vernieuw_bestelling_tabel() {
             var tabledata = "";
             tabledata += "<tr>";
             tabledata += "<td>" + bestellingen[i].user_id + "</td>";
-            tabledata += "<td>" + bestellingen[i].user[0].naam + "</td>";
-            tabledata += "<td>" + bestellingen[i].user[0].email + "</td>";
+            tabledata += "<td>" + bestellingen[i].user.items[0].naam + "</td>";
+            tabledata += "<td>" + bestellingen[i].user.items[0].email + "</td>";
             tabledata += "<td>" + bestellingen[i].datum + "</td>";
             tabledata += "<td>" + bestellingen[i].totaal_stuks + "</td>";
             tabledata += "<td>" +"€ " +bestellingen[i].totaal_bedrag+ "</td>";
