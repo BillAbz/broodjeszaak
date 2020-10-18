@@ -318,39 +318,6 @@ function haalcatnaam(catid) {
 }
 
 
-function toon_product(actie, prod_id) {
-    $("#product_actie").val(actie);
-    console.log(actie)
-    if(actie == "insert"){
-        document.getElementById("pnaam").value = "";
-        document.getElementById("pomschrijving").value = "";
-        document.getElementById("prodprijs").value = "";
-        document.getElementById("catid").value = "";
-        //document.getElementById("beeld").value = huidig_product.beeld;
-        //json stringify
-    
-        document.getElementById("beeldoriginal").value = "";
-    }
-
-    if(actie == "update"){
-        find_product(prod_id);
-        console.log(prod_id);
-        //document.getElementById("pid").value = huidig_product.pid;
-        document.getElementById("pnaam").value = huidig_product.pnaam;
-        document.getElementById("pomschrijving").value = huidig_product.pomschrijving;
-        document.getElementById("prodprijs").value = huidig_product.prodprijs;
-        document.getElementById("catid").value = huidig_product.catid;
-        //document.getElementById("beeld").value = huidig_product.beeld;
-        //json stringify
-
-        document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
-
-        //console.log(image);
-        console.log(huidig_product);
-    }
-    
-
-}
 
 
 
@@ -429,6 +396,7 @@ function bewarenproducten() {
     
     }
 
+
     if(product_actie == "insert") {
 
         var formData = new FormData();
@@ -476,6 +444,39 @@ function bewarenproducten() {
 
 }
    
+function toon_product(actie, prod_id) {
+    $("#product_actie").val(actie);
+    console.log(actie, $("#product_actie").val())
+    if(actie == "insert"){
+        document.getElementById("pnaam").value = "";
+        document.getElementById("pomschrijving").value = "";
+        document.getElementById("prodprijs").value = "";
+        document.getElementById("catid").value = "";
+        //document.getElementById("beeld").value = huidig_product.beeld;
+        //json stringify
+    
+        document.getElementById("beeldoriginal").value = "";
+    }
+
+    if(actie == "update"){
+        find_product(prod_id);
+        console.log(prod_id);
+        //document.getElementById("pid").value = huidig_product.pid;
+        document.getElementById("pnaam").value = huidig_product.pnaam;
+        document.getElementById("pomschrijving").value = huidig_product.pomschrijving;
+        document.getElementById("prodprijs").value = huidig_product.prodprijs;
+        document.getElementById("catid").value = huidig_product.catid;
+        //document.getElementById("beeld").value = huidig_product.beeld;
+        //json stringify
+
+        document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
+
+        //console.log(image);
+        console.log(huidig_product);
+    }
+    
+
+}
 
 
 
