@@ -996,6 +996,7 @@ function sessioncontrol()
 
     if(token_check==null)
     {
+        //waarschuwing_modal("login");
         window.alert("Please log in to continue further");
         document.location = "aanmelden1.html?directed_from=wagentje1";
     }
@@ -1067,7 +1068,6 @@ function sessioncontrol()
 }
 
 
-//function winkel_samenvatting()
 function post_in_producten_bestelling_tabel()
 {
     if(betaald==1 && afgehaald==1)
@@ -1251,6 +1251,7 @@ function waarschuwing_modal(warning)
 {   
     $("#waarschuwingModal").modal();
     var warning;
+
     if (warning=="password")
     {
         document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Wachtwoord of e-mail onjuist?</h3>';
@@ -1260,6 +1261,11 @@ function waarschuwing_modal(warning)
     {
         document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
         document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
+    }
+    else if (warning=="login")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
     }
 }
 
