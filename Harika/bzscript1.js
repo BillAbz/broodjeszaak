@@ -107,6 +107,12 @@ function registreren() {
     .fail(function (msg) {
         console.log("registiration fail:");
         console.log(msg);
+        var email_bestaat=msg.responseJSON.status.message;
+        
+        if (email_bestaat=="400: User with this email already exists.")
+        {
+            waarschuwing_modal("email");
+        }
     });
 }
 
@@ -165,7 +171,12 @@ function inloggen() {
     .fail(function (msg) {
         console.log("log in fail:");
         console.log(msg);
-        $("#verkeerdeWachtwoordModal").modal();
+        var wachtwoord_unjuist=msg.responseJSON.status.message;
+        
+        if (wachtwoord_unjuist=="User with this e-mail/password not found.")
+        {
+            waarschuwing_modal("password");
+        }
     });
 }
 
@@ -1236,6 +1247,23 @@ function zoek_product() {
 }
 
 
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
+    if (warning=="password")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Wachtwoord of e-mail onjuist?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
+    } 
+    else if (warning=="email")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
+    }
+}
+
+
 function contactformulier() 
 {
 
@@ -1253,7 +1281,6 @@ function contactformulier()
         var contactbestellingid = document.getElementById("ordernummer").value;;
     }
    
-    
     var contactomschrijving = document.getElementById("vraag").value;
 
     var random_nummer=Math.random() >= 0.5;
@@ -1271,7 +1298,7 @@ function contactformulier()
         "naam": contactnaam,
         "email" : contactemail,
         "telefoonnummer" :contacttelefoon, 
-       "omschrijving" :contactomschrijving, 
+        "omschrijving" :contactomschrijving, 
         "besid" : contactbestellingid,
         "datum_cf" :date,
         "opgelost" : String(opgelost)    
@@ -1287,7 +1314,6 @@ function contactformulier()
             processData: false,
             contentType: false,
             data: formData
-           
    })
    .done(function (response) {
         console.log(response);
@@ -1309,7 +1335,6 @@ function get_vraag_selectie_value()
     {
         document.getElementById("bestellingnummer").innerHTML = `  
             <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in">
-            
         `;
     }
     else
