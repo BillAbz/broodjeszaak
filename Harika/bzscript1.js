@@ -159,9 +159,8 @@ function inloggen() {
         }
         else
         {
-            document.location= "producten1.html?catid=";
+            document.location = "producten1.html?catid=";
         }
-        //document.location = "producten1.html?catid=";
     })
     .fail(function (msg) {
         console.log("log in fail:");
@@ -1211,26 +1210,24 @@ function vergetenWachtwoord()
 
 
 function zoek_product() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("input_product");
-    filter = input.value.toUpperCase();
-    //table = document.getElementById("tabel");
-    //tr = table.getElementsByTagName("tr");
-    for (i = 0; i < producten1.length; i++) 
+    var input = document.getElementById("input_product");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("productendata");
+    var tr = table.getElementsByTagName("tr");
+    for (var i = 0; i < tr.length; i++) 
     {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) 
+        var vergelijknaam = tr[i].getElementsByTagName("td")[0];
+        if (vergelijknaam) 
         {
-            txtValue = td.textContent || td.innerText;
+            var txtValue = vergelijknaam.textContent || vergelijknaam.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) 
             {
-                tr[i].style.display = "";
-            } 
-            else 
+            tr[i].style.display = "";
+            } else 
             {
-                tr[i].style.display = "none";
+            tr[i].style.display = "none";
             }
-        }       
+        }  
     }
 }
 
