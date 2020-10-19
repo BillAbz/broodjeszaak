@@ -93,9 +93,9 @@
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Al klant?</p>
                                     <p class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Log in</p>
 
-                                    <input type="email" id="login_email" class="form-control" placeholder="E-mail" minlength="7" required>
+                                    <input type="email" id="login_email" class="form-control" placeholder="E-mail" minlength="5" required>
                                     <div id="login_warning_0"></div>
-                                    <input type="password" id="login_wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" minlength="5" required>
+                                    <input type="password" id="login_wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" required>
                                     <div id="login_warning_1"></div>
                                 </form>
                                     <div class="d-flex justify-content-around mt-4">
@@ -147,17 +147,17 @@
                                     
                                     <input type="email" id="email" class="form-control mt-4" placeholder="E-mail" minlength="5" required>
                                     <div id="register_warning_2"></div>
-                                    <input type="tel" id="telefoonnummer" class="form-control mt-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock" minlength="9" required>
+                                    <input type="tel"id="telefoonnummer" class="form-control mt-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock"  pattern="[0-9]{9,}" required>
                                     <div id="register_warning_3"></div>
-                                    <input type="password" id="wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock" minlength="8" required>
+                                    <input type="password" id="wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                                     <div id="register_warning_4">
-                                        <small class="form-text text-muted">Minimaal 8 karakters en 1 cijfer</small>
+                                        <small class="form-text text-muted">Minimaal 8 karakters, 1 hoofdletter en 1 cijfer</small>
                                     </div>
                                     <hr>
 
                                     <input type="text" id="adres" class="form-control mt-4" placeholder="Adres" minlength="2" required>
                                     <div id="register_warning_5"></div>
-                                    <input type="text" pattern="[0-9]{4}" id="postcode" class="form-control mt-4" placeholder="Postcode" required>
+                                    <input type="text" id="postcode" class="form-control mt-4" placeholder="Postcode" pattern="[0-9]{4}" required>
                                     <div id="register_warning_6"></div>
                                     <select class="browser-default custom-select my-4">
                                         <option value="België" selected disabled>België</option>
