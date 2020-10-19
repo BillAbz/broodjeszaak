@@ -1,0 +1,212 @@
+main{
+  background-color: wheat;
+}
+
+nav {
+  background-color:  #0f7b47;
+}
+
+footer {
+  background-color:  #0f7b47;
+}
+
+.h3-responsive{
+  background-color: wheat;
+}
+
+html {
+    
+    background-size: cover;
+    height: auto 
+}
+
+.stylingsection
+{
+  
+  height: 200px;
+  width: 100%;
+  background-color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
+.imagesection
+{
+  
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px;
+  width: 200px;
+  padding-bottom: 5px;
+}
+
+.over_ons_table {
+     width: 80%;
+}
+
+.over_ons_zoeken-ingredienten {
+     width: 10%;
+}
+
+.aangeraden {
+     width: 10%;
+   
+}
+
+  .imagelinks
+  {
+    box-sizing: border-box;
+
+  }
+
+  .rowimages::after
+  {
+     
+     content: "";
+     display: table;
+     clear: both;
+     
+  }
+  .columnimages
+  {
+    float: left;
+    width: 25%;
+    padding: 3px;
+    padding-right: 4px;
+  }
+
+
+  .centeredimagestartpaginaHarika {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .containerimagesstartpaginaHarika {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    color: white;
+    display: block;
+    margin: 10px 10px;
+  }
+.buttonstartpaginaHarika {
+      background-color: lemonchiffon;
+  border: none;
+  color:black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+    }
+
+      #table-wagentjeHarika {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      #table-wagentjeHarika td, #table-wagentjeHarika th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      
+      
+      #table-wagentjeHarika  th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: black;
+        color: white;
+        white-space: nowrap;
+      }
+      .buttonWagentjeHarika {
+        background-color: darkgreen;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 14px;
+    cursor: pointer;
+      }
+      hr { 
+        display: block; 
+        margin-before: 0.5em; 
+        margin-after: 0.5em; 
+        margin-start: auto; 
+        margin-end: auto; 
+        overflow: hidden; 
+        border-style: inset; 
+        border-width: 1px;
+      } 
+      .formWagentjeHarika {
+        
+        text-align: right;
+        float: right;
+        margin: 14px 3px;
+        
+      }
+      .buttonWagentjeHarika1 {
+        background-color: darkgreen;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 14px 3px;
+    cursor: pointer;
+      }
+      .rowWagentjeHarika {
+        display: flex;
+        flex-direction: row-reverse;
+        
+        width: 100%;
+        align-items: flex-end;
+        white-space: nowrap;
+      }
+
+      .h1wagentje
+      {
+        color: white;
+        margin: auto;
+        text-align: center;
+        background-color: darkgreen;
+        border: solid white;
+        width: 40%;
+        margin-top: 2%;
+        margin-bottom: 1%;
+
+
+      }
+      
+     
+      .loginclass
+      {
+        text-align: center;
+        border: 3px solid blue;
+        width: 50%;
+        margin-top: 200px;
+        margin-left: 400px;
+        padding-bottom: 100px;
+        padding-top: 50px;
+        background-color: lightblue;
+    
+      }
+
+      .sorteerselect {
+        background: transparent;
+        width: 150px;
+        padding: 5px;
+        font-size: 15px;
+        line-height: 1;
+        
+     }
