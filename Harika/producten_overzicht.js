@@ -452,6 +452,7 @@ function toon_product(actie, prod_id) {
         document.getElementById("pomschrijving").value = "";
         document.getElementById("prodprijs").value = "";
         document.getElementById("catid").value = "";
+        document.getElementById("originaalbeeld").innerHTML = "";
         //document.getElementById("beeld").value = huidig_product.beeld;
         //json stringify
     
@@ -466,6 +467,8 @@ function toon_product(actie, prod_id) {
         document.getElementById("pomschrijving").value = huidig_product.pomschrijving;
         document.getElementById("prodprijs").value = huidig_product.prodprijs;
         document.getElementById("catid").value = huidig_product.catid;
+        document.getElementById("originaalbeeld").innerHTML ='<label class="custom-file-label" for="beeld2" data-browse="Bladeren">' + huidig_product.beeld.name + '</label>';
+        console.log(huidig_product.beeld.name);
         //document.getElementById("beeld").value = huidig_product.beeld;
         //json stringify
 
