@@ -239,7 +239,7 @@ function read_items() {
 
             category = response.data.items
             console.log(category)
-
+            toon_categorie_naam();
             $.ajax({
                 method: 'GET',
                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
@@ -266,6 +266,14 @@ function read_items() {
 
 }
 
+function toon_categorie_naam()
+{
+    document.getElementById("catid").innerHTML += `<option value="0"></option>`;
+    for(var i=0;i<category.length;i++)
+    {
+        document.getElementById("catid").innerHTML += `<option value="${category[i].catid}">${category[i].catnaam}</option>`;
+    }
+}
 
 function vernieuw_producten_tabel() {
 
@@ -438,7 +446,8 @@ function bewarenproducten() {
         });
     }
     
-    read_items();
+    //read_items();
+    vernieuw_producten_tabel();
     $('#modal_details').modal('hide');
         
 
