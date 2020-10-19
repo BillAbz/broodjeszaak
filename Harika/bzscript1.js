@@ -183,6 +183,16 @@ function inloggen() {
 
 function krijg_naam()
 {
+    
+    var input = document.getElementById("login_wachtwoord");
+    input.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") 
+        {
+            event.preventDefault();
+            document.getElementById("login_button").click();
+        }
+    });
+
     var useremail= sessionStorage.getItem("gebruiker");
     $.ajax
     ({
@@ -749,7 +759,7 @@ function get_radio_button_value(price, bst, catid, id, naam)
 
 
 function haalWinkelwagentjeOp() 
-{    
+{   
     toon_aantal_bestellingen();            
     
     var winkelwagentje = JSON.parse(sessionStorage.getItem("winkelwagentje"));    
