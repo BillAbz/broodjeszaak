@@ -79,7 +79,8 @@ function registreren() {
     {
         suggesties="1"
     }
-    else {
+    else 
+    {
         suggesties="0";
     }
 
@@ -183,7 +184,6 @@ function inloggen() {
 
 function krijg_naam()
 {
-    
     var input = document.getElementById("login_wachtwoord");
     input.addEventListener("keyup", function(event) {
         if (event.key === "Enter") 
@@ -285,7 +285,6 @@ function start()
     if(catid!="")
     {
         filter_producten_category(catid); 
-        
     }
 
     if (catid==1)
@@ -986,7 +985,6 @@ function verwijder_bestelling(rowid)
         if(winkelwagentje[i].rowid==rowid)
         {
             final_bedrag=Number(final_bedrag)-Number(winkelwagentje[i].totaal_bedrag);
-
             winkelwagentje.splice(i,1);
         }
     }
@@ -997,6 +995,7 @@ function verwijder_bestelling(rowid)
     sessionStorage.setItem('winkelwagentje', JSON.stringify(winkelwagentje));
     toon_winkel_wagentje();
 }
+
 
 function sessioncontrol()
 {
@@ -1156,6 +1155,7 @@ function post_in_producten_bestelling_tabel()
     }
 }
 
+
 function samenvattingdata(besid)
 {
     var winkelwagentje=haalWinkelwagentjeOp();
@@ -1282,7 +1282,6 @@ function waarschuwing_modal(warning)
 
 function contactformulier() 
 {
-
     var formData = new FormData(); 
 
     //var contactuserid = "";
@@ -1296,7 +1295,6 @@ function contactformulier()
     {
         var contactbestellingid = document.getElementById("ordernummer").value;;
     }
-   
     var contactomschrijving = document.getElementById("vraag").value;
 
     var random_nummer=Math.random() >= 0.5;
@@ -1358,6 +1356,7 @@ function get_vraag_selectie_value()
         document.getElementById("bestellingnummer").innerHTML = "";
     }
 }
+
 
 function show_password(id) {
     if (id==1)
