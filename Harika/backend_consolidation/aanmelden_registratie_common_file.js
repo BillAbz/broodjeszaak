@@ -1,3 +1,11 @@
+var username;
+var user_id;
+var user_rol;
+var bestellingen =[];
+var huidig_product;
+var besid;
+var user_email;
+var user_naam;
 function register_validatie()
 {
     for (var i=0; i<7; i++)
@@ -18,6 +26,7 @@ function register_validatie()
         registreren()
     }
 }
+
 
 function registreren() {
     var voornaam = document.getElementById("voornaam").value;
@@ -71,33 +80,8 @@ function registreren() {
     });
 }
 
-function waarschuwing_modal(warning)
-{   
-    $("#waarschuwingModal").modal();
-    var warning;
 
-    if (warning=="password")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Wachtwoord of e-mail onjuist?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
-    } 
-    else if (warning=="email")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
-    }
-    else if (warning=="login")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
-    }
-}
-
-
-
-
-
- function login_validatie()
+function login_validatie()
 {
     document.getElementById("login_warning_0").innerHTML= "";
     document.getElementById("login_warning_1").innerHTML= "";
@@ -117,12 +101,12 @@ function waarschuwing_modal(warning)
 }
 
 
- function inloggen() {
+function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
     
-    //const urlParams1 = new URLSearchParams(window.location.search);
-    //const directed_from = urlParams1.get("directed_from");
+    const urlParams1 = new URLSearchParams(window.location.search);
+    const directed_from = urlParams1.get("directed_from");
     
     $.ajax
     ({
@@ -133,89 +117,77 @@ function waarschuwing_modal(warning)
             "password": password,
         }
     })
-    .done(function (response) {
-        console.log(response);
-        controleer_admin(email);
-        
+    .done(function (response1) {
+        console.log("log in done:");
+        console.log(response1);
+        user_id=response1.data.user_id;
+        console.log(user_id);
+
+      
+    
+            $.ajax
+            ({
+                method: 'GET',
+                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
+            
+                data:
+                {
+                        "filter": ["user_id", "like", "%" + user_id + "%"]
+                }
+            })
+            .done(function (response2) 
+            {
+                console.log(response2);
+                user_rol=response2.data.items[0].rol;
+                if(user_rol=="admin")
+                {
+                    sessionStorage.setItem("token", response1.status.token);
+                    sessionStorage.setItem("gebruiker", email);
+                    username=response2.data.items[0].naam;
+                    user_id=response2.data.items[0].user_id;
+                    sessionStorage.setItem("user_id",user_id);
+                    telefoonnummer=response2.data.items[0].telefoonnummer;
+                   // user_rol=response.data.items[0].rol;
+                    sessionStorage.setItem("username",username);
+                    //sessionStorage.setItem("rol",user_rol);
+                    document.location = "producten_overzicht.html";
+                }
+                else{
+                    alert("U heeft geen toestemming om deze pagina's te openen");
+                }
+           
+    
+            }).fail(function (msg) {
+            console.log("read fail:");
+            console.log(msg);
+            });
+
+
+
+
+        //sessionStorage.setItem("token", response.status.token);
+        //sessionStorage.setItem("gebruiker", email);
+        //console.log(sessionStorage);
+        //document.location = "producten_overzicht.html";
     })
     .fail(function (msg) {
-        console.log("log in fail:");
         console.log(msg);
-        $("#verkeerdeWachtwoordModal").modal();
-    });
-} 
- 
- function vergetenWachtwoord()
-{
-    Email.send({
-        Host: "smtp.gmail.com",
-        Username : "vsa.ned.haluk@gmail.com",
-        Password : "Dorado.2678",
-        To : "ha_look@yahoo.com",
-        From : "vsa.ned.haluk@gmail.com",
-        Subject : "Wachtwoord vergeten",
-        Body : "Je wachtwoord:",
-    }).then(
-        alert("E-mail succesvol verzonden")
-    );
-}
-
- function controleer_admin(useremail)
-{
-    
-    //var useremail= sessionStorage.getItem("gebruiker");
-    $.ajax
-    ({
-        method: 'GET',
-        url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
-        //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        data:
+        var email_bestaat=msg.responseJSON.status.message;
+        
+        if (email_bestaat=="400: User with this email already exists.")
         {
-                "filter": ["email", "like", "%" + useremail + "%"]
+            waarschuwing_modal("email");
         }
-    })
-    .done(function (response) {
-        console.log(response);
-        userdata=response.data.items;
-        
-                
-        user_rol=response.data.items[0].rol;
-        console.log(user_rol);
-        
-        if(user_rol=="admin")
-        {
-            console.log("log in done:");
-            username=response.data.items[0].naam;
-                user_id=response.data.items[0].user_id;
-                //sessionStorage.setItem("token", response.status.token);
-                console.log(sessionStorage.getItem("token"));
-                sessionStorage.setItem("username",username);
-                sessionStorage.setItem("user_id",user_id);
-                sessionStorage.setItem("user_rol",user_rol);
-        console.log(response);
-        sessionStorage.setItem("token", response.status.token);
-        sessionStorage.setItem("gebruiker", email);
-       
-        document.location = 'producten_overzicht.html'
-        console.log(sessionStorage);
-        
-        }
-
-    }).fail(function (msg) {
-        console.log("read fail:");
-        console.log(msg);
     });
 }
 
-function krijg_naam()
-{
-    return sessionStorage.getItem("token");
 
-}
 
- function toon_gebruiker_naam()
+function toon_gebruiker_naam()
 {
-    token_check = krijg_naam()
+    var user_id= sessionStorage.getItem("user_id");
+    var username=sessionStorage.getItem("username");
+    var token_check= sessionStorage.getItem("token");
     console.log(username);
     console.log(sessionStorage);
     if(token_check!=null)
@@ -233,6 +205,34 @@ function krijg_naam()
     }
 }
 
+
+function afmelden() 
+{
+    
+    var token_check=sessionStorage.getItem("token");
+    console.log(token_check);
+
+    $.ajax
+    ({
+        url: "https://api.data-web.be/user/logout?project=fjgub4eD3ddg",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        type: "Get",
+    })
+    .done(function (response) {
+        console.log(response);
+        if (token_check = null) {
+        sessionStorage.setItem("gebruikernaam", "");    
+        gebruikernaam = "";    
+        document.getElementById("gebruikernaam").innerHTML="";
+        sessionStorage.clear();
+        }
+        document.location = "admin_aanmelden.html";
+    })
+    .fail(function (msg) {
+        console.log("read fail:");
+        console.log(msg);
+    });
+}
 
 function sessionControl()
 {
@@ -260,30 +260,26 @@ function sessionControl()
 
 
 
- function afmelden() 
-{
-    //var winkelwagentje = haalWinkelwagentjeOp();
-    var token_check=sessionStorage.getItem("token");
-    console.log(token_check);
 
-    $.ajax
-    ({
-        url: "https://api.data-web.be/user/logout?project=fjgub4eD3ddg",
-        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        type: "Get",
-    })
-    .done(function (response) {
-        console.log(response);
-        if (token_check = null) {
-        sessionStorage.setItem("gebruikernaam", "");    
-        gebruikernaam = "";    
-        document.getElementById("gebruikernaam").innerHTML="";
-        sessionStorage.clear();
-        }
-        document.location = "admin_aanmelden.html";
-    })
-    .fail(function (msg) {
-        console.log("read fail:");
-        console.log(msg);
-    });
+
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
+
+    if (warning=="password")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Wachtwoord of e-mail onjuist?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
+    } 
+    else if (warning=="email")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
+    }
+    else if (warning=="login")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
+    }
 }
