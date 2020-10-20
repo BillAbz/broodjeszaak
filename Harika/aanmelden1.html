@@ -95,7 +95,12 @@
 
                                     <input type="email" id="login_email" class="form-control" placeholder="E-mail" minlength="5" required>
                                     <div id="login_warning_0"></div>
-                                    <input type="password" id="login_wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" required>
+                                    <div class="form-label-group input-group mt-4">
+                                        <input type="password" id="login_wachtwoord"  class="form-control active" placeholder="Wachtwoord" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i id="eye1" class="far fa-eye-slash" onclick="show_password(1)"></i></span>
+                                        </div>
+                                    </div>
                                     <div id="login_warning_1"></div>
                                 </form>
                                     <div class="d-flex justify-content-around mt-4">
@@ -150,7 +155,12 @@
                                     <div id="register_warning_2"></div>
                                     <input type="tel"id="telefoonnummer" class="form-control mt-4" placeholder="Telefoonnummer" aria-describedby="registerFormPhoneHelpBlock"  pattern="[0-9]{9,}" required>
                                     <div id="register_warning_3"></div>
-                                    <input type="password" id="wachtwoord" class="form-control mt-4" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                    <div class="form-label-group input-group mt-4">
+                                        <input type="password" id="wachtwoord" class="form-control" placeholder="Wachtwoord" aria-describedby="registerFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i id="eye2" class="far fa-eye-slash" onclick="show_password(2)"></i></span>
+                                        </div>
+                                    </div>
                                     <div id="register_warning_4">
                                         <small class="form-text text-muted">Minimaal 8 karakters, 1 hoofdletter en 1 cijfer</small>
                                     </div>

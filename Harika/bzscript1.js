@@ -1359,6 +1359,24 @@ function get_vraag_selectie_value()
     }
 }
 
+function show_password(id) {
+    if (id==1)
+    {
+        var input = document.getElementById("login_wachtwoord");
+    } 
+    else if (id==2)
+    {
+        var input = document.getElementById("wachtwoord");
+    }
+    
+    if (input.type === "password") {
+        input.type = "text";
+        document.getElementById("eye"+id).className = "far fa-eye";
+    } else {
+        input.type = "password";
+        document.getElementById("eye"+id).className = "far fa-eye-slash";
+    }
+}
 
 /* New function
 function winkel_samenvatting()
