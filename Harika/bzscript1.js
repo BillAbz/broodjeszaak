@@ -210,6 +210,7 @@ function krijg_naam()
         
         username=response.data.items[0].naam;
         user_id=response.data.items[0].user_id;
+        console.log(user_id);
         telefoonnummer=response.data.items[0].telefoonnummer;
         sessionStorage.setItem("username",username);
           
@@ -1079,6 +1080,7 @@ function sessioncontrol()
 
 function post_in_producten_bestelling_tabel()
 {
+    console.log(besid);
     if(betaald==1 && afgehaald==1)
     {
         var winkelwagentje=haalWinkelwagentjeOp(); 
