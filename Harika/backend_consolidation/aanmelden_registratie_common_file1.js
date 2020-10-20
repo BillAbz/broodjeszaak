@@ -211,7 +211,7 @@ function afmelden()
         document.getElementById("gebruikernaam").innerHTML="";
         sessionStorage.clear();
         }
-        document.location = "admin_aanmelden1.html";
+        document.location = "admin_aanmelden.html";
     })
     .fail(function (msg) {
         console.log("read fail:");
