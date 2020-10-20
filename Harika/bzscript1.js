@@ -184,15 +184,6 @@ function inloggen() {
 
 function krijg_naam()
 {
-    var input = document.getElementById("login_wachtwoord");
-    input.addEventListener("keyup", function(event) {
-        if (event.key === "Enter") 
-        {
-            event.preventDefault();
-            document.getElementById("login_button").click();
-        }
-    });
-
     var useremail= sessionStorage.getItem("gebruiker");
     $.ajax
     ({
@@ -218,6 +209,15 @@ function krijg_naam()
     }).fail(function (msg) {
         console.log("read fail:");
         console.log(msg);
+    });
+    
+    var input = document.getElementById("login_wachtwoord");
+    input.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") 
+        {
+            event.preventDefault();
+            document.getElementById("login_button").click();
+        }
     });
 }
 
