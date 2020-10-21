@@ -117,36 +117,19 @@ function inloggen() {
             "password": password,
         }
     })
-    .done(function (response1) {
+    .done(function (response) {
         console.log("log in done:");
-        console.log(response1);
-        user_id=response1.data.user_id;
-        console.log(user_id);
+        console.log(response);
 
-      
-    
-            $.ajax
-            ({
-                method: 'GET',
-                url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
-            
-                data:
-                {
-                        "filter": ["user_id", "like", "%" + user_id + "%"]
-                }
-            })
-            .done(function (response2) 
-            {
-                console.log(response2);
-                user_rol=response2.data.items[0].rol;
+        user_rol=response.data.item.rol;
                 if(user_rol=="admin")
                 {
-                    sessionStorage.setItem("token", response1.status.token);
+                    sessionStorage.setItem("token", response.status.token);
                     sessionStorage.setItem("gebruiker", email);
-                    username=response2.data.items[0].naam;
-                    user_id=response2.data.items[0].user_id;
+                    username=response.data.item.naam;
+                    user_id=response.data.item.user_id;
                     sessionStorage.setItem("user_id",user_id);
-                    telefoonnummer=response2.data.items[0].telefoonnummer;
+                    telefoonnummer=response.data.item.telefoonnummer;
                    // user_rol=response.data.items[0].rol;
                     sessionStorage.setItem("username",username);
                     //sessionStorage.setItem("rol",user_rol);
@@ -156,18 +139,12 @@ function inloggen() {
                     alert("U heeft geen toestemming om deze pagina's te openen");
                 }
            
-    
-            }).fail(function (msg) {
-            console.log("read fail:");
-            console.log(msg);
-            });
 
 
 
-
-        //sessionStorage.setItem("token", response.status.token);
-        //sessionStorage.setItem("gebruiker", email);
-        //console.log(sessionStorage);
+        sessionStorage.setItem("token", response.status.token);
+        sessionStorage.setItem("gebruiker", email);
+        console.log(sessionStorage);
         //document.location = "producten_overzicht.html";
     })
     .fail(function (msg) {
@@ -180,6 +157,7 @@ function inloggen() {
         }
     });
 }
+
 
 
 
