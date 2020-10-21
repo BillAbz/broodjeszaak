@@ -276,19 +276,20 @@ function read_items() {
                 method: 'GET',
                 url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=producten1",
                 headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-               /* data: {
+                data: {
                     "paging": {
                         "page": huidige_pagina,
                         "items_per_page": 10,
                     }
                    
-                }*/
+                }
             })
 
                 .done(function (response) {
                     console.log(response);
                     assets_path = response.data.assets_path;
                     producten = response.data.items
+                    aantal_paginas = response.data.paging.page_count;
                     sessionStorage.setItem("token", response.status.token)
                     console.log(producten)
                     vernieuw_producten_tabel()
