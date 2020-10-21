@@ -7,10 +7,11 @@ var aantal_paginas;
 
 // client/read
 function starten() {
-    //console.log(sessionStorage.getItem("token"));        
+    console.log(sessionStorage.getItem("token"));        
     $.ajax
     ({
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         data: {
             "paging": {
                 "page": huidige_pagina,
@@ -313,54 +314,3 @@ function sortering()
     starten();
 }
 
-// user/register
-/*function registreren() 
-{
-    $.ajax
-    ({
-        url: "https://api.data-web.be/user/register?project=fjgub4eD3ddg",
-        method: "POST",
-        "data": 
-        {
-            "values":
-            {
-                'email': $('#loginFormEmail').val(),
-                'password': $('#loginFormPassword').val(),
-            }
-        }
-    })
-    .done(function (response) {
-        console.log("registiration done:");
-        console.log(response);
-    })
-    .fail(function (msg) {
-        console.log("registiration fail:");
-        console.log(msg);
-    });
-}
-
-// user/login
-function inloggen() 
-{
-    document.getElementById('status').innerHTML = "Signing in...";
-      
-    $.ajax({
-        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg",
-        method: "POST",
-        "data": 
-        {
-            'email': $('#loginFormEmail').val(),
-            'password': $('#loginFormPassword').val(),
-        }
-    }).done(function (response) {
-        console.log("login done:");
-        console.log(response);
-        sessionStorage.setItem("token", response.status.token);
-        console.log(sessionStorage.getItem("token"));
-        document.location = "producten.html";
-        
-    }).fail(function (msg) {
-        console.log("login fail:");
-        console.log(msg);
-    });
-}*/
