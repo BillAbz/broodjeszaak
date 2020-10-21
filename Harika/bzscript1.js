@@ -1087,8 +1087,7 @@ function sessioncontrol()
 function post_in_producten_bestelling_tabel()
 {
     console.log(besid);
-    if(betaald==1 && afgehaald==1)
-    {
+   
         var winkelwagentje=haalWinkelwagentjeOp(); 
         var formData = new FormData();  
         for(var i=0;i<winkelwagentje.length;i++)
@@ -1142,7 +1141,12 @@ function post_in_producten_bestelling_tabel()
                     console.log("created");
                     var pbid = response.data.pbid;
                     //console.log(pbid);
+                    if(betaald==0 && afgehaald==0)
+                    {
+                        alert("Please make the payment to recieve the order");
+                    }
                     samenvattingdata(besid);
+                    
                 }
                 else 
                 {
@@ -1155,12 +1159,10 @@ function post_in_producten_bestelling_tabel()
                 console.log(msg);
             });
         }
-    }
-    else
-    {
-        samenvattingdata(besid)
-        alert("Please make the payment to recieve the order");
-    }
+ 
+   
+        
+    
 }
 
 
