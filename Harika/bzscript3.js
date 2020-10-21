@@ -1280,7 +1280,8 @@ function controleer_contactformulier()
     document.getElementById("formulier_warning_0").innerHTML= "";
     document.getElementById("formulier_warning_1").innerHTML= "";
     document.getElementById("formulier_warning_2").innerHTML= "";
-    document.getElementById("formulier_warning_3").innerHTML= "";  */
+    document.getElementById("formulier_warning_3").innerHTML= "";
+    document.getElementById("formulier_warning_4").innerHTML= "";  */
 
     var validate= true;
     var form = $("#formulierform");
@@ -1317,9 +1318,8 @@ function contactformulier()
     if (c_option==2 || c_option == 3)
     {
         var contactbestellingid = document.getElementById("ordernummer").value;
-        
+       
     }
-   
 
     var random_nummer=Math.random() >= 0.5;
     console.log(random_nummer);
@@ -1373,9 +1373,10 @@ function get_vraag_selectie_value()
     if (c_option==2 || c_option == 3)
     {
         document.getElementById("bestellingnummer").innerHTML = `  
-            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in" required>
-           
-        `;
+            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in" required>      
+        `
+        controleer_contactformulier();
+        ;
     }
     else if (c_option==1)
     {
