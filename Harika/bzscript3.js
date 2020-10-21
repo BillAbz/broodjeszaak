@@ -1272,12 +1272,7 @@ function waarschuwing_modal(warning)
 
 function controleer_contactformulier()
 {
-<<<<<<< HEAD
-    console.log("entry in controleer function")
-    for (var i=0; i<4; i++)
-=======
     for (var i=0; i<5; i++)
->>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
     {
         console.log("entry in controleer function for loop", i);
         document.getElementById("formulier_warning_"+i).innerHTML= "";
@@ -1294,13 +1289,8 @@ function controleer_contactformulier()
     $('input', form).each(function(i) {
         if ($(this)[0].checkValidity() == false) 
         {
-<<<<<<< HEAD
-        console.log("entry into for each of controleer");
-        document.getElementById("formulier_warning_"+index).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
-=======
             console.log(i)
         document.getElementById("formulier_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
->>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
         validate= false; 
         }
     })
@@ -1330,10 +1320,6 @@ function contactformulier()
     if (c_option==2 || c_option == 3)
     {
         var contactbestellingid = document.getElementById("ordernummer").value;
-<<<<<<< HEAD
-        console.log(contactbestellingid);
-=======
->>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
        
     }
 
@@ -1362,12 +1348,8 @@ function contactformulier()
     $.ajax
     ({
            method: 'POST',
-<<<<<<< HEAD
-           url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
-=======
            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier",
            //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
->>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
            
             //"filter": ["email", "like", "%" + useremail + "%"]
             processData: false,
