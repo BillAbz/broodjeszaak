@@ -37,7 +37,7 @@ function toon_categorien_tabel()
     {
         document.getElementById("tabel").innerHTML += '<tr>'
         +'<td>'+categorien[i].catid+'</td> <td>'+categorien[i].catnaam+'</td>'
-        +'<td> <span class="text-left"><a class="btn btn-blue btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span></td>'
+        +'<td> <span class="text-left"><a class="btn btn-primary btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span></td>'
         +'</tr>';
     }
 }
@@ -47,7 +47,7 @@ function toevoegen()
 {
     legen();
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Categorie toevoegen</h4>';
-    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
+    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-primary" data-dismiss="modal">ANNULEREN</button>';
 }
 
 // client/create
@@ -89,7 +89,7 @@ function legen()
 // popup/delete
 function verwijderen(num) 
 {
-    document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-blue" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-blue" data-dismiss="modal">NEEN</button>';
+    document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-primary" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-primary" data-dismiss="modal">NEEN</button>';
 }
 
 // client/delete
@@ -131,54 +131,3 @@ function paginas(dir)
     starten();
 }
 
-// user/register
-/*function registreren() 
-{
-    $.ajax
-    ({
-        url: "https://api.data-web.be/user/register?project=fjgub4eD3ddg",
-        method: "POST",
-        "data": 
-        {
-            "values":
-            {
-                'email': $('#loginFormEmail').val(),
-                'password': $('#loginFormPassword').val(),
-            }
-        }
-    })
-    .done(function (response) {
-        console.log("registiration done:");
-        console.log(response);
-    })
-    .fail(function (msg) {
-        console.log("registiration fail:");
-        console.log(msg);
-    });
-}
-
-// user/login
-function inloggen() 
-{
-    document.getElementById('status').innerHTML = "Signing in...";
-      
-    $.ajax({
-        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg",
-        method: "POST",
-        "data": 
-        {
-            'email': $('#loginFormEmail').val(),
-            'password': $('#loginFormPassword').val(),
-        }
-    }).done(function (response) {
-        console.log("login done:");
-        console.log(response);
-        sessionStorage.setItem("token", response.status.token);
-        console.log(sessionStorage.getItem("token"));
-        document.location = "producten.html";
-        
-    }).fail(function (msg) {
-        console.log("login fail:");
-        console.log(msg);
-    });
-}*/
