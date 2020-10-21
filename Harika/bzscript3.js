@@ -1272,8 +1272,10 @@ function waarschuwing_modal(warning)
 
 function controleer_contactformulier()
 {
+    console.log("entry in controleer function")
     for (var i=0; i<4; i++)
     {
+        console.log("entry in controleer function for loop", i);
         document.getElementById("formulier_warning_"+i).innerHTML= "";
     }
     var validate= true;
@@ -1281,12 +1283,14 @@ function controleer_contactformulier()
     $('input', form).each(function(index) {
         if ($(this)[0].checkValidity() == false) 
         {
+        console.log("entry into for each of controleer");
         document.getElementById("formulier_warning_"+index).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
         validate= false; 
         }
     })
     if (validate==true)
     {
+        console.log("calling the contact formulier now in controleer");
         contactformulier()
     }
 }
@@ -1308,10 +1312,8 @@ function contactformulier()
     if (c_option==2 || c_option == 3)
     {
         var contactbestellingid = document.getElementById("ordernummer").value;
-        if(contactbestellingid=="")
-        {
-            document.getElementById("formulier_warning_order").innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
-        }
+        console.log(contactbestellingid);
+       
     }
    
     var contactomschrijving = document.getElementById("vraag").value;
@@ -1341,7 +1343,7 @@ function contactformulier()
     $.ajax
     ({
            method: 'POST',
-           url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier",
+           url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
            
             //"filter": ["email", "like", "%" + useremail + "%"]
             processData: false,
