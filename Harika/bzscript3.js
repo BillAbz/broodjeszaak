@@ -1272,19 +1272,35 @@ function waarschuwing_modal(warning)
 
 function controleer_contactformulier()
 {
+<<<<<<< HEAD
     console.log("entry in controleer function")
     for (var i=0; i<4; i++)
+=======
+    for (var i=0; i<5; i++)
+>>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
     {
         console.log("entry in controleer function for loop", i);
         document.getElementById("formulier_warning_"+i).innerHTML= "";
     }
+    /*
+    document.getElementById("formulier_warning_0").innerHTML= "";
+    document.getElementById("formulier_warning_1").innerHTML= "";
+    document.getElementById("formulier_warning_2").innerHTML= "";
+    document.getElementById("formulier_warning_3").innerHTML= "";
+    document.getElementById("formulier_warning_4").innerHTML= "";  */
+
     var validate= true;
     var form = $("#formulierform");
-    $('input', form).each(function(index) {
+    $('input', form).each(function(i) {
         if ($(this)[0].checkValidity() == false) 
         {
+<<<<<<< HEAD
         console.log("entry into for each of controleer");
         document.getElementById("formulier_warning_"+index).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+=======
+            console.log(i)
+        document.getElementById("formulier_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+>>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
         validate= false; 
         }
     })
@@ -1294,6 +1310,7 @@ function controleer_contactformulier()
         contactformulier()
     }
 }
+
 
 
 
@@ -1308,15 +1325,17 @@ function contactformulier()
     var contactnaam = document.getElementById("defaultContactFormName").value;
     var contactemail = document.getElementById("defaultContactFormEmail").value;
     var contacttelefoon = document.getElementById("defaultContactFormTel").value;
+    var contactomschrijving = document.getElementById("vraag").value;
     var c_option =document.getElementById("defaultContactFormInfo").value;
     if (c_option==2 || c_option == 3)
     {
         var contactbestellingid = document.getElementById("ordernummer").value;
+<<<<<<< HEAD
         console.log(contactbestellingid);
+=======
+>>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
        
     }
-   
-    var contactomschrijving = document.getElementById("vraag").value;
 
     var random_nummer=Math.random() >= 0.5;
     console.log(random_nummer);
@@ -1343,7 +1362,12 @@ function contactformulier()
     $.ajax
     ({
            method: 'POST',
+<<<<<<< HEAD
            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+=======
+           url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier",
+           //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+>>>>>>> d4b223eb3be47f273962f5bf79b7e4075c7e672e
            
             //"filter": ["email", "like", "%" + useremail + "%"]
             processData: false,
@@ -1369,14 +1393,17 @@ function get_vraag_selectie_value()
     if (c_option==2 || c_option == 3)
     {
         document.getElementById("bestellingnummer").innerHTML = `  
-            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in">
-            <div id="formulier_warning_order"></div>
-        `;
+            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in" required>      
+        `
+        controleer_contactformulier();
+        ;
     }
-    else
+    else if (c_option==1)
     {
         document.getElementById("bestellingnummer").innerHTML = "";
+        controleer_contactformulier();
     }
+    
 }
 
 

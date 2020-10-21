@@ -52,8 +52,8 @@ function toon_klanten_tabel()
         }
         document.getElementById("tabel").innerHTML += '<tr>'
         +'<td>'+klanten[i].user_id+'</td> <td>'+klanten[i].naam+'</td> <td>'+klanten[i].email+'</td> <td>'+klanten[i].telefoonnummer+'</td> <td>'+klanten[i].adres+'</td> <td>'+klanten[i].postcode+'</td> <td>'+suggesties+'</td> <td>'+actief+'</td>'
-        +'<td> <span class="text-left"><a class="btn btn-blue btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span>'
-        +'<span class="text-left"><a class="btn btn-blue btn-sm my-0" id="bewerken'+i+'" onclick="bewerken('+i+')" data-toggle="modal" data-target="#product">Bewerken</a></span>'
+        +'<td> <span class="text-left"><a class="btn btn-primary btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span>'
+        +'<span class="text-left"><a class="btn btn-primary btn-sm my-0" id="bewerken'+i+'" onclick="bewerken('+i+')" data-toggle="modal" data-target="#product">Bewerken</a></span>'
         +'</td> </tr>';
     }
 }
@@ -64,7 +64,7 @@ function toevoegen()
     legen();
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Klant toevoegen</h4>';
     document.getElementById("invoerWachtwoord").style.display = "block"; 
-    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
+    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
 }
 
 // client/create
@@ -140,7 +140,7 @@ function bewerken(num)
 {
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Klant bijwerken</h4>';
     document.getElementById("invoerWachtwoord").style.display = "none";
-    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-blue" onclick="bewaren_bewerken('+num+')" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
+    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="bewaren_bewerken('+num+')" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
     document.getElementById("naam").value = klanten[num].naam;
     document.getElementById("email").value = klanten[num].email;
     document.getElementById("telefoonnummer").value = klanten[num].telefoonnummer;
@@ -232,7 +232,7 @@ function verwijderen(num)
     }
     else{
         document.getElementById("verwijderWaarschuwing").innerHTML = '<p>Wilt u deze klant verwijderen?</p>';
-        document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-blue" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-blue" data-dismiss="modal">NEEN</button>';
+        document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-primary" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-blue" data-dismiss="modal">NEEN</button>';
     }
 }
 
