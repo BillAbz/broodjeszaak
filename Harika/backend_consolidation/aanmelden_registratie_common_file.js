@@ -6,7 +6,8 @@ var huidig_product;
 var besid;
 var user_email;
 var user_naam;
-function register_validatie()
+
+/*function register_validatie()
 {
     for (var i=0; i<7; i++)
     {
@@ -78,7 +79,7 @@ function registreren() {
             waarschuwing_modal("email");
         }
     });
-}
+}*/
 
 
 function login_validatie()
@@ -138,27 +139,20 @@ function inloggen() {
                 else{
                     alert("U heeft geen toestemming om deze pagina's te openen");
                 }
-           
-
-
-
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        //document.location = "producten_overzicht.html";
     })
     .fail(function (msg) {
         console.log(msg);
-        var email_bestaat=msg.responseJSON.status.message;
+        wachtwoord_unjuist=msg.responseJSON.status.message;
         
-        if (email_bestaat=="400: User with this email already exists.")
+        if (wachtwoord_unjuist=="User with this e-mail/password not found.")
         {
-            waarschuwing_modal("email");
+            waarschuwing_modal("password");
         }
     });
 }
-
-
 
 
 function toon_gebruiker_naam()
@@ -179,14 +173,12 @@ function toon_gebruiker_naam()
     else
     {
         document.getElementById("gebruikernaam").innerHTML="";
-        //document.location = "aanmelden1.html";
     }
 }
 
 
 function afmelden() 
 {
-    
     var token_check=sessionStorage.getItem("token");
     console.log(token_check);
 
@@ -212,6 +204,7 @@ function afmelden()
     });
 }
 
+
 function sessionControl()
 {
     var token=sessionStorage.getItem("token")  
@@ -235,9 +228,6 @@ function sessionControl()
        document.location="admin_aanmelden.html"
     });
 }
-
-
-
 
 
 function waarschuwing_modal(warning)

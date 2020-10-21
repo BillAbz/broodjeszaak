@@ -23,161 +23,158 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" >
-            
-            <a class="navbar-brand" href="index1.html">
-                <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
-            </a>
-            <h3 style="color: white;">Producten Overzicht</h3>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <img src="logo.png" alt="logo_hier" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
+        <h3 style="color: white;">Producten Overzicht</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                  
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="producten_overzicht.html"  role="button" >Producten_Beheren</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="categorien_overzicht.html"  role="button" >Categorien_Beheren</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="broodsoorten_overzicht.html"  role="button" >Broodsoorten_Beheren</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="bestellingen_overzicht.html"  role="button" >Bestellingen_Beheren</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="contact_overzicht.html"  role="button" >Contact_Beheren</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="producten_overzicht.html">Producten Beheren</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin_aanmelden.html" >Admin_Aanmelden</a>
-                     </li>
-                     <li class="nav-item dropdown" id="gebruikersnaam"></li>
-                 
+                        <a class="nav-link" href="categorien_overzicht.html">Categorien Beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="broodsoorten_overzicht.html">Broodsoorten Beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="broodtypen_overzicht.html">Broodtypen Beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="klanten_overzicht.html">Klanten Beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_overzicht.html">Contact Beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bestellingen_overzicht.html">Bestellingen Beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="promoties_overzicht">Promoties Beheren</a>
+                    </li>
+                    <li class="nav-item dropdown" id="gebruikersnaam"></li>
                 </ul>
             </div>
-
         </nav>
     </header>
 
     <main>
-        <div class="wrapper">
-           
-                   <!-- PRODUCT OVERZICHT BUTTON CREATION-->
-                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_details" onclick="toon_product('insert');">Product Toevoegen</button>
-                   <div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-                       <div class="modal-dialog" role="document">
-                           <div class="modal-content">
-                               <div class="modal-header">
-                                   <h5 class="modal-title" id="modalform">Product Toevoegen / Product Bewaren</h5>
-                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                   </button>
-                               </div>
-                               <div class="modal-body">
-                                   <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
-                                   <form>
-                                       <div class="form-group">
-                                           <input id="id" hidden>
-                                           <label for="pnaam">Naam</label>
-                                           <input type="text" class="form-control" id="pnaam" placeholder="">
-                                       </div>
-                                       <div class="input-group mb-3">
-                                            <span class="input-group-text">€</span>
-                                            <input type="text" class="form-control" id="prodprijs" aria-label="Prijs in Euro" />
-    
-                                       </div>
-                                       <h6>Beeld</h6>
-                                       <div class="custom-file">
-                                            <input type="hidden" id="beeldoriginal">
-                                            <input type="file" class="custom-file-input" id="beeld" />
-                                            <label class="custom-file-label" for="beeld" data-browse="Bladeren">Kies (Nieuwe) Beeld</label>
-                                        </div>
-                                       <div class="form-group">
-                                           <label for="pomschrijving">Omschrijving</label>
-                                           <textarea class="form-control" id="pomschrijving" rows="7"></textarea>
-                                       </div>
-                                       
-       
-                                       <div class="form-group">
-                                           <label for="catid">Categorie</label>
-                                            <select class="form-control" id="catid">
-                            
-                                                       <!-- <option value="1">Klassieke Broodjes</option>
-                                                        <option value="2">Speciale Broodjes</option>
-                                                        <option value="3">Koude Schotels</option>
-                                                        <option value="4">Drankjes</option>-->
-                                            </select>
-                                       </div>
-                                       
-                                       <div class="modal-footer">
-                                           <div id="modalFooter"></div>
-                                           <button type="button" class="btn btn-primary" id="Bewaren" onclick="bewarenproducten();">Bewaren</button>
-                                           <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
-                                       </div>
-                                   </form>
-                               </div>
-                               <!-- SAVE AND CANCEL BUTTONS CREATION -->
-       
-                           </div>
-                       </div>
-                   </div>
-           </div>
-           <!-- CREATION OF SECOND SECTION WITH THREE TEXT BOXES AND ONE BUTTON IN WEB PAGE -->
-
-        <div class="row">
-            <div class="col-md-2" style="margin: 2px">
-                <label for="filter_naam">Naam</label>
-                <input id="filter_naam" type="text">
-            </div>
-
-            <div class="col-md-2" style="margin: 2px">
-                <label for="filter_omschrijving">Omschrijving</label>
-                <input id="filter_omschrijving" type="text">
-            </div>
-
-            <div class="col-md-2" style="margin: 2px">
-                <label for="filter_prijs">Prijs</label>
-                <br>>=
-                <input id="filter_prijs" type="text">
-            </div>
-            <div class="col-md-2" style="margin: 2px">
-                <br>
-            <!-- <button type="button" class="btn btn-primary btn-md" id="Filter" onclick="filter_sorteer_producten()">Filter</button>-->
-                <button type="button" class="btn btn-primary btn-md" id="Filter" onclick="filter_producten()">Filter</button>
-            </div>
+        <div class="text-left">
+            <!-- PRODUCT OVERZICHT BUTTON CREATION-->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_details" onclick="toon_product('insert');">Product Toevoegen</button>
         </div>
-
-        <!--CREATION OF THIRD SECTION SORTEER IN PAGE-->
-        <div class="form-group">
-            <label for="sorteer">Sorteer</label>
-        
-            <select class="form-control sorteerselect" id="sorteer" onchange="sorteer_producten()">
-            <option value="0" selected>Choose a Label</option>
-            <option value="spid" id="spid">Id</option>
-            <option value="snaam" id="snaam">Naam</option>
-            <option value="somschrijving" id="somschrijving">Omschrijving</option>
-            <option value="sprijs" id="sprijs">Prijs</option>
             
-            </select>
+        <div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalform">Product Toevoegen / Product Bewaren</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
+                        <form>
+                            <div class="form-group">
+                                <input id="id" hidden>
+                                <label for="pnaam">Naam</label>
+                                <input type="text" class="form-control" id="pnaam" placeholder="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">€</span>
+                                <input type="text" class="form-control" id="prodprijs" aria-label="Prijs in Euro" />
+                            </div>
+                            <h6>Beeld</h6>
+                            <div class="custom-file">
+                                <input type="hidden" id="beeldoriginal">
+                                <input type="file" class="custom-file-input" id="beeld" />
+                                <label class="custom-file-label" for="beeld" data-browse="Bladeren">Kies (Nieuwe) Beeld</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="pomschrijving">Omschrijving</label>
+                                <textarea class="form-control" id="pomschrijving" rows="7"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="catid">Categorie</label>
+                                <select class="form-control" id="catid">
+                                    <!-- <option value="1">Klassieke Broodjes</option>
+                                    <option value="2">Speciale Broodjes</option>
+                                    <option value="3">Koude Schotels</option>
+                                    <option value="4">Drankjes</option>-->
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <div id="modalFooter"></div>
+                                <button type="button" class="btn btn-primary" id="Bewaren" onclick="bewarenproducten();">Bewaren</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- SAVE AND CANCEL BUTTONS CREATION -->
+                </div>
+            </div>
         </div>
-        <table class="table" id="productentable">
-            <thead>
-                <tr>
-                    <th scope="col">pid</th>
-                    <th scope="col">pnaam</th>
-                    <th scope="col">prodprijs</th>
-                    <th scope="col">Categorie</th>
-                    <th scope="col">pomschrijving</th>
-                    <th scope="col">Beeld</th>
-                    <th scope="col">button</th>
-                </tr>
-            </thead>
-            <tbody id="productendata">
-            </tbody>
+        <!-- CREATION OF SECOND SECTION WITH THREE TEXT BOXES AND ONE BUTTON IN WEB PAGE -->
+        <div class="container" id="filter">
+            <div class="row">
+                <div class="col-md-2" style="margin: 2px">
+                    <label for="filter_naam">Naam</label>
+                    <input id="filter_naam" type="text">
+                </div>
 
+                <div class="col-md-2" style="margin: 2px">
+                    <label for="filter_omschrijving">Omschrijving</label>
+                    <input id="filter_omschrijving" type="text">
+                </div>
+
+                <div class="col-md-2" style="margin: 2px">
+                    <label for="filter_prijs">Prijs >=</label>
+                    <input id="filter_prijs" type="text">
+                </div>
+                <div class="col-md-2" style="margin: 2px">
+                    <br>
+                    <button type="button" class="btn btn-primary btn-sm" id="Filter" onclick="filter_producten()">Filter</button>
+                </div>
+            </div>
+        </div>
+        
+        <!--CREATION OF THIRD SECTION SORTEER IN PAGE-->
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-sm-3">
+                    <label for="sorteer">Sorteer</label>
+        
+                    <select class="browser-default custom-select" id="sorteer" onchange="sorteer_producten()">
+                        <option value="spid" id="spid" selected>Product Id</option>
+                        <option value="snaam" id="snaam">Product Naam</option>
+                        <option value="somschrijving" id="somschrijving">Omschrijving</option>
+                        <option value="sprijs" id="sprijs">Product Prijs</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-responsive-md table-striped text-center" id="productentable">
+                <thead>
+                    <tr>
+                        <th scope="col">pid</th>
+                        <th scope="col">pnaam</th>
+                        <th scope="col">prodprijs</th>
+                        <th scope="col">Categorie</th>
+                        <th scope="col">pomschrijving</th>
+                        <th scope="col">Beeld</th>
+                        <th scope="col">button</th>
+                    </tr>
+                </thead>
+                <tbody id="productendata">
+            </tbody>
         </table>
+        
         <nav aria-label="Page navigation example" style="background-color: wheat;">
             <ul class="pagination pg-blue justify-content-center">
                 <li class="page-item">
@@ -189,6 +186,7 @@
                 </li>
             </ul>
         </nav>
+
         <!--Verwijderen Modal-->
         <div class="modal fade" id="modal_verwijderen" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -210,29 +208,7 @@
                 </div>
             </div>
         </div>
-        <!-- De modal voor product verwijderen-->
-        <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal"
-            aria-hidden="true">
-            <input type="hidden" id="delete_id" />
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-left">
-                        <h4 class="modal-title w-100 font-weight-bold">Product verwijderen</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body mx-3">
-                        <p>Wenst u dit product te verwijderen?</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-right">
-                        <button onclick="bevestig_verwijderen();" class="btn btn-sm btn-indigo">Ja <i class="fas fa-paper-plane-o ml-1"></i></button>
-                        <button onclick="$('#delete_modal').modal('hide');" class="btn btn-sm btn-indigo">Neen <i class="fas fa-paper-plane-o ml-1"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
     </main>
 
     <footer class="page-footer font-small darken-3 pt-4">
@@ -262,13 +238,11 @@
             </div>
         </div>
 
-        
         <div class="footer-copyright text-center py-3">Alle rechten voorbehouden © 2020:
             <a href="https://mdbootstrap.com/"> HBH Broodjeszaak</a>
         </div>
         <div id="product_actie" style="display: hide;"></div>
     </footer>
-
 
 </body>
 
