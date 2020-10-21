@@ -405,7 +405,8 @@ function maak_tabel(producten1)
                         "<br>" + "Halve Baget=>" + "€ " + p2 + 
                         "</td>";
         }
-        else if(catid==3 || catid==4)
+        //else if(catid==3 || catid==4)
+        else if(catid!==1 || catid!==2)
         {
             tabledata += "<td>" + "---" + "</td>";
         }
@@ -437,7 +438,8 @@ function toon_producten_popup(pid,catid)
         broodtype_gekozen  = broodtype[0].btprijs;
         voorberekening(catid);        
     } 
-    else if(huidig_product.catid==3 || huidig_product.catid==4)
+    //else if(huidig_product.catid==3 || huidig_product.catid==4)
+    else if(huidig_product.catid!==1 || huidig_product.catid!==2)
     {
         document.getElementById("naam").value = huidig_product.pnaam;
         voorberekening(catid);
@@ -555,7 +557,8 @@ function create_modal(catid,pid)
         </div>
         `
     }
-    else if(catid==3 || catid==4)
+    //else if(catid==3 || catid==4)
+    else if(catid!==1 || catid!==2)
     {
         document.getElementById("modal_data").innerHTML=
         `
@@ -645,7 +648,8 @@ function berekening(catid)
             total_prijs=total_prijs.toFixed(2);
         }
     }
-    else if(catid==3 || catid==4)
+    //else if(catid==3 || catid==4)
+    else if(catid!==1 || catid!==2)
     {
         var aantalstukjes = Number(document.getElementById("quantity").value);
         total_prijs = aantalstukjes * huidig_product.prodprijs;
@@ -689,7 +693,8 @@ function update_modal(catid)
         }
         document.getElementById("prijs").value = total_prijs;
     }
-    else if(catid==3 || catid==4)
+    //else if(catid==3 || catid==4)
+    else if(catid!==1 || catid!==2)
     {
         if(catid==3 && day==3)
         {
@@ -702,9 +707,10 @@ function update_modal(catid)
         {
             document.getElementById("promotieid").value="20% korting op alle Speciale Broodjes elke woensdag";
         }
-        else if(catid==4)
+        //else if(catid==4)
+        else if(catid!=3)
         {
-            document.getElementById("promotieid").value="Geen korting op drankjes";
+            document.getElementById("promotieid").value="Geen korting";
         }
         document.getElementById("prijs").value = total_prijs;
     }
