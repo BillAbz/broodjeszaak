@@ -7,7 +7,7 @@ var besid;
 var user_email;
 var user_naam;
 
-function inloggen() {
+/* function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
     
@@ -36,7 +36,7 @@ function inloggen() {
         console.log(msg);
         $("#verkeerdeWachtwoordModal").modal();
     });
-} 
+}  */
 function start() {
 
     

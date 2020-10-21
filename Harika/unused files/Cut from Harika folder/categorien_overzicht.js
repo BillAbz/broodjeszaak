@@ -64,7 +64,7 @@ function bewaren_toevoegen()
     ({
         url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=category",
         type: "POST",
-        //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
+        headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
         processData: false,
         contentType: false,
         data: formData
@@ -99,7 +99,7 @@ function verwijderen_ja(num)
     ({
         url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=category",
         type: "DELETE",
-        //headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
+        headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
         data: {                
             "filter": [
                     {"field": "catid", "operator": "=", "value": categorien[num].catid}
