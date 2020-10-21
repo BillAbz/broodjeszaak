@@ -8,7 +8,7 @@ var user_email;
 var user_naam;
 
 
-/* function inloggen() {
+function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
     
@@ -37,7 +37,7 @@ var user_naam;
         console.log(msg);
         $("#verkeerdeWachtwoordModal").modal();
     });
-} */
+}
 
 
 
@@ -241,6 +241,16 @@ function BestellingenRaadplegen() {
             if (response.status.success == true) {
                 console.log("updated");
                 read_items();
+
+            /* if(huidig_product.betaald==1&&huidig_product.afgehaald==1)
+            {
+                toevoeg_waarden_op_producten_bestelling_tabel();
+            }
+            else if(huidig_product.betaald==1&&huidig_product.afgehaald==1)
+            {
+                verwijder_waarden_van_producten_bestelling_tabel();
+            }
+ */
             }
            
         }).fail(function (msg) {
@@ -250,6 +260,14 @@ function BestellingenRaadplegen() {
     }
 
    
+/* function toevoeg_waarden_op_producten_bestelling_tabel()
+{
+
+} */
+
+
+
+
         
 
     }

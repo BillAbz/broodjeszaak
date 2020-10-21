@@ -15,7 +15,7 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <link rel="stylesheet" type ="text/css" href="Harikastartpagina.css"/>
-    <script src="aanmelden_registratie_common_file.js"></script>
+    <script src="aanmelden_registratie_common_file1.js"></script>
     <script src="producten_overzicht.js"></script>
 </head>
 
@@ -93,7 +93,6 @@
                                             <input type="hidden" id="beeldoriginal">
                                             <input type="file" class="custom-file-input" id="beeld" />
                                             <label class="custom-file-label" for="beeld" data-browse="Bladeren">Kies (Nieuwe) Beeld</label>
-                                            <div style="border: 2px;" id="originaalbeeld"></div>
                                         </div>
                                        <div class="form-group">
                                            <label for="pomschrijving">Omschrijving</label>
@@ -127,139 +126,142 @@
            </div>
            <!-- CREATION OF SECOND SECTION WITH THREE TEXT BOXES AND ONE BUTTON IN WEB PAGE -->
 
-        <div class="row">
-            <div class="col-md-2" style="margin: 2px">
-                <label for="filter_naam">Naam</label>
-                <input id="filter_naam" type="text">
-            </div>
-
-            <div class="col-md-2" style="margin: 2px">
-                <label for="filter_omschrijving">Omschrijving</label>
-                <input id="filter_omschrijving" type="text">
-            </div>
-
-            <div class="col-md-2" style="margin: 2px">
-                <label for="filter_prijs">Prijs</label>
-                <br>>=
-                <input id="filter_prijs" type="text">
-            </div>
-            <div class="col-md-2" style="margin: 2px">
-                <br>
-            <!-- <button type="button" class="btn btn-primary btn-md" id="Filter" onclick="filter_sorteer_producten()">Filter</button>-->
-                <button type="button" class="btn btn-primary btn-md" id="Filter" onclick="filter_producten()">Filter</button>
-            </div>
+    <div class="row">
+        <div class="col-md-2" style="margin: 2px">
+            <label for="filter_naam">Naam</label>
+            <input id="filter_naam" type="text">
         </div>
 
-        <!--CREATION OF THIRD SECTION SORTEER IN PAGE-->
-        <div class="form-group">
-            <label for="sorteer">Sorteer</label>
-        
-            <select class="form-control sorteerselect" id="sorteer" onchange="sorteer_producten()">
-            <option value="0" selected>Choose a Label</option>
-            <option value="spid" id="spid">Id</option>
-            <option value="snaam" id="snaam">Naam</option>
-            <option value="somschrijving" id="somschrijving">Omschrijving</option>
-            <option value="sprijs" id="sprijs">Prijs</option>
+        <div class="col-md-2" style="margin: 2px">
+            <label for="filter_omschrijving">Omschrijving</label>
+            <input id="filter_omschrijving" type="text">
+        </div>
+
+        <div class="col-md-2" style="margin: 2px">
+            <label for="filter_prijs">Prijs</label>
+            <br>>=
+            <input id="filter_prijs" type="text">
+        </div>
+        <div class="col-md-2" style="margin: 2px">
+            <br>
+           <!-- <button type="button" class="btn btn-primary btn-md" id="Filter" onclick="filter_sorteer_producten()">Filter</button>-->
+            <button type="button" class="btn btn-primary btn-md" id="Filter" onclick="filter_producten()">Filter</button>
+        </div>
+    </div>
+
+    <!--CREATION OF THIRD SECTION SORTEER IN PAGE-->
+    <div class="form-group">
+        <label for="sorteer">Sorteer</label>
+      
+        <select class="form-control sorteerselect" id="sorteer" onchange="sorteer_producten()">
+          <option value="0" selected>Choose a Label</option>
+          <option value="spid" id="spid">Id</option>
+          <option value="snaam" id="snaam">Naam</option>
+          <option value="somschrijving" id="somschrijving">Omschrijving</option>
+          <option value="sprijs" id="sprijs">Prijs</option>
+          
+        </select>
+    </div>
+    <table class="table" id="productentable">
+        <thead>
+            <tr>
+                <th scope="col">pid</th>
+                <th scope="col">pnaam</th>
+                <th scope="col">prodprijs</th>
+                <th scope="col">Categorie</th>
+                <th scope="col">pomschrijving</th>
+                <th scope="col">Beeld</th>
+                <th scope="col">button</th>
+            </tr>
+        </thead>
+        <tbody id="productendata">
+        </tbody>
+
+    </table>
+    <nav aria-label="Page navigation example" style="background-color: wheat;">
+        <ul class="pagination pg-blue justify-content-center">
+            <li class="page-item">
+                <a class="page-link" tabindex="-1" onclick="paginas('vorige')">Vorige</a>
+            </li>
             
-            </select>
-        </div>
-        <table class="table" id="productentable">
-            <thead>
-                <tr>
-                    <th scope="col">pid</th>
-                    <th scope="col">pnaam</th>
-                    <th scope="col">prodprijs</th>
-                    <th scope="col">Categorie</th>
-                    <th scope="col">pomschrijving</th>
-                    <th scope="col">Beeld</th>
-                    <th scope="col">button</th>
-                </tr>
-            </thead>
-            <tbody id="productendata">
-            </tbody>
-
-        </table>
-        <nav aria-label="Page navigation example" style="background-color: wheat;">
-            <ul class="pagination pg-blue justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" tabindex="-1" onclick="paginas('vorige')">Vorige</a>
-                </li>
-                
-                <li class="page-item">
-                    <a class="page-link" onclick="paginas('volgende')">Volgende</a>
-                </li>
-            </ul>
-        </nav>
-        <!--Verwijderen Modal-->
-        <div class="modal fade" id="modal_verwijderen" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalform">Producten Verwijderen </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-                    </div>
-                    <div class="modal-body">
-                        Wenst u dit product te verwijderen?
-                    </div>
-                    <!-- Yes AND NO BUTTONS CREATION -->
-                    <div class="modal-footer">
-                        <button type="button" id="Ja" class="btn btn-primary" data-dismiss="modal" onclick="bevestig_verwijderen();">Ja</button>
-                        <button type="button" id="Neen" class="btn btn-primary" data-dismiss="modal">Neen</button>
-                    </div>
+            <li class="page-item">
+                <a class="page-link" onclick="paginas('volgende')">Volgende</a>
+            </li>
+        </ul>
+    </nav>
+    <!--Verwijderen Modal-->
+    <div class="modal fade" id="modal_verwijderen" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalform">Producten Verwijderen </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    Wenst u dit product te verwijderen?
+                </div>
+                <!-- Yes AND NO BUTTONS CREATION -->
+                <div class="modal-footer">
+                    <button type="button" id="Ja" class="btn btn-primary" data-dismiss="modal" onclick="bevestig_verwijderen();">Ja</button>
+                    <button type="button" id="Neen" class="btn btn-primary" data-dismiss="modal">Neen</button>
                 </div>
             </div>
         </div>
-        <!-- De modal voor product verwijderen-->
-        <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal"
-            aria-hidden="true">
-            <input type="hidden" id="delete_id" />
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-left">
-                        <h4 class="modal-title w-100 font-weight-bold">Product verwijderen</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body mx-3">
-                        <p>Wenst u dit product te verwijderen?</p>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-right">
-                        <button onclick="bevestig_verwijderen();" class="btn btn-sm btn-indigo">Ja <i class="fas fa-paper-plane-o ml-1"></i></button>
-                        <button onclick="$('#delete_modal').modal('hide');" class="btn btn-sm btn-indigo">Neen <i class="fas fa-paper-plane-o ml-1"></i></button>
-                    </div>
+    </div>
+    <!-- De modal voor product verwijderen-->
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal"
+        aria-hidden="true">
+        <input type="hidden" id="delete_id" />
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-left">
+                    <h4 class="modal-title w-100 font-weight-bold">Product verwijderen</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <p>Wenst u dit product te verwijderen?</p>
+                </div>
+                <div class="modal-footer d-flex justify-content-right">
+                    <button onclick="bevestig_verwijderen();" class="btn btn-sm btn-indigo">Ja <i class="fas fa-paper-plane-o ml-1"></i></button>
+                    <button onclick="$('#delete_modal').modal('hide');" class="btn btn-sm btn-indigo">Neen <i class="fas fa-paper-plane-o ml-1"></i></button>
                 </div>
             </div>
         </div>
+    </div>
 
-    </main>
 
-    <footer class="page-footer font-small darken-3 pt-4">
-        <div class="container text-center">
+</main>
+
+
+    <footer class="page-footer font-small darken-3">
+        <div class="container">
             <div class="row">
-                
-                <div class="col-md-4 mb-md-0 mb-3">
-                    <h6 class="text-uppercase font-weight-bold mb-4"><a href="aanmelden1.html">Aanmelden</a></h6>
+                <div class="col-md-12 py-3">
+                    <div class="mb-5 flex-center">
+                        <a class="fb-ic" href="https://www.facebook.com/">
+                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="tw-ic" href="https://twitter.com/">
+                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="gplus-ic" href="https://accounts.google.com">
+                            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="li-ic" href="https://www.linkedin.com/login/">
+                            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="ins-ic" href="https://www.instagram.com/">
+                            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a class="pin-ic" href="https://www.pinterest.com/">
+                            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                        </a>
+                    </div>
                 </div>
-
-                <hr class="clearfix w-100 d-md-none pb-3">
-
-                <div class="col-md-4 mb-md-0 mb-3">
-                    <h6 class="text-uppercase font-weight-bold mb-4"><a href="producten1.html?catid=">Producten</a></h6>
-                    <p><a href="producten1.html?catid=1">Klassieke Broodjes</a></p>
-                    <p><a href="producten1.html?catid=2">Speciale Broodjes</a></p>
-                    <p><a href="producten1.html?catid=3">Koude Schotels</a></p>
-                    <p><a href="producten1.html?catid=4">Drankjes</a></p>
-                </div>
-
-                <hr class="clearfix w-100 d-md-none pb-3">
-
-                <div class="col-md-4 mb-md-0 mb-3">
-                    <h6 class="text-uppercase font-weight-bold mb-4"><a href="promoties.html">Promoties</a></h6>
-                </div>
-                
             </div>
         </div>
 

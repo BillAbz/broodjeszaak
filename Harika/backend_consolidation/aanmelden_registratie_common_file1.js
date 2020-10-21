@@ -120,10 +120,32 @@ function inloggen() {
     .done(function (response) {
         console.log("log in done:");
         console.log(response);
+
+        user_rol=response.data.item.rol;
+                if(user_rol=="admin")
+                {
+                    sessionStorage.setItem("token", response.status.token);
+                    sessionStorage.setItem("gebruiker", email);
+                    username=response.data.item.naam;
+                    user_id=response.data.item.user_id;
+                    sessionStorage.setItem("user_id",user_id);
+                    telefoonnummer=response.data.item.telefoonnummer;
+                   // user_rol=response.data.items[0].rol;
+                    sessionStorage.setItem("username",username);
+                    //sessionStorage.setItem("rol",user_rol);
+                    document.location = "producten_overzicht.html";
+                }
+                else{
+                    alert("U heeft geen toestemming om deze pagina's te openen");
+                }
+           
+
+
+
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
-        document.location = "producten_overzicht.html";
+        //document.location = "producten_overzicht.html";
     })
     .fail(function (msg) {
         console.log(msg);
@@ -137,7 +159,7 @@ function inloggen() {
 }
 
 
-function krijg_naam()
+/* function krijg_naam()
 {
     var useremail= sessionStorage.getItem("gebruiker");
     $.ajax
@@ -167,11 +189,13 @@ function krijg_naam()
         console.log("read fail:");
         console.log(msg);
     });
-}
+} */
 
 
 function toon_gebruiker_naam()
 {
+    user_id= sessionStorage.getItem("user_id");
+    username=sessionStorage.getItem("username");
     var token_check= sessionStorage.getItem("token");
     console.log(username);
     console.log(sessionStorage);
