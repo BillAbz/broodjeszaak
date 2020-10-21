@@ -8,36 +8,7 @@ var user_email;
 var user_naam;
 
 
-/* function inloggen() {
-    var email = document.getElementById("login_email").value;
-    var password = document.getElementById("login_wachtwoord").value;
-    
-    const urlParams1 = new URLSearchParams(window.location.search);
-    const directed_from = urlParams1.get("directed_from");
-    
-    $.ajax
-    ({
-        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
-        method: "POST",
-        data: {
-            "email": email,
-            "password": password,
-        }
-    })
-    .done(function (response) {
-        console.log("log in done:");
-        console.log(response);
-        sessionStorage.setItem("token", response.status.token);
-        sessionStorage.setItem("gebruiker", email);
-        console.log(sessionStorage);
-        document.location = "bestellingen_overzicht.html";
-    })
-    .fail(function (msg) {
-        console.log("log in fail:");
-        console.log(msg);
-        $("#verkeerdeWachtwoordModal").modal();
-    });
-} */
+
 
 
 
@@ -88,8 +59,8 @@ function vernieuw_bestelling_tabel() {
 
             
            
-            console.log(user_naam);
-            console.log(user_email);
+            //console.log(user_naam);
+            //console.log(user_email);
             var tabledata = "";
             tabledata += "<tr>";
             tabledata += "<td>" + bestellingen[i].user_id + "</td>";
