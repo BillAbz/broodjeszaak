@@ -90,6 +90,7 @@
                                 <input type="hidden" id="beeldoriginal">
                                 <input type="file" class="custom-file-input" id="beeld" />
                                 <label class="custom-file-label" for="beeld" data-browse="Bladeren">Kies (Nieuwe) Foto</label>
+                                <div style="border: 2px;" id="originaalbeeld"></div>
                             </div>
                             <div class="form-group">
                                 <label for="pomschrijving">Omschrijving</label>
@@ -145,7 +146,7 @@
                     <label for="sorteer">Sorteer</label>
         
                     <select class="browser-default custom-select" id="sorteer" onchange="sorteer_producten()">
-                        <option value="" id="spid" selected></option>
+                        <!--<option value="" id="" selected></option>-->
                         <option value="spid" id="spid" >Product Id</option>
                         <option value="snaam" id="snaam">Product Naam</option>
                         <option value="somschrijving" id="somschrijving">Omschrijving</option>
