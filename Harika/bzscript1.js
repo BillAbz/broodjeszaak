@@ -231,7 +231,7 @@ function toon_gebruiker_naam()
     if(token_check!=null)
     {
         document.getElementById("gebruikersnaam").style.display = "block";
-        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}<br>(Klant nummer: ${user_id})</a>
+        document.getElementById("gebruikersnaam").innerHTML= `<a class="nav-link dropdown-toggle" href="#" role="button" value= ""  data-toggle="dropdown">${username}</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <button class="btn btn-link" id="logout" onclick="afmelden()" style="color: black;">Log Out</button>
         </div>`;
@@ -417,7 +417,7 @@ function maak_tabel(producten1)
         //DO NOT DELETE THIS COMMENT
         tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten1[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image" />' + "</td>";
         
-        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}')">Keuze</button>` +"</td>";
+        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}','${producten1[i].prodprijs}')">Keuze</button>` +"</td>";
         
         tabledata += "</tr>";
 
@@ -426,10 +426,10 @@ function maak_tabel(producten1)
 }
 
 
-function toon_producten_popup(pid,catid)
+function toon_producten_popup(pid,catid,prodprijs)
 {
     product_gevonden(pid);
-    create_modal(catid,pid);
+    create_modal(catid,pid,prodprijs);
 
     if(huidig_product.catid==1 || huidig_product.catid==2)
     {
@@ -466,11 +466,27 @@ function product_gevonden(pid)
 }    
 
 
-function create_modal(catid,pid)
+function create_modal(catid,pid,prodprijs)
 {
+     var pic_prod = Number(broodsoort[0].bsprijs) + Number(prodprijs);
+     var hal_prod= Number(broodsoort[1].bsprijs) + Number(prodprijs);
+     var wit_prod = Number(broodtype[0].btprijs) +  Number(prodprijs);
+     var bruin_prod= Number(broodtype[1].btprijs) +  Number(prodprijs);
+     var meer_prod = Number(broodtype[1].btprijs) +  Number(prodprijs);
+
+     console.log(pic_prod);
+     console.log(hal_prod);
+     console.log(wit_prod);
+     console.log(bruin_prod);
+     console.log(meer_prod);
+
+
+
+
     if(catid==1 || catid==2)
     {
         console.log(broodsoort)
+        
 
         document.getElementById("modal_data").innerHTML=
         ` 
@@ -494,11 +510,11 @@ function create_modal(catid,pid)
                                 <label> Broodsoort </label><br>
                                 <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => € 0.25 
+                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo
                                 </label><br>
                                 <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baguette => € 0.50
+                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baguette 
                                 </label><br>
                                 </div>
                             <hr>
@@ -506,15 +522,15 @@ function create_modal(catid,pid)
                                 <label>Broodtype</label><br>
                                 <img src="${broodtype[0].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => € 0.50
+                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit
                                 </label><br>
                                 <img src="${broodtype[1].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => € 0.75 
+                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin 
                                 </label><br>
                                 <img src="${broodtype[2].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen => € 1 
+                                <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen 
                                 </label><br>
                                 </div>
                             <hr>
@@ -524,7 +540,7 @@ function create_modal(catid,pid)
                                 <input type="radio" id="1" name="smosselected" value="0" onclick="get_radio_button_value('0','smos','${catid}','1','Geen Smos')" checked>Neen 
                                 </label><br>
                                 <label>
-                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => € 0.70 
+                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja 
                                 </label><br>
                                 </div>  
 
