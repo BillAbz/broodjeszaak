@@ -7,88 +7,61 @@ var besid;
 var user_email;
 var user_naam;
 var filters=[];
-var sorteren=["cfid", "ASC"];
+var sorteren=["opgelost", "ASC"];
 var huidige_pagina=1;
 var aantal_paginas;
 
-/* function inloggen() {
-    var email = document.getElementById("login_email").value;
-    var password = document.getElementById("login_wachtwoord").value;
-    
-    const urlParams1 = new URLSearchParams(window.location.search);
-    const directed_from = urlParams1.get("directed_from");
-    
+
+function start() 
+{    
+       read_items();
+}
+
+
+function read_items() 
+{
     $.ajax
     ({
-        url: "https://api.data-web.be/user/login?project=fjgub4eD3ddg", 
-        method: "POST",
-        data: {
-            "email": email,
-            "password": password,
-        }
-    })
-    .done(function (response) {
-        console.log("log in done:");
-        console.log(response);
-        sessionStorage.setItem("token", response.status.token);
-        sessionStorage.setItem("gebruiker", email);
-        console.log(sessionStorage);
-        document.location = "contact_overzicht.html";
-    })
-    .fail(function (msg) {
-        console.log("log in fail:");
-        console.log(msg);
-        $("#verkeerdeWachtwoordModal").modal();
-    });
-}  */
-function start() {
-
-    
-       read_items();
-   
-
-}
-function read_items() {
-    $.ajax({
         method: 'GET',
         url: "https://api.data-web.be/item/read",
         //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        data: {
-        "project":"fjgub4eD3ddg",
-        "paging": {
-            "page": huidige_pagina,
-            "items_per_page": 10
-        },
-        "filter": filters,
-        "sort": sorteren,
-        "entity":"contactformulier",
+        data: 
+        {
+            "project":"fjgub4eD3ddg",
+            "paging": 
+            {
+                "page": huidige_pagina,
+                "items_per_page": 10
+            },
+            "filter": filters,
+            "sort": sorteren,
+            "entity":"contactformulier",
             "relation": 
-            [{"pri_entity":"contactformulier","pri_key":"besid","sec_entity":"bestelling", "sec_key":"besid"}]
+                [{"pri_entity":"contactformulier","pri_key":"besid","sec_entity":"bestelling", "sec_key":"besid"}]
         }
-
     })
-        .done(function (response) {
-            console.log(response);
-            contactformulier = response.data.items;
-            console.log(contactformulier);
-            aantal_paginas = response.data.paging.page_count;
-            vernieuw_contact_tabel();
-        }).fail(function (msg) {
-            console.log("update fail:");
-            console.log(msg);
-        });
-
+    .done(function (response) {
+        console.log(response);
+        contactformulier = response.data.items;
+        console.log(contactformulier);
+        aantal_paginas = response.data.paging.page_count;
+        vernieuw_contact_tabel();
+    })
+    .fail(function (msg) {
+        console.log("update fail:");
+        console.log(msg);
+    });
 }
-function vernieuw_contact_tabel() {
 
+
+function vernieuw_contact_tabel() 
+{
     document.getElementById("contactformulierdata").innerHTML = "";
-
-    for (var i = 0; i < contactformulier.length; i++) {
-
-
-        if (contactformulier[i].cfid !== null) {
-
-            
+    var opgelost;
+    for (var i = 0; i < contactformulier.length; i++) 
+    {
+        if (contactformulier[i].cfid !== null) 
+        {  
             var tabledata = "";
             tabledata += "<tr>";
             tabledata += "<td>" + contactformulier[i].naam + "</td>";
@@ -97,30 +70,29 @@ function vernieuw_contact_tabel() {
             tabledata += "<td>" + contactformulier[i].besid+ "</td>";
             tabledata += "<td>" + contactformulier[i].omschrijving + "</td>";
             tabledata += "<td>" + contactformulier[i].datum_cf + "</td>";
-            tabledata += "<td>" + contactformulier[i].opgelost + "</td>";
-            
-            
-            //if(bestellingen[i].betaald=="0")
-            //{
+            if (contactformulier[i].opgelost==true)
+            {
+                opgelost="Ja"
+            }
+            else
+            {
+                opgelost="Neen"
+            }
 
+            tabledata += "<td>" + opgelost + "</td>";
             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_contact_data(${contactformulier[i].cfid})">Verwijderen</button>` +
                 `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="get_contact_data(${contactformulier[i].cfid})">Bijwerken</button>` +
                 "</td>";
-           // }
             tabledata += "</tr>";
 
             document.getElementById("contactformulierdata").innerHTML += tabledata;
         }
     }
-
-
 }
-
 
 
 function get_contact_data(cfid) 
 {
-
     find_contact_data(cfid);
     console.log("line 300 huidig_product",huidig_product);
     document.getElementById("naam").value = huidig_product.naam;
@@ -140,60 +112,33 @@ function get_contact_data(cfid)
         document.getElementById("opgelost").checked=false;
     }
 
-
-
-    document.getElementById("opgelost").value = huidig_product.opgelost;
-    
-    console.log("line 304 huidig_product",huidig_product);
 }
+
 
 function find_contact_data(cfid) 
 {
     for (i = 0; i < contactformulier.length; i++) {
-        if (cfid == contactformulier[i].cfid) {
+        if (cfid == contactformulier[i].cfid) 
+        {
 
             huidig_product = contactformulier[i];
-            console.log("in find_contact_data function, consoling huidig_product",huidig_product);
-            //return;
         }
     }
-
 }
-function bijwerken_contacten() {
-
-    huidig_product.naam = document.getElementById("naam").value;
-    huidig_product.email = document.getElementById("email").value;
-    huidig_product.telefoonnummer = document.getElementById("telefoonnummer").value;
-    huidig_product.besid = document.getElementById("besid").value;
-    huidig_product.omschrijving = document.getElementById("omschrijving").value;
-    huidig_product.datum_cf = document.getElementById("datum_cf").value;
-    huidig_product.opgelost=  document.getElementById("opgelost").value;
-
-    vernieuw_contact_tabel();
-    console.log(huidig_product);
-    console.log(producten);
-
-
-}
-
-
- function set_opgelost_value()
- {
-     var opgelost= document.getElementById("opgelost");
-     if(opgelost.checked)
-     {
-        document.getElementById("opgelost").value="1";
-     }  
-     else if(!opgelost.checked){
-        document.getElementById("opgelost").value="0";
-       
-     }
- }
 
 
 function contacten_opvolgen() {
 
    console.log("reaches contacten_opvolegen function");
+
+   var opgelost= document.getElementById("opgelost");
+   if(opgelost.checked)
+   {
+       opgelost="1"
+   }
+   else {
+       opgelost="0";
+   }
 
     var formData = new FormData();
     //var id = document.getElementById("cfid").value;
@@ -209,7 +154,6 @@ function contacten_opvolgen() {
         huidig_product.besid = document.getElementById("besid").value;
         huidig_product.omschrijving = document.getElementById("omschrijving").value;
         huidig_product.datum_cf = document.getElementById("datum_cf").value;
-        huidig_product.opgelost=  document.getElementById("opgelost").value;
         
         
         console.log(huidig_product);
@@ -222,7 +166,7 @@ function contacten_opvolgen() {
             "besid": huidig_product.besid,
             "omschrijving":  huidig_product.omschrijving,
             "datum_cf": huidig_product.datum_cf,
-            "opgelost": huidig_product.opgelost
+            "opgelost": opgelost
 
         };
         console.log("new values after changing in bewerken",values)
@@ -252,58 +196,53 @@ function contacten_opvolgen() {
             console.log(msg);
         });
     }
-
-   
     vernieuw_contact_tabel();
-
-    }
-
-    function bevestig_verwijderen() {
+}
 
 
-        $.ajax({
-            url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=contactformulier",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "DELETE",
-            data: {
-                "filter": [
-                    ["cfid", "=", huidig_product.cfid]
-                ]
-            }
-        }).done(function (response) {
-            console.log("delete done:");
-            console.log(response);
-            if (response.status.success == true) {
-                console.log("deleted");
-    
-            }
-            else {
-                console.log("not deleted");
-    
-            }
-        }).fail(function (msg) {
-            console.log("delete fail:");
-            console.log(msg);
-        });
-        vernieuw_contact_tabel();
-    }
+function bevestig_verwijderen() 
+{
+    $.ajax({
+        url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=contactformulier",
+        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        type: "DELETE",
+        data: {
+            "filter": [
+                ["cfid", "=", huidig_product.cfid]
+            ]
+        }
+    }).done(function (response) {
+        console.log("delete done:");
+        console.log(response);
+        if (response.status.success == true) {
+            console.log("deleted");
+
+        }
+        else {
+            console.log("not deleted");
+
+        }
+    }).fail(function (msg) {
+        console.log("delete fail:");
+        console.log(msg);
+    });
+    vernieuw_contact_tabel();
+}
 
 
+function OnclickofBestellingenOpvolgen()
+{
+    document.getElementById("naam").value = "";
+    document.getElementById("email").value = "" ;
+    document.getElementById("telefoonnummer").value = "" ;
+    document.getElementById("besid").value = "";
+    document.getElementById("omschrijving").value = "" ;
+    document.getElementById("datum_cf").value = "" ;
+    document.getElementById("opgelost").value = "";
+}
 
 
-    function OnclickofBestellingenOpvolgen()
-    {
-        document.getElementById("naam").value = "";
-        document.getElementById("email").value = "" ;
-        document.getElementById("telefoonnummer").value = "" ;
-        document.getElementById("besid").value = "";
-        document.getElementById("omschrijving").value = "" ;
-        document.getElementById("datum_cf").value = "" ;
-        document.getElementById("opgelost").value = "";
-        
-    }
-
-    function paginas(dir) 
+function paginas(dir) 
 {
     if (huidige_pagina>=1 && huidige_pagina<aantal_paginas && dir=="volgende") 
     {
@@ -335,10 +274,10 @@ function filteren() {
     };
     if (filter[2]!="") 
     {   
-        //if (filter[2]=="ja" || filter[2]=="Ja" || filter[2]=="JA")
-        //{
-        //    filter[2] = 1;
-        //} 
+        if (filter[2]=="ja" || filter[2]=="Ja" || filter[2]=="JA")
+        {
+            filter[2] = 1;
+        } 
         filters.push(["opgelost", "=", filter[2]])
     };
     start();

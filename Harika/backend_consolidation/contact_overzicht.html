@@ -59,65 +59,57 @@
     </header>
 
     <main>
-        <div class="wrapper">
-           
-            <!-- USER OVERZICHT BUTTON CREATION
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_details" onclick="OnclickofBestellingenOpvolgen()">Bestellingen Opvolgen/Raadplegen</button>-->
-            <div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalform">Contacten Opvolgen/Bekijken</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
-                            <form>
-                                <div class="form-group">
-                                    <input id="id" hidden>
-                                    <label for="naam">Naam</label>
-                                    <br>
-                                    <input type="text" class="form-control" id="naam" placeholder="" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <br>
-                                    <input type="text" class="form-control" id="email" placeholder="" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefoonnummer">Telefoonnummer</label>
-                                    <br>
-                                    <input type="text" class="form-control" id="telefoonnummer" placeholder="" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="besid">Bestelling nummer</label>
-                                    <br>
-                                    <input type="text" class="form-control" id="besid" placeholder="" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="omschrijving">Omschrijving</label>
-                                    <br>
-                                    <input type="text" size="50" class="form-control" id="omschrijving" placeholder="" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="datum_cf">Datum van contacteren</label>
-                                    <br>
-                                    <input type="text" class="form-control" id="datum_cf" placeholder="" disabled>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="opgelost" name="opgelost" value="0" onclick="set_opgelost_value();">
-                                    <label for="opgelost"> Opgelost</label><br>
-                                </div>
-                                                                        
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="Bewaren" onclick="contacten_opvolgen()">Bewaren</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- SAVE AND CANCEL BUTTONS CREATION -->
+        <div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modalform" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalform">Contacten Opvolgen/Bekijken</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input id="id" hidden>
+                                <label for="naam">Naam</label>
+                                <br>
+                                <input type="text" class="form-control" id="naam" placeholder="" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <br>
+                                <input type="text" class="form-control" id="email" placeholder="" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefoonnummer">Telefoonnummer</label>
+                                <br>
+                                <input type="text" class="form-control" id="telefoonnummer" placeholder="" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="besid">Bestelling nummer</label>
+                                <br>
+                                <input type="text" class="form-control" id="besid" placeholder="" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="omschrijving">Omschrijving</label>
+                                <br>
+                                <input type="text" size="50" class="form-control" id="omschrijving" placeholder="" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="datum_cf">Datum van contacteren</label>
+                                <br>
+                                <input type="text" class="form-control" id="datum_cf" placeholder="" disabled>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="opgelost" name="opgelost" value="0" onclick="set_opgelost_value();">
+                                <label for="opgelost"> Opgelost</label><br>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="Bewaren" onclick="contacten_opvolgen()">Bewaren</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -151,8 +143,8 @@
                 <div class="col-6 col-sm-3">
                     <label for="sorteer">Sorteer</label>
                     <select class="browser-default custom-select" id="sorteer" onchange="sortering()" name="sorteer">
-                        <option value="cfid"selected></option>
-                        <option value="naam">Naam</option>
+                        <option value="opgelost"selected>Opgelost</option>
+                        <option value="besid">Bestelling Nummer</option>
                         <option value="email">E-mail</option>
                         <option value="datum_cf">Datum</option>
                     </select>
@@ -171,7 +163,7 @@
                         <th scope="col">Omschrijving</th>
                         <th scope="col">Datum van contacteren</th>
                         <th scope="col">Opgelost</th>
-                        <th scope="col">Verwijderen / Bijwerken</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody id="contactformulierdata"></tbody>
@@ -202,7 +194,6 @@
                     <div class="modal-body">
                         Wenst u dit product te verwijderen?
                     </div>
-                    <!-- Yes AND NO BUTTONS CREATION -->
                     <div class="modal-footer">
                         <button type="button" id="Ja" class="btn btn-primary" onclick="bevestig_verwijderen()">Ja</button>
                         <button type="button" id="Neen" class="btn btn-primary" data-dismiss="modal">Neen</button>
