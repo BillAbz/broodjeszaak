@@ -94,15 +94,12 @@ function vernieuw_contact_tabel()
 function get_contact_data(cfid) 
 {
     find_contact_data(cfid);
-    console.log("line 300 huidig_product",huidig_product);
     document.getElementById("naam").value = huidig_product.naam;
     document.getElementById("email").value = huidig_product.email;
     document.getElementById("telefoonnummer").value = huidig_product.telefoonnummer;
     document.getElementById("besid").value = huidig_product.besid;
     document.getElementById("omschrijving").value = huidig_product.omschrijving;
     document.getElementById("datum_cf").value = huidig_product.datum_cf;
-    document.getElementById("opgelost").value = huidig_product.opgelost;
-
     if(huidig_product.opgelost=="1")
     {
         document.getElementById("opgelost").checked=true;
@@ -110,8 +107,7 @@ function get_contact_data(cfid)
     else
     {
         document.getElementById("opgelost").checked=false;
-    }
-
+    } console.log(huidig_product.opgelost);
 }
 
 
@@ -120,17 +116,14 @@ function find_contact_data(cfid)
     for (i = 0; i < contactformulier.length; i++) {
         if (cfid == contactformulier[i].cfid) 
         {
-
             huidig_product = contactformulier[i];
         }
     }
 }
 
 
-function contacten_opvolgen() {
-
-   console.log("reaches contacten_opvolegen function");
-
+function contacten_opvolgen() 
+{
    var opgelost= document.getElementById("opgelost");
    if(opgelost.checked)
    {
@@ -141,13 +134,8 @@ function contacten_opvolgen() {
    }
 
     var formData = new FormData();
-    //var id = document.getElementById("cfid").value;
-    //console.log(id);
 
     if (huidig_product.besid !== "") {
-
-        console.log("reached after id not empty condition");
-
         huidig_product.naam = document.getElementById("naam").value;
         huidig_product.email = document.getElementById("email").value;
         huidig_product.telefoonnummer = document.getElementById("telefoonnummer").value;
@@ -155,78 +143,71 @@ function contacten_opvolgen() {
         huidig_product.omschrijving = document.getElementById("omschrijving").value;
         huidig_product.datum_cf = document.getElementById("datum_cf").value;
         
-        
         console.log(huidig_product);
-        
 
-        var values = {
+        var values = 
+        {
             "naam": huidig_product.naam,
             "email": huidig_product.email,
             "telefoonnummer": huidig_product.telefoonnummer,
             "besid": huidig_product.besid,
             "omschrijving":  huidig_product.omschrijving,
             "datum_cf": huidig_product.datum_cf,
-            "opgelost": opgelost
-
+            "opgelost": opgelost,
         };
-        console.log("new values after changing in bewerken",values)
+
         formData.set("values", JSON.stringify(values));
         formData.set("filter", JSON.stringify(["cfid", "=", huidig_product.cfid]));
 
-        //formData.set("beeld", $("#beeld")[0].files[0]);
-        console.log(formData);
-        $.ajax({
+        $.ajax
+        ({
             url: "https://api.data-web.be/item/update?project=fjgub4eD3ddg&entity=contactformulier",
             headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "PUT",
             processData: false,
             contentType: false,
             data: formData
-        }).done(function (response) {
+        })
+        .done(function (response) 
+        {
             console.log("update done:");
             console.log(response);
-            if (response.status.success == true) {
-                console.log("updated");
-            }
-            else {
-                console.log("not updated");
-            }
-        }).fail(function (msg) {
+            start();
+        })
+        .fail(function (msg) 
+        {
             console.log("update fail:");
             console.log(msg);
         });
     }
-    vernieuw_contact_tabel();
 }
 
 
 function bevestig_verwijderen() 
 {
-    $.ajax({
+    $.ajax
+    ({
         url: "https://api.data-web.be/item/delete?project=fjgub4eD3ddg&entity=contactformulier",
         headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         type: "DELETE",
-        data: {
+        data: 
+        {
             "filter": [
                 ["cfid", "=", huidig_product.cfid]
             ]
         }
-    }).done(function (response) {
+    })
+    .done(function (response) 
+    {
         console.log("delete done:");
         console.log(response);
-        if (response.status.success == true) {
-            console.log("deleted");
-
-        }
-        else {
-            console.log("not deleted");
-
-        }
-    }).fail(function (msg) {
+        start();
+    })
+    .fail(function (msg) 
+    {
         console.log("delete fail:");
         console.log(msg);
     });
-    vernieuw_contact_tabel();
 }
 
 

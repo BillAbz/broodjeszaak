@@ -12,7 +12,8 @@ function starten() {
     ({
         url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=user",
         headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        data: {
+        data: 
+        {
             "paging": {
                 "page": huidige_pagina,
                 "items_per_page": 10
@@ -213,7 +214,6 @@ function bewaren_bewerken(num)
         console.log("update done:");
         console.log(response);
         starten();
-        
     })
     .fail(function (msg) {
         console.log("update fail:");
@@ -246,7 +246,7 @@ function verwijderen_ja(num)
         headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
         data: {                
             "filter": [
-                    {"field": "user_id", "operator": "=", "value": klanten[num].user_id}
+                {"field": "user_id", "operator": "=", "value": klanten[num].user_id}
             ]
         }
     })
@@ -276,7 +276,8 @@ function paginas(dir)
 }
 
 // filtration
-function filteren() {
+function filteren() 
+{
     var filter = [];
     filter[0] = $("#filternaam").val();
     filter[1] = $("#filteremail").val();

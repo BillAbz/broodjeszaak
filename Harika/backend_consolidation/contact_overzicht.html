@@ -102,12 +102,12 @@
                                 <input type="text" class="form-control" id="datum_cf" placeholder="" disabled>
                             </div>
                             <div>
-                                <input type="checkbox" id="opgelost" name="opgelost" value="0" onclick="set_opgelost_value();">
+                                <input type="checkbox" id="opgelost" name="opgelost" value="0">
                                 <label for="opgelost"> Opgelost</label><br>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="Bewaren" onclick="contacten_opvolgen()">Bewaren</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren">Annuleren</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="bewaren" onclick="contacten_opvolgen()">Bewaren</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="annuleren">Annuleren</button>
                             </div>
                         </form>
                     </div>
@@ -195,7 +195,7 @@
                         Wenst u dit product te verwijderen?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="Ja" class="btn btn-primary" onclick="bevestig_verwijderen()">Ja</button>
+                        <button type="button" id="Ja" class="btn btn-primary" data-dismiss="modal" onclick="bevestig_verwijderen()">Ja</button>
                         <button type="button" id="Neen" class="btn btn-primary" data-dismiss="modal">Neen</button>
                     </div>
                 </div>
