@@ -491,40 +491,40 @@ function create_modal(catid,pid)
                             </div>
 
                             <div class="form-group">
-                                <label> Keuze Broodsoort </label><br>
+                                <label> Broodsoort </label><br>
                                 <img src="${broodsoort[0].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => 0.25 euro extra 
+                                <input type="radio" id="${broodsoort[0].bsid}" name="BroodSoort" value="${broodsoort[0].bsprijs}"  onclick="get_radio_button_value('${broodsoort[0].bsprijs}','broodsoort','${catid}','${broodsoort[0].bsid}','${broodsoort[0].bsnaam}')" checked>Piccolo => € 0.25 
                                 </label><br>
                                 <img src="${broodsoort[1].bsbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baguette => 0.50 euro extra
+                                <input type="radio" id="${broodsoort[1].bsid}" name="BroodSoort" value="${broodsoort[1].bsprijs}" onclick="get_radio_button_value('${broodsoort[1].bsprijs}','broodsoort','${catid}','${broodsoort[1].bsid}','${broodsoort[1].bsnaam}')">Halve baguette => € 0.50
                                 </label><br>
                                 </div>
-
+                            <hr>
                             <div class="form-group" >
-                                <label>Keuze Broodtype</label><br>
+                                <label>Broodtype</label><br>
                                 <img src="${broodtype[0].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => 0.50 euro extra 
+                                <input type="radio" id="${broodtype[0].btid}" name="BroodType" value="${broodtype[0].btprijs}" onclick="get_radio_button_value('${broodtype[0].btprijs}','broodtype','${catid}','${broodtype[0].btid}','${broodtype[0].btnaam}')" checked>Wit => € 0.50
                                 </label><br>
                                 <img src="${broodtype[1].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => 0.75 euro extra 
+                                <input type="radio" id="${broodtype[1].btid}" name="BroodType" value="${broodtype[1].btprijs}" onclick="get_radio_button_value('${broodtype[1].btprijs}','broodtype','${catid}','${broodtype[1].btid}','${broodtype[1].btnaam}')">Bruin => € 0.75 
                                 </label><br>
                                 <img src="${broodtype[2].btbeeld}" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image">
                                 <label>
-                                <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen => 1 euro extra 
+                                <input type="radio" id="${broodtype[2].btid}" name="BroodType" value="${broodtype[2].btprijs}" onclick="get_radio_button_value('${broodtype[2].btprijs}','broodtype','${catid}','${broodtype[2].btid}','${broodtype[2].btnaam}')">Meergranen => € 1 
                                 </label><br>
                                 </div>
-
+                            <hr>
                             <div class="form-group">
                                 <label>Smos?</label><br>
                                 <label>
                                 <input type="radio" id="1" name="smosselected" value="0" onclick="get_radio_button_value('0','smos','${catid}','1','Geen Smos')" checked>Neen 
                                 </label><br>
                                 <label>
-                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => Extra 0.70 euro betalen
+                                <input type="radio" id="2" name="smosselected" value="0.70" onclick="get_radio_button_value('0.70','smos','${catid}','2','+smos')">Ja => € 0.70 
                                 </label><br>
                                 </div>  
 
@@ -909,7 +909,7 @@ function toon_winkel_wagentje()
                      <input type="number" id= "wquantity${winkelwagentje[i].rowid}" min="1" value= ${winkelwagentje[i].totaal_stuks} aria-label="Search" class="form-control" style="width: 100px" onchange="aantal_prijs_wijzigen(${winkelwagentje[i].rowid});">
                      </td>`;
 
-        tabledata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+        tabledata += "<td>" +"€ " + winkelwagentje[i].totaal_bedrag + "</td>";
         tabledata += "<td>" + `<button type="button" class="btn btn-sm btn-cyan" data-toggle="tooltip" data-placement="top" title="Verwijder item" onclick="verwijder_bestelling(${winkelwagentje[i].rowid})">Verwijder</button>`
                     "</td>";
         tabledata += "</tr>";
@@ -923,20 +923,20 @@ function toon_winkel_wagentje()
     }
    
     tabledata1 += ` <tr>
-        <td> </td>
+         <td> </td>
         <td> </td>
         
         <td>
             <h5 class="mt-2"><strong>Totaal</strong></h5>
         </td>
         <td class="text-right" colspan="2">
-            <h5 class="mt-2" id="final_bedrag"><strong> ${final_bedrag} </strong></h5>
+            <h5 class="mt-2" id="final_bedrag"><strong> € ${final_bedrag} </strong></h5>
         </td>
 
         <td class="text-right">
-            <a type="button" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan" onclick="sessioncontrol()">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+        <a type="button" id="ga_naar_betaling" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan" onclick="sessioncontrol()">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
         </td>
-    </tr>`;
+    </tr>`; 
     document.getElementById("winkeltablebody").innerHTML += tabledata1;
 }
 
@@ -1004,6 +1004,32 @@ function verwijder_bestelling(rowid)
 }
 
 
+
+function waarschuwing_modal1(warning)
+{   
+    $("#waarschuwingModal1").modal();
+    var warning;
+
+    if (warning=="login")
+    {
+        document.getElementById("waarschuwingModalLabel1").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
+        document.getElementById("waarschuwingModalBody1").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
+        //setTimeout(function () { $("#waarschuwingModal").dialog("close");}, 50000);
+        //document.location = "aanmelden1.html?directed_from=wagentje1";
+    }
+    else if(warning=="betalen")
+    {
+        document.getElementById("waarschuwingModalLabel1").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet betalen?</h3>';
+        document.getElementById("waarschuwingModalBody1").innerHTML= '<p>Voer de betaling uit om de bestelling te ontvangen aub!</p>';
+    }
+    
+}
+function ga_naar_login()
+{
+    document.location = "aanmelden1.html?directed_from=wagentje1";
+}
+
+
 function sessioncontrol()
 {
     var token_check=sessionStorage.getItem("token");
@@ -1012,14 +1038,15 @@ function sessioncontrol()
 
     if(token_check==null)
     {
-        //waarschuwing_modal("login");
-        window.alert("Please log in to continue further");
-        document.location = "aanmelden1.html?directed_from=wagentje1";
+        waarschuwing_modal1("login");
+        //window.alert("Please log in to continue further");
+
+        //document.location = "aanmelden1.html?directed_from=wagentje1";
     }
     else
     {
         document.getElementById("winkelsamenvatting").innerHTML="";
-   
+        document.getElementById("ga_naar_betaling").disabled=false;
         var formData = new FormData();
         console.log(date);
         var random_nummer=Math.random() >= 0.5;
@@ -1068,7 +1095,7 @@ function sessioncontrol()
                 console.log("created");
                 besid = response.data.item_id;
                 console.log(besid);
-                //samenvattingdata(besid);
+                samenvattingdata(besid);
             }
             else 
             {
@@ -1140,12 +1167,6 @@ function post_in_producten_bestelling_tabel()
                 {
                     console.log("created");
                     var pbid = response.data.pbid;
-                    //console.log(pbid);
-                    if(betaald==0 && afgehaald==0)
-                    {
-                        alert("Please make the payment to recieve the order");
-                    }
-                    samenvattingdata(besid);
                     
                 }
                 else 
@@ -1190,7 +1211,7 @@ function samenvattingdata(besid)
         {
             samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
         }
-        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
+        samenvattingdata += "<td>" +"€ " +winkelwagentje[i].totaal_bedrag + "</td>";
         samenvattingdata += "</tr>";
 
         document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
@@ -1200,7 +1221,7 @@ function samenvattingdata(besid)
             <strong>Totaal</strong>
         </td>
         <td>
-            <strong> ${final_bedrag} </strong>
+            <strong> € ${final_bedrag} </strong>
         </td>
                         </tr>`
     //document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
@@ -1282,12 +1303,18 @@ function waarschuwing_modal(warning)
         document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
         document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
     }
-    else if (warning=="login")
+    /* else if (warning=="login")
     {
         document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
         document.getElementById("waarschuwingModalBody").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
-    }
+        //setTimeout(function () { $("#waarschuwingModal").dialog("close");}, 50000);
+        //document.location = "aanmelden1.html?directed_from=wagentje1";
+    } */
+    
 }
+
+
+
 
 
 function contactformulier() 
