@@ -233,7 +233,8 @@ function BestellingenRaadplegen() {
             console.log(response);
             if (response.status.success == true) {
                 console.log("updated");
-                read_items();
+                //read_items();
+                vernieuw_bestelling_tabel();
             }
            
         }).fail(function (msg) {
