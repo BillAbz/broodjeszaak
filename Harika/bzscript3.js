@@ -1274,7 +1274,6 @@ function controleer_contactformulier()
 {
     for (var i=0; i<5; i++)
     {
-        console.log("entry in controleer function for loop", i);
         document.getElementById("formulier_warning_"+i).innerHTML= "";
     }
     /*
@@ -1296,7 +1295,6 @@ function controleer_contactformulier()
     })
     if (validate==true)
     {
-        console.log("calling the contact formulier now in controleer");
         contactformulier()
     }
 }
@@ -1315,13 +1313,14 @@ function contactformulier()
     var contactnaam = document.getElementById("defaultContactFormName").value;
     var contactemail = document.getElementById("defaultContactFormEmail").value;
     var contacttelefoon = document.getElementById("defaultContactFormTel").value;
-    var contactomschrijving = document.getElementById("vraag").value;
     var c_option =document.getElementById("defaultContactFormInfo").value;
     if (c_option==2 || c_option == 3)
     {
         var contactbestellingid = document.getElementById("ordernummer").value;
        
     }
+    var contactomschrijving = document.getElementById("vraag").value;
+
 
     var random_nummer=Math.random() >= 0.5;
     console.log(random_nummer);
@@ -1377,15 +1376,15 @@ function get_vraag_selectie_value()
         document.getElementById("bestellingnummer").innerHTML = `  
             <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in" required>      
         `
-        controleer_contactformulier();
         ;
     }
     else if (c_option==1)
     {
+
         document.getElementById("bestellingnummer").innerHTML = "";
-        controleer_contactformulier();
+
     }
-    
+    controleer_contactformulier();
 }
 
 
