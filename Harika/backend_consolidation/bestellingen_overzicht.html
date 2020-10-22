@@ -116,6 +116,38 @@
                 </div>
             </div>
         </div>
+        <div class="container pt-4" id="filter">    
+            <div class="row">
+                
+    
+                <div class="col-sm">
+                    <label for="filterdatum">Datum</label><br>
+                    <input type="text" id="filterdatum" class="form-control">
+                </div>
+
+                <div class="col-sm">
+                    <label for="filterbetaald">Betaald (Ja/Neen)</label><br>
+                    <input type="text" id="filterbetaald" class="form-control">
+                </div>
+    
+                <div class="col-sm align-self-end">
+                    <input class="btn btn-primary btn-sm" value="Filter" onclick="filteren()">
+                </div>
+            </div>
+        </div>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-sm-3">
+                    <label for="sorteer">Sorteer</label>
+                    <select class="browser-default custom-select" id="sorteer" onchange="sortering()" name="sorteer">
+                        <option value="besid"selected></option>
+                        <option value="datum">Datum</option>
+                        <option value="betaald">Betaald</option>
+                    </select>
+                </div>
+            </div>
+        </div>
          
         <div class="card-body">
             <table class="table table-bordered table-responsive-md table-striped text-center" id="bestellingtable">
