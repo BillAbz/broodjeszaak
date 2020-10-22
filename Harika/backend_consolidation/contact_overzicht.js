@@ -6,6 +6,10 @@ var huidig_product;
 var besid;
 var user_email;
 var user_naam;
+var filters=[];
+var sorteren=["cfid", "ASC"];
+var huidige_pagina=1;
+var aantal_paginas;
 
 /* function inloggen() {
     var email = document.getElementById("login_email").value;
@@ -51,6 +55,12 @@ function read_items() {
         //headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         data: {
         "project":"fjgub4eD3ddg",
+        "paging": {
+            "page": huidige_pagina,
+            "items_per_page": 10
+        },
+        "filter": filters,
+        "sort": sorteren,
         "entity":"contactformulier",
             "relation": 
             [{"pri_entity":"contactformulier","pri_key":"besid","sec_entity":"bestelling", "sec_key":"besid"}]
@@ -61,6 +71,7 @@ function read_items() {
             console.log(response);
             contactformulier = response.data.items;
             console.log(contactformulier);
+            aantal_paginas = response.data.paging.page_count;
             vernieuw_contact_tabel();
         }).fail(function (msg) {
             console.log("update fail:");
@@ -291,3 +302,51 @@ function contacten_opvolgen() {
         document.getElementById("opgelost").value = "";
         
     }
+
+    function paginas(dir) 
+{
+    if (huidige_pagina>=1 && huidige_pagina<aantal_paginas && dir=="volgende") 
+    {
+        huidige_pagina++;
+    } 
+    else if (huidige_pagina>1 && huidige_pagina<=aantal_paginas && dir=="vorige")
+    {
+        huidige_pagina--;
+    }
+    start();
+}
+
+
+function filteren() {
+    var filter = [];
+    filter[0] = $("#filteremail").val();
+    filter[1] = $("#filterdatum").val();
+    filter[2] = $("#filteropgelost").val();
+
+    filters=[];
+    if (filter[0]!="") 
+    {
+        filters.push(["email", "=", filter[0]]);
+        console.log(filters);
+    };
+    if (filter[1]!="")
+    {
+        filters.push(["datum_cf", "=", filter[1]])
+    };
+    if (filter[2]!="") 
+    {   
+        //if (filter[2]=="ja" || filter[2]=="Ja" || filter[2]=="JA")
+        //{
+        //    filter[2] = 1;
+        //} 
+        filters.push(["opgelost", "=", filter[2]])
+    };
+    start();
+}
+
+
+function sortering() 
+{
+    sorteren[0] = $("#sorteer").val();
+    start();
+}

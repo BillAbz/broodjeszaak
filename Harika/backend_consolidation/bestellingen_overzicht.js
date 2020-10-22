@@ -6,10 +6,8 @@ var huidig_product;
 var besid;
 var user_email;
 var user_naam;
-
-
-
-
+var huidige_pagina=1;
+var aantal_paginas;
 
 
 function start() {
@@ -29,6 +27,9 @@ function read_items() {
                         data: {
                                     "project":"fjgub4eD3ddg",
                                      "entity":"bestelling",
+                                     "paging": {
+                                        "page": huidige_pagina,
+                                        "items_per_page": 10},
                                      "relation": 
                                         [{"pri_entity":"bestelling","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
                                  }
@@ -38,6 +39,7 @@ function read_items() {
                                                     console.log(response);
                                                     bestellingen = response.data.items;
                                                     console.log(bestellingen);
+                                                    aantal_paginas = response.data.paging.page_count;
                                                     vernieuw_bestelling_tabel();
                      })
                 .fail(function (msg) {
@@ -235,3 +237,16 @@ function BestellingenRaadplegen() {
         document.getElementById("geleverd").value="";
         
     }
+
+    function paginas(dir) 
+{
+    if (huidige_pagina>=1 && huidige_pagina<aantal_paginas && dir=="volgende") 
+    {
+        huidige_pagina++;
+    } 
+    else if (huidige_pagina>1 && huidige_pagina<=aantal_paginas && dir=="vorige")
+    {
+        huidige_pagina--;
+    }
+    start();
+}
