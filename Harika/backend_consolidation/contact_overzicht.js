@@ -78,7 +78,6 @@ function vernieuw_contact_tabel()
             {
                 opgelost="Neen"
             }
-
             tabledata += "<td>" + opgelost + "</td>";
             tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_contact_data(${contactformulier[i].cfid})">Verwijderen</button>` +
                 `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="get_contact_data(${contactformulier[i].cfid})">Bijwerken</button>` +
@@ -247,7 +246,6 @@ function filteren() {
     if (filter[0]!="") 
     {
         filters.push(["email", "=", filter[0]]);
-        console.log(filters);
     };
     if (filter[1]!="")
     {
