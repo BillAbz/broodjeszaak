@@ -87,12 +87,12 @@
 
                             <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
                                 <li class="nav-item">
-                                    <a class="nav-link active text-dark" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestellingen</a>
+                                    <a class="nav-link active text-dark" id= "uw_bestelling" data-toggle="tab" href="#tabCheckoutOrder" role="tab">1. Uw bestelling</a>
                                 </li>
                                 
                                 <li class="nav-item">
                                     <!--<a class="nav-link text-dark" data-toggle="tab" href="#tabCheckoutPayment" role="tab" onclick="winkel_samenvatting()">2. Uw betaling</a>-->
-                                    <a class="nav-link text-dark" data-toggle="tab" href="#tabCheckoutPayment" role="tab" onclick="winkel_samenvatting()">2. Uw betaling</a>
+                                    <a class="nav-link text-dark" id="uw_betaling" data-toggle="tab" href="#tabCheckoutPayment" role="tab" onclick="winkel_samenvatting()">2. Uw betaling</a>
                                 </li>
                             </ul>
 
@@ -201,7 +201,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-4">
-                                            <button class="btn btn-cyan btn-lg btn-block" type="submit" onclick="post_in_producten_bestelling_tabel()">Plaats bestelling</button>
+                                            <button class="btn btn-cyan btn-lg btn-block" id="plaats_bestelling" type="submit" onclick="post_in_producten_bestelling_tabel()">Betaal Bestelling</button>
                                         </div>
 
                                         <div class="col-lg-4 mb-4">
@@ -243,6 +243,22 @@
                         <div class="modal-body" id="waarschuwingModalBody1"></div>
                         <div class="modal-footer" id="waarschuwingModalFooter1">
                         <button type="button" id="warning_button" class="btn btn-cyan" data-dismiss="modal" onclick="ga_naar_login()">Sluit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="waarschuwingModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div id="waarschuwingModalLabel2"></div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body" id="waarschuwingModalBody2"></div>
+                        <div class="modal-footer" id="waarschuwingModalFooter2">
+                        <button type="button" id="warning_button" class="btn btn-cyan" data-dismiss="modal">Sluit</button>
                     </div>
                 </div>
             </div>

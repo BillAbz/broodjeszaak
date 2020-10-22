@@ -879,6 +879,10 @@ function bevestig_bestelling(pid,catid)
 
 function toon_winkel_wagentje()
 {
+
+    document.getElementById("uw_bestelling").style.background="cyan";
+    document.getElementById("uw_betaling").style.background="";
+
     var winkelwagentje=haalWinkelwagentjeOp();
     
     final_bedrag=0.0;
@@ -950,7 +954,7 @@ function toon_winkel_wagentje()
         </td>
 
         <td class="text-right">
-        <a type="button" id="ga_naar_betaling" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan" onclick="sessioncontrol()">Ga naar betaling<i class="fas fa-angle-right right"></i></a>
+        <a type="button" id="ga_naar_betaling" href="#tabCheckoutPayment" data-toggle="tab" class="btn btn-cyan" onclick="sessioncontrol()">Bevestig Bestelling<i class="fas fa-angle-right right"></i></a>
         </td>
     </tr>`; 
     document.getElementById("winkeltablebody").innerHTML += tabledata1;
@@ -1030,15 +1034,9 @@ function waarschuwing_modal1(warning)
     {
         document.getElementById("waarschuwingModalLabel1").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
         document.getElementById("waarschuwingModalBody1").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
-        //setTimeout(function () { $("#waarschuwingModal").dialog("close");}, 50000);
-        //document.location = "aanmelden1.html?directed_from=wagentje1";
+        
     }
-    else if(warning=="betalen")
-    {
-        document.getElementById("waarschuwingModalLabel1").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet betalen?</h3>';
-        document.getElementById("waarschuwingModalBody1").innerHTML= '<p>Voer de betaling uit om de bestelling te ontvangen aub!</p>';
-    }
-    
+       
 }
 function ga_naar_login()
 {
@@ -1048,16 +1046,17 @@ function ga_naar_login()
 
 function sessioncontrol()
 {
+    document.getElementById("uw_bestelling").style.background="cyan";
+    document.getElementById("uw_betaling").style.background="";
+
     var token_check=sessionStorage.getItem("token");
-    //console.log(token_check);
+    
     var formData = new FormData();
 
     if(token_check==null)
     {
         waarschuwing_modal1("login");
-        //window.alert("Please log in to continue further");
-
-        //document.location = "aanmelden1.html?directed_from=wagentje1";
+       
     }
     else
     {
@@ -1065,20 +1064,11 @@ function sessioncontrol()
         document.getElementById("ga_naar_betaling").disabled=false;
         var formData = new FormData();
         console.log(date);
-        var random_nummer=Math.random() >= 0.5;
-        console.log(random_nummer);
-        if(random_nummer==false)
-        {
+       
             betaald=0;
             afgehaald=0;
-        }
-        else if(random_nummer==true)
-        {
-            betaald=1;
-            afgehaald=1;
-        }
-        console.log(betaald);
-        console.log(afgehaald);
+       
+        
         
         var  values= 
         {
@@ -1097,7 +1087,7 @@ function sessioncontrol()
             method: 'POST',
             url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=bestelling",
             headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            //"filter": ["email", "like", "%" + useremail + "%"]
+           
             processData: false,
             contentType: false,
             data: formData  
@@ -1111,6 +1101,7 @@ function sessioncontrol()
                 console.log("created");
                 besid = response.data.item_id;
                 console.log(besid);
+               
                 samenvattingdata(besid);
             }
             else 
@@ -1127,9 +1118,17 @@ function sessioncontrol()
 }
 
 
+
 function post_in_producten_bestelling_tabel()
 {
-    console.log(besid);
+    document.getElementById("uw_bestelling").style.background="";
+    document.getElementById("uw_betaling").style.background="cyan";
+
+     if(document.getElementById("radioPaypal").checked)
+     {
+
+        console.log(besid);
+         console.log("betaald in post_in_producten_bestelling_tabel", betaald);
    
         var winkelwagentje=haalWinkelwagentjeOp(); 
         var formData = new FormData();  
@@ -1183,7 +1182,41 @@ function post_in_producten_bestelling_tabel()
                 {
                     console.log("created");
                     var pbid = response.data.pbid;
-                    
+                    var formData = new FormData(); 
+                    var  values= 
+                        {
+                            "betaald":1, 
+                            "afgehaald":1
+                        };
+                    formData.set("values", JSON.stringify(values));
+                    $.ajax
+                    ({
+                        method: 'PUT',
+                        url: `https://api.data-web.be/item/single_update?project=fjgub4eD3ddg&entity=bestelling&id=${besid}`,
+                  
+                        
+                        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+                        
+                        processData: false,
+                        contentType: false,
+                        
+                        data: formData
+                    }).done(function (response) 
+                    {
+                        console.log("create done:");
+                        console.log(response);
+
+                    })
+                    .fail(function (msg) 
+                    {
+                        console.log("read fail:");
+                        console.log(msg);
+                    });
+
+                        waarschuwing_modal2("betaald");
+                        document.getElementById("plaats_bestelling").disabled=true;
+                        //document.location="index1.html";
+                        
                 }
                 else 
                 {
@@ -1197,14 +1230,41 @@ function post_in_producten_bestelling_tabel()
             });
         }
  
-   
+    }
+    else{
+
         
+            waarschuwing_modal2("niet_betaald");
+       
+    }
+        
+    
+}
+
+
+function waarschuwing_modal2(warning)
+{   
+    $("#waarschuwingModal2").modal();
+    var warning;
+
+     if(warning=="niet_betaald")
+    {
+        document.getElementById("waarschuwingModalLabel2").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet betalen?</h3>';
+        document.getElementById("waarschuwingModalBody2").innerHTML= '<p>Voer de betaling uit om de bestelling te ontvangen aub!</p>';
+    }
+    else if(warning=="betaald")
+    {
+        document.getElementById("waarschuwingModalLabel2").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Bedankt voor de betaling.</h3>';
+        document.getElementById("waarschuwingModalBody2").innerHTML= '<p>We zullen uw bestelling binnenkort bezorgen. aub!</p>';
+    }
     
 }
 
 
 function samenvattingdata(besid)
 {
+    document.getElementById("uw_bestelling").style.background="";
+    document.getElementById("uw_betaling").style.background="cyan";
     var winkelwagentje=haalWinkelwagentjeOp();
 
     var samenvattingdata2 ="";
@@ -1239,8 +1299,8 @@ function samenvattingdata(besid)
         <td>
             <strong> € ${final_bedrag} </strong>
         </td>
-                        </tr>`
-    //document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
+                        </tr>`;
+    
     document.getElementById("winkelsamenvatting").innerHTML +=  samenvattingdata1;
 }
 
@@ -1319,22 +1379,41 @@ function waarschuwing_modal(warning)
         document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
         document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
     }
-    /* else if (warning=="login")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
-        //setTimeout(function () { $("#waarschuwingModal").dialog("close");}, 50000);
-        //document.location = "aanmelden1.html?directed_from=wagentje1";
-    } */
+   
     
 }
 
+
+function controleer_contactformulier()
+{
+    for (var i=0; i<5; i++)
+    {
+        document.getElementById("formulier_warning_"+i).innerHTML= "";
+    }
+    
+
+    var validate= true;
+    var form = $("#formulierform");
+    $('input', form).each(function(i) {
+        if ($(this)[0].checkValidity() == false) 
+        {
+            console.log(i)
+        document.getElementById("formulier_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+        validate= false; 
+        }
+    })
+    if (validate==true)
+    {
+        contactformulier()
+    }
+}
 
 
 
 
 function contactformulier() 
 {
+
     var formData = new FormData(); 
 
     //var contactuserid = "";
@@ -1346,9 +1425,11 @@ function contactformulier()
     var c_option =document.getElementById("defaultContactFormInfo").value;
     if (c_option==2 || c_option == 3)
     {
-        var contactbestellingid = document.getElementById("ordernummer").value;;
+        var contactbestellingid = document.getElementById("ordernummer").value;
+       
     }
     var contactomschrijving = document.getElementById("vraag").value;
+
 
     var random_nummer=Math.random() >= 0.5;
     console.log(random_nummer);
@@ -1376,6 +1457,7 @@ function contactformulier()
     ({
            method: 'POST',
            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier",
+           headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
            
             //"filter": ["email", "like", "%" + useremail + "%"]
             processData: false,
@@ -1401,14 +1483,19 @@ function get_vraag_selectie_value()
     if (c_option==2 || c_option == 3)
     {
         document.getElementById("bestellingnummer").innerHTML = `  
-            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in">
-        `;
+            <input type="text" id="ordernummer" class="form-control mb-4" placeholder="Voer uw bestelnummer in" required>      
+        `
+        ;
     }
-    else
+    else if (c_option==1)
     {
+
         document.getElementById("bestellingnummer").innerHTML = "";
+
     }
+    controleer_contactformulier();
 }
+
 
 
 function show_password(id) {
@@ -1430,67 +1517,3 @@ function show_password(id) {
     }
 }
 
-/* New function
-function winkel_samenvatting()
-{
-    document.getElementById("winkelsamenvatting").innerHTML="";
-    var winkelwagentje=haalWinkelwagentjeOp();
-    
-    for(var i=0; i<winkelwagentje.length; i++)
-    {
-        var samenvattingdata ="";
-        var samenvattingdata1=""
-        samenvattingdata += "<tr>";
-
-        if(winkelwagentje[i].snaam!=null)
-        {  
-            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "<br>"+ winkelwagentje[i].snaam + "</td>";
-        }
-        else
-        {
-            samenvattingdata += "<td>" + winkelwagentje[i].pnaam + "</td>";
-        }
-        samenvattingdata += "<td>" + winkelwagentje[i].totaal_bedrag + "</td>";
-        samenvattingdata += "</tr>";
-
-        document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata;
-    }
-    samenvattingdata1 += ` <tr>
-        <td>
-            <strong>Totaal</strong>
-        </td>
-        <td>
-            <strong> ${final_bedrag} </strong>
-        </td>
-    </tr>`
-    document.getElementById("winkelsamenvatting").innerHTML += samenvattingdata1;
-}*/
- /*if(document.getElementById("klantnummer") !== null)
-    {
-        var contactuserid = document.getElementById("klantnummer").value;
-        var contactbestellingid = document.getElementById("ordernummer").value;
-        var datum_bestelling = document.getElementById("bestellingdatum").value;
-    } 
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
-        "method": "POST",
-        "headers": {},
-        "data": {
-                   values: values
-        }
-    }
-    //var datum = new Date();
-    /*var random_nummer=Math.random() >= 0.5;
-    console.log(random_nummer);
-    if(random_nummer==false)
-    {
-        opgelost=0;
-    }
-    else if(random_nummer==true)
-    {
-        opgelost=1;
-    }*/
-            
-    //console.log(opgelost);*/ 
