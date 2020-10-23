@@ -1469,7 +1469,7 @@ function get_vraag_selectie_value()
     if (c_option==2 || c_option == 3)
     {
         document.getElementById("bestellingnummer").innerHTML = `  
-            <input type="text" id="ordernummer" class="form-control mt-4" placeholder="Voer uw bestelnummer in" required>      
+            <input type="text" id="ordernummer" class="form-control mt-4" placeholder="Voer uw bestelnummer in" pattern="[0-9]{1,}" required>      
         `;
     }
     else if (c_option==1)
