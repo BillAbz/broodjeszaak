@@ -417,7 +417,7 @@ function maak_tabel(producten1)
         //DO NOT DELETE THIS COMMENT
         tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten1[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image" />' + "</td>";
         
-        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}','${producten1[i].prodprijs}')">Keuze</button>` +"</td>";
+        tabledata += "<td>" + `<button type="button" class="btn btn-cyan btn-sm" data-toggle="modal" data-target="#broodjesZaak_details" onclick="toon_producten_popup('${producten1[i].pid}','${producten1[i].catid}','${producten1[i].prodprijs}')">Keuze</button>` +"</td>";
         
         tabledata += "</tr>";
 
@@ -1052,7 +1052,6 @@ function sessioncontrol()
     if(token_check==null)
     {
         waarschuwing_modal1("login");
-       
     }
     else
     {
@@ -1061,11 +1060,9 @@ function sessioncontrol()
         var formData = new FormData();
         console.log(date);
        
-            betaald=0;
-            afgehaald=0;
-       
-        
-        
+        betaald=0;
+        afgehaald=0;
+
         var  values= 
         {
             "user_id": user_id,
