@@ -122,6 +122,51 @@ function registreren() {
     });
 }
 
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
+
+    if (warning=="success")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie gelukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>U bent succesvol geregistreerd. U kunt nu inloggen.</p>';
+    }
+    else if (warning=="email")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">E-mailadres bestaat al?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
+    }
+    else if (warning=="fail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw registratie is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
+    }
+    
+    else if (warning=="password")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Wachtwoord of e-mail onjuist?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
+    }
+    else if (warning=="unsuccessful")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Aanmelden mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw aanmelden is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
+    }
+    else if (warning=="formsuccess")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag verzonden</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is succesvol verzonden. Bedankt!</p>';
+        
+    }
+    else if (warning=="formfail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is om onbekende redenen niet verzonden. Neem dan telefonisch contact met ons op.</p>';
+    }
+}
+
+
 
 function login_validatie()
 {
@@ -246,7 +291,7 @@ function toon_gebruiker_naam()
 
 function afmelden() 
 {
-    var winkelwagentje = haalWinkelwagentjeOp();
+    //var winkelwagentje = haalWinkelwagentjeOp();
     var token_check=sessionStorage.getItem("token");
     console.log(token_check);
 
@@ -446,12 +491,6 @@ function toon_producten_popup(pid,catid,prodprijs)
     }
 }     
          
-         //document.getElementById("beeld").value = huidig_product.beeld;
-         //json stringify
-     
-         //document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
-     
-         //console.log(image);
      
                    
 function product_gevonden(pid)
@@ -466,19 +505,12 @@ function product_gevonden(pid)
 }    
 
 
+
+
+
 function create_modal(catid,pid,prodprijs)
 {
-    var pic_prod = Number(broodsoort[0].bsprijs) + Number(prodprijs);
-    var hal_prod= Number(broodsoort[1].bsprijs) + Number(prodprijs);
-    var wit_prod = Number(broodtype[0].btprijs) +  Number(prodprijs);
-    var bruin_prod= Number(broodtype[1].btprijs) +  Number(prodprijs);
-    var meer_prod = Number(broodtype[1].btprijs) +  Number(prodprijs);
-
-    console.log(pic_prod);
-    console.log(hal_prod);
-    console.log(wit_prod);
-    console.log(bruin_prod);
-    console.log(meer_prod);
+    
 
     if(catid==1 || catid==2)
     {
@@ -491,7 +523,7 @@ function create_modal(catid,pid,prodprijs)
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalform">Broodjes Selectie <br> 
-                        (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
+                        (U kunt het aantal stuks wijzigen en op de knop Bestellen  klikken)</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -559,7 +591,7 @@ function create_modal(catid,pid,prodprijs)
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
+                                <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bestellen</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
                             </div>
                         </form>
@@ -578,8 +610,8 @@ function create_modal(catid,pid,prodprijs)
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalform">Koude Schotel / Drankjes Selectie <br> 
-                        (U kunt het aantal stuks wijzigen en op de knop Bestelling bevestigen klikken)</h5>
+                        <h5 class="modal-title" id="modalform">Koude Schotel / Drankjes Selectie /Andere Selectie <br> 
+                        (U kunt het aantal stuks wijzigen en op de knop Bestellen klikken)</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -609,7 +641,7 @@ function create_modal(catid,pid,prodprijs)
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bevestig Bestelling</button>
+                                <button type="button" class="btn btn-primary" id="confirm" onclick="bevestig_bestelling(${pid},'${catid}');">Bestellen</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="Annuleren" onclick="">Annuleren</button>
                             </div>
                         </form>
@@ -1236,8 +1268,12 @@ function waarschuwing_modal2(warning)
     }
     else if(warning=="betaald")
     {
+        sessionStorage.removeItem('aantaal_bestellingen');
+        sessionStorage.removeItem('winkelwagentje');
         document.getElementById("waarschuwingModalLabel2").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Bedankt voor de betaling.</h3>';
         document.getElementById("waarschuwingModalBody2").innerHTML= '<p>We zullen uw bestelling binnenkort bezorgen. aub!</p>';
+        document.getElementById("warning_button2").onclick = function () { document.location="index1.html"; };
+
     }
 }
 
@@ -1345,49 +1381,7 @@ function zoek_product() {
 }
 
 
-function waarschuwing_modal(warning)
-{   
-    $("#waarschuwingModal").modal();
-    var warning;
 
-    if (warning=="success")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie gelukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>U bent succesvol geregistreerd. U kunt nu inloggen.</p>';
-    }
-    else if (warning=="email")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">E-mailadres bestaat al?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
-    }
-    else if (warning=="fail")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie mislukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw registratie is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
-    }
-    
-    else if (warning=="password")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Wachtwoord of e-mail onjuist?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
-    }
-    else if (warning=="unsuccessful")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Aanmelden mislukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw aanmelden is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
-    }
-    else if (warning=="formsuccess")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag verzonden</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is succesvol verzonden. Bedankt!</p>';
-        
-    }
-    else if (warning=="formfail")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag mislukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is om onbekende redenen niet verzonden. Neem dan telefonisch contact met ons op.</p>';
-    }
-}
 
 
 function contactformulier_validatie()
@@ -1514,3 +1508,14 @@ function show_password(id) {
     }
 }
 
+/* var pic_prod = Number(broodsoort[0].bsprijs) + Number(prodprijs);
+    var hal_prod= Number(broodsoort[1].bsprijs) + Number(prodprijs);
+    var wit_prod = Number(broodtype[0].btprijs) +  Number(prodprijs);
+    var bruin_prod= Number(broodtype[1].btprijs) +  Number(prodprijs);
+    var meer_prod = Number(broodtype[1].btprijs) +  Number(prodprijs);
+
+    console.log(pic_prod);
+    console.log(hal_prod);
+    console.log(wit_prod);
+    console.log(bruin_prod);
+    console.log(meer_prod); */
