@@ -235,8 +235,8 @@ function BestellingenRaadplegen() {
                 console.log("updated");
                 //read_items();
                 vernieuw_bestelling_tabel();
+                $('#modal_details').modal('hide');
             }
-           
         }).fail(function (msg) {
             console.log("update fail:");
             console.log(msg);
