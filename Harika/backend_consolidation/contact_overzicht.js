@@ -1,11 +1,6 @@
-var username;
-var user_id;
-var user_rol;
 var contactformulier =[];
 var huidig_product;
 var besid;
-var user_email;
-var user_naam;
 var filters=[];
 var sorteren=["opgelost", "ASC"];
 var huidige_pagina=1;
@@ -134,7 +129,7 @@ function contacten_opvolgen()
 
     var formData = new FormData();
 
-    if (huidig_product.besid !== "") {
+    if (huidig_product.besid != "") {
         huidig_product.naam = document.getElementById("naam").value;
         huidig_product.email = document.getElementById("email").value;
         huidig_product.telefoonnummer = document.getElementById("telefoonnummer").value;

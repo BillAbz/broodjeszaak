@@ -18,7 +18,7 @@
     
 </head>
 
-<body onload="krijg_naam();">
+<body onload="haalWinkelwagentjeOp(); krijg_naam();">
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark" >
@@ -97,31 +97,24 @@
                     }
                 </style>
 
-                <!-- Grid row -->
                 <div class="row">
-            
-                    <!-- Grid column -->
                     <div class="col-lg-5 mb-lg-0 pb-lg-3 mb-4">
-            
                         <!-- Form with header -->
                         <div class="card z-depth-5">
                             <div class="card-body">
-
-                                <!--<form class="text-center" id="formulierform" action="#!"> -->
                                 <form class="text-center" id="formulierform">
-
                                     <h3 class="h3-responsive font-weight-bold mb-4" style=" background-color:white">Contactformulier</h3>
                                     <p class="text-center w-responsive mx-auto mb-4">Indien u vragen hebt, contacteer ons.</p>
-                                    <input type="text" id="defaultContactFormName" class="form-control" placeholder="Naam" required>
+
+                                    <input type="text" id="contactFormName" class="form-control" placeholder="Naam" minlength="2" required>
                                     <div id="formulier_warning_0"></div>
-                                    <input type="email" id="defaultContactFormEmail" class="form-control mt-4" placeholder="E-mail" required>
+                                    <input type="email" id="contactFormEmail" class="form-control mt-4" placeholder="E-mail" minlength="5" required>
                                     <div id="formulier_warning_1"></div>
-                                    <input type="tel" id="defaultContactFormTel" class="form-control mt-4" placeholder="Telefoonnummer" required>
+                                    <input type="tel" id="contactFormTel" class="form-control mt-4" placeholder="Telefoonnummer" pattern="[0-9]{9,}" required>
                                     <div id="formulier_warning_2"></div>
 
                                     <div>
-                                        <select class="browser-default custom-select mt-4" id="defaultContactFormInfo" onchange="get_vraag_selectie_value()">
-                                        <!--   <select class="browser-default custom-select mb-4" id="defaultContactFormInfo">-->
+                                        <select class="browser-default custom-select mt-4" id="contactFormInfo" onchange="get_vraag_selectie_value()" required>
                                             <option value="" selected disabled>Type vraag</option>
                                             <option value="1">Over product</option>
                                             <option value="2">Over bestelling</option>
@@ -131,38 +124,22 @@
                                         <div id="formulier_warning_4"></div>
                                     </div>
                                     
-                                    <!--<label for="ordernummer"> Voer uw bestelnummer in </label> 
-                                    <br>
-                                    <input type="text" id="ordernummer" name="ordernumber"></input> 
-                                    <br>
-                                    <label for="klantnummer"> Voer uw klant nummer in </label>
-                                    <br>
-                                    <input type="text" id="klantnummer" name="ordernumber"></input>-->
-                                    <!--<input type="text" id="defaultContactFormNumber" class="form-control mb-4" placeholder="Bestellingnummer">-->
                                     <div class="form-group  mt-4">
-                                        <!--<textarea class="form-control rounded-0" id="vraag" rows="4" placeholder="Vraag"></textarea>-->
-                                        <input type="text" class="form-control rounded-0" id="vraag" rows="10" placeholder="Vraag" required>
+                                        <input type="text" class="form-control rounded-0" id="vraag" rows="10" placeholder="Vraag" minlength="2" required>
                                         <div id="formulier_warning_3"></div>
                                     </div>
-                                    <!--<button class="btn btn-cyan btn-block" type="button" onclick="contactformulier();">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>-->
-                                    <button class="btn btn-cyan btn-block" type="button" onclick="controleer_contactformulier();">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>
-                                </form>
 
+                                    <button class="btn btn-cyan btn-block" type="button" onclick="contactformulier_validatie();">Verstuur vraag<i class="far fa-paper-plane ml-2"></i></button>
+                                </form>
                             </div>
                         </div>
-                        <!-- Form with header -->
-            
                     </div>
-                    <!-- Grid column -->
-            
-                    <!-- Grid column -->
+
                     <div class="col-lg-7">
-            
                         <!--Google map-->
                         <div id="map-container-section" class="z-depth-1-half map-container-section mb-4 z-depth-5" style="height: 400px">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2498.9928767747247!2d4.418372315645732!3d51.21920687958879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3f700fdbda557%3A0x39ab6c9590bba790!2sVan%20Wesenbekestraat%201%2C%202060%20Antwerpen!5e0!3m2!1snl!2sbe!4v1584011333315!5m2!1snl!2sbe" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
-
                         <!-- Buttons-->
                         <div class="card z-depth-5">
                             <div class="card-body">
@@ -201,11 +178,28 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Grid column -->
                 </div>
-                <!-- Grid row -->
             </section>    
         </div>
+
+        <!-- Warning Modal -->
+        <div class="modal fade" id="waarschuwingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div id="waarschuwingModalLabel"></div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body" id="waarschuwingModalBody"></div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-cyan" data-dismiss="modal">Sluit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer class="page-footer font-small darken-3 pt-4">
@@ -250,12 +244,3 @@
 </body>
 
 </html>
-
-<!--<label for="ordernummer"> Voer uw bestelnummer in </label> 
-                                    <br>
-                                    <input type="text" id="ordernummer" name="ordernumber"></input> 
-                                    <br>
-                                    <label for="klantnummer"> Voer uw klant nummer in </label>
-                                    <br>
-                                    <input type="text" id="klantnummer" name="ordernumber"></input>-->
-                                    <!--<input type="text" id="defaultContactFormNumber" class="form-control mb-4" placeholder="Bestellingnummer">-->
