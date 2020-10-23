@@ -172,6 +172,7 @@ function contacten_opvolgen()
         {
             console.log("update fail:");
             console.log(msg);
+            waarschuwing_modal("editfail");
         });
     }
 }
@@ -201,6 +202,7 @@ function bevestig_verwijderen()
     {
         console.log("delete fail:");
         console.log(msg);
+        waarschuwing_modal("deletefail")
     });
 }
 
@@ -248,10 +250,6 @@ function filteren() {
     };
     if (filter[2]!="") 
     {   
-        if (filter[2]=="ja" || filter[2]=="Ja" || filter[2]=="JA")
-        {
-            filter[2] = 1;
-        } 
         filters.push(["opgelost", "=", filter[2]])
     };
     start();
@@ -262,4 +260,22 @@ function sortering()
 {
     sorteren[0] = $("#sorteer").val();
     start();
+}
+
+// warning
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
+
+    if (warning=="editfail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Bewerking mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw bewerking van dit bericht is om onbekende redenen mislukt. Neem dan contact op met de IT-afdeling.</p>';
+    }
+    else if (warning=="deletefail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Verwijderen mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Kan dit bericht om onbekende redenen niet verwijderen. Neem dan contact op met de IT-afdeling.</p>';
+    }
 }

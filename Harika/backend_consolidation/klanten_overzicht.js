@@ -333,11 +333,7 @@ function filteren()
         filters.push(["postcode", "=", filter[2]])
     };
     if (filter[3]!="") 
-    {   
-        if (filter[3]=="ja" || filter[3]=="Ja" || filter[3]=="JA")
-        {
-            filter[3] = 1;
-        } 
+    {
         filters.push(["actief", "=", filter[3]])
     };
     starten();
