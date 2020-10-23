@@ -64,7 +64,10 @@ function vernieuw_contact_tabel()
             tabledata += "<td>" + contactformulier[i].telefoonnummer + "</td>";
             tabledata += "<td>" + contactformulier[i].besid+ "</td>";
             tabledata += "<td>" + contactformulier[i].omschrijving + "</td>";
-            tabledata += "<td>" + contactformulier[i].datum_cf + "</td>";
+            var date= contactformulier[i].datum_cf;
+            var date_form= date.split("-");
+            var date_format= date_form[2]+"/"+date_form[1]+"/"+date_form[0];
+            tabledata += "<td>" + date_format + "</td>";
             if (contactformulier[i].opgelost==true)
             {
                 opgelost="Ja"
@@ -233,10 +236,16 @@ function paginas(dir)
 }
 
 
-function filteren() {
+function filteren() 
+{
+    var filterdatum = $("#filterdatum").val();
+    var date= filterdatum;
+    var date_form= date.split("/");
+    filterdatum= date_form[2]+"-"+date_form[1]+"-"+date_form[0];
+
     var filter = [];
     filter[0] = $("#filteremail").val();
-    filter[1] = $("#filterdatum").val();
+    filter[1] = filterdatum;
     filter[2] = $("#filteropgelost").val();
 
     filters=[];
