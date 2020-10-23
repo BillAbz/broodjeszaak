@@ -119,15 +119,26 @@
         <div class="container pt-4" id="filter">    
             <div class="row">
                 
+                <div class="col-sm">
+                    <label for="fbesid">Bestelling ID</label><br>
+                    <input type="text" id="fbesid" class="form-control">
+                </div>
     
                 <div class="col-sm">
-                    <label for="filterdatum">Datum</label><br>
+                    <label for="filterdatum">Datum(YYYY/MM/DD)</label><br>
                     <input type="text" id="filterdatum" class="form-control">
                 </div>
 
                 <div class="col-sm">
-                    <label for="filterbetaald">Betaald (Ja/Neen)</label><br>
-                    <input type="text" id="filterbetaald" class="form-control">
+                    <label for="filterbetaald">Betaald (Ja/Nee)</label>
+                    <select class="browser-default custom-select" id="filterbetaald"  name="filterbetaald">
+                        <option value=""selected></option>
+                        <option value="0">Nee</option>
+                        <option value="1">Ja</option>
+                    </select>
+
+                   <!-- <label for="filterbetaald">Betaald (Ja/Nee)</label><br>
+                    <input type="text" id="filterbetaald" class="form-control">-->
                 </div>
     
                 <div class="col-sm align-self-end">
@@ -153,6 +164,7 @@
             <table class="table table-bordered table-responsive-md table-striped text-center" id="bestellingtable">
                 <thead>
                     <tr>
+                        <th scope="col">Bestelling ID</th>
                         <th scope="col">Klant nummer</th>
                         <th scope="col">Klant naam</th>
                         <th scope="col">Klant email</th>

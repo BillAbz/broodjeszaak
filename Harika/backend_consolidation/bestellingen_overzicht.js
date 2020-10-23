@@ -69,6 +69,7 @@ function vernieuw_bestelling_tabel() {
             //console.log(user_email);
             var tabledata = "";
             tabledata += "<tr>";
+            tabledata += "<td>" + bestellingen[i].besid + "</td>";
             tabledata += "<td>" + bestellingen[i].user_id + "</td>";
             tabledata += "<td>" + bestellingen[i].user.items[0].naam + "</td>";
             tabledata += "<td>" + bestellingen[i].user.items[0].email + "</td>";
@@ -275,13 +276,13 @@ function BestellingenRaadplegen() {
 
 
 function filteren() {
-    filters = "";
-    
+    //filters = "besid";
+    var fbesid= $("#fbesid").val();
     var filterdatum = $("#filterdatum").val();
     var filterbetaald= $("#filterbetaald").val()
-    $("#filterbetaald").val()
+    //$("#filterbetaald").val()
 
-    if(filterbetaald=="Ja" || filterbetaald=="ja"||filterbetaald=="JA")
+    /* if(filterbetaald=="Ja" || filterbetaald=="ja"||filterbetaald=="JA")
     {
         filterbetaald=1;
     }
@@ -289,41 +290,94 @@ function filteren() {
             filterbetaald=="NEE"||filterbetaald=="nee"||filterbetaald=="nEe"||filterbetaald=="neE")
     {
         filterbetaald=0;
+    } */
+    console.log("filterbetaald in filteren", filterbetaald);
+
+    Call_filter_ajax(fbesid, filterdatum, filterbetaald);
+
+}
+
+function Call_filter_ajax(fbesid, filterdatum, filterbetaald)
+{
+  console.log("fbesid in call ajax update", fbesid);
+   console.log("datum in call ajax update", filterdatum);
+   console.log("betaald in call ajax update", filterbetaald);
+    
+
+
+    if(fbesid!=null && filterdatum == "" && filterbetaald == "")
+    {
+        var filter= ["besid", "=", fbesid];
+        console.log("only besid", filter);
+        
+    }
+    else if(filterdatum != null && fbesid == "" && filterbetaald == "")
+    {
+        var filter= ["datum", "LIKE", filterdatum + "%"];
+        console.log("only date", filter);
+        
+    }
+    else if(filterbetaald != null && fbesid == "" && filterdatum == "")
+    {
+        var filter = ["betaald", "=",  filterbetaald];
+        console.log("only betaald", filter);
+        
+    }
+    else if(fbesid!= null && filterdatum != null && filterbetaald == "")
+    {
+        var filter= [["besid", "=", fbesid],["datum", "LIKE", filterdatum + "%"]];
+        console.log("besid and date", filter);
+       
+    }
+    else if(fbesid!= null && filterbetaald != null && filterdatum =="")
+    {
+        var filter= [["besid", "=", fbesid],["betaald", "=",  filterbetaald]];
+        console.log("besid and betaald", filter);
+        
+    }
+    else if(filterdatum != null && filterbetaald != null && fbesid == "")
+    {
+        var filter= [["datum", "LIKE", filterdatum + "%"],["betaald", "=",  filterbetaald]];
+        console.log("date and betaald", filter);
+        
+    }
+    else if(fbesid!= null && filterdatum != null && filterbetaald != null)
+    {
+        var filter=[["besid", "=", fbesid],["datum", "LIKE", filterdatum + "%"], ["betaald", "=",  filterbetaald]];
+        console.log("besid, date, betaald", filter);
+        
     }
     
 
-    if (filterdatum != null || filterbetaald != null) {
-        $.ajax({
+
+     $.ajax({
             url: "https://api.data-web.be/item/read?project=fjgub4eD3ddg&entity=bestelling",
             headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
             type: "GET",
             data: {
-
-                "filter": [["datum", "LIKE", filterdatum + "%"], ["betaald", "=",  filterbetaald]],
+               "filter" : filter,
+              
                 "relation": 
                          [{"pri_entity":"bestelling","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
 
             }
         })
             .done(function (json) {
+            
                 console.log("read done:");
                 console.log(json);
                 bestellingen = json.data.items;
-                console.log(filters);
+                console.log(bestellingen);
                 if (bestellingen == "") {
 
-                    document.getElementById("productendata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
+                    document.getElementById("bestellingdata").innerHTML = "<br>" + "<br>" + "<center>" + "<b>" + "Geen Records gevonden" + "</b>" + "</center>";
 
                 }
                 else {
                     
 
                     vernieuw_bestelling_tabel();
-                  //get_user_details(filters);
-
-
-
-                    //start();
+                 
                 }
 
             })
@@ -333,19 +387,6 @@ function filteren() {
             });
 
     }
-
-
-}
-
-
-
-
-
-
-
-
-
-
 
 
  function sortering() 
