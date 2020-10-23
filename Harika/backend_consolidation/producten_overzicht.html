@@ -68,22 +68,24 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalform">Product Toevoegen / Product Bewaren</h5>
+                        <h5 class="modal-title" id="product_modal_titel"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
-                        <form>
+                        <form id="product_toevoegen_form">
                             <div class="form-group">
                                 <input id="id" hidden>
                                 <label for="pnaam">Naam</label>
                                 <input type="text" class="form-control" id="pnaam" placeholder="">
+                                <div id="product_beheren_warning_0"></div>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">€</span>
                                 <input type="text" class="form-control" id="prodprijs" aria-label="Prijs in Euro" />
+                                <div id="product_beheren_warning_1"></div>
                             </div>
                             <h6>Foto</h6>
                             <div class="custom-file">
@@ -95,6 +97,7 @@
                             <div class="form-group">
                                 <label for="pomschrijving">Omschrijving</label>
                                 <textarea class="form-control" id="pomschrijving" rows="7"></textarea>
+                                <div id="product_beheren_warning_2"></div>
                             </div>
                             <div class="form-group">
                                 <label for="catid">Categorie</label>
@@ -104,6 +107,7 @@
                                     <option value="3">Koude Schotels</option>
                                     <option value="4">Drankjes</option>-->
                                 </select>
+                                <div id="product_beheren_warning_3"></div>
                             </div>
                             <div class="modal-footer">
                                 <div id="modalFooter"></div>
@@ -207,6 +211,24 @@
             </div>
         </div>
         <div id="product_actie" style="display: hide;"></div>
+
+        <!-- Warning Modal -->
+        <div class="modal fade" id="waarschuwingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div id="waarschuwingModalLabel"></div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body" id="waarschuwingModalBody"></div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-cyan" data-dismiss="modal">Sluit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 

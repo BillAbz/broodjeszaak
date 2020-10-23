@@ -1429,8 +1429,8 @@ function contactformulier()
     $.ajax
     ({
         method: 'POST',
-        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier",
-        headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+       // headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
         //"filter": ["email", "like", "%" + useremail + "%"]
         processData: false,
         contentType: false,

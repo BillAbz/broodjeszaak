@@ -62,7 +62,7 @@ function read_items() {
 
 function toon_categorie_naam()
 {
-    document.getElementById("catid").innerHTML += `<option value="0"></option>`;
+    document.getElementById("catid").innerHTML += `<option value="0">select categorie</option>`;
     for(var i=0;i<category.length;i++)
     {
         document.getElementById("catid").innerHTML += `<option value="${category[i].catid}">${category[i].catnaam}</option>`;
@@ -139,6 +139,29 @@ function bijwerken_producten() {
 
 
 }
+function controleer_product_toevoegen()
+{
+    for (var i=0; i<5; i++)
+    {
+        document.getElementById("product_beheren_warning_"+i).innerHTML= "";
+    }
+    
+
+    var validate= true;
+    var form = $("#product_toevoegen_form");
+    $('input', form).each(function(i) {
+        if ($(this)[0].checkValidity() == false) 
+        {
+            console.log(i)
+        document.getElementById("product_beheren_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+        validate= false; 
+        }
+    })
+    if (validate==true)
+    {
+        bewarenproducten();
+    }
+}
 
 
 
@@ -159,7 +182,6 @@ function bewarenproducten() {
 
         console.log(huidig_product.beeld);
         console.log(huidig_product);
-
         var values = {
             "pnaam": huidig_product.pnaam,
             "pomschrijving": huidig_product.pomschrijving,
@@ -187,21 +209,27 @@ function bewarenproducten() {
             if (response.status.success == true) {
                 console.log("updated");
                 $('#modal_details').modal('hide');
+                waarschuwing_modal("formsuccess");
+
             }
             else {
                 console.log("not updated");
                 $('#modal_details').modal('hide');
+                waarschuwing_modal("formfail");
+
             }
         }).fail(function (msg) {
             console.log("update fail:");
             console.log(msg);
+            waarschuwing_modal("formfail");
+
         });
     
     }
 
 
     if(product_actie == "insert") {
-
+       
         var formData = new FormData();
         var values = {
             "pnaam": $("#pnaam").val(),
@@ -212,7 +240,7 @@ function bewarenproducten() {
 
         };
         formData.set("values", JSON.stringify(values));
-       // formData.set("filter", JSON.stringify(["id", "=", huidig_product.id]));
+        // formData.set("filter", JSON.stringify(["id", "=", huidig_product.id]));
         formData.set("beeld", $("#beeld")[0].files[0]);
 
         $.ajax({
@@ -226,25 +254,32 @@ function bewarenproducten() {
             console.log("create done:");
             console.log(response);
             if (response.status.success == true) {
-                console.log("created");
-                var pid = response.data.pid;
-                console.log(pid);
-                $('#modal_details').modal('hide');
+            console.log("created");
+            var pid = response.data.pid;
+            console.log(pid);
+            $('#modal_details').modal('hide');
+            waarschuwing_modal("formsuccess");
+
             }
             else {
                 console.log("not created");
                 $('#modal_details').modal('hide');
+                waarschuwing_modal("formfail");
+
             }
         }).fail(function (msg) {
             console.log("create fail:");
             console.log(msg);
+            waarschuwing_modal("formfail");
+
+                    
         });
     }
-    
+            
     read_items();
     $('#modal_details').modal('hide');
-        
-
+                
+ 
 }
    
 function toon_product(actie, prod_id) {
@@ -254,11 +289,12 @@ function toon_product(actie, prod_id) {
         document.getElementById("pnaam").value = "";
         document.getElementById("pomschrijving").value = "";
         document.getElementById("prodprijs").value = "";
-        document.getElementById("catid").value = "";
+        document.getElementById("catid").value = 0;
         document.getElementById("originaalbeeld").innerHTML = "";
+        document.getElementById("product_modal_titel").innerHTML = "Product toeveogen";
         //document.getElementById("beeld").value = huidig_product.beeld;
         //json stringify
-    
+
         document.getElementById("beeldoriginal").value = "";
     }
 
@@ -272,8 +308,11 @@ function toon_product(actie, prod_id) {
         document.getElementById("catid").value = huidig_product.catid;
         document.getElementById("originaalbeeld").innerHTML ='<label class="custom-file-label" for="beeld2" data-browse="Bladeren">' + huidig_product.beeld.name + '</label>';
         console.log(huidig_product.beeld.name);
+        document.getElementById("product_modal_titel").innerHTML = "Product wijzigen";
+
         //document.getElementById("beeld").value = huidig_product.beeld;
         //json stringify
+       // $("#product_modal_titel").html("Product wijzigen");
 
         document.getElementById("beeldoriginal").value = JSON.stringify(huidig_product.beeld);
 
@@ -329,6 +368,7 @@ function bevestig_verwijderen() {
         console.log(response);
         if (response.status.success == true) {
             console.log("deleted");
+            waarschuwing_modal("formsuccess");
 
         }
         else {
@@ -338,10 +378,11 @@ function bevestig_verwijderen() {
     }).fail(function (msg) {
         console.log("delete fail:");
         console.log(msg);
+        waarschuwing_modal("formfail");
+
     });
     read_items();
 }
-
 
 
 
@@ -535,7 +576,49 @@ function sorteer_producten() {
         alert("Kies een optie");
     }*/
 }
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
 
+    if (warning=="success")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Product toevoegen gelukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>U bent succesvol product toevoegen.</p>';
+    }
+    else if (warning=="email")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">E-mailadres bestaat al?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
+    }
+    else if (warning=="fail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Product toevoegen mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw registratie is mislukt vanwege onbekende redenen.</p>';
+    }
+    
+    else if (warning=="password")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Wachtwoord of e-mail onjuist?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
+    }
+    else if (warning=="unsuccessful")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Aanmelden mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw aanmelden is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
+    }
+    else if (warning=="formsuccess")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag verzonden</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is succesvol verzonden. Bedankt!</p>';
+        
+    }
+    else if (warning=="formfail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is om onbekende redenen niet verzonden. Neem dan telefonisch contact met ons op.</p>';
+    }
+}
 
 function paginas(dir) 
 {
