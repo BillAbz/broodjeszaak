@@ -90,7 +90,7 @@ function vernieuw_producten_tabel() {
             tabledata += "<td>" + catnaam + "</td>";
 
 
-            tabledata += "<td>" + producten[i].prodprijs + "</td>";
+            tabledata += "<td>" + "€ " +producten[i].prodprijs + "</td>";
           
            tabledata += "<td>" + '<img src="https:'+assets_path + "/" + producten[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image"/>' + "</td>";
 
@@ -364,7 +364,7 @@ function filter_sort_display() {
         tabledata += "<td>" + catnaam + "</td>";
 
 
-        tabledata += "<td>" + items[i].prodprijs + "</td>";
+        tabledata += "<td>" + "€ " +items[i].prodprijs + "</td>";
         tabledata += "<td>" + '<img src="https:'+assets_path + "/" + items[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image"/>' + "</td>";
 
         tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_product(${items[i].pid})">Verwijderen</button>` +
