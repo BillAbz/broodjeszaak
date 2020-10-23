@@ -73,7 +73,15 @@ function vernieuw_bestelling_tabel() {
             tabledata += "<td>" + bestellingen[i].user_id + "</td>";
             tabledata += "<td>" + bestellingen[i].user.items[0].naam + "</td>";
             tabledata += "<td>" + bestellingen[i].user.items[0].email + "</td>";
-            tabledata += "<td>" + bestellingen[i].datum + "</td>";
+
+             var date= bestellingen[i].datum;
+             var date_form= date.split("-");
+             console.log(date_form);
+             var date_format= date_form[2]+"/"+date_form[1]+"/"+date_form[0];
+             console.log(date_format);
+
+            //tabledata += "<td>" + bestellingen[i].datum + "</td>";
+            tabledata += "<td>" + date_format+ "</td>";
             tabledata += "<td>" + bestellingen[i].totaal_stuks + "</td>";
             tabledata += "<td>" +"€ " +bestellingen[i].totaal_bedrag+ "</td>";
             if(bestellingen[i].betaald==0)
@@ -280,17 +288,13 @@ function filteren() {
     var fbesid= $("#fbesid").val();
     var filterdatum = $("#filterdatum").val();
     var filterbetaald= $("#filterbetaald").val()
-    //$("#filterbetaald").val()
 
-    /* if(filterbetaald=="Ja" || filterbetaald=="ja"||filterbetaald=="JA")
-    {
-        filterbetaald=1;
-    }
-    else if(filterbetaald=="Nee"||filterbetaald=="nee"||filterbetaald=="NEe"||filterbetaald=="NeE"||
-            filterbetaald=="NEE"||filterbetaald=="nee"||filterbetaald=="nEe"||filterbetaald=="neE")
-    {
-        filterbetaald=0;
-    } */
+    var date= filterdatum;
+    var date_form= date.split("/");
+    console.log(date_form);
+    filterdatum= date_form[2]+"-"+date_form[1]+"-"+date_form[0];
+    console.log("filter datum in filteren function after converting into database date format:",filterdatum);
+
     console.log("filterbetaald in filteren", filterbetaald);
 
     Call_filter_ajax(fbesid, filterdatum, filterbetaald);
@@ -313,7 +317,7 @@ function Call_filter_ajax(fbesid, filterdatum, filterbetaald)
     }
     else if(filterdatum != null && fbesid == "" && filterbetaald == "")
     {
-        var filter= ["datum", "LIKE", filterdatum + "%"];
+        var filter= ["datum", "LIKE", "%" + filterdatum + "%"];
         console.log("only date", filter);
         
     }
@@ -325,7 +329,7 @@ function Call_filter_ajax(fbesid, filterdatum, filterbetaald)
     }
     else if(fbesid!= null && filterdatum != null && filterbetaald == "")
     {
-        var filter= [["besid", "=", fbesid],["datum", "LIKE", filterdatum + "%"]];
+        var filter= [["besid", "=", fbesid],["datum", "LIKE", "%" + filterdatum + "%"]];
         console.log("besid and date", filter);
        
     }
@@ -337,13 +341,13 @@ function Call_filter_ajax(fbesid, filterdatum, filterbetaald)
     }
     else if(filterdatum != null && filterbetaald != null && fbesid == "")
     {
-        var filter= [["datum", "LIKE", filterdatum + "%"],["betaald", "=",  filterbetaald]];
+        var filter= [["datum", "LIKE", "%" + filterdatum + "%"],["betaald", "=",  filterbetaald]];
         console.log("date and betaald", filter);
         
     }
     else if(fbesid!= null && filterdatum != null && filterbetaald != null)
     {
-        var filter=[["besid", "=", fbesid],["datum", "LIKE", filterdatum + "%"], ["betaald", "=",  filterbetaald]];
+        var filter=[["besid", "=", fbesid],["datum", "LIKE", "%" + filterdatum + "%"], ["betaald", "=",  filterbetaald]];
         console.log("besid, date, betaald", filter);
         
     }
@@ -394,3 +398,15 @@ function Call_filter_ajax(fbesid, filterdatum, filterbetaald)
     sorteren[0] = $("#sorteer").val();
     start();
 } 
+
+ //$("#filterbetaald").val()
+
+    /* if(filterbetaald=="Ja" || filterbetaald=="ja"||filterbetaald=="JA")
+    {
+        filterbetaald=1;
+    }
+    else if(filterbetaald=="Nee"||filterbetaald=="nee"||filterbetaald=="NEe"||filterbetaald=="NeE"||
+            filterbetaald=="NEE"||filterbetaald=="nee"||filterbetaald=="nEe"||filterbetaald=="neE")
+    {
+        filterbetaald=0;
+    } */
