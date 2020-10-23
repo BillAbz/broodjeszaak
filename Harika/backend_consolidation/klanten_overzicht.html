@@ -60,10 +60,10 @@
              
         <main>
             <div class="text-left">
-                <a href="" class="btn btn-primary" data-toggle="modal" onclick="toevoegen()" data-target="#product">Klant Toevoegen</a>
+                <a href="" class="btn btn-primary" data-toggle="modal" onclick="toevoegen()" data-target="#klant">Klant Toevoegen</a>
             </div>
         
-            <div class="modal fade" id="product" tabindex="-1" role="dialog">
+            <div class="modal fade" id="klant" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -71,37 +71,40 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
         
-                        <form class="modal-body">        
+                        <form class="modal-body" id="klantForm">        
                             <div class="form-outline mb-4">
                                 <label for="naam">Naam</label>
-                                <input type="text" id="naam" class="form-control">
+                                <input type="text" id="naam" class="form-control" minlength="2" required>
                                 <div id="warning_0"></div>
                             </div>
                             <div class="form-outline mb-4">
                                 <label for="email">E-mail</label>
-                                <input type="text" id="email" class="form-control">
+                                <input type="text" id="email" class="form-control" minlength="5" required>
                                 <div id="warning_1"></div>
                             </div>
                             
                             <div class="form-outline mb-4" id="invoerWachtwoord" style="display: none;">
                                 <label for="wachtwoord">Wachtwoord</label>
-                                <input type="text" id="wachtwoord" class="form-control">
+                                <input type="text" id="wachtwoord" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                <div id="warning_2">
+                                    <small class="form-text text-muted">Minimaal 8 karakters, 1 hoofdletter en 1 cijfer</small>
+                                </div>
                             </div>
                             
                             <div class="form-outline mb-4">
                                 <label for="telefoonnummer">Telefoonnummer</label>
-                                <input type="text" id="telefoonnummer" class="form-control">
-                                <div id="warning_2"></div>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label for="adres">Adres</label>
-                                <input type="text" id="adres" class="form-control">
+                                <input type="text" id="telefoonnummer" class="form-control" pattern="[0-9]{9,}" required>
                                 <div id="warning_3"></div>
                             </div>
                             <div class="form-outline mb-4">
-                                <label for="postcode">Postcode</label>
-                                <input type="text" id="postcode" class="form-control">
+                                <label for="adres">Adres</label>
+                                <input type="text" id="adres" class="form-control" minlength="2" required>
                                 <div id="warning_4"></div>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="postcode">Postcode</label>
+                                <input type="text" id="postcode" class="form-control" pattern="[0-9]{4}" required>
+                                <div id="warning_5"></div>
                             </div>
                             <div class="custom-control custom-checkbox mb-4">
                                 <input class="custom-control-input" type="checkbox" id="suggesties" unchecked>
@@ -205,6 +208,24 @@
         
                         <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper" id="modalVerwijder"></div>
         
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning Modal -->
+            <div class="modal fade" id="waarschuwingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div id="waarschuwingModalLabel"></div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body" id="waarschuwingModalBody"></div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Sluit</button>
+                        </div>
                     </div>
                 </div>
             </div>

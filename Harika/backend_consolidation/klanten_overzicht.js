@@ -54,7 +54,7 @@ function toon_klanten_tabel()
         document.getElementById("tabel").innerHTML += '<tr>'
         +'<td>'+klanten[i].user_id+'</td> <td>'+klanten[i].naam+'</td> <td>'+klanten[i].email+'</td> <td>'+klanten[i].telefoonnummer+'</td> <td>'+klanten[i].adres+'</td> <td>'+klanten[i].postcode+'</td> <td>'+suggesties+'</td> <td>'+actief+'</td>'
         +'<td> <span class="text-left"><a class="btn btn-primary btn-sm my-0" id="verwijderen'+i+'" onclick="verwijderen('+i+')" data-toggle="modal" data-target="#verwijderen">Verwijderen</a></span>'
-        +'<span class="text-left"><a class="btn btn-primary btn-sm my-0" id="bewerken'+i+'" onclick="bewerken('+i+')" data-toggle="modal" data-target="#product">Bewerken</a></span>'
+        +'<span class="text-left"><a class="btn btn-primary btn-sm my-0" id="bewerken'+i+'" onclick="bewerken('+i+')" data-toggle="modal" data-target="#klant">Bewerken</a></span>'
         +'</td> </tr>';
     }
 }
@@ -65,7 +65,29 @@ function toevoegen()
     legen();
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Klant toevoegen</h4>';
     document.getElementById("invoerWachtwoord").style.display = "block"; 
-    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="bewaren_toevoegen()" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
+    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="toevoegen_validatie()">BEWAREN</button> <button class="btn btn-primary" data-dismiss="modal">ANNULEREN</button>';
+}
+
+// popup/validation
+function toevoegen_validatie()
+{
+    for (var i=0; i<6; i++)
+    {
+        document.getElementById("warning_"+i).innerHTML= "";
+    }
+    var validate= true;
+    var form = $("#klantForm");
+    $('input', form).each(function(index) {
+        if ($(this)[0].checkValidity() == false) 
+        {
+        document.getElementById("warning_"+index).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+        validate= false; 
+        }
+    })
+    if (validate==true)
+    {
+        bewaren_toevoegen()
+    }
 }
 
 // client/create
@@ -115,11 +137,13 @@ function bewaren_toevoegen()
     .done(function(response) {
         console.log("create done:");
         console.log(response);
+        $('#klant').modal('hide');
         starten();
     })
     .fail(function (msg) {
         console.log("create fail:");
         console.log(msg);
+        waarschuwing_modal("editfail");
     });
 }
 
@@ -141,7 +165,7 @@ function bewerken(num)
 {
     document.getElementById("modalHeader").innerHTML = '<h4 class="modal-title w-100 font-weight-bold">Klant bijwerken</h4>';
     document.getElementById("invoerWachtwoord").style.display = "none";
-    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="bewaren_bewerken('+num+')" data-dismiss="modal">BEWAREN</button> <button class="btn btn-blue" data-dismiss="modal">ANNULEREN</button>';
+    document.getElementById("modalFooter").innerHTML = '<button class="btn btn-primary" onclick="bewaren_bewerken('+num+')" data-dismiss="modal">BEWAREN</button> <button class="btn btn-primary" data-dismiss="modal">ANNULEREN</button>';
     document.getElementById("naam").value = klanten[num].naam;
     document.getElementById("email").value = klanten[num].email;
     document.getElementById("telefoonnummer").value = klanten[num].telefoonnummer;
@@ -218,6 +242,7 @@ function bewaren_bewerken(num)
     .fail(function (msg) {
         console.log("update fail:");
         console.log(msg);
+        waarschuwing_modal("editfail");
     });
 }
 
@@ -232,7 +257,7 @@ function verwijderen(num)
     }
     else{
         document.getElementById("verwijderWaarschuwing").innerHTML = '<p>Wilt u deze klant verwijderen?</p>';
-        document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-primary" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-blue" data-dismiss="modal">NEEN</button>';
+        document.getElementById("modalVerwijder").innerHTML = '<button class="btn btn-primary" onclick="verwijderen_ja('+num+')" data-dismiss="modal">JA</button> <button class="btn btn-primary" data-dismiss="modal">NEEN</button>';
     }
 }
 
@@ -258,6 +283,16 @@ function verwijderen_ja(num)
     .fail(function (msg) {
         console.log("delete fail:");
         console.log(msg);
+        var verbinding_bestaat=msg.responseJSON.status.message;
+        
+        if (verbinding_bestaat=="SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ID130696_vsabroodjes`.`bestelling`, CONSTRAINT `bestelling_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`))")
+        {
+            waarschuwing_modal("relation");
+        }
+        else
+        {
+            waarschuwing_modal("deletefail");
+        }
     });
 }
 
@@ -315,3 +350,24 @@ function sortering()
     starten();
 }
 
+// warning
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
+
+    if (warning=="relation")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Bestelling bestaat al?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Er is een bestelling van deze klant. U kunt het niet verwijderen!</p>';
+    }
+    else if (warning=="editfail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw registratie van deze klant is om onbekende redenen mislukt.Neem dan contact op met de IT-afdeling.</p>';
+    }
+    else if (warning=="deletefail"){
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Verwijderen mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Verwijderen van deze klant is om onbekende redenen niet gelukt.Neem dan contact op met de IT-afdeling.</p>';
+    }
+}
