@@ -234,6 +234,7 @@ function afmelden()
         gebruikernaam = "";    
         document.getElementById("gebruikernaam").innerHTML="";
         sessionStorage.clear();
+        //sessionStorage.removeItem("token");
         }
         document.location = "admin_aanmelden.html";
     })
