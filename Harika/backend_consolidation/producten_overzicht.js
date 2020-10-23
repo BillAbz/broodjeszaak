@@ -306,10 +306,10 @@ function find_product(prod_id) {
             huidig_product = producten[i];
             console.log(huidig_product);
         }
+        
     }
-
+    
 }
-
 
 
 function bevestig_verwijderen() {
@@ -367,8 +367,8 @@ function filter_sort_display() {
         tabledata += "<td>" + items[i].prodprijs + "</td>";
         tabledata += "<td>" + '<img src="https:'+assets_path + "/" + items[i].beeld.name+'" class="figure-img img-fluid z-depth-1" style="max-width: 100px" alt="Responsive image"/>' + "</td>";
 
-        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_product(${producten[i].pid})">Verwijderen</button>` +
-        `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick="toon_product(${producten[i].pid})">Bijwerken</button>` +
+        tabledata += "<td>" + `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_verwijderen" onclick="find_product(${items[i].pid})">Verwijderen</button>` +
+        `<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_details" onclick=""toon_product('update', ${items[i].pid})">Bijwerken</button>` +
        "</td>";
 
         tabledata += "</tr>";
