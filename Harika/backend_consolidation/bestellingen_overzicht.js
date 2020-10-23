@@ -32,7 +32,7 @@ function read_items() {
                                      "paging": {
                                         "page": huidige_pagina,
                                         "items_per_page": 10},
-                                        
+                                        "filter": filters,
                                         "sort": sorteren,
                                      "relation": 
                                         [{"pri_entity":"bestelling","pri_key":"user_id","sec_entity":"user", "sec_key":"user_id"}]
@@ -282,8 +282,50 @@ function BestellingenRaadplegen() {
 }
 
 
+function sortering() 
+{
+    sorteren[0] = $("#sorteer").val();
+    start();
+} 
 
-function filteren() {
+function filteren() 
+{
+   
+    var date=  $("#filterdatum").val();;
+   
+    console.log(date);
+    var filterdatum= "";
+    if (date != "") {
+        var date_form= date.split("/");
+        filterdatum = date_form[2]+"-"+date_form[1]+"-"+date_form[0] 
+    }
+    //console.log(filterdatum);
+
+    var filter = [];
+    filter[0] = $("#fbesid").val();
+    filter[1] = filterdatum;
+    filter[2] = $("#filterbetaald").val();
+
+    filters=[];
+    if (filter[0]!="") 
+    {
+        filters.push(["besid", "=", filter[0]]);
+    };
+    if (filter[1]!="")
+    {
+        filters.push(["datum", "=", filter[1]])
+    };
+    if (filter[2]!="") 
+    {   
+        filters.push(["betaald", "=", filter[2]])
+    };
+    start();
+}
+
+
+
+
+/*function filteren() {
     //filters = "besid";
     var fbesid= $("#fbesid").val();
     var filterdatum = $("#filterdatum").val();
@@ -390,7 +432,7 @@ function Call_filter_ajax(fbesid, filterdatum, filterbetaald)
                 console.log(msg);
             });
 
-    }
+    }*/
 
 
  function sortering() 

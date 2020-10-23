@@ -238,10 +238,16 @@ function paginas(dir)
 
 function filteren() 
 {
-    var filterdatum = $("#filterdatum").val();
-    var date= filterdatum;
-    var date_form= date.split("/");
-    filterdatum= date_form[2]+"-"+date_form[1]+"-"+date_form[0];
+   
+    var date=  $("#filterdatum").val();;
+   
+    console.log(date);
+    var filterdatum= "";
+    if (date != "") {
+        var date_form= date.split("/");
+        filterdatum = date_form[2]+"-"+date_form[1]+"-"+date_form[0] 
+    }
+    //console.log(filterdatum);
 
     var filter = [];
     filter[0] = $("#filteremail").val();
