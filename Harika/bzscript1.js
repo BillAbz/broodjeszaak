@@ -210,6 +210,7 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
+        
         if(directed_from=="wagentje1")
         {
             document.location = "wagentje1.html";
@@ -292,7 +293,8 @@ function krijg_naam()
         console.log(user_id);
         telefoonnummer=response.data.items[0].telefoonnummer;
         sessionStorage.setItem("username",username);
-          
+        //document.getElementById("login").style.visibility = 'hidden';  
+        document.getElementById("login").style.display = 'none';
         toon_gebruiker_naam(); 
 
     }).fail(function (msg) {
