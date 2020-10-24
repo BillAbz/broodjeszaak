@@ -122,7 +122,12 @@ function inloggen() {
         console.log(response);
 
         user_rol=response.data.item.rol;
-                if(user_rol=="admin")
+      /*   if(user_rol=="klant")
+        {
+            waarschuwing_modal("urole");
+        }
+ */
+        if(user_rol=="admin")
                 {
                     sessionStorage.setItem("token", response.status.token);
                     sessionStorage.setItem("gebruiker", email);
@@ -135,9 +140,14 @@ function inloggen() {
                     //sessionStorage.setItem("rol",user_rol);
                     document.location = "producten_overzicht.html";
                 }
-                else{
-                    alert("U heeft geen toestemming om deze pagina's te openen");
-                }
+              else if(user_rol=="klant")
+              {
+                  console.log("in else of done");
+                 
+                 $("#waarschuwingModal").modal();
+                 document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Niet een Admin</h3>';
+                document.getElementById("waarschuwingModalBody").innerHTML= '<p>U heeft geen toestemming om deze paginas te openen, aub!</p>';
+              }  
            
 
 
@@ -149,14 +159,44 @@ function inloggen() {
     })
     .fail(function (msg) {
         console.log(msg);
-        var email_bestaat=msg.responseJSON.status.message;
+        var wachtwoord_unjuist=msg.responseJSON.status.message;
         
-        if (email_bestaat=="400: User with this email already exists.")
+        if (wachtwoord_unjuist=="User with this e-mail/password not found.")
         {
-            waarschuwing_modal("email");
+            waarschuwing_modal("password");
+        }
+        else
+        {
+            waarschuwing_modal("unsuccessful");
         }
     });
 }
+
+
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    //var warning;
+    console.log(warning);
+
+    if (warning=="password")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Wachtwoord of e-mail onjuist?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
+    } 
+    else if (warning=="unsuccessful")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Aanmelden mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw aanmelden is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
+    }
+   
+}
+
+
+
+
+
+
 
 
 /* function krijg_naam()
@@ -272,24 +312,3 @@ function sessionControl()
 
 
 
-function waarschuwing_modal(warning)
-{   
-    $("#waarschuwingModal").modal();
-    var warning;
-
-    if (warning=="password")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Wachtwoord of e-mail onjuist?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
-    } 
-    else if (warning=="email")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">E-mailadres bestaat al?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
-    }
-    else if (warning=="login")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title" id="waarschuwingModalLabel">Nog niet ingelogd?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Log in om verder te gaan, aub!</p>';
-    }
-}
