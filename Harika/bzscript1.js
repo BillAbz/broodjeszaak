@@ -42,6 +42,49 @@ var afgehaald;
 var opgelost;
 var assets_path;
 
+function waarschuwing_modal(warning)
+{   
+    $("#waarschuwingModal").modal();
+    var warning;
+
+    if (warning=="success")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie gelukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>U bent succesvol geregistreerd. U kunt nu inloggen.</p>';
+    }
+    else if (warning=="email")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">E-mailadres bestaat al?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
+    }
+    else if (warning=="fail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw registratie is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
+    }
+    
+    else if (warning=="password")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Wachtwoord of e-mail onjuist?</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
+    }
+    else if (warning=="unsuccessful")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Aanmelden mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw aanmelden is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
+    }
+    else if (warning=="formsuccess")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag verzonden</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is succesvol verzonden. Bedankt!</p>';
+        
+    }
+    else if (warning=="formfail")
+    {
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag mislukt</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is om onbekende redenen niet verzonden. Neem dan telefonisch contact met ons op.</p>';
+    }
+}
 
 
 function contactformulier_validatie()
@@ -229,49 +272,6 @@ function registreren() {
     });
 }
 
-function waarschuwing_modal(warning)
-{   
-    $("#waarschuwingModal").modal();
-    var warning;
-
-    if (warning=="success")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie gelukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>U bent succesvol geregistreerd. U kunt nu inloggen.</p>';
-    }
-    else if (warning=="email")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">E-mailadres bestaat al?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ingevoerde e-mailadres bestaat al. Voer een ander e-mailadres in!</p>';
-    }
-    else if (warning=="fail")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Registratie mislukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw registratie is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
-    }
-    
-    else if (warning=="password")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Wachtwoord of e-mail onjuist?</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Het ngevoerd e-mailadres of wachtwoord is onjuist. Voer de waarden opnieuw in!</p>';
-    }
-    else if (warning=="unsuccessful")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Aanmelden mislukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw aanmelden is mislukt vanwege onbekende redenen. Neem dan telefonisch contact met ons op.</p>';
-    }
-    else if (warning=="formsuccess")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag verzonden</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is succesvol verzonden. Bedankt!</p>';
-        
-    }
-    else if (warning=="formfail")
-    {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag mislukt</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is om onbekende redenen niet verzonden. Neem dan telefonisch contact met ons op.</p>';
-    }
-}
 
 
 
