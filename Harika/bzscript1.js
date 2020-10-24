@@ -42,6 +42,113 @@ var afgehaald;
 var opgelost;
 var assets_path;
 
+
+
+function contactformulier_validatie()
+{
+    for (var i=0; i<5; i++)
+    {
+        document.getElementById("formulier_warning_"+i).innerHTML= "";
+    }
+
+    var validate= true;
+    var form = $("#formulierform");
+    $('input', form).each(function(i) {
+        if ($(this)[0].checkValidity() == false) 
+        {
+            document.getElementById("formulier_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
+            validate= false; 
+        }
+    })
+    if (validate==true)
+    {
+        contactformulier()
+    }
+}
+
+
+function contactformulier() 
+{
+    var formData = new FormData(); 
+    //var datum_bestelling = "";
+    //var contactuserid = "";
+    var contactbestellingid = "";
+    var contactnaam = document.getElementById("contactFormName").value;
+    var contactemail = document.getElementById("contactFormEmail").value;
+    var contacttelefoon = document.getElementById("contactFormTel").value;
+    var c_option =document.getElementById("contactFormInfo").value;
+    if (c_option==2 || c_option == 3)
+    {
+        var contactbestellingid = document.getElementById("ordernummer").value;
+    }
+    var contactomschrijving = document.getElementById("vraag").value;
+    var opgelost=0;
+    
+    var values =  {
+        "naam": contactnaam,
+        "email" : contactemail,
+        "telefoonnummer" :contacttelefoon, 
+        "besid" : contactbestellingid,
+        "omschrijving" :contactomschrijving, 
+        "datum_cf" :date,
+        "opgelost" : String(opgelost)    
+    }
+    formData.set("values", JSON.stringify(values));
+
+    $.ajax
+    ({
+        method: 'POST',
+        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
+       // headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+        //"filter": ["email", "like", "%" + useremail + "%"]
+        processData: false,
+        contentType: false,
+        data: formData
+   })
+   .done(function (response) 
+   {
+        console.log("post done:");
+        console.log(response);
+        waarschuwing_modal("formsuccess");
+        leeg_contactformulier();
+    })
+    .fail(function (msg) 
+    {
+        console.log("post fail:");
+        console.log(msg);
+        waarschuwing_modal("formfail");
+    });
+}
+
+
+function leeg_contactformulier()
+{
+    document.getElementById("contactFormName").value="";
+    document.getElementById("contactFormEmail").value="";
+    document.getElementById("contactFormTel").value="";
+    document.getElementById("contactFormInfo").value="";
+    document.getElementById("bestellingnummer").innerHTML = "";
+    document.getElementById("vraag").value="";
+}
+
+    
+function get_vraag_selectie_value()
+{
+    var c_option =document.getElementById("contactFormInfo").value;
+    if (c_option==2 || c_option == 3)
+    {
+        document.getElementById("bestellingnummer").innerHTML = `  
+            <input type="text" id="ordernummer" class="form-control mt-4" placeholder="Voer uw bestelnummer in" pattern="[0-9]{1,}" required>      
+        `;
+    }
+    else if (c_option==1)
+    {
+        document.getElementById("bestellingnummer").innerHTML = "";
+    }
+    contactformulier_validatie();
+}
+
+
 function register_validatie()
 {
     for (var i=0; i<7; i++)
@@ -1377,109 +1484,6 @@ function waarschuwing_modal2(warning)
 }
 
 
-function contactformulier_validatie()
-{
-    for (var i=0; i<5; i++)
-    {
-        document.getElementById("formulier_warning_"+i).innerHTML= "";
-    }
-
-    var validate= true;
-    var form = $("#formulierform");
-    $('input', form).each(function(i) {
-        if ($(this)[0].checkValidity() == false) 
-        {
-            document.getElementById("formulier_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
-            validate= false; 
-        }
-    })
-    if (validate==true)
-    {
-        contactformulier()
-    }
-}
-
-
-function contactformulier() 
-{
-    var formData = new FormData(); 
-    //var datum_bestelling = "";
-    //var contactuserid = "";
-    var contactbestellingid = "";
-    var contactnaam = document.getElementById("contactFormName").value;
-    var contactemail = document.getElementById("contactFormEmail").value;
-    var contacttelefoon = document.getElementById("contactFormTel").value;
-    var c_option =document.getElementById("contactFormInfo").value;
-    if (c_option==2 || c_option == 3)
-    {
-        var contactbestellingid = document.getElementById("ordernummer").value;
-    }
-    var contactomschrijving = document.getElementById("vraag").value;
-    var opgelost=0;
-    
-    var values =  {
-        "naam": contactnaam,
-        "email" : contactemail,
-        "telefoonnummer" :contacttelefoon, 
-        "besid" : contactbestellingid,
-        "omschrijving" :contactomschrijving, 
-        "datum_cf" :date,
-        "opgelost" : String(opgelost)    
-    }
-    formData.set("values", JSON.stringify(values));
-
-    $.ajax
-    ({
-        method: 'POST',
-        url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=contactformulier&token_required=false",
-       // headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-        //"filter": ["email", "like", "%" + useremail + "%"]
-        processData: false,
-        contentType: false,
-        data: formData
-   })
-   .done(function (response) 
-   {
-        console.log("post done:");
-        console.log(response);
-        waarschuwing_modal("formsuccess");
-        leeg_contactformulier();
-    })
-    .fail(function (msg) 
-    {
-        console.log("post fail:");
-        console.log(msg);
-        waarschuwing_modal("formfail");
-    });
-}
-
-
-function leeg_contactformulier()
-{
-    document.getElementById("contactFormName").value="";
-    document.getElementById("contactFormEmail").value="";
-    document.getElementById("contactFormTel").value="";
-    document.getElementById("contactFormInfo").value="";
-    document.getElementById("bestellingnummer").innerHTML = "";
-    document.getElementById("vraag").value="";
-}
-
-    
-function get_vraag_selectie_value()
-{
-    var c_option =document.getElementById("contactFormInfo").value;
-    if (c_option==2 || c_option == 3)
-    {
-        document.getElementById("bestellingnummer").innerHTML = `  
-            <input type="text" id="ordernummer" class="form-control mt-4" placeholder="Voer uw bestelnummer in" pattern="[0-9]{1,}" required>      
-        `;
-    }
-    else if (c_option==1)
-    {
-        document.getElementById("bestellingnummer").innerHTML = "";
-    }
-    contactformulier_validatie();
-}
 
 
 function show_password(id) {
