@@ -86,6 +86,23 @@ function waarschuwing_modal(warning)
     }
 }
 
+    
+function get_vraag_selectie_value()
+{
+    var c_option =document.getElementById("contactFormInfo").value;
+    if (c_option==2 || c_option == 3)
+    {
+        document.getElementById("bestellingnummer").innerHTML = `  
+            <input type="text" id="ordernummer" class="form-control mt-4" placeholder="Voer uw bestelnummer in" pattern="[0-9]{1,}" required>      
+        `;
+    }
+    else if (c_option==1)
+    {
+        document.getElementById("bestellingnummer").innerHTML = "";
+    }
+    contactformulier_validatie();
+}
+
 
 function contactformulier_validatie()
 {
@@ -119,7 +136,7 @@ function contactformulier()
     var contactnaam = document.getElementById("contactFormName").value;
     var contactemail = document.getElementById("contactFormEmail").value;
     var contacttelefoon = document.getElementById("contactFormTel").value;
-    var c_option =document.getElementById("contactFormInfo").value;
+        var c_option =document.getElementById("contactFormInfo").value;
     if (c_option==2 || c_option == 3)
     {
         var contactbestellingid = document.getElementById("ordernummer").value;
@@ -172,23 +189,6 @@ function leeg_contactformulier()
     document.getElementById("contactFormInfo").value="";
     document.getElementById("bestellingnummer").innerHTML = "";
     document.getElementById("vraag").value="";
-}
-
-    
-function get_vraag_selectie_value()
-{
-    var c_option =document.getElementById("contactFormInfo").value;
-    if (c_option==2 || c_option == 3)
-    {
-        document.getElementById("bestellingnummer").innerHTML = `  
-            <input type="text" id="ordernummer" class="form-control mt-4" placeholder="Voer uw bestelnummer in" pattern="[0-9]{1,}" required>      
-        `;
-    }
-    else if (c_option==1)
-    {
-        document.getElementById("bestellingnummer").innerHTML = "";
-    }
-    contactformulier_validatie();
 }
 
 
