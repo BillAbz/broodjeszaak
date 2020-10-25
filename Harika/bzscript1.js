@@ -273,8 +273,6 @@ function registreren() {
 }
 
 
-
-
 function login_validatie()
 {
     document.getElementById("login_warning_0").innerHTML= "";
@@ -298,6 +296,7 @@ function login_validatie()
 function inloggen() {
     var email = document.getElementById("login_email").value;
     var password = document.getElementById("login_wachtwoord").value;
+    var remember = document.getElementById("loginFormRemember");
     
     const urlParams1 = new URLSearchParams(window.location.search);
     const directed_from = urlParams1.get("directed_from");
@@ -317,6 +316,18 @@ function inloggen() {
         sessionStorage.setItem("token", response.status.token);
         sessionStorage.setItem("gebruiker", email);
         console.log(sessionStorage);
+        if (remember.checked)
+        {
+            localStorage.remember_email = email; 
+            localStorage.remember_password = password; 
+            localStorage.checkbox = "remember";
+        }
+        else 
+        {
+            localStorage.email = ""; 
+            localStorage.password = ""; 
+            localStorage.checkbox = "";
+        }
         
         if(directed_from=="wagentje1")
         {
@@ -398,13 +409,11 @@ function krijg_naam()
         username=response.data.items[0].naam;
         user_id=response.data.items[0].user_id;
         console.log(user_id);
-        telefoonnummer=response.data.items[0].telefoonnummer;
         sessionStorage.setItem("username",username);
-        //document.getElementById("login").style.visibility = 'hidden';  
         document.getElementById("login").style.display = 'none';
         toon_gebruiker_naam(); 
-
-    }).fail(function (msg) {
+    })
+    .fail(function (msg) {
         console.log("read fail:");
         console.log(msg);
     });
@@ -446,11 +455,12 @@ function afmelden()
     })
     .done(function (response) {
         console.log(response);
-        if (token_check = null) {
-        sessionStorage.setItem("gebruikernaam", "");    
-        gebruikernaam = "";    
-        document.getElementById("gebruikernaam").innerHTML="";
-        sessionStorage.clear();
+        if (token_check = null) 
+        {
+            sessionStorage.setItem("gebruikernaam", "");    
+            gebruikernaam = "";    
+            document.getElementById("gebruikernaam").innerHTML="";
+            sessionStorage.clear();
         }
         document.location = "aanmelden1.html";
     })
@@ -458,6 +468,15 @@ function afmelden()
         console.log("read fail:");
         console.log(msg);
     });
+}
+
+
+function onthouden(){
+    if (localStorage.checkbox == "remember") 
+    {
+        document.getElementById("login_email").value= localStorage.remember_email; 
+        document.getElementById("login_wachtwoord").value= localStorage.remember_password; 
+    }
 }
 
 
