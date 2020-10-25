@@ -43,6 +43,18 @@ function read_items() {
                                                     console.log(response);
                                                     bestellingen = response.data.items;
                                                     console.log(bestellingen);
+
+                                                    if(response.data.item_count==0)
+                                                    {
+                                                        $("#waarschuwingModal").modal();
+                                                        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Sorry</h3>';
+                                                        document.getElementById("waarschuwingModalBody").innerHTML= '<p> geen records gevonden!</p>';
+                                                        document.getElementById("sluit").onclick = function () { location.reload(); };
+                                                        //location.reload();
+                                                        //document.getElementById("sluit").onclick = function () { read_items(); };
+                                                    }
+
+
                                                     aantal_paginas = response.data.paging.page_count;
                                                     vernieuw_bestelling_tabel();
                      })
@@ -242,6 +254,9 @@ function BestellingenRaadplegen() {
             console.log(response);
             if (response.status.success == true) {
                 console.log("updated");
+                $("#waarschuwingModal").modal();
+                document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Update Succesvol</h3>';
+                document.getElementById("waarschuwingModalBody").innerHTML= '<p> Record is bijgewerkt!</p>';
                 //read_items();
                 vernieuw_bestelling_tabel();
                 $('#modal_details').modal('hide');
