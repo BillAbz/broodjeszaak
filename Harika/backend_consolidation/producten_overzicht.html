@@ -75,7 +75,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- CREATION OF FORM ELEMENT WHEN PRODUCT OVERZICHT IS CLICKED-->
-                        <form id="product_toevoegen_form">
+                        <form id="producttoevoegenform">
                             <div class="form-group">
                                 <input id="id" hidden>
                                 <label for="pnaam">Naam</label>
@@ -93,11 +93,13 @@
                                 <input type="file" class="custom-file-input" id="beeld" />
                                 <label class="custom-file-label" for="beeld" data-browse="Bladeren">Kies (Nieuwe) Foto</label>
                                 <div style="border: 2px;" id="originaalbeeld"></div>
+                                <div id="product_beheren_warning_2"></div>
+
                             </div>
                             <div class="form-group">
                                 <label for="pomschrijving">Omschrijving</label>
                                 <textarea class="form-control" id="pomschrijving" rows="7"></textarea>
-                                <div id="product_beheren_warning_2"></div>
+                                <div id="product_beheren_warning_3"></div>
                             </div>
                             <div class="form-group">
                                 <label for="catid">Categorie</label>
@@ -224,7 +226,7 @@
                         </div>
                         <div class="modal-body" id="waarschuwingModalBody"></div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-cyan" data-dismiss="modal">Sluit</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Sluit</button>
                     </div>
                 </div>
             </div>

@@ -141,28 +141,75 @@ function bijwerken_producten() {
 }
 function controleer_product_toevoegen()
 {
-    for (var i=0; i<5; i++)
+    for (var i=0; i<4; i++)
     {
         document.getElementById("product_beheren_warning_"+i).innerHTML= "";
     }
     
 
     var validate= true;
-    var form = $("#product_toevoegen_form");
+    var form = $("#producttoevoegenform");
     $('input', form).each(function(i) {
         if ($(this)[0].checkValidity() == false) 
         {
-            console.log(i)
+            console.log("valdiatie nodig!")
         document.getElementById("product_beheren_warning_"+i).innerHTML= '<small class="form-text text-muted mb-4">Gelieve hier geldig in te vullen!</small>'
         validate= false; 
         }
     })
     if (validate==true)
     {
-        bewarenproducten();
+        console.log("validatie gelukt!")
+        product_toevoegen();
     }
 }
+function product_toevoegen() {
+    var formData = new FormData();
+        var values = {
+            "pnaam": $("#pnaam").val(),
+            "pomschrijving": $("#pomschrijving").val(),
+            "catid": $("#catid").val(),
+            "prodprijs": $("#prodprijs").val(),
+            "beeld": $("#beeld").val(),
+            "promid": $("#catid").val()
 
+        };
+        formData.set("values", JSON.stringify(values));
+        // formData.set("filter", JSON.stringify(["id", "=", huidig_product.id]));
+        formData.set("beeld", $("#beeld")[0].files[0]);
+
+        $.ajax({
+            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=producten1",
+            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: formData
+        }).done(function (response) {
+            console.log("create done:");
+            console.log(response);
+            if (response.status.success == true) {
+            console.log("created");
+            var pid = response.data.pid;
+            console.log(pid);
+            $('#modal_details').modal('hide');
+            waarschuwing_modal("success");
+
+            }
+            else {
+                console.log("not created");
+                $('#modal_details').modal('hide');
+                waarschuwing_modal("formfail");
+
+            }
+        }).fail(function (msg) {
+            console.log("create fail:");
+            console.log(msg);
+            waarschuwing_modal("formfail");
+
+                    
+        });
+}
 
 
 function bewarenproducten() {
@@ -209,7 +256,7 @@ function bewarenproducten() {
             if (response.status.success == true) {
                 console.log("updated");
                 $('#modal_details').modal('hide');
-                waarschuwing_modal("formsuccess");
+                waarschuwing_modal("success");
 
             }
             else {
@@ -230,50 +277,7 @@ function bewarenproducten() {
 
     if(product_actie == "insert") {
        
-        var formData = new FormData();
-        var values = {
-            "pnaam": $("#pnaam").val(),
-            "pomschrijving": $("#pomschrijving").val(),
-            "catid": $("#catid").val(),
-            "prodprijs": $("#prodprijs").val(),
-            "beeld": $("#beeld").val(),
-
-        };
-        formData.set("values", JSON.stringify(values));
-        // formData.set("filter", JSON.stringify(["id", "=", huidig_product.id]));
-        formData.set("beeld", $("#beeld")[0].files[0]);
-
-        $.ajax({
-            url: "https://api.data-web.be/item/create?project=fjgub4eD3ddg&entity=producten1",
-            headers: { "Authorization": "Bearer " + sessionStorage.getItem("token") },
-            type: "POST",
-            processData: false,
-            contentType: false,
-            data: formData
-        }).done(function (response) {
-            console.log("create done:");
-            console.log(response);
-            if (response.status.success == true) {
-            console.log("created");
-            var pid = response.data.pid;
-            console.log(pid);
-            $('#modal_details').modal('hide');
-            waarschuwing_modal("formsuccess");
-
-            }
-            else {
-                console.log("not created");
-                $('#modal_details').modal('hide');
-                waarschuwing_modal("formfail");
-
-            }
-        }).fail(function (msg) {
-            console.log("create fail:");
-            console.log(msg);
-            waarschuwing_modal("formfail");
-
-                    
-        });
+        controleer_product_toevoegen();
     }
             
     read_items();
@@ -609,8 +613,8 @@ function waarschuwing_modal(warning)
     }
     else if (warning=="formsuccess")
     {
-        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">Vraag verzonden</h3>';
-        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw vraag is succesvol verzonden. Bedankt!</p>';
+        document.getElementById("waarschuwingModalLabel").innerHTML='<h3 class="modal-title">De product werd verwijderd.</h3>';
+        document.getElementById("waarschuwingModalBody").innerHTML= '<p>Uw verwijderen is succesvol. Bedankt!</p>';
         
     }
     else if (warning=="formfail")
